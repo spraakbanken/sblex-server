@@ -1,0 +1,8 @@
+def xmlize(segment,s):
+    j = cjson.decode(utf8.d(s))
+    xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
+    xml += '<result>\n'
+    for x in j:
+            xml+='<a><id>%s</id><fm>%s</fm><fp>%s</fp><l>%s</l><gf>%s</gf><p>%s</p></a>'%(x['id'],x['fm'],x['fp'],x['l'],x['gf'],x['p'])
+    xml += '</result>\n'
+    return utf8.e(xml)
