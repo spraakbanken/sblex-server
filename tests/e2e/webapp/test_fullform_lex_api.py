@@ -41,3 +41,22 @@ class TestFullformLexRoutes:
         assert res.headers["content-type"] == "application/xml"
 
         assert res.text == expected_response
+
+    @pytest.mark.parametrize(
+        "segment, expected_in_response",
+        [
+            ("", "Mata in en ordform."),
+        ],
+    )
+    @pytest.mark.asyncio
+    async def test_html_valid_input_returns_200(
+        self,
+        client: AsyncClient,
+        segment: str,
+        expected_in_response: str,
+    ) -> None:
+        res = await client.get(f"/fl/html/{segment}")
+        assert res.status_code == status.HTTP_200_OK
+        assert res.headers["content-type"] == "text/html; charset=utf-8"
+
+        assert expected_in_response in res.text

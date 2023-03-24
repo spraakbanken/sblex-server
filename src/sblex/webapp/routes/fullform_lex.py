@@ -35,3 +35,23 @@ async def fullform_xml(
         context={"request": request, "j": fullform_lex_query.query(segment=segment)},
         media_type="application/xml",
     )
+
+
+@router.get(
+    "/html/",
+    response_class=HTMLResponse,
+)
+async def fullform_lex_html_empty(
+    request: Request,
+):
+    templates = request.app.state.templates
+
+    return templates.TemplateResponse(
+        "saldo_mata_in_ordform.html",
+        {
+            "request": request,
+            "title": "SALDO",
+            "service": "fl",
+            "bar": True,
+        },
+    )
