@@ -5,7 +5,6 @@ import pytest_asyncio
 from asgi_lifespan import LifespanManager
 from fastapi import FastAPI
 from httpx import AsyncClient
-
 from sblex.webapp.main import create_webapp
 
 

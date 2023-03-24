@@ -49,10 +49,10 @@ class LookupLid(abc.ABC):
             custom error
         """
         if is_lemma(lid):
-            logger.debug("calling SemanticRepository.get_lemma for '%s'", lid)
+            logger.debug("calling LookupLid.get_lemma for '%s'", lid)
             return self.get_lemma(lid)
         elif is_lexeme(lid):
-            logger.debug("calling SemanticRepository.get_lexeme for '%s'", lid)
+            logger.debug("calling LookupLid.get_lexeme for '%s'", lid)
             return self.get_lexeme(lid)
         else:
             return {}

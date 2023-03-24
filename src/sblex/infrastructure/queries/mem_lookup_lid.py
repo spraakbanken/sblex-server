@@ -102,7 +102,10 @@ class MemLookupLid(LookupLid):
 
     def get_lemma(self, lemma: str) -> dict[str, Any]:
         try:
-            return self._lem_map[lemma]
+            logger.debug("lookup lemma", extra={"lemma": lemma})
+            result = self._lem_map[lemma]
+            logger.debug("lemma", extra={"lemma": lemma, "result": result})
+            return result
         except KeyError as exc:
             raise LemmaNotFound(lemma) from exc
 

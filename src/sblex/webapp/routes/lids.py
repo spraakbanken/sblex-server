@@ -76,7 +76,7 @@ async def lookup_lid_html(
 
     if isinstance(lid, Lemma):
         return templates.TemplateResponse(
-            "saldo_lid_lemma.html",
+            "saldo_table.html",
             context={
                 "request": request,
                 "bar": True,

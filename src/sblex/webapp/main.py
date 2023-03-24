@@ -1,3 +1,4 @@
+import logging
 import os
 from typing import Any
 
@@ -6,6 +7,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.templating import Jinja2Templates
 from sblex.webapp import routes, tasks, telemetry
+
+logger = logging.getLogger(__name__)
 
 
 def create_webapp(config: dict | None = None, *, use_telemetry: bool = True) -> FastAPI:
@@ -17,8 +20,11 @@ def create_webapp(config: dict | None = None, *, use_telemetry: bool = True) -> 
     # Configure templates
     webapp.state.templates = Jinja2Templates(directory="templates")
 
+    telemetry.configure_logging(config, use_telemetry=use_telemetry)
     if use_telemetry:
         telemetry.setting_otlp(webapp, "sblex-server")
+
+    logger.warn("loaded config", extra={"config": config})
 
     webapp.add_middleware(
         CORSMiddleware,
