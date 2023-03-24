@@ -1,2 +1,2 @@
 # sblex-server
-SB-lex servers workong with FM data
+SB-lex servers working with FM data
