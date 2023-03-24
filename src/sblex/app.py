@@ -13,7 +13,7 @@ from handler import handler
 print('loading application ...')
 
 def application(environ, start_response):
-   print('environ = %s' % environ)
+   print(('environ = %s' % environ))
    req = SaldoRequest(environ)
    status = handler(req)
    start_response(status, req.getHeaders())
