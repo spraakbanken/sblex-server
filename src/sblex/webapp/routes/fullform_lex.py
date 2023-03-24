@@ -1,5 +1,5 @@
-from fastapi import APIRouter, Depends, Request
-
+from fastapi import APIRouter, Depends, Query, Request
+from fastapi.responses import HTMLResponse
 from sblex.application.queries import FullformLexQuery
 from sblex.webapp import deps
 from sblex.webapp.responses import XMLResponse

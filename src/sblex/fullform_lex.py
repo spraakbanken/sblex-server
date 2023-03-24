@@ -16,13 +16,6 @@ size = 2048
 def function(format, segment):
     try:
         segment = segment.strip()
-        if segment == "" and format == "html":
-            return (
-                saldo_util.html_document(
-                    "SALDO", "<center><p>Mata in en ordform.</p></center>"
-                ),
-                apache.OK,
-            )
         result = ""
         lemmas = set(
             [
