@@ -46,6 +46,7 @@ class TestFullformLexRoutes:
         "segment, expected_in_response",
         [
             ("", "Mata in en ordform."),
+            (" ", "Mata in en ordform."),
         ],
     )
     @pytest.mark.asyncio

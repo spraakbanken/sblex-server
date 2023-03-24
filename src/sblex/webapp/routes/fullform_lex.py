@@ -55,3 +55,30 @@ async def fullform_lex_html_empty(
             "bar": True,
         },
     )
+
+
+@router.get(
+    "/html/{segment}",
+    response_class=HTMLResponse,
+)
+async def fullform_lex_html(
+    request: Request,
+    segment: str,
+    fullform_lex_query: FullformLexQuery = Depends(  # noqa: B008
+        deps.get_fullform_lex_query
+    ),
+):
+    templates = request.app.state.templates
+
+    segment = segment.strip()
+
+    if not segment:
+        return templates.TemplateResponse(
+            "saldo_mata_in_ordform.html",
+            {
+                "request": request,
+                "title": "SALDO",
+                "service": "fl",
+                "bar": True,
+            },
+        )
