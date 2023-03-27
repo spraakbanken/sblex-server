@@ -1,0 +1,31 @@
+
+{% macro prlex(lex) -%}
+{% set s = lex[:-3] %}
+{%- if lex[-1] == "1" -%}
+{{s}}
+{%- elif lex[-2] == "." -%}
+{{s}}<sup>{{lex[-1]}}</sup>
+{%- else -%}
+{{lex}}
+{%- endif -%}
+{%- endmacro -%}
+
+{%- macro lemma_ref(lem) -%}
+{%- set s = lem[:-2] -%}
+{%- set (w, pos) = lemma(s) -%}
+{%- if lem[-1] == "1" -%}
+{{ w }} ({{ pos }})
+{%- elif lem[-2] == "." -%}
+{{ w }}<sup>{{ lem[-1] }}</sup> ({{ pos }})
+{%- else -%}
+{{ lex }}
+{%- endif -%}
+{%- endmacro -%}
+
+{%- macro korpus_href(lids, name) -%}
+{%- if lids|length -%}
+<a href="http://spraakbanken.gu.se/korp/#search=lemgram|{{ lids[0] }}">{{ name }}</a>
+{%- endif -%}
+{%- endmacro -%}
+
+

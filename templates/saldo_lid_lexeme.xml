@@ -5,14 +5,14 @@
     <fm>{{ j["fm"] }}</fm>
     <fp>{{ j["fp"] }}</fp>
     <mfs>
-    {% for l in j["mf"] -%}
+    {%- for l in j["mf"] -%}
         <mf>{{ l }}</mf>
-    {%- endfor %}
+    {%- endfor -%}
     </mfs>
     <pfs>
-    {% for l in j["pf"] -%}
+    {%- for l in j["pf"] -%}
         <pf>{{ l }}</pf>
-    {%- endfor %}
+    {%- endfor -%}
     </pfs>
     <ls>
     {% for l in j["l"] -%}

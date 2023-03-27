@@ -8,6 +8,9 @@ async def main():
     async with httpx.AsyncClient(base_url="http://localhost:8000") as client:
         print_response(await client.get("/fl/json/t"))
         print_response(await client.get("/lid/json/dväljas..vb.1"))
+        print_response(await client.get("/lid/html/PRIM..1"))
+        print_response(await client.get("/lid/html/dväljas..1"))
+        print_response(await client.get("/lid/html/bo..1"))
         # print_response(r)
 
 
@@ -19,7 +22,10 @@ def print_response(r):
     for header, header_value in r.headers.items():
         print(f"   {header}: {header_value}")
     print("=> Response Body :")
-    print(f"{json.dumps(r.json(),indent=2)}")
+    try:
+        print(f"{json.dumps(r.json(),indent=2)}")
+    except json.decoder.JSONDecodeError:
+        print(f"{r.text}")
 
 
 if __name__ == "__main__":

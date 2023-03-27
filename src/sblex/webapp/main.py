@@ -1,18 +1,20 @@
 import os
 from typing import Any
+
+from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.templating import Jinja2Templates
 from sblex.webapp import routes, tasks, telemetry
 
-from sblex.webapp import routes
 
-
-def create_webapp() -> FastAPI:
+def create_webapp(config: dict | None = None) -> FastAPI:
     webapp = FastAPI()
     if not config:
         config = load_config()
 
+    webapp.state.config = config
+    # Configure templates
     webapp.state.templates = Jinja2Templates(directory="templates")
 
     telemetry.setting_otlp(webapp, "sblex-server")
@@ -24,6 +26,8 @@ def create_webapp() -> FastAPI:
         allow_methods=["*"],
         allow_headers=["*"],
     )
+
+    webapp.add_event_handler("startup", tasks.create_start_app_handler(webapp))
 
     webapp.include_router(routes.router)
 

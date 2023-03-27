@@ -13,3 +13,11 @@ def _prlex(lex):
             return lex
     except:
         return lex
+
+
+def lemma(l):
+    rl = l[::-1]
+    i = rl.find("..")
+    pos = rl[:i][::-1]
+    word = rl[(i + 2) :][::-1]
+    return (word, pos)

@@ -11,7 +11,7 @@ from sblex.webapp.main import create_webapp
 
 @pytest.fixture(name="webapp")
 def fixture_webapp() -> FastAPI:
-    return create_webapp()
+    return create_webapp(config={"SEMANTIC_PATH": "assets/testing/saldo.txt"})
 
 
 @pytest_asyncio.fixture

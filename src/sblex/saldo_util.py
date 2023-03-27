@@ -201,28 +201,6 @@ def inits(s):
     return xs
 
 
-def lemma(l):
-    rl = l[::-1]
-    i = rl.find("..")
-    pos = rl[:i][::-1]
-    word = rl[(i + 2) :][::-1]
-    return (word, pos)
-
-
-def lemma_ref(lem):
-    try:
-        s = lem[:-2]
-        (w, pos) = lemma(s)
-        if lem[-1] == "1":
-            return w + " (" + pos + ")"
-        elif lem[-2] == ".":
-            return w + "<sup>" + lem[-1] + "</sup> (" + pos + ")"
-        else:
-            return lex
-    except:
-        return lex
-
-
 def lemma_pref(lem):
     try:
         s = lem[:-2]
@@ -237,19 +215,6 @@ def lemma_pref(lem):
         return lex
 
 
-def lemma_href(lid):
-    if lid == "":
-        return "*"
-    else:
-        return (
-            '<a href="http://spraakbanken.gu.se/ws/saldo-ws/lid/html/'
-            + urllib.parse.quote(lid)
-            + '">'
-            + lemma_ref(lid)
-            + "</a>"
-        )
-
-
 def lemma_phref(lid):
     if lid == "":
         return "*"
@@ -260,22 +225,6 @@ def lemma_phref(lid):
             + '">'
             + lemma_pref(lid)
             + "</a>"
-        )
-
-
-def lexeme_ref(lids):
-    if lids == "":
-        return "*"
-    else:
-        return "+".join(
-            [
-                '<a href="http://spraakbanken.gu.se/ws/saldo-ws/lid/html/'
-                + urllib.parse.quote(lid)
-                + '">'
-                + prlex(lid)
-                + "</a>"
-                for lid in lids.split()
-            ]
         )
 
 
@@ -305,25 +254,6 @@ def gen_ref(p, w, l):
         urllib.parse.quote(w),
         l,
     )
-
-
-def graph(s):
-    return (
-        '<a href="http://spraakbanken.gu.se/ws/saldo-ws/lid/graph/%s"><img src="https://svn.spraakdata.gu.se/repos/sblex/pub/images/prim_graph.png" /></a>'
-        % (s.encode("UTF-8"))
-    )
-
-
-def korpus_ref(lids, name):
-    # xs  = set([y for lid in lids for x in generate_wordforms(utf8.e(lid)) for y in x.split(' ')])
-    # wfs = '+'.join([urllib.quote(y.encode('UTF-8')) for y in xs])
-    try:
-        return '<a href="http://spraakbanken.gu.se/korp/#search=lemgram|%s">%s</a>' % (
-            utf8.e(lids[0]),
-            name,
-        )
-    except:
-        return ""
 
 
 def sms_ref(w, l):
