@@ -84,30 +84,6 @@ def protojs(s):
     ).encode("utf-8")
 
 
-def xmlize(s):
-    j = cjson.decode(utf8.d(s))
-    xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
-    xml += "<result>\n"
-    if not (j == []):
-        xml += " <lex>" + j["lex"] + "</lex>\n"
-        xml += " <fm>" + j["fm"] + "</fm>\n"
-        xml += " <fp>" + j["fp"] + "</fp>\n"
-        xml += " <mfs>\n"
-        for l in j["mf"]:
-            xml += "   <mf>" + l + "</mf>\n"
-        xml += " </mfs>\n"
-        xml += " <pfs>\n"
-        for l in j["pf"]:
-            xml += "   <pf>" + l + "</pf>\n"
-        xml += " </pfs>\n"
-        xml += " <ls>\n"
-        for l in j["l"]:
-            xml += "   <l>" + l + "</l>\n"
-        xml += " </ls>\n"
-    xml += "</result>\n"
-    return utf8.e(xml)
-
-
 def htmlize(lexeme, s):
     j = cjson.decode(utf8.d(s))
     if j == []:
@@ -221,7 +197,7 @@ def graph(l, s):
 var vis = new pv.Panel()
    .width(500)
     .height(500);
-    
+
 var tree = vis.add(pv.Layout.Tree)
     .nodes(pv.dom(flare).root("%s").nodes())
     .depth(150)
@@ -233,7 +209,7 @@ tree.link.add(pv.Line);
 tree.node.add(pv.Dot)
     .fillStyle(function(n) n.firstChild ? "#ffffff" : "#ffffff")
     .size(10)
-    .event("mouseover", function() this.fillStyle("blue")) 
+    .event("mouseover", function() this.fillStyle("blue"))
     .event("mouseout", function() this.fillStyle(undefined))
     .event("click", function(n) {
     if(n.nodeValue != undefined){
@@ -255,7 +231,7 @@ tree.label.add(pv.Label)
       }
     else{
     %s
-    } 
+    }
     });
 
 

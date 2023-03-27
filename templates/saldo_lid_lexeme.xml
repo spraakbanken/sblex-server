@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<result>
+{% if j|length -%}
+    <lex>{{ j["lex"] }}</lex>
+    <fm>{{ j["fm"] }}</fm>
+    <fp>{{ j["fp"] }}</fp>
+    <mfs>
+    {% for l in j["mf"] -%}
+        <mf>{{ l }}</mf>
+    {%- endfor %}
+    </mfs>
+    <pfs>
+    {% for l in j["pf"] -%}
+        <pf>{{ l }}</pf>
+    {%- endfor %}
+    </pfs>
+    <ls>
+    {% for l in j["l"] -%}
+        <l>{{ l }}</l>
+    {%- endfor %}
+    </ls>
+{%- endif %}
+</result>
