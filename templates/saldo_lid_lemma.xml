@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<result>
+{% if j|length -%}
+    <gf>{{ j["gf"] }}</gf>
+    <p>{{ j["p"] }}</p>
+    <ls>
+    {% for l in j["l"] -%}
+        <l>{{ l }}</l>
+    {%- endfor %}
+    </ls>
+{% endif %}
+</result>
