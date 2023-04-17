@@ -3,8 +3,7 @@ from typing import Any
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.templating import Jinja2Templates
-from dotenv import load_dotenv
-from sblex.webapp import routes, tasks
+from sblex.webapp import routes, tasks, telemetry
 
 from sblex.webapp import routes
 
@@ -15,6 +14,8 @@ def create_webapp() -> FastAPI:
         config = load_config()
 
     webapp.state.templates = Jinja2Templates(directory="templates")
+
+    telemetry.setting_otlp(webapp, "sblex-server")
 
     webapp.add_middleware(
         CORSMiddleware,
