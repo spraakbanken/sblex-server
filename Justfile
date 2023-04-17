@@ -44,3 +44,9 @@ fmt:
 # check formatting for all python files
 check-fmt:
 	{{INVENV}} black --check src tests
+
+serve-dev:
+	{{INVENV}} uvicorn --reload --reload-dir src --factory sblex.webapp.main:create_webapp
+
+quick-dev:
+	{{INVENV}} watchfiles "python examples/quick_dev.py" examples/quick_dev.py templates
