@@ -8,6 +8,19 @@ class TestFullformLexRoutes:
         "segment, expected_response",
         [
             ("t", []),
+            (
+                "dväljs",
+                [
+                    {
+                        "id": "dväljas..1",
+                        "fm": "bo..1",
+                        "fp": "PRIM..1",
+                        "l": "dväljas..vb.1",
+                        "gf": "dväljas",
+                        "p": "vb_vs_dväljas",
+                    }
+                ],
+            ),
         ],
     )
     @pytest.mark.asyncio
@@ -27,6 +40,10 @@ class TestFullformLexRoutes:
         "segment, expected_response",
         [
             ("t", '<?xml version="1.0" encoding="UTF-8"?>\n<result>\n\n</result>'),
+            (
+                "dväljs",
+                '<?xml version="1.0" encoding="UTF-8"?>\n<result>\n<a><id>dväljas..1</id><fm>bo..1</fm><fp>PRIM..1</fp><l>dväljas..vb.1</l><gf>dväljas</gf><p>vb_vs_dväljas</p></a>\n</result>',
+            ),
         ],
     )
     @pytest.mark.asyncio
@@ -47,6 +64,8 @@ class TestFullformLexRoutes:
         [
             ("", "Mata in en ordform."),
             (" ", "Mata in en ordform."),
+            ("dväljs", "dväljs"),
+            ("dväljsxdf", "ordet saknas i lexikonet"),
         ],
     )
     @pytest.mark.asyncio

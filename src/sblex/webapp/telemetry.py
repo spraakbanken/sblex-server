@@ -7,7 +7,7 @@ from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor, ConsoleSpanExporter
 
 
-def setting_otlp(app: FastAPI, app_name: str, log_correlation: bool = True) -> None:
+def setting_otlp(app: FastAPI, app_name: str, *, log_correlation: bool = True) -> None:
     resource = Resource.create(
         attributes={
             "service.name": app_name,
@@ -17,9 +17,9 @@ def setting_otlp(app: FastAPI, app_name: str, log_correlation: bool = True) -> N
 
     # set the tracer provider
     tracer = TracerProvider(resource=resource)
-    trace.set_tracer_provider(tracer)
-
     tracer.add_span_processor(BatchSpanProcessor(ConsoleSpanExporter()))
+
+    trace.set_tracer_provider(tracer)
 
     if log_correlation:
         LoggingInstrumentor().instrument(set_logging_format=True)

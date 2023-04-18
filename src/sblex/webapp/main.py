@@ -8,7 +8,7 @@ from fastapi.templating import Jinja2Templates
 from sblex.webapp import routes, tasks, telemetry
 
 
-def create_webapp(config: dict | None = None) -> FastAPI:
+def create_webapp(config: dict | None = None, *, use_telemetry: bool = True) -> FastAPI:
     webapp = FastAPI()
     if not config:
         config = load_config()
@@ -17,7 +17,8 @@ def create_webapp(config: dict | None = None) -> FastAPI:
     # Configure templates
     webapp.state.templates = Jinja2Templates(directory="templates")
 
-    telemetry.setting_otlp(webapp, "sblex-server")
+    if use_telemetry:
+        telemetry.setting_otlp(webapp, "sblex-server")
 
     webapp.add_middleware(
         CORSMiddleware,

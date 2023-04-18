@@ -11,7 +11,13 @@ from sblex.webapp.main import create_webapp
 
 @pytest.fixture(name="webapp")
 def fixture_webapp() -> FastAPI:
-    return create_webapp(config={"SEMANTIC_PATH": "assets/testing/saldo.txt"})
+    return create_webapp(
+        config={
+            "SEMANTIC_PATH": "assets/testing/saldo.txt",
+            "MORPHOLOGY_PATH": "assets/testing/saldo.lex",
+        },
+        use_telemetry=False,
+    )
 
 
 @pytest_asyncio.fixture

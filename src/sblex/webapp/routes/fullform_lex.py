@@ -82,3 +82,15 @@ async def fullform_lex_html(
                 "bar": True,
             },
         )
+    return templates.TemplateResponse(
+        "saldo_fullform_lex.html",
+        {
+            "request": request,
+            "title": segment,
+            "service": "ff",
+            "input": "",
+            "bar": True,
+            "segment": segment,
+            "j": fullform_lex_query.query(segment=segment),
+        },
+    )
