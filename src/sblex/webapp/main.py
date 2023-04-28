@@ -24,7 +24,7 @@ def create_webapp(config: dict | None = None, *, use_telemetry: bool = True) -> 
     if use_telemetry:
         telemetry.setting_otlp(webapp, "sblex-server")
 
-    logger.warn("loaded config", extra={"config": config})
+    logger.warning("loaded config", extra={"config": config})
 
     webapp.add_middleware(
         CORSMiddleware,

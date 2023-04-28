@@ -130,6 +130,7 @@ dmypy.json
 *.py.bak
 
 /data/
+/bin/
 
 # Editor settings
 .vscode/
