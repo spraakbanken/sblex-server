@@ -12,8 +12,8 @@ from sblex.webapp.main import create_webapp
 def fixture_webapp() -> FastAPI:
     return create_webapp(
         config={
-            "SEMANTIC_PATH": "assets/testing/saldo.txt",
-            "MORPHOLOGY_PATH": "assets/testing/saldo.lex",
+            "semantic.path": "assets/testing/saldo.txt",
+            "morphology.path": "assets/testing/saldo.lex",
         },
         use_telemetry=False,
     )

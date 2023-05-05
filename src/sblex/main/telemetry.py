@@ -1,4 +1,5 @@
 from logging.config import dictConfig
+
 from fastapi import FastAPI
 from opentelemetry import trace
 from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
