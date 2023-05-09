@@ -35,6 +35,8 @@ def create_webapp(
     if use_telemetry:
         main.telemetry.setting_otlp(webapp, "sblex-server")
 
+    webapp.add_event_handler("startup", tasks.create_start_app_handler(webapp))
+
     webapp.add_middleware(
         CORSMiddleware,
         allow_origins=["*"],
@@ -54,8 +56,6 @@ def create_webapp(
             "Tracking to Matomo is not enabled, please set TRACKING_MATOMO_URL and TRACKING_MATOMO_IDSITE."
         )
     webapp.add_middleware(BrotliMiddleware, gzip_fallback=True)
-
-    webapp.add_event_handler("startup", tasks.create_start_app_handler(webapp))
 
     webapp.include_router(routes.router)
 
