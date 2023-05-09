@@ -34,7 +34,7 @@ def configure_logging(settings: dict[str, str], *, use_telemetry: bool = True) -
     dictConfig(
         {
             "version": 1,
-            "disable_existing_loggers": False,
+            "disable_existing_loggers": True,
             # "filters": {
             #     "correlation_id": {
             #         "()": asgi_correlation_id.CorrelationIdFilter,
@@ -75,6 +75,11 @@ def configure_logging(settings: dict[str, str], *, use_telemetry: bool = True) -
                 },
                 # third-party package loggers
                 # "sqlalchemy": {"handlers": ["json"], "level": "WARNING"},
+                "asgi_matomo": {
+                    "handlers": ["json"],
+                    "level": "DEBUG",
+                    "propagate": True,
+                },
                 "uvicorn.access": {"handlers": ["json"], "level": "INFO"},
             },
         }

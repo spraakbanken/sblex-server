@@ -44,6 +44,7 @@ def create_webapp(
         allow_headers=["*"],
     )
     if webapp.state.config["tracking.matomo.url"]:
+        logger.info("adding MatomoMiddleware")
         webapp.add_middleware(
             MatomoMiddleware,
             idsite=webapp.state.config["tracking.matomo.idsite"],
