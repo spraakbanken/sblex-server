@@ -1,3 +1,4 @@
+from contextlib import asynccontextmanager
 import logging
 import os
 from typing import Any
@@ -25,7 +26,7 @@ def create_webapp(
         env=env, config=config, use_telemetry=use_telemetry
     )
 
-    webapp = FastAPI()
+    webapp = FastAPI(title="Saldo WS", lifespan=lifespan)
 
     webapp.state.app_context = app_context
     webapp.state.config = app_context.settings
@@ -62,13 +63,8 @@ def create_webapp(
     return webapp
 
 
-def load_config() -> dict[str, Any]:
-    load_dotenv(".env", verbose=True)
-    config = {
-        "MORPHOLOGY_PATH": os.environ.get(
-            "MORPHOLOGY_PATH", "assets/testing/saldo.lex"
-        ),
-        "SEMANTIC_PATH": os.environ.get("SEMANTIC_PATH", "assets/testing/saldo.txt"),
-    }
-
-    return config
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    tasks.load_lookup_lid(app)
+    tasks.load_morphology(app)
+    yield
