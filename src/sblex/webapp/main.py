@@ -23,10 +23,13 @@ def create_webapp(
         env=env, config=config, use_telemetry=use_telemetry
     )
 
-    webapp = FastAPI(title="Saldo WS", lifespan=lifespan)
+    webapp = FastAPI(title="Saldo WS")  # , lifespan=lifespan)
 
     webapp.state.app_context = app_context
     webapp.state.config = app_context.settings
+
+    tasks.load_lookup_lid(webapp)
+    tasks.load_morphology(webapp)
     # Configure templates
     webapp.state.templates = Jinja2Templates(directory="templates")
 
