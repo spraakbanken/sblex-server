@@ -1,12 +1,9 @@
-from contextlib import asynccontextmanager
 import logging
-import os
-from typing import Any
+from contextlib import asynccontextmanager
 
 import environs
 from asgi_matomo import MatomoMiddleware
 from brotli_asgi import BrotliMiddleware
-from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.templating import Jinja2Templates
@@ -36,8 +33,6 @@ def create_webapp(
     if use_telemetry:
         main.telemetry.setting_otlp(webapp, "sblex-server")
 
-    webapp.add_event_handler("startup", tasks.create_start_app_handler(webapp))
-
     webapp.add_middleware(
         CORSMiddleware,
         allow_origins=["*"],
@@ -65,6 +60,7 @@ def create_webapp(
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    print("lifespan")
     tasks.load_lookup_lid(app)
     tasks.load_morphology(app)
     yield
