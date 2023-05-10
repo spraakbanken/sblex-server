@@ -24,7 +24,9 @@ def create_webapp(
     )
 
     webapp = FastAPI(
-        title="Saldo WS", version=main.get_version(), redoc_url="/"
+        title="Saldo WS",
+        version=main.get_version(),
+        redoc_url="/",
     )  # , lifespan=lifespan)
 
     webapp.state.app_context = app_context
@@ -35,8 +37,7 @@ def create_webapp(
     # Configure templates
     webapp.state.templates = Jinja2Templates(directory="templates")
 
-    if use_telemetry:
-        main.telemetry.setting_otlp(webapp, "sblex-server")
+    webapp.add_middleware(BrotliMiddleware, gzip_fallback=True)
 
     webapp.add_middleware(
         CORSMiddleware,
@@ -57,8 +58,9 @@ def create_webapp(
         logger.warning(
             "Tracking to Matomo is not enabled, please set TRACKING_MATOMO_URL and TRACKING_MATOMO_IDSITE."
         )
-    webapp.add_middleware(BrotliMiddleware, gzip_fallback=True)
 
+    if use_telemetry:
+        main.telemetry.setting_otlp(webapp, "sblex-server")
     webapp.include_router(routes.router)
 
     return webapp
