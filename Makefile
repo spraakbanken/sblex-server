@@ -76,3 +76,12 @@ check-fmt:
 .PHONY: type-check
 type-check:
 	${INVENV} mypy --config-file mypy.ini -p sblex
+
+# build the project
+build:
+	poetry build
+
+part := "patch"
+# bump given part of version
+bumpversion:
+	${INVENV} bump2version ${part}

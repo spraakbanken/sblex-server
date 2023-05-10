@@ -229,6 +229,18 @@ test-brotli = ["mypy (>=0.770)", "requests (>=2.23.0)"]
 test-brotlipy = ["brotlipy (>=0.7.0)", "mypy (>=0.770)", "requests (>=2.23.0)"]
 
 [[package]]
+name = "bump2version"
+version = "1.0.1"
+description = "Version-bump your software with a single command!"
+category = "dev"
+optional = false
+python-versions = ">=3.5"
+files = [
+    {file = "bump2version-1.0.1-py2.py3-none-any.whl", hash = "sha256:37f927ea17cde7ae2d7baf832f8e80ce3777624554a653006c9144f8017fe410"},
+    {file = "bump2version-1.0.1.tar.gz", hash = "sha256:762cb2bfad61f4ec8e2bdf452c7c267416f8c70dd9ecb1653fd0bbb01fa936e6"},
+]
+
+[[package]]
 name = "certifi"
 version = "2022.12.7"
 description = "Python package for providing Mozilla's CA Bundle."
@@ -1344,4 +1356,4 @@ testing = ["big-O", "flake8 (<5)", "jaraco.functools", "jaraco.itertools", "more
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "c06bf1f22e0a129d898c039a97220d47f50358f93dfde65ddfb2264a0103c5cf"
+content-hash = "625b6ab8b386c35380fa1bd2b7fcb9e451022d933ff154134c68220c6ccf933d"
