@@ -23,7 +23,9 @@ def create_webapp(
         env=env, config=config, use_telemetry=use_telemetry
     )
 
-    webapp = FastAPI(title="Saldo WS")  # , lifespan=lifespan)
+    webapp = FastAPI(
+        title="Saldo WS", version=main.get_version(), redoc_url="/"
+    )  # , lifespan=lifespan)
 
     webapp.state.app_context = app_context
     webapp.state.config = app_context.settings
