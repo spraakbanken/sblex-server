@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "sblex-server"
-version = "0.1.0"
+version = "0.1.1"
 description = "SBLEX server working with FM data."
 authors = ["Kristoffer Andersson <kristoffer.andersson@gu.se>"]
 license = "MIT"
