@@ -1,11 +1,9 @@
 import logging
-import os
-from typing import Any
+from contextlib import asynccontextmanager
 
 import environs
 from asgi_matomo import MatomoMiddleware
 from brotli_asgi import BrotliMiddleware
-from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.templating import Jinja2Templates
@@ -25,10 +23,13 @@ def create_webapp(
         env=env, config=config, use_telemetry=use_telemetry
     )
 
-    webapp = FastAPI()
+    webapp = FastAPI(title="Saldo WS")  # , lifespan=lifespan)
 
     webapp.state.app_context = app_context
     webapp.state.config = app_context.settings
+
+    tasks.load_lookup_lid(webapp)
+    tasks.load_morphology(webapp)
     # Configure templates
     webapp.state.templates = Jinja2Templates(directory="templates")
 
@@ -43,6 +44,7 @@ def create_webapp(
         allow_headers=["*"],
     )
     if webapp.state.config["tracking.matomo.url"]:
+        logger.info("adding MatomoMiddleware")
         webapp.add_middleware(
             MatomoMiddleware,
             idsite=webapp.state.config["tracking.matomo.idsite"],
@@ -55,20 +57,14 @@ def create_webapp(
         )
     webapp.add_middleware(BrotliMiddleware, gzip_fallback=True)
 
-    webapp.add_event_handler("startup", tasks.create_start_app_handler(webapp))
-
     webapp.include_router(routes.router)
 
     return webapp
 
 
-def load_config() -> dict[str, Any]:
-    load_dotenv(".env", verbose=True)
-    config = {
-        "MORPHOLOGY_PATH": os.environ.get(
-            "MORPHOLOGY_PATH", "assets/testing/saldo.lex"
-        ),
-        "SEMANTIC_PATH": os.environ.get("SEMANTIC_PATH", "assets/testing/saldo.txt"),
-    }
-
-    return config
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    print("lifespan")
+    tasks.load_lookup_lid(app)
+    tasks.load_morphology(app)
+    yield

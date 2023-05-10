@@ -1,3 +1,4 @@
+import logging
 from logging.config import dictConfig
 
 from fastapi import FastAPI
@@ -24,7 +25,7 @@ def setting_otlp(app: FastAPI, app_name: str, *, log_correlation: bool = True) -
     trace.set_tracer_provider(tracer)
 
     if log_correlation:
-        LoggingInstrumentor().instrument(set_logging_format=False)
+        LoggingInstrumentor(log_level=logging.INFO).instrument(set_logging_format=False)
 
     FastAPIInstrumentor.instrument_app(app, tracer_provider=tracer)
 
@@ -33,7 +34,7 @@ def configure_logging(settings: dict[str, str], *, use_telemetry: bool = True) -
     dictConfig(
         {
             "version": 1,
-            "disable_existing_loggers": False,
+            "disable_existing_loggers": True,
             # "filters": {
             #     "correlation_id": {
             #         "()": asgi_correlation_id.CorrelationIdFilter,
@@ -69,11 +70,16 @@ def configure_logging(settings: dict[str, str], *, use_telemetry: bool = True) -
             "loggers": {
                 "sblex": {
                     "handlers": ["json"],
-                    "level": "DEBUG",
+                    "level": "INFO",
                     "propagate": True,
                 },
                 # third-party package loggers
                 # "sqlalchemy": {"handlers": ["json"], "level": "WARNING"},
+                "asgi_matomo": {
+                    "handlers": ["json"],
+                    "level": "DEBUG",
+                    "propagate": True,
+                },
                 "uvicorn.access": {"handlers": ["json"], "level": "INFO"},
             },
         }
