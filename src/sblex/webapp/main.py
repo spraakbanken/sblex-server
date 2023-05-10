@@ -26,7 +26,7 @@ def create_webapp(
     webapp = FastAPI(
         title="Saldo WS",
         version=main.get_version(),
-        # redoc_url="/",
+        redoc_url="/",
     )  # , lifespan=lifespan)
 
     webapp.state.app_context = app_context
