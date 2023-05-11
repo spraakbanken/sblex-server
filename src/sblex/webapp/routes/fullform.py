@@ -1,11 +1,14 @@
 from fastapi import APIRouter, Depends, Request, Response
 from fastapi.responses import HTMLResponse
 from json_streams import jsonlib
+from opentelemetry import trace
 from sblex.fm import Morphology
 from sblex.webapp import deps, templating
 from sblex.webapp.responses import XMLResponse
 
 router = APIRouter()
+
+tracer = trace.get_tracer(__name__)
 
 
 @router.get("/json/{fragment}")
@@ -46,6 +49,9 @@ async def fullform_html(
     fragment: str,
     morphology: Morphology = Depends(deps.get_morphology),  # noqa: B008
 ):
+    current_span = trace.get_current_span()
+    current_span.set_attribute("scope", str(request.scope))
+
     templates = request.app.state.templates
 
     return templates.TemplateResponse(
