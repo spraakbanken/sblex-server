@@ -1,12 +1,12 @@
 import logging
 from typing import Any, Union
 
-from fastapi import APIRouter, Depends, FastAPI, Request
+from fastapi import APIRouter, Depends, Request
 from fastapi.responses import HTMLResponse
 from sblex import formatting
 from sblex.application.queries import LookupLid
 from sblex.application.queries.lookup_lid import LemmaNotFound, LexemeNotFound
-from sblex.webapp import deps
+from sblex.webapp import deps, templating
 from sblex.webapp.responses import XMLResponse
 from sblex.webapp.schemas import Lemma, Lexeme
 
@@ -60,29 +60,50 @@ async def lookup_lid_html(
     lookup_lid: LookupLid = Depends(deps.get_lookup_lid),  # noqa: B008
 ):
     templates = request.app.state.templates
+    settings = request.app.state.config
 
     try:
         lemma_or_lexeme = lookup_lid.get_by_lid(lid)
     except LemmaNotFound:
         return templates.TemplateResponse(
             "saldo_lid_lemma_saknas.html",
-            context={"request": request, "bar": False, "title": lid, "lid": lid},
+            context=templating.build_context(
+                request, title=lid, service="lid", show_bar=False, lid=lid
+            ),
         )
+        # {
+        #     "request": request,
+        #     "bar": False,
+        #     "title": lid,
+        #     "lid": lid,
+        #     "tracking_base_url": settings["tracking.matomo.frontend.base_url"],
+        #     "tracking_site_id": settings["tracking.matomo.frontend.site_id"],
+        # },
     except LexemeNotFound:
         return templates.TemplateResponse(
             "saldo_lid_lexeme_saknas.html",
-            context={"request": request, "bar": False, "title": lid, "lid": lid},
+            context=templating.build_context(
+                request, title=lid, service="lid", show_bar=False, lid=lid
+            ),
         )
 
     if isinstance(lid, Lemma):
         return templates.TemplateResponse(
             "saldo_table.html",
-            context={
-                "request": request,
-                "bar": True,
-                "title": lid,
-                "j": lemma_or_lexeme,
-            },
+            context=templating.build_context(
+                request,
+                title=lid,
+                service="lid",
+                show_bar=False,
+                lid=lid,
+                j=lemma_or_lexeme,
+            )
+            # {
+            #     "request": request,
+            #     "bar": True,
+            #     "title": lid,
+            #     "j": lemma_or_lexeme,
+            # },
         )
 
     prepared_json = prepare_lexeme_json(
@@ -93,7 +114,10 @@ async def lookup_lid_html(
     templates.env.globals["lemma"] = formatting.lemma
     return templates.TemplateResponse(
         "saldo_lid_lexeme.html",
-        context={"request": request, "bar": True, "title": lid, "data": prepared_json},
+        context=templating.build_context(
+            request, title=lid, service="lid", show_bar=False, data=prepared_json
+        )
+        # {"request": request, "bar": True, "title": lid, "data": prepared_json},
     )
 
 

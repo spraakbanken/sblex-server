@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, Request, Response
 from fastapi.responses import HTMLResponse
 from json_streams import jsonlib
 from sblex.fm import Morphology
-from sblex.webapp import deps
+from sblex.webapp import deps, templating
 from sblex.webapp.responses import XMLResponse
 
 router = APIRouter()
@@ -50,14 +50,14 @@ async def fullform_html(
 
     return templates.TemplateResponse(
         "saldo_fullform.html",
-        {
-            "request": request,
-            "title": fragment,
-            "service": "ff",
-            "input": "",
-            "bar": True,
-            "segment": fragment,
-            "j": jsonlib.loads(morphology.lookup(fragment))
+        context=templating.build_context(
+            request,
+            title=fragment,
+            service="ff",
+            input="",
+            show_bar=True,
+            segment=fragment,
+            j=jsonlib.loads(morphology.lookup(fragment))
             # "content": htmlize(fragment, morphology.lookup(f"0 {fragment}".encode("utf-8")))
-        },
+        ),
     )

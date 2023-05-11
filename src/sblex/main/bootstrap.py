@@ -14,6 +14,8 @@ Settings = TypedDict(
         "tracking.matomo.url": Optional[str],
         "tracking.matomo.idsite": Optional[str],
         "tracking.matomo.token": Optional[str],
+        "tracking.matomo.frontend.base_url": Optional[str],
+        "tracking.matomo.frontend.site_id": Optional[str],
     },
 )
 
@@ -48,6 +50,10 @@ def bootstrap_app(
         or env("TRACKING_MATOMO_IDSITE", None),
         "tracking.matomo.token": config.get("tracking.matomo.token")
         or env("TRACKING_MATOMO_TOKEN", None),
+        "tracking.matomo.frontend.base_url": config.get("tracking.matomo.base_url")
+        or env("TRACKING_MATOMO_FRONTEND_BASEURL", None),
+        "tracking.matomo.frontend.site_id": config.get("tracking.matomo.base_url")
+        or env("TRACKING_MATOMO_FRONTEND_SITEID", None),
     }
 
     telemetry.configure_logging(config, use_telemetry=use_telemetry)

@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, Query, Request
 from fastapi.responses import HTMLResponse
 from sblex.application.queries import FullformLexQuery
-from sblex.webapp import deps
+from sblex.webapp import deps, templating
 from sblex.webapp.responses import XMLResponse
 
 router = APIRouter()
@@ -48,12 +48,15 @@ async def fullform_lex_html_empty(
 
     return templates.TemplateResponse(
         "saldo_mata_in_ordform.html",
-        {
-            "request": request,
-            "title": "SALDO",
-            "service": "fl",
-            "bar": True,
-        },
+        context=templating.build_context(
+            request, title="SALDO", show_bar=True, service="fl"
+        )
+        # {
+        #     "request": request,
+        #     "title": "SALDO",
+        #     "service": "fl",
+        #     "bar": True,
+        # },
     )
 
 
@@ -75,22 +78,19 @@ async def fullform_lex_html(
     if not segment:
         return templates.TemplateResponse(
             "saldo_mata_in_ordform.html",
-            {
-                "request": request,
-                "title": "SALDO",
-                "service": "fl",
-                "bar": True,
-            },
+            context=templating.build_context(
+                request, title="SALDO", show_bar=True, service="fl"
+            ),
         )
     return templates.TemplateResponse(
         "saldo_fullform_lex.html",
-        {
-            "request": request,
-            "title": segment,
-            "service": "ff",
-            "input": "",
-            "bar": True,
-            "segment": segment,
-            "j": fullform_lex_query.query(segment=segment),
-        },
+        context=templating.build_context(
+            request,
+            title="SALDO",
+            show_bar=True,
+            service="fl",
+            input="",
+            segment=segment,
+            j=fullform_lex_query.query(segment=segment),
+        ),
     )
