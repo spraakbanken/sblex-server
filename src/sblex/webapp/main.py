@@ -6,6 +6,7 @@ from asgi_matomo import MatomoMiddleware
 from brotli_asgi import BrotliMiddleware
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from sblex import main
 from sblex.webapp import routes, tasks
@@ -37,6 +38,7 @@ def create_webapp(
     # Configure templates
     webapp.state.templates = Jinja2Templates(directory="templates")
 
+    # Add middlewares (in reverse order)
     webapp.add_middleware(BrotliMiddleware, gzip_fallback=True)
 
     webapp.add_middleware(
@@ -61,7 +63,9 @@ def create_webapp(
 
     if use_telemetry:
         main.telemetry.setting_otlp(webapp, "sblex-server")
+
     webapp.include_router(routes.router)
+    webapp.mount("/static", StaticFiles(directory="static"), name="static")
 
     return webapp
 
