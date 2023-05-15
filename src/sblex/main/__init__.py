@@ -1,7 +1,7 @@
 from sblex.main import telemetry
-from sblex.main.bootstrap import bootstrap_app
+from sblex.main.bootstrap import Settings, bootstrap_app
 
-__all__ = ["bootstrap_app", "telemetry"]
+__all__ = ["bootstrap_app", "telemetry", "Settings"]
 __version__ = "0.2.3"
 
 
