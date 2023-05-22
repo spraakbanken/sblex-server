@@ -9,7 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from sblex import main
-from sblex.webapp import routes, tasks
+from sblex.webapp import routes, tasks, templating
 
 logger = logging.getLogger(__name__)
 
@@ -28,6 +28,7 @@ def create_webapp(
         title="Saldo WS",
         version=main.get_version(),
         redoc_url="/",
+        root_path=app_context.settings["webapp.root_path"],
     )  # , lifespan=lifespan)
 
     webapp.state.app_context = app_context
@@ -36,7 +37,7 @@ def create_webapp(
     tasks.load_lookup_lid(webapp)
     tasks.load_morphology(webapp)
     # Configure templates
-    webapp.state.templates = Jinja2Templates(directory="templates")
+    webapp.state.templates = templating.init_template_engine(app_context.settings)
 
     # Add middlewares (in reverse order)
     webapp.add_middleware(BrotliMiddleware, gzip_fallback=True)
