@@ -9,14 +9,14 @@ packages = [{include = "sblex", from = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-fastapi = "^0.95.0"
+fastapi = "^0.95.2"
 jinja2 = "^3.1.2"
 opentelemetry-instrumentation-fastapi = "^0.38b0"
 opentelemetry-sdk = "^1.17.0"
 opentelemetry-instrumentation-logging = "^0.38b0"
 json-streams = "^0.12.4"
 python-json-logger = "^2.0.7"
-asgi-matomo = "0.1.4"
+asgi-matomo = "^0.3.0"
 environs = "^9.5.0"
 brotli-asgi = "^1.4.0"
 uvicorn = "^0.22.0"
