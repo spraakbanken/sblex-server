@@ -11,6 +11,7 @@ Settings = TypedDict(
     {
         "morphology.path": str,
         "semantic.path": str,
+        "webapp.root_path": str,
         "tracking.matomo.url": Optional[str],
         "tracking.matomo.idsite": Optional[str],
         "tracking.matomo.token": Optional[str],
@@ -54,6 +55,8 @@ def bootstrap_app(
         or env("TRACKING_MATOMO_FRONTEND_BASEURL", None),
         "tracking.matomo.frontend.site_id": config.get("tracking.matomo.base_url")
         or env("TRACKING_MATOMO_FRONTEND_SITEID", None),
+        "webapp.root_path": config.get("webapp.root_path")
+        or env("WEBAPP_ROOT_PATH", ""),
     }
 
     telemetry.configure_logging(config, use_telemetry=use_telemetry)
