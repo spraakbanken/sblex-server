@@ -29,7 +29,7 @@ EXPECTED_XML_RESPONSES = {
 }
 
 
-class TestLidRoutes:
+class TestGenRoutes:
     @pytest.mark.parametrize(
         "in_format",
         [
