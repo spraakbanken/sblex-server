@@ -40,7 +40,7 @@ install-dev:
 	poetry install
 
 install:
-	poetry install --only main
+	poetry install --only main --sync
 
 # setup CI environment
 install-ci: install-dev
