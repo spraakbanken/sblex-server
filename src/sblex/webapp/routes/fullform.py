@@ -1,7 +1,5 @@
 import time
 
-from starlette.types import Scope
-
 from asgi_matomo.trackers import PerfMsTracker
 from fastapi import APIRouter, Depends, Request, Response
 from fastapi.responses import HTMLResponse
@@ -14,24 +12,6 @@ from sblex.webapp.responses import XMLResponse
 router = APIRouter()
 
 tracer = trace.get_tracer(__name__)
-
-
-class PerfTracker:
-    def __init__(self, state, key: str) -> None:
-        self.start_ns = 0.0
-        self.state = state
-        try:
-            _ = self.state.asgi_matomo
-        except AttributeError:
-            self.state.asgi_matomo = {}
-        self.key = key
-
-    def __enter__(self):
-        self.start_ns = time.perf_counter_ns()
-
-    def __exit__(self, exc_type, exc_value, exc_tb):
-        self.end_ns = time.perf_counter_ns()
-        self.state.asgi_matomo[self.key] = (self.end_ns - self.start_ns) / 1000
 
 
 @router.get("/json/{fragment}")
@@ -57,7 +37,7 @@ async def fullform_xml(
     templates = request.app.state.templates
 
     with PerfMsTracker(scope=request.scope, key="pf_srv"):
-        json_data = morphology.lookup(fragment)
+        json_data = jsonlib.loads(morphology.lookup(fragment))
 
     return templates.TemplateResponse(
         "saldo_fullform.xml",
