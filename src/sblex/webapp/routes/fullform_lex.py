@@ -1,4 +1,5 @@
-from fastapi import APIRouter, Depends, Query, Request
+from asgi_matomo.trackers import PerfMsTracker
+from fastapi import APIRouter, Depends, Request
 from fastapi.responses import HTMLResponse
 from sblex.application.queries import FullformLexQuery
 from sblex.webapp import deps, templating
@@ -9,12 +10,14 @@ router = APIRouter()
 
 @router.get("/json/{segment}")
 async def fullform_lex_json(
+    request: Request,
     segment: str,
     fullform_lex_query: FullformLexQuery = Depends(  # noqa: B008
         deps.get_fullform_lex_query
     ),
 ):
-    return fullform_lex_query.query(segment=segment)
+    with PerfMsTracker(scope=request.scope, key="pf_srv"):
+        return fullform_lex_query.query(segment=segment)
 
 
 @router.get(
@@ -30,9 +33,11 @@ async def fullform_xml(
 ):
     templates = request.app.state.templates
 
+    with PerfMsTracker(scope=request.scope, key="pf_srv"):
+        json_data = fullform_lex_query.query(segment=segment)
     return templates.TemplateResponse(
         "fullform_lex.xml",
-        context={"request": request, "j": fullform_lex_query.query(segment=segment)},
+        context={"request": request, "j": json_data},
         media_type="application/xml",
     )
 

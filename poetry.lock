@@ -38,14 +38,14 @@ sniffio = "*"
 
 [[package]]
 name = "asgi-matomo"
-version = "0.3.0"
+version = "0.3.2"
 description = "Middleware for tracking ASGI reqeusts with Matomo"
 category = "main"
 optional = false
 python-versions = ">=3.10,<4.0"
 files = [
-    {file = "asgi_matomo-0.3.0-py3-none-any.whl", hash = "sha256:23bdf84d5588352df2035ef29cbbcf85e966bc8a01e16bcac46e56e532c8f0c6"},
-    {file = "asgi_matomo-0.3.0.tar.gz", hash = "sha256:60e2c5615a02c9184786ca2a7b5a1f25bef8e134aaad4f8d2c5d712bde874c1c"},
+    {file = "asgi_matomo-0.3.2-py3-none-any.whl", hash = "sha256:137f7b6e45afeec083b04e5b167c544f48fe132059985654c53e474086cfa3d3"},
+    {file = "asgi_matomo-0.3.2.tar.gz", hash = "sha256:0f10955e3755d143db180a3563c97d4111185f889ecf3dc853c68f5a5123c204"},
 ]
 
 [package.dependencies]
@@ -1377,4 +1377,4 @@ testing = ["big-O", "flake8 (<5)", "jaraco.functools", "jaraco.itertools", "more
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "46845acc6a2d57785c09f857e41182058e843f18a4a0726a6fa6d05bf437495e"
+content-hash = "050696dc99cbbe520af2126333988e75b213f1bb73faf8fc641354de1bb14e9b"

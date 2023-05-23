@@ -1,6 +1,7 @@
 import logging
 from typing import Any, Union
 
+from asgi_matomo.trackers import PerfMsTracker
 from fastapi import APIRouter, Depends, Request
 from fastapi.responses import HTMLResponse
 from sblex import formatting
@@ -16,10 +17,12 @@ router = APIRouter()
 
 @router.get("/json/{lid}")
 async def lookup_lid_json(
+    request: Request,
     lid: Union[Lexeme, Lemma],
     lookup_lid: LookupLid = Depends(deps.get_lookup_lid),  # noqa: B008
 ):
-    return lookup_lid.get_by_lid(lid)
+    with PerfMsTracker(scope=request.scope, key="pf_srv"):
+        return lookup_lid.get_by_lid(lid)
 
 
 @router.get(
@@ -34,7 +37,8 @@ async def lookup_lid_xml(
     templates = request.app.state.templates
 
     try:
-        lemma_or_lexeme = lookup_lid.get_by_lid(lid)
+        with PerfMsTracker(scope=request.scope, key="pf_srv"):
+            lemma_or_lexeme = lookup_lid.get_by_lid(lid)
     except LemmaNotFound:
         lemma_or_lexeme = {}
     except LexemeNotFound:
