@@ -56,6 +56,7 @@ def create_webapp(
             idsite=webapp.state.config["tracking.matomo.idsite"],
             matomo_url=webapp.state.config["tracking.matomo.url"],
             access_token=webapp.state.config["tracking.matomo.token"],
+            exclude_patterns=[".*/html.*"],
         )
     else:
         logger.warning(
