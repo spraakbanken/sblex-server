@@ -75,7 +75,7 @@ check-fmt:
 # type-check the code
 .PHONY: type-check
 type-check:
-	${INVENV} mypy --config-file mypy.ini -p sblex
+	${INVENV} mypy --config-file mypy.ini src tests
 
 # build the project
 build:
