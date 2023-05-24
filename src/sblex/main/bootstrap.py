@@ -17,6 +17,7 @@ Settings = TypedDict(
         "tracking.matomo.token": Optional[str],
         "tracking.matomo.frontend.base_url": Optional[str],
         "tracking.matomo.frontend.site_id": Optional[str],
+        "fm.server.url": str,
     },
 )
 
@@ -57,6 +58,7 @@ def bootstrap_app(
         or env("TRACKING_MATOMO_FRONTEND_SITEID", None),
         "webapp.root_path": config.get("webapp.root_path")
         or env("WEBAPP_ROOT_PATH", ""),
+        "fm.server.url": env("FM_SERVER_URL", "http://fmserver"),
     }
 
     telemetry.configure_logging(config, use_telemetry=use_telemetry)

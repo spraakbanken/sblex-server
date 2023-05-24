@@ -45,8 +45,19 @@ fmt:
 check-fmt:
 	{{INVENV}} black --check src tests
 
-serve-dev:
-	{{INVENV}} watchfiles "uvicorn --factory sblex.webapp.main:create_webapp" src
+part := "patch"
+# bump given part of version
+bumpversion:
+	{{INVENV}} bump2version {{part}}
 
+# serve sblex-server with reloading
+serve-dev:
+	{{INVENV}} watchfiles "uvicorn --port 8000 --factory sblex.webapp.main:create_webapp" src
+
+# run examples against sblex-server with reloading 'REPL-driven development'
 quick-dev:
 	{{INVENV}} watchfiles "python examples/quick_dev.py" examples/quick_dev.py templates
+
+# serve fm-server with reloading
+serve-fm-server:
+	{{INVENV}} watchfiles "uvicorn --port 8765 --factory sblex.fm_server.main:create_fm_server" src/sblex/fm_server

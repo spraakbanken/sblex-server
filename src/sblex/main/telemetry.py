@@ -4,6 +4,7 @@ from logging.config import dictConfig
 from fastapi import FastAPI
 from opentelemetry import trace
 from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
+from opentelemetry.instrumentation.httpx import HTTPXClientInstrumentor
 from opentelemetry.instrumentation.logging import LoggingInstrumentor
 from opentelemetry.sdk.resources import Resource
 from opentelemetry.sdk.trace import TracerProvider
@@ -27,6 +28,7 @@ def setting_otlp(app: FastAPI, app_name: str, *, log_correlation: bool = True) -
     if log_correlation:
         LoggingInstrumentor(log_level=logging.INFO).instrument(set_logging_format=False)
 
+    HTTPXClientInstrumentor().instrument()
     FastAPIInstrumentor.instrument_app(app, tracer_provider=tracer)
 
 

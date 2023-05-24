@@ -6,11 +6,12 @@ import httpx
 
 async def main():
     async with httpx.AsyncClient(base_url="http://localhost:8000") as client:
-        print_response(await client.get("/fl/json/t"))
-        print_response(await client.get("/lid/json/dväljas..vb.1"))
-        print_response(await client.get("/lid/html/PRIM..1"))
-        print_response(await client.get("/lid/html/dväljas..1"))
-        print_response(await client.get("/lid/html/bo..1"))
+        # print_response(await client.get("/fl/json/t"))
+        # print_response(await client.get("/lid/json/dväljas..vb.1"))
+        # print_response(await client.get("/lid/html/PRIM..1"))
+        # print_response(await client.get("/lid/html/dväljas..1"))
+        # print_response(await client.get("/lid/html/bo..1"))
+        print_response(await client.get("/ff/json/krux"))
         # print_response(r)
 
 

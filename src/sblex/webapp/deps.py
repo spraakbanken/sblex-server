@@ -1,14 +1,22 @@
 from unittest import mock
 
 from fastapi import Depends, Request
+import httpx
 from sblex.application.queries import FullformLexQuery, FullformQuery, LookupLid
 from sblex.application.services import LookupService
 from sblex.fm import Morphology
 from sblex.infrastructure.queries import LookupFullformLexQuery
+from sblex.infrastructure.queries.http_morpology import HttpMorphology
 
 
-def get_morphology(request: Request) -> Morphology:
-    return request.app.state._morph
+def get_fm_client(request: Request) -> httpx.AsyncClient:
+    return request.app.state._fm_client
+
+
+def get_morphology(
+    fm_client: httpx.AsyncClient = Depends(get_fm_client),  # noqa: B008
+) -> Morphology:
+    return HttpMorphology(http_client=fm_client)
 
 
 def get_lookup_lid(request: Request) -> LookupLid:
