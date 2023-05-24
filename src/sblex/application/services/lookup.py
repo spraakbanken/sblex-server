@@ -10,8 +10,8 @@ class LookupService:
         self._morphology = morphology
         self._lookup_lid = lookup_lid
 
-    def lookup_ff(self, segment: str) -> list[dict[str, Any]]:
-        return jsonlib.loads(self._morphology.lookup(segment))["a"]
+    async def lookup_ff(self, segment: str) -> list[dict[str, Any]]:
+        return jsonlib.loads(await self._morphology.lookup(segment))["a"]
 
-    def lookup_lid(self, lid: str) -> dict[str, Any]:
-        return self._lookup_lid.get_by_lid(lid)
+    async def lookup_lid(self, lid: str) -> dict[str, Any]:
+        return await self._lookup_lid.get_by_lid(lid)

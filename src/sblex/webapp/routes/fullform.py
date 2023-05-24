@@ -21,7 +21,7 @@ async def fullform_json(
     morphology: Morphology = Depends(deps.get_morphology),  # noqa: B008
 ):
     with PerfMsTracker(scope=request.scope, key="pf_srv"):
-        json_data = morphology.lookup(fragment)
+        json_data = await morphology.lookup(fragment)
     return Response(json_data, media_type="application/json")
 
 
@@ -37,7 +37,7 @@ async def fullform_xml(
     templates = request.app.state.templates
 
     with PerfMsTracker(scope=request.scope, key="pf_srv"):
-        json_data = jsonlib.loads(morphology.lookup(fragment))
+        json_data = jsonlib.loads(await morphology.lookup(fragment))
 
     return templates.TemplateResponse(
         "saldo_fullform.xml",
@@ -72,7 +72,7 @@ async def fullform_html(
             input="",
             show_bar=True,
             segment=fragment,
-            j=jsonlib.loads(morphology.lookup(fragment))
+            j=jsonlib.loads(await morphology.lookup(fragment))
             # "content": htmlize(fragment, morphology.lookup(f"0 {fragment}".encode("utf-8")))
         ),
     )

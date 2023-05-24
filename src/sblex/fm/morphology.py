@@ -12,11 +12,11 @@ logger = logging.getLogger(__name__)
 
 class Morphology(abc.ABC):
     @abc.abstractmethod
-    def lookup(self, word: str, n: int = 0) -> bytes:
+    async def lookup(self, word: str, n: int = 0) -> bytes:
         ...
 
     @abc.abstractmethod
-    def lookup_from_bytes(self, s: bytes) -> bytes:
+    async def lookup_from_bytes(self, s: bytes) -> bytes:
         ...
 
 
@@ -31,10 +31,10 @@ class MemMorphology(Morphology):
             trie=Trie.from_iter(json_streams.load_from_file(fname, json_format="jsonl"))
         )
 
-    def lookup(self, word: str, n: int = 0) -> bytes:
+    async def lookup(self, word: str, n: int = 0) -> bytes:
         return r if (r := self._trie.lookup(word, n)) else b'{"id":"0","a":[],"c":""}'
 
-    def lookup_from_bytes(self, s: bytes) -> bytes:
+    async def lookup_from_bytes(self, s: bytes) -> bytes:
         try:
             res = s.decode("UTF-8").split(" ", 1)
             n = int(res[0])

@@ -100,7 +100,7 @@ class MemLookupLid(LookupLid):
                 #  % (l,m,f,pr_set(mchildren),pr_set(pchildren),pr_set(lemmas),pr_list(path_map[l]),father_path(f))
         return cls(lex_map=final_lex_map, lem_map=final_lem_map, path_map=path_map)
 
-    def get_lemma(self, lemma: str) -> dict[str, Any]:
+    async def get_lemma(self, lemma: str) -> dict[str, Any]:
         try:
             logger.debug("lookup lemma", extra={"lemma": lemma})
             result = self._lem_map[lemma]
@@ -109,7 +109,7 @@ class MemLookupLid(LookupLid):
         except KeyError as exc:
             raise LemmaNotFound(lemma) from exc
 
-    def get_lexeme(self, lexeme: str) -> dict[str, Any]:
+    async def get_lexeme(self, lexeme: str) -> dict[str, Any]:
         try:
             return self._lex_map[lexeme]
         except KeyError as exc:

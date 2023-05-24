@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 
 class LookupLid(abc.ABC):
     @abc.abstractmethod
-    def get_lemma(self, lid: str) -> dict[str, Any]:
+    async def get_lemma(self, lid: str) -> dict[str, Any]:
         """Get lemma with given `lid`.
 
         Raises
@@ -22,7 +22,7 @@ class LookupLid(abc.ABC):
         ...
 
     @abc.abstractmethod
-    def get_lexeme(self, lid: str) -> dict[str, Any]:
+    async def get_lexeme(self, lid: str) -> dict[str, Any]:
         """Get lexeme with given `lid`.
 
         Raises
@@ -34,7 +34,7 @@ class LookupLid(abc.ABC):
         """
         ...
 
-    def get_by_lid(self, lid: str) -> dict[str, Any]:
+    async def get_by_lid(self, lid: str) -> dict[str, Any]:
         """Get lemma or lexeme with given `lid`.
 
         This method will analyze `lid` to determine if a lemma or lexeme is requested.
@@ -50,10 +50,10 @@ class LookupLid(abc.ABC):
         """
         if is_lemma(lid):
             logger.debug("calling LookupLid.get_lemma for '%s'", lid)
-            return self.get_lemma(lid)
+            return await self.get_lemma(lid)
         elif is_lexeme(lid):
             logger.debug("calling LookupLid.get_lexeme for '%s'", lid)
-            return self.get_lexeme(lid)
+            return await self.get_lexeme(lid)
         else:
             return {}
 
