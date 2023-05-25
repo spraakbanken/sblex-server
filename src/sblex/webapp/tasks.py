@@ -32,7 +32,9 @@ def load_morphology(app: FastAPI) -> None:
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    logger.info("startup")
     app.state._fm_client = httpx.AsyncClient(base_url=app.state.config["fm.server.url"])
     load_lookup_lid(app)
     yield
     await app.state._fm_client.aclose()
+    logger.info("shutdown")
