@@ -35,6 +35,12 @@ python-dotenv = "^1.0.0"
 watchfiles = "^0.19.0"
 bump2version = "^1.0.1"
 
+[tool.poetry.group.ci]
+optional = true
+
+[tool.poetry.group.ci.dependencies]
+ruff = "^0.0.267"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
