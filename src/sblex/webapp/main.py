@@ -1,5 +1,4 @@
 import logging
-from contextlib import asynccontextmanager
 
 import environs
 from asgi_matomo import MatomoMiddleware
@@ -58,7 +57,7 @@ def create_webapp(
         )
     else:
         logger.warning(
-            "Tracking to Matomo is not enabled, please set TRACKING_MATOMO_URL and TRACKING_MATOMO_IDSITE."
+            "NOT tracking to Matomo, please set TRACKING_MATOMO_URL and TRACKING_MATOMO_IDSITE."
         )
 
     if use_telemetry:

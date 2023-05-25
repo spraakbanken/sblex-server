@@ -131,7 +131,7 @@ async def lookup_lid_graph(
     lid: Union[Lexeme, Lemma],
     lookup_lid: LookupLid = Depends(deps.get_lookup_lid),  # noqa: B008
 ):
-    templates = request.app.state.templates
+    _templates = request.app.state.templates
 
     raise NotImplementedError("lids:lid-graph")
 
@@ -173,14 +173,13 @@ async def sort_children(lexemes, mp, *, lookup_lid: LookupLid) -> Union[str, lis
     if lexemes == []:
         return "*"
     children: dict[str, list] = {}
-    for l in lexemes:
-        l_lookup = await lookup_lid.get_by_lid(l)
+    for lexeme in lexemes:
+        l_lookup = await lookup_lid.get_by_lid(lexeme)
         p = l_lookup["fp"] if mp == "p" else l_lookup["fm"]
         if p in children:
-            children[p].append(l)
+            children[p].append(lexeme)
         else:
-            children[p] = [l]
-    s = "<table>"
+            children[p] = [lexeme]
     xs = []
     if "PRIM..1" in children:
         prim_lexs = children["PRIM..1"]

@@ -1,7 +1,7 @@
 from unittest import mock
 
-from fastapi import Depends, Request
 import httpx
+from fastapi import Depends, Request
 from sblex.application.queries import FullformLexQuery, FullformQuery, LookupLid
 from sblex.application.services import LookupService
 from sblex.fm import Morphology

@@ -46,14 +46,14 @@ def configure_logging(settings: dict[str, str], *, use_telemetry: bool = True) -
             "formatters": {
                 "console": {
                     "class": "logging.Formatter",
-                    "format": "%(levelname)s:\t\b%(asctime)s %(name)s:%(lineno)d [trace_id=%(otelTraceID)s span_id=%(otelSpanID)s resource.service.name=%(otelServiceName)s] %(message)s",
+                    "format": "%(levelname)s:\t\b%(asctime)s %(name)s:%(lineno)d [trace_id=%(otelTraceID)s span_id=%(otelSpanID)s resource.service.name=%(otelServiceName)s] %(message)s",  # noqa: E501
                 },
                 "json": {
                     "class": "pythonjsonlogger.jsonlogger.JsonFormatter",
-                    "format": "%(asctime)s %(levelname)s %(name)s %(process)d %(funcName)s %(lineno)d %(message)s %(otelTraceID)s %(otelSpanID)s %(otelServiceName)s",
+                    "format": "%(asctime)s %(levelname)s %(name)s %(process)d %(funcName)s %(lineno)d %(message)s %(otelTraceID)s %(otelSpanID)s %(otelServiceName)s",  # noqa: E501
                 },
                 "standard": {
-                    "format": "%(asctime)s-%(levelname)s-%(name)s-%(process)d::%(module)s|%(lineno)s:: %(message)s",
+                    "format": "%(asctime)s-%(levelname)s-%(name)s-%(process)d::%(module)s|%(lineno)s:: %(message)s",  # noqa: E501
                 },
             },
             "handlers": {

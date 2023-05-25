@@ -1,5 +1,3 @@
-import time
-
 from asgi_matomo.trackers import PerfMsTracker
 from fastapi import APIRouter, Depends, Request, Response
 from fastapi.responses import HTMLResponse
