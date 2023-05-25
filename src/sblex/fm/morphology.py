@@ -2,9 +2,9 @@
 
 import abc
 import logging
-from typing import Any
 
 import json_streams
+from json_streams.utility import JsonFormat
 from sblex.trie import Trie
 
 logger = logging.getLogger(__name__)
@@ -28,7 +28,9 @@ class MemMorphology(Morphology):
     def from_path(cls, fname: str) -> "Morphology":
         logger.info("building morphology structure... (takes about 1 minute)")
         return cls(
-            trie=Trie.from_iter(json_streams.load_from_file(fname, json_format="jsonl"))
+            trie=Trie.from_iter(
+                json_streams.load_from_file(fname, json_format=JsonFormat.JSON_LINES)
+            )
         )
 
     async def lookup(self, word: str, n: int = 0) -> bytes:
@@ -44,9 +46,3 @@ class MemMorphology(Morphology):
         except:
             pass
         return b'{"id":"0","a":[],"c":""}'
-
-    def lookup_dict(self, s: str, n: int = 0) -> dict[str, Any]:
-        if result := self._trie.lookup_dict(s, n):
-            return result
-        else:
-            return {"id": "0", "a": [], "c": ""}

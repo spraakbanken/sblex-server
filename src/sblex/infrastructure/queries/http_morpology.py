@@ -11,4 +11,5 @@ class HttpMorphology(Morphology):
         return response.content
 
     async def lookup_from_bytes(self, s: bytes) -> bytes:
-        return await super().lookup_from_bytes(s)
+        response = await self._http_client.get(f"/morph/{s.decode('utf-8')}/0")
+        return response.content

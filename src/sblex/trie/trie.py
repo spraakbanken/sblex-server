@@ -41,13 +41,6 @@ class Trie:
                 return b""
         return self._trie[st][1]
 
-    def lookup_dict(self, word: str, start_state: int = 0) -> dict[str, Any]:
-        # traversal state
-        st = start_state
-        for c in word:
-            st = self.trie[st][0][c]
-        return self.trie[st][1]
-
 
 def wrap(s: bytes) -> bytes:
     if len(s) > 0:

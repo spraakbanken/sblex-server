@@ -172,13 +172,10 @@ def lexeme_ref(lids: str) -> str | list[str]:
 async def sort_children(lexemes, mp, *, lookup_lid: LookupLid) -> Union[str, list]:
     if lexemes == []:
         return "*"
-    children = {}
+    children: dict[str, list] = {}
     for l in lexemes:
         l_lookup = await lookup_lid.get_by_lid(l)
-        if mp == "p":
-            p = l_lookup["fp"]
-        else:
-            p = l_lookup["fm"]
+        p = l_lookup["fp"] if mp == "p" else l_lookup["fm"]
         if p in children:
             children[p].append(l)
         else:
