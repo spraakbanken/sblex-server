@@ -55,7 +55,7 @@ class MemLookupLid(LookupLid):
 
                 # add m-children
                 if mother in lex_map:
-                    (m, f, mf, pf, _) = lex_map[mother]
+                    (m, f, mf, pf, _) = lex_map[mother]  # type: ignore [assignment]
                     mf.add(lexeme)
                 else:
                     # we don't know the mother and the father yet.
@@ -64,7 +64,7 @@ class MemLookupLid(LookupLid):
                 # add p-children
                 for father_ in father.split():
                     if father_ in lex_map:
-                        (m, f, mf, pf, _) = lex_map[father_]
+                        (m, f, mf, pf, _) = lex_map[father_]  # type: ignore [assignment]
                         pf.add(lexeme)
                     else:
                         lex_map[father_] = ("", "", set(), {lexeme}, set())
@@ -81,12 +81,12 @@ class MemLookupLid(LookupLid):
                 path_map[sense] = pth
 
             final_lem_map = {}
-            for lem, values in lem_map.items():
-                (s, p, gf) = values
+            for lem, lem_values in lem_map.items():
+                (s, p, gf) = lem_values
                 final_lem_map[lem] = {"l": sorted(s), "p": p, "gf": gf}
             final_lex_map = {}
-            for lex, values in lex_map.items():
-                (m, f, mchildren, pchildren, lemmas) = values
+            for lex, lex_values in lex_map.items():
+                (m, f, mchildren, pchildren, lemmas) = lex_values  # type: ignore [assignment]
                 final_lex_map[lex] = {
                     "lex": lex,
                     "fm": m,
@@ -100,7 +100,7 @@ class MemLookupLid(LookupLid):
                 #  % (l,m,f,pr_set(mchildren),pr_set(pchildren),pr_set(lemmas),pr_list(path_map[l]),father_path(f))
         return cls(lex_map=final_lex_map, lem_map=final_lem_map, path_map=path_map)
 
-    def get_lemma(self, lemma: str) -> dict[str, Any]:
+    async def get_lemma(self, lemma: str) -> dict[str, Any]:
         try:
             logger.debug("lookup lemma", extra={"lemma": lemma})
             result = self._lem_map[lemma]
@@ -109,7 +109,7 @@ class MemLookupLid(LookupLid):
         except KeyError as exc:
             raise LemmaNotFound(lemma) from exc
 
-    def get_lexeme(self, lexeme: str) -> dict[str, Any]:
+    async def get_lexeme(self, lexeme: str) -> dict[str, Any]:
         try:
             return self._lex_map[lexeme]
         except KeyError as exc:
@@ -131,10 +131,10 @@ class MemLookupLid(LookupLid):
                 )
 
             elif command == "rel":
-                return relations(key)
+                raise NotImplementedError("return relations(key)")
             raise UnknownCommand(command)
         except:
-            return []
+            return {}
 
 
 def father_path(fathers, path_map: dict[str, Any]) -> list:

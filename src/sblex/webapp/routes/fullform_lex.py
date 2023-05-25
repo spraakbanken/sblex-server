@@ -17,7 +17,8 @@ async def fullform_lex_json(
     ),
 ):
     with PerfMsTracker(scope=request.scope, key="pf_srv"):
-        return fullform_lex_query.query(segment=segment)
+        segment_fullform = await fullform_lex_query.query(segment=segment)
+    return segment_fullform
 
 
 @router.get(
@@ -34,7 +35,7 @@ async def fullform_xml(
     templates = request.app.state.templates
 
     with PerfMsTracker(scope=request.scope, key="pf_srv"):
-        json_data = fullform_lex_query.query(segment=segment)
+        json_data = await fullform_lex_query.query(segment=segment)
     return templates.TemplateResponse(
         "fullform_lex.xml",
         context={"request": request, "j": json_data},
@@ -87,6 +88,8 @@ async def fullform_lex_html(
                 request, title="SALDO", show_bar=True, service="fl"
             ),
         )
+
+    json_data = await fullform_lex_query.query(segment=segment)
     return templates.TemplateResponse(
         "saldo_fullform_lex.html",
         context=templating.build_context(
@@ -96,6 +99,6 @@ async def fullform_lex_html(
             service="fl",
             input="",
             segment=segment,
-            j=fullform_lex_query.query(segment=segment),
+            j=json_data,
         ),
     )

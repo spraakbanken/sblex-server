@@ -1,5 +1,4 @@
 import logging
-from contextlib import asynccontextmanager
 
 import environs
 from asgi_matomo import MatomoMiddleware
@@ -7,7 +6,6 @@ from brotli_asgi import BrotliMiddleware
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from fastapi.templating import Jinja2Templates
 from sblex import main
 from sblex.webapp import routes, tasks, templating
 
@@ -29,13 +27,12 @@ def create_webapp(
         version=main.get_version(),
         redoc_url="/",
         root_path=app_context.settings["webapp.root_path"],
+        lifespan=tasks.lifespan,
     )  # , lifespan=lifespan)
 
     webapp.state.app_context = app_context
     webapp.state.config = app_context.settings
 
-    tasks.load_lookup_lid(webapp)
-    tasks.load_morphology(webapp)
     # Configure templates
     webapp.state.templates = templating.init_template_engine(app_context.settings)
 
@@ -60,7 +57,7 @@ def create_webapp(
         )
     else:
         logger.warning(
-            "Tracking to Matomo is not enabled, please set TRACKING_MATOMO_URL and TRACKING_MATOMO_IDSITE."
+            "NOT tracking to Matomo, please set TRACKING_MATOMO_URL and TRACKING_MATOMO_IDSITE."
         )
 
     if use_telemetry:
@@ -70,11 +67,3 @@ def create_webapp(
     webapp.mount("/static", StaticFiles(directory="static"), name="static")
 
     return webapp
-
-
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    print("lifespan")
-    tasks.load_lookup_lid(app)
-    tasks.load_morphology(app)
-    yield

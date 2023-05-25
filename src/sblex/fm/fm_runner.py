@@ -1,8 +1,6 @@
-import io
 import logging
 import subprocess
 from pathlib import Path
-from time import sleep
 
 from json_streams import jsonlib
 from opentelemetry import trace
@@ -19,8 +17,6 @@ class FMrunner:
         with tracer.start_as_current_span("call_fm_binary") as call_span:
             args = f'{paradigm} "{word}";'
             program = [
-                # "env",
-                # f"{self.locale}",
                 self.binary_path,
                 "-i",
             ]
@@ -28,7 +24,7 @@ class FMrunner:
             call_span.set_attribute("program", str(program))
             call_span.set_attribute("args", args)
             process = subprocess.run(
-                program,
+                program,  # type: ignore # noqa: S603
                 input=args.encode("utf-8"),
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,

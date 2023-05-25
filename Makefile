@@ -10,7 +10,9 @@ endif
 
 .PHONY: help
 help:
-	@echo "usage:"
+	@echo "USAGE"
+	@echo "====="
+	@echo ""
 	@echo "install-dev (alias: dev)"
 	@echo "		installs the project for development"
 
@@ -34,6 +36,16 @@ help:
 
 	@echo "check-fmt"
 	@echo "		check formatting for all python files"
+
+	@echo "serve-dev"
+	@echo "		serve sblex-server with reloading"
+
+	@echo "quick-dev"
+	@echo "		run examples against sblex-server with reloading"
+	@echo "		'REPL-driven development'"
+
+	@echo "serve-fm-server"
+	@echo "		serve fm-server with reloading"
 
 dev: install-dev
 install-dev:
@@ -75,7 +87,7 @@ check-fmt:
 # type-check the code
 .PHONY: type-check
 type-check:
-	${INVENV} mypy --config-file mypy.ini -p sblex
+	${INVENV} mypy --config-file mypy.ini src tests
 
 # build the project
 build:
@@ -85,3 +97,12 @@ part := "patch"
 # bump given part of version
 bumpversion:
 	${INVENV} bump2version ${part}
+
+serve-dev:
+	${INVENV} watchfiles "uvicorn --port 8000 --factory sblex.webapp.main:create_webapp" src
+
+quick-dev:
+	${INVENV} watchfiles "python examples/quick_dev.py" examples/quick_dev.py templates
+
+serve-fm-server:
+	${INVENV} watchfiles "uvicorn --port 8765 --factory sblex.fm_server.main:create_fm_server" src/sblex/fm_server

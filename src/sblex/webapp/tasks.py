@@ -1,6 +1,8 @@
 import logging
+from contextlib import asynccontextmanager
 from typing import Callable
 
+import httpx
 from fastapi import FastAPI
 from sblex.fm import MemMorphology
 from sblex.infrastructure.queries import MemLookupLid
@@ -26,3 +28,11 @@ def load_morphology(app: FastAPI) -> None:
     logger.info("loading morphology")
     morphology = MemMorphology.from_path(app.state.config["morphology.path"])
     app.state._morph = morphology
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    app.state._fm_client = httpx.AsyncClient(base_url=app.state.config["fm.server.url"])
+    load_lookup_lid(app)
+    yield
+    await app.state._fm_client.aclose()

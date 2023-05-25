@@ -22,7 +22,8 @@ async def lookup_lid_json(
     lookup_lid: LookupLid = Depends(deps.get_lookup_lid),  # noqa: B008
 ):
     with PerfMsTracker(scope=request.scope, key="pf_srv"):
-        return lookup_lid.get_by_lid(lid)
+        lemma_or_lexeme = await lookup_lid.get_by_lid(lid)
+    return lemma_or_lexeme
 
 
 @router.get(
@@ -38,7 +39,7 @@ async def lookup_lid_xml(
 
     try:
         with PerfMsTracker(scope=request.scope, key="pf_srv"):
-            lemma_or_lexeme = lookup_lid.get_by_lid(lid)
+            lemma_or_lexeme = await lookup_lid.get_by_lid(lid)
     except LemmaNotFound:
         lemma_or_lexeme = {}
     except LexemeNotFound:
@@ -64,10 +65,9 @@ async def lookup_lid_html(
     lookup_lid: LookupLid = Depends(deps.get_lookup_lid),  # noqa: B008
 ):
     templates = request.app.state.templates
-    settings = request.app.state.config
 
     try:
-        lemma_or_lexeme = lookup_lid.get_by_lid(lid)
+        lemma_or_lexeme = await lookup_lid.get_by_lid(lid)
     except LemmaNotFound:
         return templates.TemplateResponse(
             "saldo_lid_lemma_saknas.html",
@@ -110,7 +110,7 @@ async def lookup_lid_html(
             # },
         )
 
-    prepared_json = prepare_lexeme_json(
+    prepared_json = await prepare_lexeme_json(
         lemma_or_lexeme, lexeme=lid, lookup_lid=lookup_lid
     )
     logger.info("prepared_json = %s", prepared_json)
@@ -131,19 +131,19 @@ async def lookup_lid_graph(
     lid: Union[Lexeme, Lemma],
     lookup_lid: LookupLid = Depends(deps.get_lookup_lid),  # noqa: B008
 ):
-    templates = request.app.state.templates
+    _templates = request.app.state.templates
 
     raise NotImplementedError("lids:lid-graph")
 
 
-def prepare_lexeme_json(
+async def prepare_lexeme_json(
     j: dict[str, Any], *, lexeme: str, lookup_lid: LookupLid
 ) -> dict[str, Any]:
     lem = "" if lexeme == "PRIM..1" else j["l"]
     sorted_pf = (
         "*"
         if lexeme == "PRIM..1"
-        else sort_children(j["pf"], "m", lookup_lid=lookup_lid)
+        else await sort_children(j["pf"], "m", lookup_lid=lookup_lid)
     )
     return {
         "h1": formatting.prlex(j["lex"]),
@@ -155,7 +155,7 @@ def prepare_lexeme_json(
         "l": list(j["l"]),
         "mf": j["mf"],
         "pf": j["pf"],
-        "sorted_mf": sort_children(j["mf"], "p", lookup_lid=lookup_lid),
+        "sorted_mf": await sort_children(j["mf"], "p", lookup_lid=lookup_lid),
         "sorted_pf": sorted_pf,
         "lexeme": lexeme,
     }
@@ -169,20 +169,17 @@ def lexeme_ref(lids: str) -> str | list[str]:
     return lids.split() if lids else "*"
 
 
-def sort_children(lexemes, mp, *, lookup_lid: LookupLid) -> Union[str, list]:
+async def sort_children(lexemes, mp, *, lookup_lid: LookupLid) -> Union[str, list]:
     if lexemes == []:
         return "*"
-    children = {}
-    for l in lexemes:
-        if mp == "p":
-            p = lookup_lid.get_by_lid(l)["fp"]
-        else:
-            p = lookup_lid.get_by_lid(l)["fm"]
+    children: dict[str, list] = {}
+    for lexeme in lexemes:
+        l_lookup = await lookup_lid.get_by_lid(lexeme)
+        p = l_lookup["fp"] if mp == "p" else l_lookup["fm"]
         if p in children:
-            children[p].append(l)
+            children[p].append(lexeme)
         else:
-            children[p] = [l]
-    s = "<table>"
+            children[p] = [lexeme]
     xs = []
     if "PRIM..1" in children:
         prim_lexs = children["PRIM..1"]
