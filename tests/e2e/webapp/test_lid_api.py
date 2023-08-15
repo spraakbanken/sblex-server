@@ -52,6 +52,10 @@ class TestLidRoutes:
                 "dväljas..vb.1",
                 {"gf": "dväljas", "l": ["dväljas..1"], "p": "vb_vs_dväljas"},
             ),
+            (
+                "dväljas..1",
+                {"gf": "dväljas", "l": ["dväljas..1"], "p": "vb_vs_dväljas"},
+            ),
             # ("d..nn.1", {}),
         ],
     )

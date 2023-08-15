@@ -20,7 +20,8 @@ async def lookup_lid_json(
     request: Request,
     lid: Union[Lexeme, Lemma],
     lookup_lid: LookupLid = Depends(deps.get_lookup_lid),  # noqa: B008
-):
+    # response_model=None,
+) -> dict[str, Any]:
     with PerfMsTracker(scope=request.scope, key="pf_srv"):
         lemma_or_lexeme = await lookup_lid.get_by_lid(lid)
     return lemma_or_lexeme
