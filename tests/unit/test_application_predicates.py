@@ -10,7 +10,7 @@ def test_is_lemma(lid: str, expected: bool) -> None:  # noqa: FBT001
 
 
 @pytest.mark.parametrize(
-    "lid, expected", [("vanlig..1", True), ("dväljas..vb.1", False)]
+    "lid, expected", [("vanlig..1", True), ("dväljas..vb.1", False), ("rnd", True)]
 )
 def test_is_lexeme(lid: str, expected: bool) -> None:  # noqa: FBT001
     assert is_lexeme(lid) is expected
