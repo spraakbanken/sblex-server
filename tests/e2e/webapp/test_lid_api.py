@@ -54,7 +54,16 @@ class TestLidRoutes:
             ),
             (
                 "dväljas..1",
-                {"gf": "dväljas", "l": ["dväljas..1"], "p": "vb_vs_dväljas"},
+                {
+                    "fm": "bo..1",
+                    "fp": "PRIM..1",
+                    "l": ["dväljas..vb.1"],
+                    "lex": "dväljas..1",
+                    "mf": [],
+                    "path": ["bo..1"],
+                    "pf": [],
+                    "ppath": [],
+                },
             ),
             # ("d..nn.1", {}),
         ],
@@ -170,6 +179,7 @@ class TestLidRoutes:
         expected_content_type: str,
         lid: str,
     ) -> None:
+        print(f"{lid=}")
         res = await client.get(f"/lid/{in_format}/{lid}")
         assert res.status_code == status.HTTP_200_OK
         assert res.headers["content-type"] == expected_content_type

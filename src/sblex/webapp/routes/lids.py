@@ -1,12 +1,14 @@
 import logging
 from typing import Any, Union
+from typing_extensions import Annotated
 
 from asgi_matomo.trackers import PerfMsTracker
-from fastapi import APIRouter, Depends, Request
-from fastapi.responses import HTMLResponse
+from fastapi import APIRouter, Depends, Path, Request, Response, status
+from fastapi.responses import HTMLResponse, JSONResponse
 from sblex import formatting
 from sblex.application.queries import LookupLid
 from sblex.application.queries.lookup_lid import LemmaNotFound, LexemeNotFound
+from sblex.application.predicates import is_lemma, is_lexeme
 from sblex.webapp import deps, templating
 from sblex.webapp.responses import XMLResponse
 from sblex.webapp.schemas import Lemma, Lexeme
@@ -15,13 +17,23 @@ logger = logging.getLogger(__name__)
 router = APIRouter()
 
 
-@router.get("/json/{lid}")
+@router.get("/json/{lid}", response_model=None)
 async def lookup_lid_json(
     request: Request,
-    lid: Union[Lexeme, Lemma],
+    lid: Annotated[
+        str,
+        Path(
+            title="Lid",
+        ),
+    ],
     lookup_lid: LookupLid = Depends(deps.get_lookup_lid),  # noqa: B008
     # response_model=None,
-) -> dict[str, Any]:
+) -> Response | None | dict[str, Any]:
+    if not is_lemma(lid) and not is_lexeme(lid):
+        return JSONResponse(
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            content={"error": f"{lid} is neither a lemma or a lexeme"},
+        )
     with PerfMsTracker(scope=request.scope, key="pf_srv"):
         lemma_or_lexeme = await lookup_lid.get_by_lid(lid)
     return lemma_or_lexeme
@@ -33,9 +45,14 @@ async def lookup_lid_json(
 )
 async def lookup_lid_xml(
     request: Request,
-    lid: Union[Lexeme, Lemma],
+    lid: str,
     lookup_lid: LookupLid = Depends(deps.get_lookup_lid),  # noqa: B008
 ):
+    if not is_lemma(lid) and not is_lexeme(lid):
+        return JSONResponse(
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            content={"error": f"{lid} is neither a lemma or a lexeme"},
+        )
     templates = request.app.state.templates
 
     try:
@@ -46,7 +63,8 @@ async def lookup_lid_xml(
     except LexemeNotFound:
         lemma_or_lexeme = {}
 
-    if isinstance(lid, Lemma):
+    # if isinstance(lid, Lemma):
+    if is_lemma(lid):
         return templates.TemplateResponse(
             "saldo_lid_lemma.xml",
             {"request": request, "j": lemma_or_lexeme},
@@ -62,11 +80,16 @@ async def lookup_lid_xml(
 @router.get("/html/{lid}", response_class=HTMLResponse, name="lids:lid-html")
 async def lookup_lid_html(
     request: Request,
-    lid: Union[Lexeme, Lemma],
+    lid: str,  # Union[Lexeme, Lemma],
     lookup_lid: LookupLid = Depends(deps.get_lookup_lid),  # noqa: B008
 ):
+    if not is_lemma(lid) and not is_lexeme(lid):
+        return JSONResponse(
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            content={"error": f"{lid} is neither a lemma or a lexeme"},
+        )
     templates = request.app.state.templates
-
+    print(f"{lid=}")
     try:
         lemma_or_lexeme = await lookup_lid.get_by_lid(lid)
     except LemmaNotFound:
@@ -92,7 +115,8 @@ async def lookup_lid_html(
             ),
         )
 
-    if isinstance(lid, Lemma):
+    # if isinstance(lid, Lemma):
+    if is_lemma(lid):
         return templates.TemplateResponse(
             "saldo_table.html",
             context=templating.build_context(
@@ -129,9 +153,14 @@ async def lookup_lid_html(
 @router.get("/graph/{lid}", response_class=HTMLResponse, name="lids:lid-graph")
 async def lookup_lid_graph(
     request: Request,
-    lid: Union[Lexeme, Lemma],
+    lid: str,
     lookup_lid: LookupLid = Depends(deps.get_lookup_lid),  # noqa: B008
 ):
+    if not is_lemma(lid) and not is_lexeme(lid):
+        return JSONResponse(
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            content={"error": f"{lid} is neither a lemma or a lexeme"},
+        )
     _templates = request.app.state.templates
 
     raise NotImplementedError("lids:lid-graph")
