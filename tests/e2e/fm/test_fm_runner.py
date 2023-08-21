@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 import pytest
@@ -9,6 +10,9 @@ def fixture_fm_runner() -> FMrunner:
     return FMrunner(Path("./bin/saldo"))
 
 
+@pytest.mark.skipif(
+    os.getenv("GITHUB_ACTIONS") is not None, reason="Not available in Github Actions"
+)
 def test_fm_runner(fm_runner):
     assert fm_runner.inflection("vb_vs_dväljas", "dväljas") == [
         {
