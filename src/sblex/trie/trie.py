@@ -37,16 +37,13 @@ class Trie:
         for c in word:
             try:
                 st = self._trie[st][0][c]
-            except:
+            except:  # noqa: E722
                 return b""
         return self._trie[st][1]
 
 
 def wrap(s: bytes) -> bytes:
-    if len(s) > 0:
-        return b"\n" + s + b"\n"
-    else:
-        return s
+    return b"\n" + s + b"\n" if s else s
 
 
 class TrieBuilder:
@@ -61,7 +58,7 @@ class TrieBuilder:
         for i in range(len(word)):
             try:
                 st = self.trie[st][0][word[i]]
-            except:
+            except:  # noqa: E722
                 self.complete(st, word[i:], decoration)
                 return
         self.trie[st][1].append(decoration)

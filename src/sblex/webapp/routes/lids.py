@@ -1,17 +1,16 @@
 import logging
 from typing import Any, Union
-from typing_extensions import Annotated
 
 from asgi_matomo.trackers import PerfMsTracker
 from fastapi import APIRouter, Depends, Path, Request, Response, status
 from fastapi.responses import HTMLResponse, JSONResponse
 from sblex import formatting
+from sblex.application.predicates import is_lemma, is_lexeme
 from sblex.application.queries import LookupLid
 from sblex.application.queries.lookup_lid import LemmaNotFound, LexemeNotFound
-from sblex.application.predicates import is_lemma, is_lexeme
 from sblex.webapp import deps, templating
 from sblex.webapp.responses import XMLResponse
-from sblex.webapp.schemas import Lemma, Lexeme
+from typing_extensions import Annotated
 
 logger = logging.getLogger(__name__)
 router = APIRouter()

@@ -23,7 +23,7 @@ class MemLookupLid(LookupLid):
         self._path_map = path_map
 
     @classmethod
-    def from_tsv_path(cls, tsv_path: Path) -> "MemLookupLid":
+    def from_tsv_path(cls, tsv_path: Path) -> "MemLookupLid":  # noqa: C901
         lem_map: dict[str, tuple[set[str], str, str]] = {}
         lex_map: dict[str, tuple[str, str, set[str], set[str], set[str]]] = {}
         path_map: dict[str, list[str]] = {}
@@ -97,7 +97,8 @@ class MemLookupLid(LookupLid):
                     "path": path_map[lex],
                     "ppath": father_path(f, path_map),
                 }
-                #  % (l,m,f,pr_set(mchildren),pr_set(pchildren),pr_set(lemmas),pr_list(path_map[l]),father_path(f))
+                #  % (l,m,f,pr_set(mchildren),pr_set(pchildren),pr_set(lemmas),
+                #     pr_list(path_map[l]),father_path(f))
         return cls(lex_map=final_lex_map, lem_map=final_lem_map, path_map=path_map)
 
     async def get_lemma(self, lemma: str) -> dict[str, Any]:
@@ -123,7 +124,7 @@ class MemLookupLid(LookupLid):
                 return (
                     self._lex_map[
                         list(self._lex_map.keys())[
-                            random.randint(0, len(self._lex_map) - 1)
+                            random.randint(0, len(self._lex_map) - 1)  # noqa: S311
                         ]
                     ]
                     if key == "rnd"
@@ -133,7 +134,7 @@ class MemLookupLid(LookupLid):
             elif command == "rel":
                 raise NotImplementedError("return relations(key)")
             raise UnknownCommand(command)
-        except:
+        except:  # noqa: E722
             return {}
 
 

@@ -43,6 +43,6 @@ class MemMorphology(Morphology):
             word = res[1]
             if r := self._trie.lookup(word, n):
                 return r
-        except:
+        except:  # noqa: E722, S110
             pass
         return b'{"id":"0","a":[],"c":""}'

@@ -34,7 +34,7 @@ class LookupFullformLexQuery(FullformLexQuery):
                             "p": p,
                         }
                     )
-                except:
-                    raise Exception(lex)
+                except:  # noqa: E722
+                    raise Exception(lex) from None
         result.sort()
         return result
