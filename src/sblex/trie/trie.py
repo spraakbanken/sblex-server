@@ -1,4 +1,5 @@
 import logging
+import time
 from typing import Any, Iterable
 
 from json_streams import jsonlib
@@ -13,6 +14,7 @@ class Trie:
     @classmethod
     def from_iter(cls, dicts: Iterable[dict[str, Any]]) -> "Trie":
         logger.info("building morphology structure... (takes about 1 minute)")
+        build_started = time.perf_counter()
         trie_builder = TrieBuilder()
         for j in dicts:
             w = j["word"]
@@ -29,8 +31,12 @@ class Trie:
         logger.info(
             "number of word forms read: %d", trie_builder.number_of_insertions()
         )
+        logger.info("number of states: %d", trie_builder.state)
         logger.info("initiating precomputation...")
-        return trie_builder.build()
+        trie = trie_builder.build()
+        elapsed = time.perf_counter() - build_started
+        logger.info("building morphology took %d s", elapsed)
+        return trie
 
     def lookup(self, word: str, start_state=0) -> bytes:
         st = start_state  # traversal state
@@ -77,8 +83,10 @@ class TrieBuilder:
 
     def precompute(self) -> dict[int, tuple[dict[str, int], bytes]]:
         trie_precomputed = {}
+        max_num_transitions = 0
         for i in range(self.state + 1):
             tr = self.trie[i][0]
+            max_num_transitions = max(max_num_transitions, len(tr))
             dec = self.trie[i][1]
             # ys  = [x.encode('UTF-8') for x in dec]
             ys = b",".join(dec)
@@ -87,6 +95,7 @@ class TrieBuilder:
                 tr,
                 b'{"a":[%s],"c":"%s"}' % (ys, cont),
             )
+        logger.info("max number of transitions in trie: %d", max_num_transitions)
         return trie_precomputed
 
     def continuation(self, state: int):
