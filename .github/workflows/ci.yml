@@ -42,7 +42,6 @@ jobs:
         uses: ./.github/actions/setup-python-env
         with:
           python-version: ${{ env.MINIMUM_PYTHON_VERSION }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
       #----------------------------------------------
       # Run matrix task
       #----------------------------------------------
@@ -77,7 +76,6 @@ jobs:
         uses: ./.github/actions/setup-python-env
         with:
           python-version: ${{ env.MINIMUM_PYTHON_VERSION }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
       #----------------------------------------------
       # Run matrix task
       #----------------------------------------------
@@ -112,7 +110,6 @@ jobs:
         uses: ./.github/actions/setup-python-env
         with:
           python-version: ${{ env.MINIMUM_PYTHON_VERSION }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
       #----------------------------------------------
       # Run matrix task
       #----------------------------------------------
@@ -150,7 +147,6 @@ jobs:
         uses: ./.github/actions/setup-python-env
         with:
           python-version: ${{ env.MINIMUM_PYTHON_VERSION }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
       #----------------------------------------------
       # Run tests and upload coverage
       #----------------------------------------------
