@@ -23,6 +23,8 @@ jobs:
         task:
           - name: Lint code
             run: make lint
+          - name: Lint dependencies
+            run: make lint-dependencies
 
     runs-on: ${{ matrix.os }}-latest
 

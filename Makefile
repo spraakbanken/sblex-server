@@ -107,8 +107,16 @@ quick-dev:
 serve-fm-server:
 	${INVENV} watchfiles "uvicorn --port 8765 --factory sblex.fm_server.main:create_fm_server" src/sblex/fm_server
 
+.PHONY: lint-deptrac
 lint-deptrac:
 	${INVENV} deptracpy
+
+.PHONY: lint-deptry
+lint-deptry:
+	${INVENV} deptry .
+
+.PHONY: lint-dependencies
+lint-dependencies: lint-deptry lint-deptrac
 
 watch-lint-deptrac:
 	${INVENV} watchfiles "deptracpy" deptracpy.yaml src

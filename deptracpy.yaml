@@ -5,41 +5,44 @@ layers:
   - name: sblex.application
     collectors:
       - type: ModuleRecursive
-        path: 'sblex.application'
+        path: "sblex.application"
   - name: sblex.fm
     collectors:
-      - type: ModuleRecursive
-        path: 'sblex.fm'
+      - type: Module
+        path: "sblex.fm"
   - name: sblex.fm_server
     collectors:
       - type: ModuleRecursive
-        path: 'sblex.fm_server'
+        path: "sblex.fm_server"
   - name: sblex.formatting
     collectors:
       - type: ModuleRecursive
-        path: 'sblex.formatting'
+        path: "sblex.formatting"
   - name: sblex.trie
     collectors:
       - type: ModuleRecursive
-        path: 'sblex.trie'
+        path: "sblex.trie"
   - name: sblex.infrastructure
     collectors:
       - type: ModuleRecursive
-        path: 'sblex.infrastructure'
+        path: "sblex.infrastructure"
   - name: sblex.main
     collectors:
       - type: ModuleRecursive
-        path: 'sblex.main'
+        path: "sblex.main"
   - name: sblex.webapp
     collectors:
       - type: ModuleRecursive
-        path: 'sblex.webapp'
+        path: "sblex.webapp"
 
 rulesets:
   sblex.application:
     - sblex.fm
   sblex.fm:
     - sblex.trie
+  sblex.fm_server:
+    - sblex.fm
+    - sblex.main
   sblex.infrastructure:
     - sblex.fm
     - sblex.application
