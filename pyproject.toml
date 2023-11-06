@@ -40,7 +40,7 @@ deptracpy = {git = "https://github.com/patrickkusebauch/deptracpy"}
 optional = true
 
 [tool.poetry.group.ci.dependencies]
-ruff = "^0.0.292"
+ruff = "^0.1.4"
 
 [build-system]
 requires = ["poetry-core"]
