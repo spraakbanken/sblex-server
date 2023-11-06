@@ -8,7 +8,7 @@ def create_fm_server(
     *,
     env: environs.Env | None = None,
     config: dict[str, str] | None = None,
-    use_telemetry: bool = True
+    use_telemetry: bool = True,
 ) -> FastAPI:
     app_context = main.bootstrap_app(
         env=env, config=config, use_telemetry=use_telemetry

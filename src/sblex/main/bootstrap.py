@@ -34,7 +34,7 @@ def bootstrap_app(
     *,
     env: environs.Env | None = None,
     config: dict[str, str] | None = None,
-    use_telemetry: bool = True
+    use_telemetry: bool = True,
 ) -> AppContext:
     if env is None:
         env = load_env()
