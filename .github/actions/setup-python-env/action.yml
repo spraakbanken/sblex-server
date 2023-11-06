@@ -30,6 +30,7 @@ runs:
       uses: eifinger/setup-rye@f8f2ca26808cdffef0b77c4fddf4305a5e5b010a
       with:
         version: ${{ inputs.rye-version }}
+        github-token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Pin python version
       run: rye pin ${{ inputs.python-version }}
