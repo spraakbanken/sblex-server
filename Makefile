@@ -3,7 +3,7 @@
 .default: help
 
 ifeq (${VIRTUAL_ENV},)
-  INVENV = poetry run
+  INVENV = rye run
 else
   INVENV =
 endif
@@ -49,14 +49,14 @@ help:
 
 dev: install-dev
 install-dev:
-	poetry install
+	rye sync
 
 install:
-	poetry install --only main --sync
+	rye sync --no-lock --no-dev
 
 # setup CI environment
-install-ci: install-dev
-	poetry install --only ci
+install-ci: 
+	rye sync --features=ci
 
 default_cov := "--cov=src/sblex"
 cov_report := "term-missing"
