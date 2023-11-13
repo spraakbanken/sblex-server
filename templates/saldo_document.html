@@ -49,9 +49,9 @@
       <input type="submit" value="skicka" onchange="input_handler(event)">
     </p>
     <form action="https://spraakbanken.gu.se/ws/saldo-ws/{{ service }}/html" method="get" class="inputclass">
-      <input type="search" id="input" class="inputclass" value="{{ input }}" size="30" placeholder="Skriv in en ordform"
-        results="10" />
-      <input type="submit" value="skicka" />
+      <input type="search" id="search" class="inputclass" value="{{ input }}" name="q" size="30"
+        placeholder="Skriv in en ordform" results="10" />
+      <input type="submit" value="Sök" />
     </form>
   </center>
   {% endif %}
