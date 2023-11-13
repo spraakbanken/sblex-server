@@ -1,7 +1,7 @@
 {% extends "saldo_document.html" %}
 {% block content %}
 <center>
-    <form action="{{ url_for('/fl/html')}}" method="get" class="inputclass">
+    <form action="{{ url_for('fullform_lex:fl-html')}}" method="get" class="inputclass">
         <input type="search" id="search" class="inputclass" value="{{ input }}" name="q" size="30"
             placeholder="Skriv in en ordform" results="10" />
         <input type="submit" value="Sök" />
