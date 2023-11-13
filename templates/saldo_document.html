@@ -48,6 +48,11 @@
         results="10" onchange="input_handler(event)">
       <input type="submit" value="skicka" onchange="input_handler(event)">
     </p>
+    <form action="https://spraakbanken.gu.se/ws/saldo-ws/{{ service }}/html" method="get" class="inputclass">
+      <input type="search" id="input" class="inputclass" value="{{ input }}" size="30" placeholder="Skriv in en ordform"
+        results="10" />
+      <input type="submit" value="skicka" />
+    </form>
   </center>
   {% endif %}
   <div id="output_table">
