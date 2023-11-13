@@ -22,6 +22,7 @@ def create_webapp(
         env=env, config=config, use_telemetry=use_telemetry
     )
 
+    logger.warn("starting webapp", extra={"settings": app_context.settings})
     webapp = FastAPI(
         title="Saldo WS",
         version=main.get_version(),
