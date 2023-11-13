@@ -116,6 +116,8 @@ async def lookup_lid_html(
 
     # if isinstance(lid, Lemma):
     if is_lemma(lid):
+        print(f"lemma {lid=}")
+
         return templates.TemplateResponse(
             "saldo_table.html",
             context=templating.build_context(
@@ -133,6 +135,7 @@ async def lookup_lid_html(
             #     "j": lemma_or_lexeme,
             # },
         )
+    print(f"lexeme {lid=}")
 
     prepared_json = await prepare_lexeme_json(
         lemma_or_lexeme, lexeme=lid, lookup_lid=lookup_lid

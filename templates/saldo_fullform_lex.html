@@ -1,8 +1,14 @@
 {% extends "saldo_document.html" %}
 {% block content %}
 <center>
+    <form action="/fl/html" method="get" class="inputclass">
+        <input type="search" id="search" class="inputclass" value="{{ input }}" name="q" size="30"
+            placeholder="Skriv in en ordform" results="10" />
+        <input type="submit" value="Sök" />
+    </form>
+    {% if segment|length %}
     <h1>segment: {{ segment }}</h1>
-    <p><a href="http://spraakbanken.gu.se/ws/saldo-ws/sms/html/{{ segment }}">sammansättningsanalys</a></p>
+    <p><a href="/sms/html/{{ segment }}">sammansättningsanalys</a></p>
     <table border="1">
         {% if j|length %}
         <tr>
@@ -45,5 +51,6 @@
         </tr>
         {% endif %}
     </table>
+    {% endif %}
 </center>
 {% endblock %}

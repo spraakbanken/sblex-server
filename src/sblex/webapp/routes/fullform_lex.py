@@ -1,6 +1,7 @@
 from asgi_matomo.trackers import PerfMsTracker
-from fastapi import APIRouter, Depends, Request
-from fastapi.responses import HTMLResponse
+from fastapi import APIRouter, Depends, Request, status
+from fastapi.datastructures import URL
+from fastapi.responses import HTMLResponse, RedirectResponse
 from sblex.application.queries import FullformLexQuery
 from sblex.webapp import deps, templating
 from sblex.webapp.responses import XMLResponse
@@ -43,53 +44,20 @@ async def fullform_xml(
     )
 
 
-@router.get(
-    "/html/",
-    response_class=HTMLResponse,
-)
-async def fullform_lex_html_empty(
-    request: Request,
-):
-    templates = request.app.state.templates
-
-    return templates.TemplateResponse(
-        "saldo_mata_in_ordform.html",
-        context=templating.build_context(
-            request, title="SALDO", show_bar=True, service="fl"
-        )
-        # {
-        #     "request": request,
-        #     "title": "SALDO",
-        #     "service": "fl",
-        #     "bar": True,
-        # },
-    )
-
-
-@router.get(
-    "/html/{segment}",
-    response_class=HTMLResponse,
-)
+@router.get("/html", response_class=HTMLResponse, name="fullform_lex:fl-html")
 async def fullform_lex_html(
     request: Request,
-    segment: str,
+    q: str | None = None,
     fullform_lex_query: FullformLexQuery = Depends(  # noqa: B008
         deps.get_fullform_lex_query
     ),
 ):
     templates = request.app.state.templates
+    segment = q.strip() if q else ""
+    json_data = {}
+    if segment:
+        json_data = await fullform_lex_query.query(segment=segment)
 
-    segment = segment.strip()
-
-    if not segment:
-        return templates.TemplateResponse(
-            "saldo_mata_in_ordform.html",
-            context=templating.build_context(
-                request, title="SALDO", show_bar=True, service="fl"
-            ),
-        )
-
-    json_data = await fullform_lex_query.query(segment=segment)
     return templates.TemplateResponse(
         "saldo_fullform_lex.html",
         context=templating.build_context(
@@ -97,8 +65,24 @@ async def fullform_lex_html(
             title="SALDO",
             show_bar=True,
             service="fl",
-            input="",
+            input=segment,
             segment=segment,
             j=json_data,
         ),
+    )
+
+
+@router.get(
+    "/html/{segment}",
+    response_class=HTMLResponse,
+)
+async def fullform_lex_html_old(
+    request: Request,
+    segment: str,
+):
+    redirect_url = request.url_for("fullform_lex:fl-html").include_query_params(
+        q=segment
+    )
+    return RedirectResponse(
+        redirect_url, status_code=status.HTTP_307_TEMPORARY_REDIRECT
     )

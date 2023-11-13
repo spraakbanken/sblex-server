@@ -23,41 +23,45 @@
   </script>
   <!-- End Matomo Code -->
   {% endif %}
+  <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
 </head>
+{% if show_bar %}
 
 <body OnLoad="document.getElementById('input').focus();">
-  <center>
-    <p>
-      <a href="https://spraakbanken.gu.se/saldo"><img
-          src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
-          alt="SALDO" /></a>
-    </p>
-    {% if bar %}
-    <script>
-      function input_handler(e) {
-        var word = document.getElementById('input').value;
-        if (word.length > 0) {
-          location.href = 'https://spraakbanken.gu.se/ws/saldo-ws/{{ service }}/html/' + encodeURIComponent(word);
-        }
-      }
+  {% else %}
 
-    </script>
-    <p><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></p>
-    <p>
-      <input type="search" id="input" class="inputclass" value="{{ input }}" size="30" placeholder="Skriv in en ordform"
-        results="10" onchange="input_handler(event)">
-      <input type="submit" value="skicka" onchange="input_handler(event)">
-    </p>
-    <form action="https://spraakbanken.gu.se/ws/saldo-ws/{{ service }}/html" method="get" class="inputclass">
-      <input type="search" id="search" class="inputclass" value="{{ input }}" name="q" size="30"
-        placeholder="Skriv in en ordform" results="10" />
-      <input type="submit" value="Sök" />
-    </form>
-  </center>
-  {% endif %}
-  <div id="output_table">
-    {% block content %}{% endblock %}
-  </div>
-</body>
+  <body>
+    {% endif %}
+    <center>
+      <p>
+        <a href="https://spraakbanken.gu.se/saldo"><img
+            src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
+            alt="SALDO" /></a>
+      </p>
+
+      <script>
+        function input_handler(e) {
+          var word = document.getElementById('input').value;
+          if (word.length > 0) {
+            location.href = 'https://spraakbanken.gu.se/ws/saldo-ws/{{ service }}/html/' + encodeURIComponent(word);
+          }
+        }
+
+      </script>
+      <p><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></p>
+      {% if show_bar %}
+      <p>
+        <input type="search" id="input" class="inputclass" value="{{ input }}" size="30"
+          placeholder="Skriv in en ordform" results="10" onchange="input_handler(event)">
+        <input type="submit" value="skicka" onchange="input_handler(event)">
+      </p>
+
+      {% endif %}
+    </center>
+
+    <div id="output_table">
+      {% block content %}{% endblock %}
+    </div>
+  </body>
 
 </html>

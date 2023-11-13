@@ -1,6 +1,6 @@
 from asgi_matomo.trackers import PerfMsTracker
 from fastapi import APIRouter, Depends, Request, Response
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, RedirectResponse
 from json_streams import jsonlib
 from opentelemetry import trace
 from sblex.fm import Morphology
@@ -47,30 +47,42 @@ async def fullform_xml(
     )
 
 
-@router.get(
-    "/html/{fragment}",
-    response_class=HTMLResponse,
-)
+@router.get("/html", response_class=HTMLResponse, name="fullform:ff-html")
 async def fullform_html(
     request: Request,
-    fragment: str,
+    q: str | None = None,
     morphology: Morphology = Depends(deps.get_morphology),  # noqa: B008
 ):
     current_span = trace.get_current_span()
     current_span.set_attribute("scope", str(request.scope))
 
     templates = request.app.state.templates
-
+    fragment = q.strip() if q else ""
+    json_data = {}
+    if fragment:
+        json_data = jsonlib.loads(await morphology.lookup(fragment))
     return templates.TemplateResponse(
         "saldo_fullform.html",
         context=templating.build_context(
             request,
             title=fragment,
             service="ff",
-            input="",
+            input=fragment,
             show_bar=True,
             segment=fragment,
-            j=jsonlib.loads(await morphology.lookup(fragment))
+            j=json_data,
             # "content": htmlize(fragment, morphology.lookup(f"0 {fragment}".encode("utf-8")))
         ),
     )
+
+
+@router.get(
+    "/html/{fragment}",
+    response_class=HTMLResponse,
+)
+async def fullform_html_old(
+    request: Request,
+    fragment: str,
+):
+    redirect_url = request.url_for("fullform:ff-html").include_query_params(q=fragment)
+    return RedirectResponse(redirect_url)

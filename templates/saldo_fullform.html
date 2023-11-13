@@ -1,18 +1,33 @@
 {% extends "saldo_document.html" %}
 {% block content %}
-<center><p>segment: {{ segment }}</p>
-<p>continuations:  {{ j["c"] }} </p>
-<table border="1">
-<tr><th>gf</th><th>id</th><th>pos</th><th>is</th><th>msd</th><th>p</th></tr>
-{% for a in j["a"] %}
-<tr>
-<td>{{ a["gf"] }}</td>
-<td><a href="{{ url_for("lids:lid-html", lid=a["id"]) }}">{{ a["id"] }}</a></td>
-<td>{{a["pos"]}}</td>
-<td>{{a["is"]|join(" ")}}</td>
-<td>{{a["msd"]}}</td>
-<td>{{a["p"]}}</td>
-</tr>
-{% endfor %}
+<center>
+    <form action="/ff/html" method="get" class="inputclass">
+        <input type="search" id="search" class="inputclass" value="{{ input }}" name="q" size="30"
+            placeholder="Skriv in en ordform" results="10" />
+        <input type="submit" value="Sök" />
+    </form>
+    {% if segment|length %}
+    <p>segment: {{ segment }}</p>
+    <p>continuations: {{ j["c"] }} </p>
+    <table border="1">
+        <tr>
+            <th>gf</th>
+            <th>id</th>
+            <th>pos</th>
+            <th>is</th>
+            <th>msd</th>
+            <th>p</th>
+        </tr>
+        {% for a in j["a"] %}
+        <tr>
+            <td>{{ a["gf"] }}</td>
+            <td><a href="{{ url_for('lids:lid-html', lid=a['id']) }}">{{ a["id"] }}</a></td>
+            <td>{{a["pos"]}}</td>
+            <td>{{a["is"]|join(" ")}}</td>
+            <td>{{a["msd"]}}</td>
+            <td>{{a["p"]}}</td>
+        </tr>
+        {% endfor %}
+        {% endif %}
 </center>
 {% endblock %}
