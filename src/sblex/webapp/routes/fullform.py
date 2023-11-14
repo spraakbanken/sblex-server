@@ -80,7 +80,7 @@ async def fullform_html(
     "/html/{fragment}",
     response_class=HTMLResponse,
 )
-async def fullform_html_old(
+async def fullform_html_orig(
     request: Request,
     fragment: str,
 ):

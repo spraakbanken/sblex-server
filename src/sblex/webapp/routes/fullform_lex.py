@@ -53,7 +53,7 @@ async def fullform_lex_html(
 ):
     templates = request.app.state.templates
     segment = q.strip() if q else ""
-    json_data = {}
+    json_data = []
     if segment:
         json_data = await fullform_lex_query.query(segment=segment)
 
@@ -75,7 +75,7 @@ async def fullform_lex_html(
     "/html/{segment}",
     response_class=HTMLResponse,
 )
-async def fullform_lex_html_old(
+async def fullform_lex_html_orig(
     request: Request,
     segment: str,
 ):
