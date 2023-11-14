@@ -29,7 +29,10 @@ def init_template_engine(settings: main.Settings) -> Jinja2Templates:
 @jinja2.pass_context
 def custom_url_for(context: dict, name: str, **path_params) -> str:
     request: Request = context["request"]
-    http_url = request.url_for(name, **path_params)
     if base_url := request.app.state.config.get("webapp.base_url"):
-        http_url = http_url.make_absolute_url(base_url)
+        http_url = request.app.url_path_for(name, **path_params).make_absolute_url(
+            base_url
+        )
+    else:
+        http_url = request.url_for(name, **path_params)
     return http_url
