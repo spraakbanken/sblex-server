@@ -1,6 +1,5 @@
 from asgi_matomo.trackers import PerfMsTracker
 from fastapi import APIRouter, Depends, Request, status
-from fastapi.datastructures import URL
 from fastapi.responses import HTMLResponse, RedirectResponse
 from sblex.application.queries import FullformLexQuery
 from sblex.webapp import deps, templating
