@@ -11,6 +11,7 @@ Settings = TypedDict(
     {
         "morphology.path": str,
         "semantic.path": str,
+        "webapp.base_url": Optional[str],
         "webapp.root_path": str,
         "tracking.matomo.url": Optional[str],
         "tracking.matomo.idsite": Optional[str],
@@ -56,6 +57,8 @@ def bootstrap_app(
         or env("TRACKING_MATOMO_FRONTEND_BASEURL", None),
         "tracking.matomo.frontend.site_id": config.get("tracking.matomo.base_url")
         or env("TRACKING_MATOMO_FRONTEND_SITEID", None),
+        "webapp.base_url": config.get("webapp.base_url")
+        or env("WEBAPP_BASE_URL", None),
         "webapp.root_path": config.get("webapp.root_path")
         or env("WEBAPP_ROOT_PATH", ""),
         "fm.server.url": env("FM_SERVER_URL", "http://fmserver"),
