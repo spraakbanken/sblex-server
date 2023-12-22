@@ -62,8 +62,8 @@ class TestFullformLexRoutes:
     @pytest.mark.parametrize(
         "segment, expected_in_response",
         [
-            ("", "Skriv in en ordform."),
-            (" ", "Mata in en ordform."),
+            ("", "Skriv in en ordform"),
+            (" ", "Skriv in en ordform"),
             ("dväljs", "dväljs"),
             ("dväljsxdf", "ordet saknas i lexikonet"),
         ],
