@@ -62,7 +62,7 @@ class TestFullformLexRoutes:
     @pytest.mark.parametrize(
         "segment, expected_in_response",
         [
-            ("", "Mata in en ordform."),
+            ("", "Skriv in en ordform."),
             (" ", "Mata in en ordform."),
             ("dväljs", "dväljs"),
             ("dväljsxdf", "ordet saknas i lexikonet"),
@@ -75,8 +75,26 @@ class TestFullformLexRoutes:
         segment: str,
         expected_in_response: str,
     ) -> None:
-        res = await client.get(f"/fl/html/{segment}")
+        res = await client.get(f"/fl/html?q={segment}")
         assert res.status_code == status.HTTP_200_OK
         assert res.headers["content-type"] == "text/html; charset=utf-8"
 
         assert expected_in_response in res.text
+
+    @pytest.mark.parametrize(
+        "segment",
+        [
+            "",
+            " ",
+            "dväljs",
+            "dväljsxdf",
+        ],
+    )
+    @pytest.mark.asyncio
+    async def test_html_orig_valid_input_returns_307(
+        self,
+        client: AsyncClient,
+        segment: str,
+    ) -> None:
+        res = await client.get(f"/fl/html/{segment}")
+        assert res.status_code == status.HTTP_307_TEMPORARY_REDIRECT

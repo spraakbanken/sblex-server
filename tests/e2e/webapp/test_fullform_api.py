@@ -86,7 +86,7 @@ class TestFullformRoutes:
     async def test_html_valid_input_returns_200(
         self, client: AsyncClient, fragment: str, expected: dict
     ):
-        res = await client.get(f"/ff/html/{fragment}")
+        res = await client.get(f"/ff/html?q={fragment}")
         assert res.status_code == status.HTTP_200_OK
         assert res.headers["content-type"] == "text/html; charset=utf-8"
 
@@ -95,6 +95,24 @@ class TestFullformRoutes:
         assert f"<title>{fragment}</title>" in result
         assert f"<p>segment: {fragment}</p>" in result
         # assert result == expected
+
+    @pytest.mark.parametrize(
+        "fragment",
+        [
+            "dväljs",
+            "dv",
+            "dvä",
+            "dväl",
+        ],
+    )
+    @pytest.mark.asyncio
+    async def test_html_orig_valid_input_returns_307(
+        self,
+        client: AsyncClient,
+        fragment: str,
+    ):
+        res = await client.get(f"/ff/html/{fragment}")
+        assert res.status_code == status.HTTP_307_TEMPORARY_REDIRECT
 
     @pytest.mark.parametrize(
         "fragment, expected",
