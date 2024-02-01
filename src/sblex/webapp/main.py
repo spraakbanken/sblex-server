@@ -25,6 +25,8 @@ def create_webapp(
     webapp = FastAPI(
         title="Saldo WS",
         version=main.get_version(),
+        openapi_url=f"{app_context.settings['webapp.root_path']}/openapi.json",
+        docs_url=None,
         redoc_url="/",
         root_path=app_context.settings["webapp.root_path"],
         lifespan=tasks.lifespan,
