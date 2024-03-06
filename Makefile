@@ -127,3 +127,26 @@ prepare-release: tests/requirements-testing.lock
 # we use lock extension so that dependabot doesn't pick up changes in this file
 tests/requirements-testing.lock: pyproject.toml
 	pdm export --dev --format requirements --output $@
+
+serve-dev:
+	${INVENV} watchfiles "uvicorn --port 8000 --factory sblex.webapp.main:create_webapp" src
+
+quick-dev:
+	${INVENV} watchfiles "python examples/quick_dev.py" examples/quick_dev.py templates
+
+serve-fm-server:
+	${INVENV} watchfiles "uvicorn --port 8765 --factory sblex.fm_server.main:create_fm_server" src/sblex/fm_server
+
+.PHONY: lint-deptrac
+lint-deptrac:
+	${INVENV} deptracpy
+
+.PHONY: lint-deptry
+lint-deptry:
+	${INVENV} deptry .
+
+.PHONY: lint-dependencies
+lint-dependencies: lint-deptry lint-deptrac
+
+watch-lint-deptrac:
+	${INVENV} watchfiles "deptracpy" deptracpy.yaml src
