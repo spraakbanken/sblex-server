@@ -5,7 +5,7 @@
 groups = ["default", "dev"]
 strategy = ["cross_platform", "inherit_metadata"]
 lock_version = "4.4.1"
-content_hash = "sha256:41531945e9b7c5db863ed1e7b332c29820e8d08b0b2ca4d162aca0c15a6f0daf"
+content_hash = "sha256:a6627bd515e60b96703427c2c8a1dae5f406d78330840279ee1cb395f59ed73f"
 
 [[package]]
 name = "annotated-types"
@@ -563,20 +563,6 @@ dependencies = [
 files = [
     {file = "json_arrays-0.14.0-py3-none-any.whl", hash = "sha256:a6ed52d164631a47ca0aaf5d3e48b6d2e165adf3e338fed0f858606369170c49"},
     {file = "json_arrays-0.14.0.tar.gz", hash = "sha256:bae33e1940433cc808993314fb397de1acecd2ae79f73c4e153d18d6bcf967d9"},
-]
-
-[[package]]
-name = "json-streams"
-version = "0.14.0"
-requires_python = ">=3.9"
-summary = "Stream JSON and JSON-Lines lazily."
-groups = ["default"]
-dependencies = [
-    "json-arrays>=0.14",
-]
-files = [
-    {file = "json_streams-0.14.0-py3-none-any.whl", hash = "sha256:9f743f1f368f678a9c22a1a8cb95ddf18778220a8adfc461f9c8b1e7ec8cc821"},
-    {file = "json_streams-0.14.0.tar.gz", hash = "sha256:32e666d8645c29420389370462f7cfc64c51577b78ea87eae23baaee8e982cd8"},
 ]
 
 [[package]]
