@@ -27,28 +27,9 @@ readme = "README.md"
 license = { text = "MIT" }
 requires-python = ">=3.10"
 
-[project.optional-dependencies]
-ci = ["ruff>=0.1.4"]
-
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
-
-[tool.rye]
-managed = true
-dev-dependencies = [
-    "pytest>=7.4.3",
-    "pytest-cov>=4.1.0",
-    "black>=23.10.1",
-    "mypy>=1.6.1",
-    "pytest-asyncio>=0.21.1",
-    "asgi-lifespan>=2.1.0",
-    "python-dotenv>=1.0.0",
-    "watchfiles>=0.21.0",
-    "bump2version>=1.0.1",
-    "deptracpy @ git+https://github.com/patrickkusebauch/deptracpy",
-    "deptry>=0.12.0",
-]
 
 [tool.hatch.metadata]
 allow-direct-references = true
@@ -89,3 +70,18 @@ DEP002 = ["python-json-logger", "uvicorn", "gunicorn", "ruff"]
 
 [tool.pdm]
 distribution = false
+
+[tool.pdm.dev-dependencies]
+dev = [
+    "pytest>=8.0.2",
+    "pytest-cov>=4.1.0",
+    "pytest-asyncio>=0.23.5",
+    "ruff>=0.3.0",
+    "mypy>=1.8.0",
+    "asgi-lifespan>=2.1.0",
+    "python-dotenv>=1.0.1",
+    "watchfiles>=0.21.0",
+    "bump2version>=1.0.1",
+    "deptry>=0.12.0",
+    "deptracpy @ git+https://github.com/patrickkusebauch/deptracpy",
+]
