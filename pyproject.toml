@@ -1,7 +1,7 @@
 [project]
 name = "sblex-server"
 version = "0.2.3"
-description = "SBLEX server working with FM data."
+description = "Default template for PDM package"
 authors = [
     { name = "Kristoffer Andersson", email = "kristoffer.andersson@gu.se" },
 ]
@@ -24,8 +24,8 @@ dependencies = [
     "pydantic>=2.4.2",
 ]
 readme = "README.md"
-license = "MIT"
-requires-python = ">= 3.10"
+license = { text = "MIT" }
+requires-python = ">=3.10"
 
 [project.optional-dependencies]
 ci = ["ruff>=0.1.4"]
@@ -86,3 +86,6 @@ extend_exclude = [
 
 [tool.deptry.per_rule_ignores]
 DEP002 = ["python-json-logger", "uvicorn", "gunicorn", "ruff"]
+
+[tool.pdm]
+distribution = false
