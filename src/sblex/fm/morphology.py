@@ -3,8 +3,8 @@
 import abc
 import logging
 
-import json_streams
-from json_streams.utility import JsonFormat
+import json_arrays
+from json_arrays.utility import JsonFormat
 from sblex.trie import Trie
 
 logger = logging.getLogger(__name__)
@@ -12,12 +12,10 @@ logger = logging.getLogger(__name__)
 
 class Morphology(abc.ABC):
     @abc.abstractmethod
-    async def lookup(self, word: str, n: int = 0) -> bytes:
-        ...
+    async def lookup(self, word: str, n: int = 0) -> bytes: ...
 
     @abc.abstractmethod
-    async def lookup_from_bytes(self, s: bytes) -> bytes:
-        ...
+    async def lookup_from_bytes(self, s: bytes) -> bytes: ...
 
 
 class MemMorphology(Morphology):
@@ -29,7 +27,7 @@ class MemMorphology(Morphology):
         logger.info("building morphology structure... (takes about 1 minute)")
         return cls(
             trie=Trie.from_iter(
-                json_streams.load_from_file(fname, json_format=JsonFormat.JSON_LINES)
+                json_arrays.load_from_file(fname, json_format=JsonFormat.JSON_LINES)
             )
         )
 

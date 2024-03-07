@@ -2,7 +2,7 @@ import logging
 import time
 from typing import Any, Iterable
 
-from json_streams import jsonlib
+from json_arrays import jsonlib
 
 logger = logging.getLogger(__name__)
 
@@ -28,9 +28,7 @@ class Trie:
             }
             trie_builder.insert(w, jsonlib.dumps(a))
 
-        logger.info(
-            "number of word forms read: %d", trie_builder.number_of_insertions()
-        )
+        logger.info("number of word forms read: %d", trie_builder.number_of_insertions())
         logger.info("number of states: %d", trie_builder.state)
         logger.info("initiating precomputation...")
         trie = trie_builder.build()

@@ -2,7 +2,7 @@ import logging
 import subprocess
 from pathlib import Path
 
-from json_streams import jsonlib
+from json_arrays import jsonlib
 from opentelemetry import trace
 
 tracer = trace.get_tracer(__name__)

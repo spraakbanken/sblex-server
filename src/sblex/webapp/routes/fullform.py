@@ -1,7 +1,7 @@
 from asgi_matomo.trackers import PerfMsTracker
 from fastapi import APIRouter, Depends, Request, Response
 from fastapi.responses import HTMLResponse, RedirectResponse
-from json_streams import jsonlib
+from json_arrays import jsonlib
 from opentelemetry import trace
 from sblex.fm import Morphology
 from sblex.webapp import deps, templating

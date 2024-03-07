@@ -1,6 +1,6 @@
 from typing import Any
 
-from json_streams import jsonlib
+from json_arrays import jsonlib
 from sblex.application.queries import LookupLid
 from sblex.fm import Morphology
 
