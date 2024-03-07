@@ -1,7 +1,7 @@
 import logging
 import os
 from dataclasses import dataclass
-from typing import Optional, TypedDict
+from typing import Optional, Tuple, TypedDict
 
 import environs
 from sblex.main import telemetry
@@ -36,7 +36,7 @@ def bootstrap_app(
     env: environs.Env | None = None,
     config: dict[str, str] | None = None,
     use_telemetry: bool = True,
-) -> AppContext:
+) -> Tuple[AppContext, environs.Env]:
     if env is None:
         env = load_env()
     if config is None:
@@ -57,17 +57,15 @@ def bootstrap_app(
         or env("TRACKING_MATOMO_FRONTEND_BASEURL", None),
         "tracking.matomo.frontend.site_id": config.get("tracking.matomo.base_url")
         or env("TRACKING_MATOMO_FRONTEND_SITEID", None),
-        "webapp.base_url": config.get("webapp.base_url")
-        or env("WEBAPP_BASE_URL", None),
-        "webapp.root_path": config.get("webapp.root_path")
-        or env("WEBAPP_ROOT_PATH", ""),
+        "webapp.base_url": config.get("webapp.base_url") or env("WEBAPP_BASE_URL", None),
+        "webapp.root_path": config.get("webapp.root_path") or env("WEBAPP_ROOT_PATH", ""),
         "fm.server.url": env("FM_SERVER_URL", "http://fmserver"),
     }
 
-    telemetry.configure_logging(config, use_telemetry=use_telemetry)
+    telemetry.configure_logging(config)
     logger.warning("loaded settings", extra={"settings": settings})
 
-    return AppContext(settings=settings)
+    return AppContext(settings=settings), env
 
 
 def load_env() -> environs.Env:

@@ -6,7 +6,10 @@ from brotli_asgi import BrotliMiddleware
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
+from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
+from opentelemetry.instrumentation.httpx import HTTPXClientInstrumentor
 from sblex import main
+from sblex.main import telemetry
 from sblex.webapp import routes, tasks, templating
 
 logger = logging.getLogger(__name__)
@@ -18,10 +21,14 @@ def create_webapp(
     config: dict | None = None,
     use_telemetry: bool = True,
 ) -> FastAPI:
-    app_context = main.bootstrap_app(
-        env=env, config=config, use_telemetry=use_telemetry
-    )
+    app_context, env = main.bootstrap_app(env=env, config=config)
 
+    if use_telemetry:
+        logger.debug("loading telemetry")
+        telemetry.init_telemetry("sblex-server", env=env)
+    HTTPXClientInstrumentor().instrument()
+
+    logger.debug("creating app")
     webapp = FastAPI(
         title="Saldo WS",
         version=main.get_version(),
@@ -62,8 +69,7 @@ def create_webapp(
             "NOT tracking to Matomo, please set TRACKING_MATOMO_URL and TRACKING_MATOMO_IDSITE."
         )
 
-    if use_telemetry:
-        main.telemetry.setting_otlp(webapp, "sblex-server")
+    FastAPIInstrumentor.instrument_app(webapp)
 
     webapp.include_router(routes.router)
     webapp.mount("/static", StaticFiles(directory="static"), name="static")
