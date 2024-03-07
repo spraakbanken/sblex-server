@@ -1,16 +1,36 @@
 import logging
+import sys
 from logging.config import dictConfig
 from typing import Optional, Tuple
 
 import environs
 from opentelemetry import trace
+from opentelemetry._logs import (
+    SeverityNumber,
+    get_logger,
+    get_logger_provider,
+    set_logger_provider,
+    std_to_otel,
+)
+from opentelemetry.exporter.otlp.proto.grpc._log_exporter import (
+    OTLPLogExporter as OTLPLogExporterGRPC,
+)
 from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import (
     OTLPSpanExporter as OTLPSpanExporterGRPC,
+)
+from opentelemetry.exporter.otlp.proto.http._log_exporter import (
+    OTLPLogExporter as OTLPLogExporterHTTP,
 )
 from opentelemetry.exporter.otlp.proto.http.trace_exporter import (
     OTLPSpanExporter as OTLPSpanExporterHTTP,
 )
 from opentelemetry.instrumentation.logging import LoggingInstrumentor
+from opentelemetry.sdk._logs import LoggerProvider, LoggingHandler
+from opentelemetry.sdk._logs.export import (
+    BatchLogRecordProcessor,
+    ConsoleLogExporter,
+    SimpleLogRecordProcessor,
+)
 from opentelemetry.sdk.resources import Resource
 from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor, ConsoleSpanExporter
@@ -18,11 +38,10 @@ from opentelemetry.sdk.trace.export import BatchSpanProcessor, ConsoleSpanExport
 logger = logging.getLogger(__name__)
 
 
-def init_telemetry(
+def init_otel_tracing(
     app_name: str,
     *,
     env: environs.Env,
-    log_correlation: bool = True,
 ) -> None:
     resource = detect_resource(env, fallback_name=app_name)
     logger.debug("otel::setup", extra={"OTEL_RESOURCE": Resource})
@@ -31,8 +50,76 @@ def init_telemetry(
 
     trace.set_tracer_provider(tracer)
 
-    if log_correlation:
-        LoggingInstrumentor(log_level=logging.INFO).instrument(set_logging_format=False)
+    # if log_correlation:
+    #     LoggingInstrumentor(log_level=logging.INFO).instrument(set_logging_format=False)
+
+
+# The default Otel SDK completely ignores formatters when outputting the message being logged.
+# We overcome this by creating our own LoggingHandler class which respects formatters.
+class FormattedLoggingHandler(LoggingHandler):
+    def emit(self, record: logging.LogRecord) -> None:
+        msg = self.format(record)
+        record.msg = msg
+        record.args = None
+        self._logger.emit(self._translate(record))
+
+
+def init_otel_logging(*, env: environs.Env) -> None:
+    log_level_str = env("OTEL_PYTHON_LOG_LEVEL", "INFO").upper()
+    match log_level_str:
+        case "CRITICAL":
+            log_level = logging.CRITICAL
+            print_err(f"Using log level: CRITICAL / {log_level}")
+        case "ERROR":
+            log_level = logging.ERROR
+            print_err(f"Using log level: ERROR / {log_level}")
+        case "WARNING":
+            log_level = logging.WARNING
+            print_err(f"Using log level: WARNING / {log_level}")
+        case "INFO":
+            log_level = logging.INFO
+            print_err(f"Using log level: INFO / {log_level}")
+        case "DEBUG":
+            log_level = logging.DEBUG
+            print_err(f"Using log level: DEBUG / {log_level}")
+        case _:
+            log_level = logging.INFO
+            print_err(f"Using log level: NOTSET / {log_level}")
+
+    logger_provider = LoggerProvider(resource=detect_resource(env))
+    set_logger_provider(logger_provider)
+
+    if env.bool("DEBUG_LOG_OTEL_TO_CONSOLE", False):
+        console_log_exporter = ConsoleLogExporter()
+        logger_provider.add_log_record_processor(SimpleLogRecordProcessor(console_log_exporter))
+    if env.bool("DEBUG_LOG_OTEL_TO_PROVIDER", False):
+        (maybe_protocol, maybe_endpoint) = read_logs_protocol_and_endpoint_from_env(env)
+        (protocol, endpoint) = infer_protocol_and_endpoint(maybe_protocol, maybe_endpoint)
+        headers = read_logs_headers_from_env(env)
+        match protocol:
+            case "grpc":
+                otel_log_exporter = OTLPLogExporterGRPC(endpoint=endpoint, headers=headers)
+            case "http":
+                otel_log_exporter = OTLPLogExporterHTTP(endpoint=endpoint, headers=headers)
+            case _:
+                print_err(
+                    f"Unknown OTEL_EXPORTER_LOGS_EXPORTER_PROTOCOL '{protocol}'. Using 'grpc' ..."
+                )
+                otel_log_exporter = OTLPLogExporterGRPC(endpoint=endpoint, headers=headers)
+        logger_provider.add_log_record_processor(BatchLogRecordProcessor(otel_log_exporter))
+
+    otel_log_handler = FormattedLoggingHandler(logger_provider=logger_provider, level=log_level)
+
+    # This has to be called first before logger.getLogger().addHandler() so that it can call logging.basicConfig first to set the logging format
+    # based on the environment variable OTEL_PYTHON_LOG_FORMAT
+    LoggingInstrumentor(log_level=log_level).instrument()
+    logFormatter = logging.Formatter(env("OTEL_PYTHON_LOG_FORMAT", None))
+    otel_log_handler.setFormatter(logFormatter)
+    logging.getLogger().addHandler(otel_log_handler)
+
+
+def print_err(msg: str) -> None:
+    print(msg, file=sys.stderr)
 
 
 def detect_resource(env: environs.Env, *, fallback_name: str | None = None) -> Resource:
@@ -109,7 +196,7 @@ def configure_logging(settings: dict[str, str]) -> None:
 
 def init_tracer(resource: Resource, env: environs.Env) -> TracerProvider:
     (maybe_protocol, maybe_endpoint) = read_traces_protocol_and_endpoint_from_env(env)
-    (protocol, endpoint) = infer_traces_protocol_and_endpoint(maybe_protocol, maybe_endpoint)
+    (protocol, endpoint) = infer_protocol_and_endpoint(maybe_protocol, maybe_endpoint)
     logger.debug(
         "otel::setup",
         extra={
@@ -118,23 +205,24 @@ def init_tracer(resource: Resource, env: environs.Env) -> TracerProvider:
         },
     )
     tracer = TracerProvider(resource=resource)
-    headers = read_traces_headers_from_env(env)
-    match protocol:
-        case "stdout":
-            tracer.add_span_processor(BatchSpanProcessor(ConsoleSpanExporter()))
-        case "http":
-            tracer.add_span_processor(
-                BatchSpanProcessor(OTLPSpanExporterHTTP(endpoint=endpoint, headers=headers))
-            )
-        case "grpc":
-            tracer.add_span_processor(
-                BatchSpanProcessor(OTLPSpanExporterGRPC(endpoint=endpoint, headers=headers))
-            )
-        case _:
-            logger.warn("unknown OTLP_PROTOCOL='%s', using grpc", protocol)
-            tracer.add_span_processor(
-                BatchSpanProcessor(OTLPSpanExporterGRPC(endpoint=endpoint, headers=headers))
-            )
+    if env.bool("DEBUG_LOG_OTEL_TO_CONSOLE", False):
+        tracer.add_span_processor(BatchSpanProcessor(ConsoleSpanExporter()))
+    if env.bool("DEBUG_LOG_OTEL_TO_PROVIDER", False):
+        headers = read_traces_headers_from_env(env)
+        match protocol:
+            case "http":
+                tracer.add_span_processor(
+                    BatchSpanProcessor(OTLPSpanExporterHTTP(endpoint=endpoint, headers=headers))
+                )
+            case "grpc":
+                tracer.add_span_processor(
+                    BatchSpanProcessor(OTLPSpanExporterGRPC(endpoint=endpoint, headers=headers))
+                )
+            case _:
+                logger.warn("unknown OTLP_PROTOCOL='%s', using grpc", protocol)
+                tracer.add_span_processor(
+                    BatchSpanProcessor(OTLPSpanExporterGRPC(endpoint=endpoint, headers=headers))
+                )
     return tracer
 
 
@@ -145,6 +233,18 @@ def read_traces_protocol_and_endpoint_from_env(
         "OTEL_EXPORTER_OTLP_ENDPOINT", None
     )
     maybe_protocol = env("OTEL_EXPORTER_OTLP_TRACES_PROTOCOL", None) or env(
+        "OTEL_EXPORTER_OTLP_PROTOCOL", None
+    )
+    return maybe_protocol, maybe_endpoint
+
+
+def read_logs_protocol_and_endpoint_from_env(
+    env: environs.Env,
+) -> Tuple[Optional[str], Optional[str]]:
+    maybe_endpoint = env("OTEL_EXPORTER_OTLP_LOGS_ENDPOINT", None) or env(
+        "OTEL_EXPORTER_OTLP_ENDPOINT", None
+    )
+    maybe_protocol = env("OTEL_EXPORTER_OTLP_LOGS_PROTOCOL", None) or env(
         "OTEL_EXPORTER_OTLP_PROTOCOL", None
     )
     return maybe_protocol, maybe_endpoint
@@ -173,7 +273,15 @@ def read_traces_headers_from_env(
     return headers
 
 
-def infer_traces_protocol_and_endpoint(
+def read_logs_headers_from_env(
+    env: environs.Env,
+) -> dict[str, str]:
+    headers = read_otel_headers_from_env(env)
+    headers.update(parse_headers(env("OTEL_EXPORTER_LOGS_HTTP_HEADERS", "")))
+    return headers
+
+
+def infer_protocol_and_endpoint(
     maybe_protocol: Optional[str], maybe_endpoint: Optional[str]
 ) -> Tuple[str, str]:
     if maybe_protocol is not None:

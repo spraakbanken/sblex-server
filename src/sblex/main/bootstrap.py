@@ -35,7 +35,6 @@ def bootstrap_app(
     *,
     env: environs.Env | None = None,
     config: dict[str, str] | None = None,
-    use_telemetry: bool = True,
 ) -> Tuple[AppContext, environs.Env]:
     if env is None:
         env = load_env()
@@ -62,8 +61,8 @@ def bootstrap_app(
         "fm.server.url": env("FM_SERVER_URL", "http://fmserver"),
     }
 
-    telemetry.configure_logging(config)
-    logger.warning("loaded settings", extra={"settings": settings})
+    # telemetry.configure_logging(config)
+    # logger.warning("loaded settings", extra={"settings": settings})
 
     return AppContext(settings=settings), env
 

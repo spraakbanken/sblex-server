@@ -1,8 +1,10 @@
 from typing import AsyncGenerator
+import environs
 
 import pytest
 import pytest_asyncio
 from asgi_lifespan import LifespanManager
+from environs import Env
 from fastapi import FastAPI
 from httpx import AsyncClient
 from sblex.fm_server.main import create_fm_server
@@ -10,14 +12,21 @@ from sblex.webapp.deps import get_fm_client
 from sblex.webapp.main import create_webapp
 
 
+@pytest.fixture(name="env")
+def fixture_env() -> environs.Env:
+    env = environs.Env()
+    env.read_env("assets/testing/env")
+    return env
+
+
 @pytest.fixture(name="webapp")
-def fixture_webapp(fm_client: AsyncClient) -> FastAPI:
+def fixture_webapp(env: environs.Env, fm_client: AsyncClient) -> FastAPI:
     webapp = create_webapp(
         config={
             "semantic.path": "assets/testing/saldo.txt",
             "morphology.path": "assets/testing/saldo.lex",
         },
-        use_telemetry=False,
+        env=env,
     )
 
     def overide_fm_client() -> AsyncClient:
@@ -35,13 +44,13 @@ async def client(webapp: FastAPI) -> AsyncGenerator[AsyncClient, None]:
 
 
 @pytest.fixture(name="fm_server")
-def fixture_fm_server() -> FastAPI:
+def fixture_fm_server(env: environs.Env) -> FastAPI:
     return create_fm_server(
         config={
             "semantic.path": "assets/testing/saldo.txt",
             "morphology.path": "assets/testing/saldo.lex",
         },
-        use_telemetry=False,
+        env=env,
     )
 
 

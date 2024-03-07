@@ -19,13 +19,13 @@ def create_webapp(
     *,
     env: environs.Env | None = None,
     config: dict | None = None,
-    use_telemetry: bool = True,
 ) -> FastAPI:
     app_context, env = main.bootstrap_app(env=env, config=config)
 
-    if use_telemetry:
-        logger.debug("loading telemetry")
-        telemetry.init_telemetry("sblex-server", env=env)
+    telemetry.init_otel_logging(env=env)
+    logger.warning("loaded settings", extra={"settings": app_context.settings})
+    logger.debug("loading telemetry")
+    telemetry.init_otel_tracing("sblex-server", env=env)
     HTTPXClientInstrumentor().instrument()
 
     logger.debug("creating app")
