@@ -16,5 +16,5 @@ def create_start_app_handler(app: FastAPI) -> typing.Callable:
 
 def load_morphology(app: FastAPI) -> None:
     logger.info("loading morphology")
-    morphology = MemMorphology.from_path(app.state.config["morphology.path"])
+    morphology = MemMorphology.from_path(app.state.settings.morphology_path)
     app.state._morph = morphology
