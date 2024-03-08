@@ -6,8 +6,8 @@ from fastapi.responses import HTMLResponse, RedirectResponse
 from json_arrays import jsonlib
 from opentelemetry import trace
 from sblex.fm import Morphology
-from sblex.webapp import deps, templating
-from sblex.webapp.responses import XMLResponse
+from sblex.saldo_ws import deps, templating
+from sblex.saldo_ws.responses import XMLResponse
 
 router = APIRouter()
 

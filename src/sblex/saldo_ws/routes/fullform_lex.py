@@ -2,8 +2,8 @@ from asgi_matomo.trackers import PerfMsTracker
 from fastapi import APIRouter, Depends, Request, status
 from fastapi.responses import HTMLResponse, RedirectResponse
 from sblex.application.queries import FullformLexQuery
-from sblex.webapp import deps, templating
-from sblex.webapp.responses import XMLResponse
+from sblex.saldo_ws import deps, templating
+from sblex.saldo_ws.responses import XMLResponse
 
 router = APIRouter()
 
@@ -79,9 +79,5 @@ async def fullform_lex_html_orig(
     request: Request,
     segment: str,
 ):
-    redirect_url = request.url_for("fullform_lex:fl-html").include_query_params(
-        q=segment
-    )
-    return RedirectResponse(
-        redirect_url, status_code=status.HTTP_307_TEMPORARY_REDIRECT
-    )
+    redirect_url = request.url_for("fullform_lex:fl-html").include_query_params(q=segment)
+    return RedirectResponse(redirect_url, status_code=status.HTTP_307_TEMPORARY_REDIRECT)

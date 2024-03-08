@@ -3,7 +3,7 @@ from typing import Any
 
 from fastapi import APIRouter, Request, Response
 from fastapi.responses import HTMLResponse
-from sblex.webapp.responses import XMLResponse
+from sblex.saldo_ws.responses import XMLResponse
 
 logger = logging.getLogger(__name__)
 router = APIRouter()

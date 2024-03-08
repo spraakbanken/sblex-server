@@ -8,8 +8,8 @@ from sblex import formatting
 from sblex.application.predicates import is_lemma, is_lexeme
 from sblex.application.queries import LookupLid
 from sblex.application.queries.lookup_lid import LemmaNotFound, LexemeNotFound
-from sblex.webapp import deps, templating
-from sblex.webapp.responses import XMLResponse
+from sblex.saldo_ws import deps, templating
+from sblex.saldo_ws.responses import XMLResponse
 from typing_extensions import Annotated
 
 logger = logging.getLogger(__name__)
@@ -127,7 +127,7 @@ async def lookup_lid_html(
                 show_bar=False,
                 lid=lid,
                 j=lemma_or_lexeme,
-            )
+            ),
             # {
             #     "request": request,
             #     "bar": True,
@@ -137,9 +137,7 @@ async def lookup_lid_html(
         )
     print(f"lexeme {lid=}")
 
-    prepared_json = await prepare_lexeme_json(
-        lemma_or_lexeme, lexeme=lid, lookup_lid=lookup_lid
-    )
+    prepared_json = await prepare_lexeme_json(lemma_or_lexeme, lexeme=lid, lookup_lid=lookup_lid)
     logger.info("prepared_json = %s", prepared_json)
 
     templates.env.globals["lemma"] = formatting.lemma
@@ -147,7 +145,7 @@ async def lookup_lid_html(
         "saldo_lid_lexeme.html",
         context=templating.build_context(
             request, title=lid, service="lid", show_bar=False, data=prepared_json
-        )
+        ),
         # {"request": request, "bar": True, "title": lid, "data": prepared_json},
     )
 
@@ -173,9 +171,7 @@ async def prepare_lexeme_json(
 ) -> dict[str, Any]:
     lem = "" if lexeme == "PRIM..1" else j["l"]
     sorted_pf = (
-        "*"
-        if lexeme == "PRIM..1"
-        else await sort_children(j["pf"], "m", lookup_lid=lookup_lid)
+        "*" if lexeme == "PRIM..1" else await sort_children(j["pf"], "m", lookup_lid=lookup_lid)
     )
     return {
         "h1": formatting.prlex(j["lex"]),

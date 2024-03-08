@@ -10,7 +10,7 @@ from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
 from opentelemetry.instrumentation.httpx import HTTPXClientInstrumentor
 from sblex import main
 from sblex.main import telemetry
-from sblex.webapp import routes, tasks, templating
+from sblex.saldo_ws import routes, tasks, templating
 
 logger = logging.getLogger(__name__)
 

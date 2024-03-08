@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from sblex.webapp.routes import compounds, fullform, fullform_lex, lids
+from sblex.saldo_ws.routes import compounds, fullform, fullform_lex, lids
 
 router = APIRouter()
 

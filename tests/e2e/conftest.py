@@ -9,8 +9,8 @@ from httpx import AsyncClient
 from sblex.fm_server.config import Settings as FmSettings
 from sblex.fm_server.server import create_fm_server
 from sblex.telemetry.settings import OTelSettings
-from sblex.webapp.deps import get_fm_client
-from sblex.webapp.server import create_webapp
+from sblex.saldo_ws.deps import get_fm_client
+from sblex.saldo_ws.server import create_webapp
 
 
 @pytest.fixture(name="env")
