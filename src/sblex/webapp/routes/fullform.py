@@ -1,3 +1,5 @@
+import sys
+
 from asgi_matomo.trackers import PerfMsTracker
 from fastapi import APIRouter, Depends, Request, Response
 from fastapi.responses import HTMLResponse, RedirectResponse
@@ -18,9 +20,12 @@ async def fullform_json(
     fragment: str,
     morphology: Morphology = Depends(deps.get_morphology),  # noqa: B008
 ):
-    with PerfMsTracker(scope=request.scope, key="pf_srv"):
-        json_data = await morphology.lookup(fragment)
-    return Response(json_data, media_type="application/json")
+    with trace.get_tracer(__name__).start_as_current_span(
+        sys._getframe().f_code.co_name
+    ) as process_api_span:
+        with PerfMsTracker(scope=request.scope, key="pf_srv"):
+            json_data = await morphology.lookup(fragment)
+        return Response(json_data, media_type="application/json")
 
 
 @router.get(

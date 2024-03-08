@@ -30,10 +30,10 @@ def fixture_webapp(env: environs.Env, fm_client: AsyncClient) -> FastAPI:
         env=env,
     )
 
-    def overide_fm_client() -> AsyncClient:
+    def override_fm_client() -> AsyncClient:
         return fm_client
 
-    webapp.dependency_overrides[get_fm_client] = overide_fm_client
+    webapp.dependency_overrides[get_fm_client] = override_fm_client
     return webapp
 
 

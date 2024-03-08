@@ -23,7 +23,7 @@ def create_webapp(
     app_context, env = main.bootstrap_app(env=env, config=config)
 
     telemetry.init_otel_logging(env=env)
-    logger.warning("loaded settings", extra={"settings": app_context.settings})
+    logger.warning("loaded settings", extra={"settings": str(app_context.settings)})
     logger.debug("loading telemetry")
     telemetry.init_otel_tracing("sblex-server", env=env)
     HTTPXClientInstrumentor().instrument()
