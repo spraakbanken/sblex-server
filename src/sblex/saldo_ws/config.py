@@ -37,6 +37,6 @@ class Settings(BaseSettings):
 
 
 def read_settings_from_env() -> Settings:
-    otel = OTelSettings(_env_prefix="SALDO_WS_")
+    otel = OTelSettings(_env_prefix="SALDO_WS__")
     settings = Settings(otel=otel)
     return settings
