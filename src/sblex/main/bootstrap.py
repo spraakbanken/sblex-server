@@ -4,7 +4,6 @@ from dataclasses import dataclass
 from typing import Optional, Tuple, TypedDict
 
 import environs
-from sblex.main import telemetry
 
 Settings = TypedDict(
     "Settings",

@@ -20,7 +20,7 @@ def create_start_app_handler(app: FastAPI) -> Callable:
 
 def load_lookup_lid(app: FastAPI) -> None:
     logger.info("loading lookup lid")
-    lookup_lid = MemLookupLid.from_tsv_path(app.state.config["semantic.path"])
+    lookup_lid = MemLookupLid.from_tsv_path(app.state.settings.semantic_path)
     app.state._lookup_lid = lookup_lid
 
 
@@ -33,7 +33,7 @@ def load_morphology(app: FastAPI) -> None:
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info("startup")
-    app.state._fm_client = httpx.AsyncClient(base_url=app.state.config["fm.server.url"])
+    app.state._fm_client = httpx.AsyncClient(base_url=app.state.settings.fm_server_url)
     load_lookup_lid(app)
     yield
     await app.state._fm_client.aclose()

@@ -4,7 +4,7 @@ from sblex.telemetry import OTelSettings
 
 class Settings(BaseSettings):
     morphology_path: str
-    otel: OTelSettings = OTelSettings()
+    otel: OTelSettings
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
 
