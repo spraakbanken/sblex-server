@@ -65,13 +65,15 @@ async def lookup_lid_xml(
     # if isinstance(lid, Lemma):
     if is_lemma(lid):
         return templates.TemplateResponse(
-            "saldo_lid_lemma.xml",
-            {"request": request, "j": lemma_or_lexeme},
+            request=request,
+            name="saldo_lid_lemma.xml",
+            context={"j": lemma_or_lexeme},
             media_type="application/xml",
         )
     return templates.TemplateResponse(
-        "saldo_lid_lexeme.xml",
-        {"request": request, "j": lemma_or_lexeme},
+        request=request,
+        name="saldo_lid_lexeme.xml",
+        context={"j": lemma_or_lexeme},
         media_type="application/xml",
     )
 
@@ -93,7 +95,8 @@ async def lookup_lid_html(
         lemma_or_lexeme = await lookup_lid.get_by_lid(lid)
     except LemmaNotFound:
         return templates.TemplateResponse(
-            "saldo_lid_lemma_saknas.html",
+            request=request,
+            name="saldo_lid_lemma_saknas.html",
             context=templating.build_context(
                 request, title=lid, service="lid", show_bar=False, lid=lid
             ),
@@ -108,7 +111,8 @@ async def lookup_lid_html(
         # },
     except LexemeNotFound:
         return templates.TemplateResponse(
-            "saldo_lid_lexeme_saknas.html",
+            request=request,
+            name="saldo_lid_lexeme_saknas.html",
             context=templating.build_context(
                 request, title=lid, service="lid", show_bar=False, lid=lid
             ),
@@ -119,7 +123,8 @@ async def lookup_lid_html(
         print(f"lemma {lid=}")
 
         return templates.TemplateResponse(
-            "saldo_table.html",
+            request=request,
+            name="saldo_table.html",
             context=templating.build_context(
                 request,
                 title=lid,
@@ -142,7 +147,8 @@ async def lookup_lid_html(
 
     templates.env.globals["lemma"] = formatting.lemma
     return templates.TemplateResponse(
-        "saldo_lid_lexeme.html",
+        request=request,
+        name="saldo_lid_lexeme.html",
         context=templating.build_context(
             request, title=lid, service="lid", show_bar=False, data=prepared_json
         ),

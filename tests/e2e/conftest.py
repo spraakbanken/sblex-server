@@ -5,7 +5,7 @@ import pytest
 import pytest_asyncio
 from asgi_lifespan import LifespanManager
 from fastapi import FastAPI
-from httpx import AsyncClient
+from httpx import ASGITransport, AsyncClient
 from sblex.fm_server.config import Settings as FmSettings
 from sblex.fm_server.server import create_fm_server
 from sblex.saldo_ws.config import Settings as SaldoWsSettings
@@ -49,7 +49,9 @@ def fixture_webapp(env: environs.Env, fm_client: AsyncClient) -> FastAPI:
 @pytest_asyncio.fixture
 async def client(webapp: FastAPI) -> AsyncGenerator[AsyncClient, None]:
     async with LifespanManager(webapp):
-        async with AsyncClient(app=webapp, base_url="http://testserver") as client:
+        async with AsyncClient(
+            transport=ASGITransport(webapp), base_url="http://testserver"
+        ) as client:
             yield client
 
 
@@ -70,5 +72,7 @@ def fixture_fm_server(env: environs.Env) -> FastAPI:
 @pytest_asyncio.fixture
 async def fm_client(fm_server: FastAPI) -> AsyncGenerator[AsyncClient, None]:
     async with LifespanManager(fm_server):
-        async with AsyncClient(app=fm_server, base_url="http://fmserver") as fm_client:
+        async with AsyncClient(
+            transport=ASGITransport(fm_server), base_url="http://fmserver"
+        ) as fm_client:
             yield fm_client

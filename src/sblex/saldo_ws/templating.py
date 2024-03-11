@@ -11,7 +11,6 @@ def build_context(
 ) -> dict[str, Any]:
     settings: config.Settings = request.app.state.settings
     return {
-        "request": request,
         "bar": show_bar,
         "title": title,
         "tracking_base_url": settings.frontend.tracking.matomo_url,

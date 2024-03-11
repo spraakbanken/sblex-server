@@ -43,9 +43,9 @@ async def fullform_xml(
         json_data = jsonlib.loads(await morphology.lookup(fragment))
 
     return templates.TemplateResponse(
-        "saldo_fullform.xml",
+        request=request,
+        name="saldo_fullform.xml",
         context={
-            "request": request,
             "j": json_data,
         },
         media_type="application/xml",
@@ -67,9 +67,10 @@ async def fullform_html(
     if fragment:
         json_data = jsonlib.loads(await morphology.lookup(fragment))
     return templates.TemplateResponse(
-        "saldo_fullform.html",
+        request=request,
+        name="saldo_fullform.html",
         context=templating.build_context(
-            request,
+            request=request,
             title=fragment,
             service="ff",
             input=fragment,

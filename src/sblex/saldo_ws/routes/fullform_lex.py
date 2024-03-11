@@ -37,8 +37,9 @@ async def fullform_xml(
     with PerfMsTracker(scope=request.scope, key="pf_srv"):
         json_data = await fullform_lex_query.query(segment=segment)
     return templates.TemplateResponse(
-        "fullform_lex.xml",
-        context={"request": request, "j": json_data},
+        request=request,
+        name="fullform_lex.xml",
+        context={"j": json_data},
         media_type="application/xml",
     )
 
@@ -58,9 +59,10 @@ async def fullform_lex_html(
         json_data = await fullform_lex_query.query(segment=segment)
 
     return templates.TemplateResponse(
-        "saldo_fullform_lex.html",
+        request=request,
+        name="saldo_fullform_lex.html",
         context=templating.build_context(
-            request,
+            request=request,
             title="SALDO",
             show_bar=True,
             service="fl",
