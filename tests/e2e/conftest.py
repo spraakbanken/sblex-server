@@ -8,7 +8,7 @@ from fastapi import FastAPI
 from httpx import ASGITransport, AsyncClient
 from sblex.fm_server.config import Settings as FmSettings
 from sblex.fm_server.server import create_fm_server
-from sblex.saldo_ws.config import Settings as SaldoWsSettings
+from sblex.saldo_ws.config import MatomoSettings, Settings as SaldoWsSettings
 from sblex.saldo_ws.deps import get_fm_client
 from sblex.saldo_ws.server import create_saldo_ws_server
 from sblex.telemetry.settings import OTelSettings
@@ -26,6 +26,8 @@ def fixture_webapp(env: environs.Env, fm_client: AsyncClient) -> FastAPI:
     webapp = create_saldo_ws_server(
         settings=SaldoWsSettings(
             semantic_path="assets/testing/saldo.txt",
+            fm_server_url="not-used",
+            tracking=MatomoSettings(matomo_url=None),
             otel=OTelSettings(
                 otel_service_name="saldo-ws",
                 debug_log_otel_to_console=False,
