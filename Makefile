@@ -49,8 +49,8 @@ help:
 	@echo ""
 
 PLATFORM := `uname -o`
-REPO := "<REPO-NAME-HERE>"
-PROJECT_SRC := "<SRC-FOLDER-HERE>"
+REPO := "sblex-server"
+PROJECT_SRC := "src/sblex"
 
 ifeq (${VIRTUAL_ENV},)
   VENV_NAME = .venv
