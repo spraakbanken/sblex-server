@@ -1,12 +1,17 @@
+line-length = 97
+
+target-version = "py310"
+
+[lint]
 # Enable flake8-bugbear (`B`) rules.
 select = [
   "A",
-#   "ANN",
+  #   "ANN",
   "B",
   "BLE",
   "C4",
   "C90",
-#   "D",
+  #   "D",
   "E",
   "F",
   "FBT",
@@ -18,19 +23,23 @@ select = [
 
 # Never enforce `E501` (line length violations).
 # ignore = ["E501"]
-ignore = ["ANN101", "ANN102","D203", "D213"]
+ignore = ["ANN101", "ANN102", "D203", "D213"]
 
-line-length = 97
-
-target-version = "py310"
 
 # Avoid trying to fix flake8-bugbear (`B`) violations.
 unfixable = ["B"]
 
 # Ignore `E402` (import violations) in all `__init__.py` files, and in `path/to/file.py`.
-[per-file-ignores]
-"tests/*" = ["D100","D101","D102","D103","D104","S101"]
-"bases/sblex/webapp/tests/**/*" = ["D100","D101","D102","D103","D104","S101"]
+[lint.per-file-ignores]
+"tests/*" = ["D100", "D101", "D102", "D103", "D104", "S101"]
+"bases/sblex/webapp/tests/**/*" = [
+  "D100",
+  "D101",
+  "D102",
+  "D103",
+  "D104",
+  "S101",
+]
 "src/sblex/app.py" = ["A", "E", "F", "I"]
 "src/sblex/compound.py" = ["A", "E", "F", "I", "RUF"]
 "src/sblex/dist.py" = ["A", "E", "F", "I"]
@@ -45,7 +54,7 @@ unfixable = ["B"]
 "src/sblex/paradigms.py" = ["A", "E", "F", "I", "S"]
 "src/sblex/plist.py" = ["A", "E", "F", "I"]
 "src/sblex/pos.py" = ["A", "E", "F", "I"]
-"src/sblex/saldo_util.py" = ["A", "B","C", "E", "F","FBT", "I"]
+"src/sblex/saldo_util.py" = ["A", "B", "C", "E", "F", "FBT", "I"]
 "src/sblex/sib.py" = ["A", "E", "F", "I"]
 "src/sblex/table.py" = ["A", "E", "F", "I", "S"]
 "tests/e2e/webapp/test_fullform_lex_api.py" = ["E501"]

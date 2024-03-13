@@ -39,9 +39,7 @@ class TestLidRoutes:
         ],
     )
     @pytest.mark.asyncio
-    async def test_invalid_input_returns_422(
-        self, client: AsyncClient, in_format: str
-    ) -> None:
+    async def test_invalid_input_returns_422(self, client: AsyncClient, in_format: str) -> None:
         res = await client.get(f"/lid/{in_format}/bad-input")
         assert res.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
 

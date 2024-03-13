@@ -148,9 +148,7 @@ def compute_distance(s1, s2, path_dict):
         return (p2[-1][0], s1, s2)
     if s2 == "PRIM..1":
         return (p1[-1][0], s1, s2)
-    dist = min(
-        [compare_paths(_l1, _p1, _l2, _p2) for (_l1, _p1) in p1 for (_l2, _p2) in p2]
-    )
+    dist = min([compare_paths(_l1, _p1, _l2, _p2) for (_l1, _p1) in p1 for (_l2, _p2) in p2])
     return (dist, s1, s2)
 
 

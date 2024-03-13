@@ -72,11 +72,7 @@ def protojs(s):
         "var flare = {"
         + ", ".join(
             [
-                "'"
-                + x
-                + "':'http://spraakbanken.gu.se/ws/saldo-ws/lid/graph/"
-                + x
-                + "'"
+                "'" + x + "':'http://spraakbanken.gu.se/ws/saldo-ws/lid/graph/" + x + "'"
                 for x in j["mf"]
             ]
         )

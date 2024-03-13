@@ -24,9 +24,7 @@ def xmlize(s):
     for ws in j:
         xml += "<c>\n"
         for w in ws:
-            xml += (
-                "   <w><segment>" + w["segment"] + "</segment><gf>" + w["gf"] + "</gf>"
-            )
+            xml += "   <w><segment>" + w["segment"] + "</segment><gf>" + w["gf"] + "</gf>"
             xml += "<id>" + w["id"] + "</id>" + "<pos>" + w["pos"] + "</pos>"
             xml += "<is>" + " ".join(w["is"]) + "</is>" + "<msd>" + w["msd"] + "</msd>"
             xml += "<p>" + w["p"] + "</p>" + "</w>\n"
@@ -109,10 +107,7 @@ def ok_compound(c):
         if (
             not (c[-1]["msd"] in ["ci", "cm", "c"])
             and saldo_util.not_fragment(c[0]["msd"])
-            and (
-                c[-1]["pos"] in ["nn", "vb", "av", "ab", "pm"]
-                or c[-1]["pos"][-1] == "h"
-            )
+            and (c[-1]["pos"] in ["nn", "vb", "av", "ab", "pm"] or c[-1]["pos"][-1] == "h")
             and c[0]["msd"] in ["ci", "c"]
         ):
             for i in range(1, len(c) - 1):
@@ -136,17 +131,14 @@ def pr_list(js):
 
 
 def pr(j):
-    return (
-        '{"segment":"%s","gf":"%s","id":"%s","pos":"%s","is":[%s],"msd":"%s","p":"%s"}'
-        % (
-            j["segment"],
-            j["gf"],
-            j["id"],
-            j["pos"],
-            "%s%s%s" % (cit(j["is"]), '","'.join(j["is"]), cit(j["is"])),
-            j["msd"],
-            j["p"],
-        )
+    return '{"segment":"%s","gf":"%s","id":"%s","pos":"%s","is":[%s],"msd":"%s","p":"%s"}' % (
+        j["segment"],
+        j["gf"],
+        j["id"],
+        j["pos"],
+        "%s%s%s" % (cit(j["is"]), '","'.join(j["is"]), cit(j["is"])),
+        j["msd"],
+        j["p"],
     )
 
 

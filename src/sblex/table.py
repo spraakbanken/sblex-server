@@ -74,12 +74,8 @@ def xmlize(paradigm, j):
 def htmlize(paradigm, word, j):
     if j == []:
         content = "<center><p>paradigm " + utf8.d(paradigm) + " finns ej.</p></center>"
-        return saldo_util.html_document(
-            utf8.d(paradigm) + ' "' + utf8.d(word) + '"', content
-        )
-    content = (
-        '<table border="1"><tr><td><b>grundform</b></td><td>%s</td></tr>' % utf8.d(word)
-    )
+        return saldo_util.html_document(utf8.d(paradigm) + ' "' + utf8.d(word) + '"', content)
+    content = '<table border="1"><tr><td><b>grundform</b></td><td>%s</td></tr>' % utf8.d(word)
     content += "<tr><td><b>%s</b></td><td>%s</td></tr>" % (
         "mönster".decode("UTF-8"),
         utf8.d(paradigm),
@@ -90,8 +86,10 @@ def htmlize(paradigm, word, j):
             "inherenta drag",
             ", ".join(j[0]["inhs"]),
         )
-    content += '<tr><td colspan="2" style="text-align:center;"><b>böjningstabell</b></td></tr>'.decode(
-        "UTF-8"
+    content += (
+        '<tr><td colspan="2" style="text-align:center;"><b>böjningstabell</b></td></tr>'.decode(
+            "UTF-8"
+        )
     )
     data = group_msd(j)
     prev = ""
@@ -105,9 +103,7 @@ def htmlize(paradigm, word, j):
             )
             prev = msd
     content += "</table></center>"
-    return saldo_util.html_document(
-        j[0]["p"] + ' "' + j[0]["head"] + '"', content, bar=False
-    )
+    return saldo_util.html_document(j[0]["p"] + ' "' + j[0]["head"] + '"', content, bar=False)
 
 
 def group_msd(j):

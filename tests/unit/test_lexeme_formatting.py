@@ -183,10 +183,7 @@ def test_lexeme_formatting():
     }
 
     fm = lexeme_ref(j["fm"])
-    assert (
-        fm
-        == '<a href="http://spraakbanken.gu.se/ws/saldo-ws/lid/html/leva..1">leva</a>'
-    )
+    assert fm == '<a href="http://spraakbanken.gu.se/ws/saldo-ws/lid/html/leva..1">leva</a>'
     # assert sort_children(j["sorted_mf"][1:2]) == "<table>"
 
 
