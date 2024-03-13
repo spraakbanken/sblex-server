@@ -129,13 +129,13 @@ tests/requirements-testing.lock: pyproject.toml
 	pdm export --dev --format requirements --output $@
 
 serve-dev:
-	${INVENV} watchfiles "uvicorn --port 8000 --factory sblex.webapp.main:create_webapp" src
+	${INVENV} watchfiles "uvicorn --port 8000 sblex.saldo_ws.main:app" src
 
 quick-dev:
 	${INVENV} watchfiles "python examples/quick_dev.py" examples/quick_dev.py templates
 
 serve-fm-server:
-	${INVENV} watchfiles "uvicorn --port 8765 --factory sblex.fm_server.main:create_fm_server" src/sblex/fm_server
+	${INVENV} watchfiles "uvicorn --port 8765 sblex.fm_server.main:app" src/sblex/fm_server
 
 .PHONY: lint-deptrac
 lint-deptrac:

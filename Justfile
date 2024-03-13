@@ -52,7 +52,7 @@ bumpversion:
 
 # serve sblex-server with reloading
 serve-dev:
-	{{INVENV}} watchfiles "uvicorn --port 8000 --factory sblex.webapp.main:create_webapp" src
+	{{INVENV}} watchfiles "uvicorn --port 8000 sblex.saldo_ws.main:app" src
 
 # run examples against sblex-server with reloading 'REPL-driven development'
 quick-dev:
@@ -60,4 +60,4 @@ quick-dev:
 
 # serve fm-server with reloading
 serve-fm-server:
-	{{INVENV}} watchfiles "uvicorn --port 8765 --factory sblex.fm_server.main:create_fm_server" src/sblex/fm_server
+	{{INVENV}} watchfiles "uvicorn --port 8765 sblex.fm_server.main:app" src/sblex/fm_server
