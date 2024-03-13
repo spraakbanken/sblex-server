@@ -1,6 +1,5 @@
 from typing import AsyncGenerator
 
-import environs
 import pytest
 import pytest_asyncio
 from asgi_lifespan import LifespanManager
@@ -8,21 +7,15 @@ from fastapi import FastAPI
 from httpx import ASGITransport, AsyncClient
 from sblex.fm_server.config import Settings as FmSettings
 from sblex.fm_server.server import create_fm_server
-from sblex.saldo_ws.config import MatomoSettings, Settings as SaldoWsSettings
+from sblex.saldo_ws.config import MatomoSettings
+from sblex.saldo_ws.config import Settings as SaldoWsSettings
 from sblex.saldo_ws.deps import get_fm_client
 from sblex.saldo_ws.server import create_saldo_ws_server
 from sblex.telemetry.settings import OTelSettings
 
 
-@pytest.fixture(name="env")
-def fixture_env() -> environs.Env:
-    env = environs.Env()
-    env.read_env("assets/testing/env")
-    return env
-
-
 @pytest.fixture(name="webapp")
-def fixture_webapp(env: environs.Env, fm_client: AsyncClient) -> FastAPI:
+def fixture_webapp(fm_client: AsyncClient) -> FastAPI:
     webapp = create_saldo_ws_server(
         settings=SaldoWsSettings(
             semantic_path="assets/testing/saldo.txt",
@@ -58,7 +51,7 @@ async def client(webapp: FastAPI) -> AsyncGenerator[AsyncClient, None]:
 
 
 @pytest.fixture(name="fm_server")
-def fixture_fm_server(env: environs.Env) -> FastAPI:
+def fixture_fm_server() -> FastAPI:
     return create_fm_server(
         settings=FmSettings(
             morphology_path="assets/testing/saldo.lex",
