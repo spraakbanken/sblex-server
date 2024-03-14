@@ -54,10 +54,7 @@ async def fullform_lex_html(
 ):
     templates = request.app.state.templates
     segment = q.strip() if q else ""
-    json_data = []
-    if segment:
-        json_data = await fullform_lex_query.query(segment=segment)
-
+    json_data = await fullform_lex_query.query(segment=segment) if segment else []
     return templates.TemplateResponse(
         request=request,
         name="saldo_fullform_lex.html",
