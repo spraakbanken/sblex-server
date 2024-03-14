@@ -13,7 +13,7 @@ from sblex.saldo_ws import config, routes, tasks, templating
 logger = logging.getLogger(__name__)
 
 
-def create_saldo_ws_server(*, settings: config.Settings | None = None) -> FastAPI:
+def create_saldo_ws_server(*, settings: config.Settings) -> FastAPI:
     # app_context, env = main.bootstrap_app(env=env, config=config)
 
     telemetry.init_otel_logging(settings.otel)
@@ -55,7 +55,7 @@ def create_saldo_ws_server(*, settings: config.Settings | None = None) -> FastAP
         else:
             logger.info("adding MatomoMiddleware")
             webapp.add_middleware(
-                MatomoMiddleware,
+                MatomoMiddleware,  # type: ignore [arg-type]
                 idsite=webapp.state.settings.tracking.matomo_idsite,
                 matomo_url=webapp.state.settings.tracking.matomo_url,
                 access_token=webapp.state.settings.tracking.matomo_token,
