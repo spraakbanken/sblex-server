@@ -42,7 +42,7 @@ class TestFullformLexRoutes:
             ("t", '<?xml version="1.0" encoding="UTF-8"?>\n<result>\n\n</result>'),
             (
                 "dväljs",
-                '<?xml version="1.0" encoding="UTF-8"?>\n<result>\n<a><id>dväljas..1</id><fm>bo..1</fm><fp>PRIM..1</fp><l>dväljas..vb.1</l><gf>dväljas</gf><p>vb_vs_dväljas</p></a>\n</result>',
+                '<?xml version="1.0" encoding="UTF-8"?>\n<result>\n<a><id>dväljas..1</id><fm>bo..1</fm><fp>PRIM..1</fp><l>dväljas..vb.1</l><gf>dväljas</gf><p>vb_vs_dväljas</p></a>\n</result>',  # noqa: E501
             ),
         ],
     )
