@@ -120,7 +120,7 @@ async def lookup_lid_html(
 
     # if isinstance(lid, Lemma):
     if is_lemma(lid):
-        print(f"lemma {lid=}")
+        logger.debug(f"lemma {lid=}")
 
         return templates.TemplateResponse(
             request=request,
@@ -140,7 +140,7 @@ async def lookup_lid_html(
             #     "j": lemma_or_lexeme,
             # },
         )
-    print(f"lexeme {lid=}")
+    logger.debug(f"lexeme {lid=}")
 
     prepared_json = await prepare_lexeme_json(lemma_or_lexeme, lexeme=lid, lookup_lid=lookup_lid)
     logger.info("prepared_json = %s", prepared_json)
