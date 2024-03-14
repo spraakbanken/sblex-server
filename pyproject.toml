@@ -24,6 +24,7 @@ dependencies = [
     "json-arrays>=0.14.0",
     "opentelemetry-exporter-otlp>=1.23.0",
     "pydantic-settings>=2.2.1",
+    "orjson>=3.9.15",
 ]
 readme = "README.md"
 license = { text = "MIT" }

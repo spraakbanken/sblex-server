@@ -1,13 +1,15 @@
-from pydantic import BaseModel
+from typing import Annotated
 
-# Lexeme = Annotated[str, AfterValidator(is_lexeme)]
+from pydantic import BaseModel, StringConstraints
 
-# Lemma = Annotated[str, AfterValidator(is_lemma)]
-
-
-class Lexeme(BaseModel):
-    root: str
+Lexeme = Annotated[str, StringConstraints(pattern=r".*\.\.\d+")]
+Lemma = Annotated[str, StringConstraints(pattern=r".*\.\.\w+\.\d+")]
 
 
-class Lemma(BaseModel):
-    root: str
+class FullformLex(BaseModel):
+    id: Lexeme
+    fm: Lexeme
+    fp: Lexeme
+    l: Lemma  # noqa: E741
+    gf: str
+    p: str

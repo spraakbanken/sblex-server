@@ -1,14 +1,16 @@
 from asgi_matomo.trackers import PerfMsTracker
 from fastapi import APIRouter, Depends, Request, status
-from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi.responses import HTMLResponse, ORJSONResponse, RedirectResponse
 from sblex.application.queries import FullformLexQuery
-from sblex.saldo_ws import deps, templating
+from sblex.saldo_ws import deps, schemas, templating
 from sblex.saldo_ws.responses import XMLResponse
 
 router = APIRouter()
 
 
-@router.get("/json/{segment}")
+@router.get(
+    "/json/{segment}", response_class=ORJSONResponse, response_model=list[schemas.FullformLex]
+)
 async def fullform_lex_json(
     request: Request,
     segment: str,
@@ -18,7 +20,7 @@ async def fullform_lex_json(
 ):
     with PerfMsTracker(scope=request.scope, key="pf_srv"):
         segment_fullform = await fullform_lex_query.query(segment=segment)
-    return segment_fullform
+    return ORJSONResponse(segment_fullform)
 
 
 @router.get(
