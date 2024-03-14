@@ -77,7 +77,7 @@ def init_otel_logging(settings: OTelSettings) -> None:
                 otel_log_exporter = OTLPLogExporterHTTP(endpoint=endpoint, headers=headers)
             case _:
                 print(
-                    f"Unknown OTEL_EXPORTER_LOGS_EXPORTER_PROTOCOL '{protocol}'. Using 'grpc' ...",
+                    f"Unknown OTEL_EXPORTER_LOGS_EXPORTER_PROTOCOL '{protocol}'. Using 'grpc'",
                     file=sys.stderr,
                 )
                 otel_log_exporter = OTLPLogExporterGRPC(endpoint=endpoint, headers=headers)

@@ -1,6 +1,5 @@
 import logging
 
-import environs
 from asgi_matomo import MatomoMiddleware
 from brotli_asgi import BrotliMiddleware
 from fastapi import FastAPI

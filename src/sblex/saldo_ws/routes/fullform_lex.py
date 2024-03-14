@@ -1,6 +1,9 @@
+import sys
+
 from asgi_matomo.trackers import PerfMsTracker
 from fastapi import APIRouter, Depends, Request, status
 from fastapi.responses import HTMLResponse, ORJSONResponse, RedirectResponse
+from opentelemetry import trace
 from sblex.application.queries import FullformLexQuery
 from sblex.saldo_ws import deps, schemas, templating
 from sblex.saldo_ws.responses import XMLResponse
@@ -18,9 +21,12 @@ async def fullform_lex_json(
         deps.get_fullform_lex_query
     ),
 ):
-    with PerfMsTracker(scope=request.scope, key="pf_srv"):
-        segment_fullform = await fullform_lex_query.query(segment=segment)
-    return ORJSONResponse(segment_fullform)
+    with trace.get_tracer(__name__).start_as_current_span(
+        sys._getframe().f_code.co_name
+    ) as _process_api_span:
+        with PerfMsTracker(scope=request.scope, key="pf_srv"):
+            segment_fullform = await fullform_lex_query.query(segment=segment)
+        return ORJSONResponse(segment_fullform)
 
 
 @router.get(
@@ -34,16 +40,19 @@ async def fullform_xml(
         deps.get_fullform_lex_query
     ),
 ):
-    templates = request.app.state.templates
+    with trace.get_tracer(__name__).start_as_current_span(
+        sys._getframe().f_code.co_name
+    ) as _process_api_span:
+        templates = request.app.state.templates
 
-    with PerfMsTracker(scope=request.scope, key="pf_srv"):
-        json_data = await fullform_lex_query.query(segment=segment)
-    return templates.TemplateResponse(
-        request=request,
-        name="fullform_lex.xml",
-        context={"j": json_data},
-        media_type="application/xml",
-    )
+        with PerfMsTracker(scope=request.scope, key="pf_srv"):
+            json_data = await fullform_lex_query.query(segment=segment)
+        return templates.TemplateResponse(
+            request=request,
+            name="fullform_lex.xml",
+            context={"j": json_data},
+            media_type="application/xml",
+        )
 
 
 @router.get("/html", response_class=HTMLResponse, name="fullform_lex:fl-html")
@@ -54,22 +63,25 @@ async def fullform_lex_html(
         deps.get_fullform_lex_query
     ),
 ):
-    templates = request.app.state.templates
-    segment = q.strip() if q else ""
-    json_data = await fullform_lex_query.query(segment=segment) if segment else []
-    return templates.TemplateResponse(
-        request=request,
-        name="saldo_fullform_lex.html",
-        context=templating.build_context(
+    with trace.get_tracer(__name__).start_as_current_span(
+        sys._getframe().f_code.co_name
+    ) as _process_api_span:
+        templates = request.app.state.templates
+        segment = q.strip() if q else ""
+        json_data = await fullform_lex_query.query(segment=segment) if segment else []
+        return templates.TemplateResponse(
             request=request,
-            title="SALDO",
-            show_bar=True,
-            service="fl",
-            input=segment,
-            segment=segment,
-            j=json_data,
-        ),
-    )
+            name="saldo_fullform_lex.html",
+            context=templating.build_context(
+                request=request,
+                title="SALDO",
+                show_bar=True,
+                service="fl",
+                input=segment,
+                segment=segment,
+                j=json_data,
+            ),
+        )
 
 
 @router.get(

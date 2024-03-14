@@ -12,7 +12,7 @@ class HttpMorphology(Morphology):
     async def lookup(self, word: str, n: int = 0) -> bytes:
         with trace.get_tracer(__name__).start_as_current_span(
             sys._getframe().f_code.co_name
-        ) as process_api_span:
+        ) as _process_api_span:
             response = await self._http_client.get(f"/morph/{word}/{n}")
             return response.content
 
