@@ -52,5 +52,5 @@ class FmRunner:
                 )
 
                 raise RuntimeError("Call to `fm-sblex` failed")
-
-            return jsonlib.loads(process.stdout)
+            raw_data = process.stdout.strip()
+            return jsonlib.loads(raw_data) if len(raw_data) > 0 else []
