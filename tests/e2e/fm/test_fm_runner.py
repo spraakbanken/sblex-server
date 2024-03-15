@@ -2,12 +2,12 @@ import os
 from pathlib import Path
 
 import pytest
-from sblex.fm import FMrunner
+from sblex.fm import FmRunner
 
 
 @pytest.fixture(name="fm_runner")
-def fixture_fm_runner() -> FMrunner:
-    return FMrunner(Path("./bin/saldo"))
+def fixture_fm_runner() -> FmRunner:
+    return FmRunner(Path("./bin/saldo"))
 
 
 @pytest.mark.skipif(
