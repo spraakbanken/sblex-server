@@ -5,6 +5,7 @@ from typing import Callable
 import httpx
 from fastapi import FastAPI
 from sblex.fm import MemMorphology
+from sblex.fm.fm_runner import FmRunner
 from sblex.infrastructure.queries import MemLookupLid
 
 logger = logging.getLogger(__name__)
@@ -30,11 +31,18 @@ def load_morphology(app: FastAPI) -> None:
     app.state._morph = morphology
 
 
+def setup_fmrunner(app: FastAPI) -> None:
+    logger.info("setup fm-runner")
+    fm_runner = FmRunner(app.state.settings.fm_bin.path, locale=app.state.settings.fm_bin.locale)
+    app.state._fm_runner = fm_runner
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info("startup")
     app.state._fm_client = httpx.AsyncClient(base_url=app.state.settings.fm_server_url)
     load_lookup_lid(app)
+    setup_fmrunner(app)
     yield
     await app.state._fm_client.aclose()
     logger.info("shutdown")
