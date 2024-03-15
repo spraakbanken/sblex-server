@@ -14,23 +14,6 @@ def function(format, paradigm, word):
         j = cjson.decode(utf8.d(result))
         if format == "html":
             result = htmlize(paradigm, word, j)
-        elif format == "json":
-            result = "[\n"
-            result += ",\n".join(
-                [
-                    '{"form":"%s","gf":"%s","pos":"%s","is":[%s],"msd":"%s","p":"%s"}'
-                    % (
-                        x["word"],
-                        x["head"],
-                        x["pos"],
-                        ", ".join(['"%s"' % (i) for i in x["inhs"]]),
-                        x["param"],
-                        utf8.d(paradigm),
-                    )
-                    for x in j
-                ]
-            )
-            result += "\n]"
         elif format == "xml":
             result = xmlize(paradigm, j)
         result_code = apache.OK
