@@ -22,7 +22,7 @@ async def fullform_json(
 ):
     with trace.get_tracer(__name__).start_as_current_span(
         sys._getframe().f_code.co_name
-    ) as process_api_span:
+    ) as _process_api_span:
         with PerfMsTracker(scope=request.scope, key="pf_srv"):
             json_data = await morphology.lookup(fragment)
         return Response(json_data, media_type="application/json")

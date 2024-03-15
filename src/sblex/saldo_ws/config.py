@@ -26,7 +26,6 @@ class FrontendSettings(BaseModel):
 class Settings(BaseSettings):
     semantic_path: str
     fm_server_url: str
-    fm_server_url: str
     otel: OTelSettings
     app: AppSettings = AppSettings()
     frontend: FrontendSettings = FrontendSettings()

@@ -1,3 +1,5 @@
+from typing import Sequence
+
 from opentelemetry.sdk.resources import Resource
 from opentelemetry.semconv.resource import ResourceAttributes
 from sblex.telemetry.settings import OTelSettings
@@ -10,7 +12,17 @@ DEFAULT_TRACES_EXPORT_PATH = "v1/traces"
 
 def detect_resource(settings: OTelSettings, *, fallback_name: str | None = None) -> Resource:
     service_name = settings.otel_service_name or fallback_name or "unknown"
-    attributes = {
+    attributes: dict[
+        str,
+        str
+        | bool
+        | int
+        | float
+        | Sequence[str]
+        | Sequence[bool]
+        | Sequence[int]
+        | Sequence[float],
+    ] = {
         ResourceAttributes.SERVICE_NAME: service_name,
         "compose_service": service_name,
     }
@@ -28,7 +40,7 @@ def read_otel_headers_from_settings(settings: OTelSettings) -> dict[str, str]:
 
 
 def parse_headers(headers_as_str: str) -> dict[str, str]:
-    headers = {}
+    headers: dict[str, str] = {}
     if not headers_as_str:
         return headers
     key_values = headers_as_str.split(",")
