@@ -1,6 +1,7 @@
 import logging
 import subprocess
 from pathlib import Path
+from typing import TypedDict
 
 from json_arrays import jsonlib
 from opentelemetry import trace
@@ -8,12 +9,23 @@ from opentelemetry import trace
 tracer = trace.get_tracer(__name__)
 
 
-class FMrunner:
+class InflectionRow(TypedDict):
+    word: str
+    head: str
+    pos: str
+    inhs: list[str]
+    param: str
+    id: str
+    p: str
+    attr: str
+
+
+class FmRunner:
     def __init__(self, binary_path: Path, *, locale: str | None = None) -> None:
         self.binary_path = binary_path.resolve()
         self.locale = locale or 'LC_ALL="sv_SE.UTF-8"'
 
-    def inflection(self, paradigm: str, word: str) -> list:
+    def inflection(self, paradigm: str, word: str) -> list[InflectionRow]:
         with tracer.start_as_current_span("call_fm_binary") as call_span:
             args = f'{paradigm} "{word}";'
             program = [

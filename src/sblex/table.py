@@ -11,15 +11,6 @@ import saldo_util
 def function(format, paradigm, word):
     result = ""
     try:
-        saldo = 'export LC_ALL="sv_SE.UTF-8";/home/markus/fm/sblex/bin/saldo -i'
-        input = paradigm + ' "' + word + '";'
-        fin, fout = popen2.popen2(saldo)
-        fout.write(input)
-        fout.close()
-        for line in fin.readlines():
-            result += line
-        if result.strip() == "":
-            result = "[]"
         j = cjson.decode(utf8.d(result))
         if format == "html":
             result = htmlize(paradigm, word, j)
