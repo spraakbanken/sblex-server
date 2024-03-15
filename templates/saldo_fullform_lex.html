@@ -11,14 +11,6 @@
     <p><a href="{{ url_for('compounds:sms-html', segment=segment) }}">sammansättningsanalys (FUNGERAR INTE)</a></p>
     <table border="1">
         {% if j|length %}
-        <tr>
-            <th>gf</th>
-            <th>id</th>
-            <th>pos</th>
-            <th>is</th>
-            <th>msd</th>
-            <th>p</th>
-        </tr>
         {% for json in j %}
         <tr>
             <td>
@@ -40,9 +32,19 @@
                 {% endif %}
                 {% if json["fp"] != "PRIM..1" %}
                 +
+                {% if json["fp"].__class__.__name__ == 'list' %}
+                {% for lid in json["fp"] %}
+                <a href="{{ url_for('lids:lid-html', lid=lid) }}">{{ lid }}</a>
+                {% endfor %}
+                {% else %}
+                <a href="{{ url_for('lids:lid-html', lid=json['fp'])}}">{{ json["fp"] }}</a>
                 {% endif %}
+                {% endif %}
+            </td>
+            <td>gen ref
 
-
+            </td>
+            <td>korpus ref</td>
         </tr>
         {% endfor %}
         {% else %}
