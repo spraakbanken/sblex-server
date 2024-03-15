@@ -1,8 +1,8 @@
 # import xml.etree.ElementTree as ET
 
-# import pytest
-# from fastapi import status
-# from httpx import AsyncClient
+import pytest
+from fastapi import status
+from httpx import AsyncClient
 
 # EXPECTED_XML_RESPONSES = {
 #     "empty": '<?xml version="1.0" encoding="UTF-8"?>\n<result>\n\n</result>',
@@ -29,44 +29,47 @@
 # }
 
 
-# class TestGenRoutes:
-#     @pytest.mark.parametrize(
-#         "in_format",
-#         [
-#             "json",
-#             "xml",
-#             "html",
-#         ],
-#     )
-#     @pytest.mark.asyncio
-#     async def test_invalid_input_returns_422(
-#         self, client: AsyncClient, in_format: str
-#     ) -> None:
-#         res = await client.get(f"/gen/{in_format}/bad-input")
-#         assert res.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
+class TestGenRoutes:
+    #     @pytest.mark.parametrize(
+    #         "in_format",
+    #         [
+    #             "json",
+    #             "xml",
+    #             "html",
+    #         ],
+    #     )
+    #     @pytest.mark.asyncio
+    #     async def test_invalid_input_returns_422(
+    #         self, client: AsyncClient, in_format: str
+    #     ) -> None:
+    #         res = await client.get(f"/gen/{in_format}/bad-input")
+    #         assert res.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
 
-#     @pytest.mark.parametrize(
-#         "lid, expected_response",
-#         [
-#             (
-#                 "dväljas..vb.1",
-#                 {"gf": "dväljas", "l": ["dväljas..1"], "p": "vb_vs_dväljas"},
-#             ),
-#             ("d..nn.1", {}),
-#         ],
-#     )
-#     @pytest.mark.asyncio
-#     async def test_json_valid_input_returns_200(
-#         self,
-#         client: AsyncClient,
-#         lid: str,
-#         expected_response: list,
-#     ) -> None:
-#         res = await client.get(f"/gen/json/{lid}")
-#         assert res.status_code == status.HTTP_200_OK
-#         assert res.headers["content-type"] == "application/json"
+    @pytest.mark.parametrize(
+        "paradigm, word, expected_response",
+        [
+            (
+                "vb_vs_dväljas",
+                "dväljas",
+                {"gf": "dväljas", "l": ["dväljas..1"], "p": "vb_vs_dväljas"},
+            ),
+            #             ("d..nn.1", {}),
+        ],
+    )
+    @pytest.mark.asyncio
+    async def test_json_valid_input_returns_200(
+        self,
+        client: AsyncClient,
+        paradigm: str,
+        word: str,
+        expected_response: list,
+    ) -> None:
+        res = await client.get(f"/gen/json/{paradigm}/{word}")
 
-#         assert res.json() == expected_response
+        assert res.status_code == status.HTTP_200_OK
+        assert res.headers["content-type"] == "application/json"
+        assert res.json() == expected_response
+
 
 #     @pytest.mark.parametrize(
 #         "lid, expected_response_name",
