@@ -1,5 +1,5 @@
 import abc
-from typing import Iterable, TypedDict
+from typing import TypedDict
 
 
 class InflectionTableRow(TypedDict):
@@ -11,6 +11,6 @@ class InflectionTableRow(TypedDict):
     p: str
 
 
-class GenerateInflectionTable(abc.ABC):
+class InflectionTableQuery(abc.ABC):
     @abc.abstractmethod
-    def query(self, paradigm: str, word: str) -> Iterable[InflectionTableRow]: ...
+    def query(self, paradigm: str, word: str) -> list[InflectionTableRow]: ...
