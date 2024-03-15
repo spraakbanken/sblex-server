@@ -1,3 +1,4 @@
+from pathlib import Path
 from typing import Optional
 
 from pydantic import BaseModel
@@ -23,9 +24,15 @@ class FrontendSettings(BaseModel):
     tracking: MatomoSettings = MatomoSettings()
 
 
+class FmBinSettings(BaseModel):
+    path: Path
+    locale: str | None = None
+
+
 class Settings(BaseSettings):
     semantic_path: str
     fm_server_url: str
+    fm_bin: FmBinSettings
     otel: OTelSettings
     app: AppSettings = AppSettings()
     frontend: FrontendSettings = FrontendSettings()
@@ -37,5 +44,4 @@ class Settings(BaseSettings):
 
 def read_settings_from_env() -> Settings:
     otel = OTelSettings(_env_prefix="SALDO_WS__")
-    settings = Settings(otel=otel)
-    return settings
+    return Settings(otel=otel)

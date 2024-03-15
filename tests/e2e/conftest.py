@@ -5,13 +5,16 @@ import pytest_asyncio
 from asgi_lifespan import LifespanManager
 from fastapi import FastAPI
 from httpx import ASGITransport, AsyncClient
+from sblex.fm.fm_runner import FmRunner
 from sblex.fm_server.config import Settings as FmSettings
 from sblex.fm_server.server import create_fm_server
-from sblex.saldo_ws.config import MatomoSettings
+from sblex.saldo_ws.config import FmBinSettings, MatomoSettings
 from sblex.saldo_ws.config import Settings as SaldoWsSettings
-from sblex.saldo_ws.deps import get_fm_client
+from sblex.saldo_ws.deps import get_fm_client, get_fm_runner
 from sblex.saldo_ws.server import create_saldo_ws_server
 from sblex.telemetry.settings import OTelSettings
+
+from tests.adapters.mem_fm_runner import MemFmRunner
 
 
 @pytest.fixture(name="webapp")
@@ -20,6 +23,7 @@ def fixture_webapp(fm_client: AsyncClient) -> FastAPI:
         settings=SaldoWsSettings(
             semantic_path="assets/testing/saldo.txt",
             fm_server_url="not-used",
+            fm_bin=FmBinSettings(path="not used"),
             tracking=MatomoSettings(matomo_url=None),
             otel=OTelSettings(
                 otel_service_name="saldo-ws",
@@ -37,7 +41,108 @@ def fixture_webapp(fm_client: AsyncClient) -> FastAPI:
     def override_fm_client() -> AsyncClient:
         return fm_client
 
+    def override_fm_runner() -> FmRunner:
+        return MemFmRunner(
+            paradigms={
+                "vb_vs_dväljas": {
+                    "dväljas": [
+                        {
+                            "word": "dväljes",
+                            "head": "dväljas",
+                            "pos": "vb",
+                            "param": "pres ind s-form",
+                            "inhs": [],
+                            "id": "dväljes_vb",
+                            "p": "vb_vs_dväljas",
+                            "attr": "0",
+                        },
+                        {
+                            "word": "dväljs",
+                            "head": "dväljas",
+                            "pos": "vb",
+                            "param": "pres ind s-form",
+                            "inhs": [],
+                            "id": "dväljes_vb",
+                            "p": "vb_vs_dväljas",
+                            "attr": "0",
+                        },
+                        {
+                            "word": "dvaldes",
+                            "head": "dväljas",
+                            "pos": "vb",
+                            "param": "pret ind s-form",
+                            "inhs": [],
+                            "id": "dväljes_vb",
+                            "p": "vb_vs_dväljas",
+                            "attr": "0",
+                        },
+                        {
+                            "word": "dväljdes",
+                            "head": "dväljas",
+                            "pos": "vb",
+                            "param": "pret ind s-form",
+                            "inhs": [],
+                            "id": "dväljes_vb",
+                            "p": "vb_vs_dväljas",
+                            "attr": "0",
+                        },
+                        {
+                            "word": "dväljes",
+                            "head": "dväljas",
+                            "pos": "vb",
+                            "param": "imper",
+                            "inhs": [],
+                            "id": "dväljes_vb",
+                            "p": "vb_vs_dväljas",
+                            "attr": "0",
+                        },
+                        {
+                            "word": "dväljs",
+                            "head": "dväljas",
+                            "pos": "vb",
+                            "param": "imper",
+                            "inhs": [],
+                            "id": "dväljes_vb",
+                            "p": "vb_vs_dväljas",
+                            "attr": "0",
+                        },
+                        {
+                            "word": "dväljas",
+                            "head": "dväljas",
+                            "pos": "vb",
+                            "param": "inf s-form",
+                            "inhs": [],
+                            "id": "dväljes_vb",
+                            "p": "vb_vs_dväljas",
+                            "attr": "0",
+                        },
+                        {
+                            "word": "dvalts",
+                            "head": "dväljas",
+                            "pos": "vb",
+                            "param": "sup s-form",
+                            "inhs": [],
+                            "id": "dväljes_vb",
+                            "p": "vb_vs_dväljas",
+                            "attr": "0",
+                        },
+                        {
+                            "word": "dvälts",
+                            "head": "dväljas",
+                            "pos": "vb",
+                            "param": "sup s-form",
+                            "inhs": [],
+                            "id": "dväljes_vb",
+                            "p": "vb_vs_dväljas",
+                            "attr": "0",
+                        },
+                    ]
+                }
+            }
+        )
+
     webapp.dependency_overrides[get_fm_client] = override_fm_client
+    webapp.dependency_overrides[get_fm_runner] = override_fm_runner
     return webapp
 
 

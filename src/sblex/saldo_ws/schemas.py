@@ -13,3 +13,12 @@ class FullformLex(BaseModel):
     l: Lemma  # noqa: E741
     gf: str
     p: str
+
+
+class InflectionRow(BaseModel):
+    form: str
+    head: str
+    pos: str
+    inhs: list[str]
+    msd: str
+    p: str
