@@ -8,7 +8,6 @@ import fullform_lex
 import compound
 import lemma
 import lexeme
-import table
 import paradigms
 import version
 import plist
@@ -93,9 +92,6 @@ def handler(req):
 
     elif function == "pos" and len(args) == 0:
         (result, result_code) = pos.function(format)
-
-    elif function == "gen" and len(args) == 2:
-        (result, result_code) = table.function(format, args[0], args[1])
 
     elif function == "para" and len(args) <= 1:
         if len(args) == 0:

@@ -7,6 +7,7 @@ from pydantic.dataclasses import dataclass
 from sblex.application import queries
 from sblex.application.queries.inflection import InflectionTableQuery
 from sblex.saldo_ws import deps, schemas, templating
+from sblex.saldo_ws.responses import XMLResponse
 
 router = APIRouter()
 
@@ -26,6 +27,29 @@ async def inflection_table_json(
         sys._getframe().f_code.co_name
     ) as _process_api_span:
         return ORJSONResponse(inflection_table_query.query(paradigm, word))
+
+
+@router.get(
+    "/xml/{paradigm}/{word}",
+    name="inflections:gen-json",
+)
+async def inflection_table_xml(
+    request: Request,
+    paradigm: str,
+    word: str,
+    inflection_table_query: InflectionTableQuery = Depends(deps.get_inflection_table_query),  # noqa: B008
+) -> XMLResponse:
+    with trace.get_tracer(__name__).start_as_current_span(
+        sys._getframe().f_code.co_name
+    ) as _process_api_span:
+        templates = request.app.state.templates
+        json_data = inflection_table_query.query(paradigm, word)
+        return templates.TemplateResponse(
+            request=request,
+            name="saldo_gen.xml",
+            context={"j": json_data, "paradigm": paradigm},
+            media_type="application/xml",
+        )
 
 
 @router.get(

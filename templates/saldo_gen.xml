@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<result>{% if j|length -%} <table>{% for x in j -%} <w>
+            <form>{{ x["form"] }}</form>
+            <gf>{{ x["gf"] }}</gf>
+            <pos>{{ x["pos"] }}</pos>
+            <inhs>{{ " ".join(x["inhs"] )}}</inhs>
+            <msd>{{ x["msd"] }}</msd>
+            <p>{{ paradigm }}</p>
+        </w> {%- endfor %}</table> {%- endif %}</result>
