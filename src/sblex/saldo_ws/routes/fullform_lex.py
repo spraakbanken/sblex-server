@@ -74,7 +74,7 @@ async def fullform_lex_html(
             name="saldo_fullform_lex.html",
             context=templating.build_context(
                 request=request,
-                title="SALDO",
+                title=segment,
                 show_bar=True,
                 service="fl",
                 input=segment,

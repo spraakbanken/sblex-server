@@ -41,10 +41,11 @@
                 {% endif %}
                 {% endif %}
             </td>
-            <td>gen ref
+            <td><a href="{{ url_for('inflections:gen-html', paradigm=json['p'], word=json['gf'])}}">{{
+                    json["l"] }}</a>
 
             </td>
-            <td>korpus ref</td>
+            <td><a href="{{ url_for('korpus_ref', lids=[json['l']])}}">korpus</a></td>
         </tr>
         {% endfor %}
         {% else %}
