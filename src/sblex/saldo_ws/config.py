@@ -33,6 +33,7 @@ class Settings(BaseSettings):
     semantic_path: str
     fm_server_url: str
     fm_bin: FmBinSettings
+    korp_url: str = "https://spraakbanken.gu.se/korp"
     otel: OTelSettings
     app: AppSettings = AppSettings()
     frontend: FrontendSettings = FrontendSettings()
