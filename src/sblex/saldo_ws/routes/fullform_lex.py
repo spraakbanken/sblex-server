@@ -58,7 +58,7 @@ async def fullform_xml(
 @router.get("/html", response_class=HTMLResponse, name="fullform_lex:fl-html")
 async def fullform_lex_html(
     request: Request,
-    q: str | None = None,
+    segment: str | None = None,
     fullform_lex_query: FullformLexQuery = Depends(  # noqa: B008
         deps.get_fullform_lex_query
     ),
@@ -67,7 +67,7 @@ async def fullform_lex_html(
         sys._getframe().f_code.co_name
     ) as _process_api_span:
         templates = request.app.state.templates
-        segment = q.strip() if q else ""
+        segment = segment.strip() if segment else ""
         json_data = await fullform_lex_query.query(segment=segment) if segment else []
         return templates.TemplateResponse(
             request=request,
@@ -92,5 +92,5 @@ async def fullform_lex_html_orig(
     request: Request,
     segment: str,
 ):
-    redirect_url = request.url_for("fullform_lex:fl-html").include_query_params(q=segment)
+    redirect_url = request.url_for("fullform_lex:fl-html").include_query_params(segment=segment)
     return RedirectResponse(redirect_url, status_code=status.HTTP_307_TEMPORARY_REDIRECT)
