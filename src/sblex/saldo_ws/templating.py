@@ -27,7 +27,7 @@ def init_template_engine(settings: config.AppSettings) -> Jinja2Templates:
 
 
 @jinja2.pass_context
-def custom_url_for(context: dict, name: str, **path_params) -> str:
+def custom_url_for(context: dict, name: str, **path_params) -> URL:
     request: Request = context["request"]
     if name == "korpus_ref" and "lids" in path_params:
         return URL(
