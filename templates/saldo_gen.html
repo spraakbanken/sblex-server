@@ -1,0 +1,39 @@
+{% extends "saldo_document.html" %}
+{% block content %}
+<center>
+    {% if data is not none %}
+    <table border="1">
+        <tr>
+            <td><b>grundform</b></td>
+            <td>{{ data.word }}</td>
+        </tr>
+        <tr>
+            <td><b>mönster</b></td>
+            <td>{{ data.paradigm }}</td>
+        </tr>
+        <tr>
+            <td><b>ordklass</b></td>
+            <td>{{ data.pos }}</td>
+        </tr>
+        {% if data.inherent_features is not none %}
+        <tr>
+            <td><b>inherenta drag</b></td>
+            <td>{{ data.inherent_features }}</td>
+        </tr>
+        {% endif %}
+        <tr>
+            <td colspan="2" style="text-align:center;"><b>böjningstabell</b></td>
+
+        </tr>
+        {% for row in data.inflections_by_msd %}
+        <tr>
+            <td><i>{{ row.msd }}</i></td>
+            <td>{{ row.value }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>paradigm '{{ paradigm }}' finns ej.</p>
+    {% endif %}
+</center>
+{% endblock %}
