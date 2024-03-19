@@ -39,32 +39,8 @@ def lookup_lid(lid):
     return ret
 
 
-def lookup_table(p, w):
-    from table import function
-
-    (result, result_code) = function("json", p, w)
-    return cjson.decode(utf8.d(result))
-
-
 def lemgrams(word):
     return set([j["l"] for j in lookup_fl(word)])
-
-
-def generate_wordforms(lemma_id):
-    r = lookup_lid(lemma_id)
-    return [
-        w["form"]
-        for w in lookup_table(utf8.e(r["p"]), utf8.e(r["gf"]))
-        if not (w["msd"] in ["c", "ci", "cm", "sms"])
-    ]
-
-
-def wordforms(sense_id):
-    ls = lookup_lid(sense_id)["l"]
-    ws = []
-    for lemma in ls:
-        ws = ws + generate_wordforms(utf8.e(lemma))
-    return list(set(ws))
 
 
 def lsib(lemma_id):
