@@ -31,8 +31,6 @@ def function(format, lexeme):
         return ("", result_code)
     if format == "xml":
         result = xmlize(result)
-    elif format == "protojs":
-        result = protojs(result)
     elif format == "graph":
         result = graph(lexeme, result)
     elif format == "html":
@@ -64,20 +62,6 @@ def pr_list(xs):
         return "[]"
     else:
         return '["%s"]' % ('","'.join(xs))
-
-
-def protojs(s):
-    j = cjson.decode(utf8.d(s))
-    return (
-        "var flare = {"
-        + ", ".join(
-            [
-                "'" + x + "':'http://spraakbanken.gu.se/ws/saldo-ws/lid/graph/" + x + "'"
-                for x in j["mf"]
-            ]
-        )
-        + "}"
-    ).encode("utf-8")
 
 
 def graph(l, s):
