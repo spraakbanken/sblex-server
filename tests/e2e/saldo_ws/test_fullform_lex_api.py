@@ -60,12 +60,12 @@ class TestFullformLexRoutes:
         assert res.text == expected_response
 
     @pytest.mark.parametrize(
-        "segment, expected_in_response",
+        "segment, expected_in_responses",
         [
-            ("", "Skriv in en ordform"),
-            (" ", "Skriv in en ordform"),
-            ("dväljs", "dväljs"),
-            ("dväljsxdf", "ordet saknas i lexikonet"),
+            ("", ["Skriv in en ordform"]),
+            (" ", ["Skriv in en ordform"]),
+            ("dväljas", ["dväljas..vb.1", "bo..1"]),
+            ("dväljsxdf", ["ordet saknas i lexikonet"]),
         ],
     )
     @pytest.mark.asyncio
@@ -73,13 +73,14 @@ class TestFullformLexRoutes:
         self,
         client: AsyncClient,
         segment: str,
-        expected_in_response: str,
+        expected_in_responses: str,
     ) -> None:
-        res = await client.get(f"/fl/html?q={segment}")
+        res = await client.get(f"/fl/html?segment={segment}")
         assert res.status_code == status.HTTP_200_OK
         assert res.headers["content-type"] == "text/html; charset=utf-8"
 
-        assert expected_in_response in res.text
+        for expected_in_response in expected_in_responses:
+            assert expected_in_response in res.text
 
     @pytest.mark.parametrize(
         "segment",
