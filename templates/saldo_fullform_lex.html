@@ -2,7 +2,7 @@
 {% block content %}
 <center>
     <form action="{{ url_for('fullform_lex:fl-html')}}" method="get" class="inputclass">
-        <input type="search" id="search" class="inputclass" value="{{ input }}" name="q" size="30"
+        <input type="search" id="search" class="inputclass" value="{{ input }}" name="segment" size="30"
             placeholder="Skriv in en ordform" results="10" />
         <input type="submit" value="Sök" />
     </form>
@@ -11,14 +11,6 @@
     <p><a href="{{ url_for('compounds:sms-html', segment=segment) }}">sammansättningsanalys (FUNGERAR INTE)</a></p>
     <table border="1">
         {% if j|length %}
-        <tr>
-            <th>gf</th>
-            <th>id</th>
-            <th>pos</th>
-            <th>is</th>
-            <th>msd</th>
-            <th>p</th>
-        </tr>
         {% for json in j %}
         <tr>
             <td>
@@ -40,9 +32,20 @@
                 {% endif %}
                 {% if json["fp"] != "PRIM..1" %}
                 +
+                {% if json["fp"].__class__.__name__ == 'list' %}
+                {% for lid in json["fp"] %}
+                <a href="{{ url_for('lids:lid-html', lid=lid) }}">{{ lid }}</a>
+                {% endfor %}
+                {% else %}
+                <a href="{{ url_for('lids:lid-html', lid=json['fp'])}}">{{ json["fp"] }}</a>
                 {% endif %}
+                {% endif %}
+            </td>
+            <td><a href="{{ url_for('inflections:gen-html', paradigm=json['p'], word=json['gf'])}}">{{
+                    json["l"] }}</a>
 
-
+            </td>
+            <td><a href="{{ url_for('korpus_ref', lids=[json['l']])}}">korpus</a></td>
         </tr>
         {% endfor %}
         {% else %}

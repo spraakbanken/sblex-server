@@ -31,7 +31,7 @@ def custom_url_for(context: dict, name: str, **path_params) -> URL:
     request: Request = context["request"]
     if name == "korpus_ref" and "lids" in path_params:
         return URL(
-            f"{request.app.state.settings.korp_url}/#search=lemgram|{path_params['lids'][0]}"
+            f"{request.app.state.settings.korp_url}/#?search=lemgram|{path_params['lids'][0]}"
         )
     if base_url := request.app.state.settings.app.base_url:
         return request.app.url_path_for(name, **path_params).make_absolute_url(base_url)
