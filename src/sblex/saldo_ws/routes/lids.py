@@ -187,14 +187,21 @@ async def lookup_lid_graph(
     with trace.get_tracer(__name__).start_as_current_span(
         sys._getframe().f_code.co_name
     ) as _process_api_span:
-        if not is_lemma(lid) and not is_lexeme(lid):
+        if not is_lexeme(lid):
             return JSONResponse(
                 status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-                content={"error": f"{lid} is neither a lemma or a lexeme"},
+                content={"error": f"{lid} is not a lexeme"},
             )
-        _templates = request.app.state.templates
+        templates = request.app.state.templates
 
-        raise NotImplementedError("lids:lid-graph")
+        json_data = await lookup_lid.get_lexeme(lid)
+        return templates.TemplateResponse(
+            request=request,
+            name="saldo_lid_graph.html",
+            context=templating.build_context(
+                request, title=lid, service="", show_bar=False, j=json_data, l=lid
+            ),
+        )
 
 
 async def prepare_lexeme_json(

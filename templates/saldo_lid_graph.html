@@ -1,0 +1,54 @@
+{% extends "saldo_document.html" %}
+
+{% block content %}
+<div style="width: 500px; height: 500px;">
+    <script type="text/javascript" src="https://svn.spraakdata.gu.se/repos/sblex/pub/js/protovis-r3.2.js"></script>
+    <script type="text/javascript" src="{{ url_for('lids:lid-protojs', lid=l) }}"></script>
+    <script type="text/javascript+protovis">
+var vis = new pv.Panel()
+    .width(500)
+    .height(500);
+
+var tree = vis.add(pv.Layout.Tree)
+    .nodes(pv.dom(flare).root("{{ l }}").nodes())
+    .depth(150)
+    .breadth(100)
+    .orient("radial");
+
+tree.link.add(pv.Line);
+tree.node.add(pv.Dot)
+    .fillStyle(function(n) n.firstChild ? "#ffffff" : "#ffffff")
+    .size(10)
+    .event("mouseover", function() this.fillStyle("blue"))
+    .event("mouseout", function() this.fillStyle(undefined))
+    .event("click", function(n) {
+    if(n.nodeValue != undefined){
+    document.location.href = n.nodeValue;
+    }
+    else{
+    {% if l != 'PRIM..1' %}
+    document.location.href = '{{ url_for("lids:lid-graph", lid=j["fm"]) }}';
+    {% endif %}
+    }
+    });
+tree.label.add(pv.Label)
+    .text(function(n) n.nodeName.replace('..1','').replace('..','_'))
+    .font("12px 'Arvo', sans-serif")
+    .events("all")
+    .cursor("hand")
+    .event("click", function(n) {
+    if(n.nodeValue != undefined){
+    document.location.href = n.nodeValue;
+       }
+     else{
+        {% if l != 'PRIM..1' %}
+        document.location.href = '{{ url_for("lids:lid-graph", lid=j["fm"]) }}';
+        {% endif %}
+     }
+     });
+ 
+ 
+ vis.render();
+    </script>
+</div>
+{% endblock %}

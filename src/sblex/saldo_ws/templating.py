@@ -8,7 +8,7 @@ from sblex.saldo_ws import config
 
 
 def build_context(
-    request: Request, *, title: str, service: str, show_bar: bool = True, **kwargs
+    request: Request, *, title: str, service: str, show_bar: bool = False, **kwargs
 ) -> dict[str, Any]:
     settings: config.Settings = request.app.state.settings
     return {

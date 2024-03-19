@@ -226,3 +226,41 @@ class TestLidRoutes:
         expected_response = EXPECTED_PROTOJS_RESPONSES[expected_response_name or lid]
 
         assert res.text == expected_response
+
+    @pytest.mark.parametrize(
+        "lid",
+        [
+            "dväljas..vb.1",
+            "bad-input",
+        ],
+    )
+    @pytest.mark.asyncio
+    async def test_graph_non_lexeme_input_returns_422(
+        self,
+        client: AsyncClient,
+        lid: str,
+    ) -> None:
+        res = await client.get(f"/lid/graph/{lid}")
+        assert res.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
+
+    @pytest.mark.parametrize(
+        "lid, expected_in_response",
+        [
+            (
+                "bo..1",
+                '<script type="text/javascript" src="http://testserver/lid/protojs/bo..1"></script>',
+            ),
+        ],
+    )
+    @pytest.mark.asyncio
+    async def test_graph_valid_input_returns_200(
+        self,
+        client: AsyncClient,
+        expected_in_response: str,
+        lid: str,
+    ) -> None:
+        res = await client.get(f"/lid/graph/{lid}")
+        assert res.status_code == status.HTTP_200_OK
+        assert res.headers["content-type"] == "text/html; charset=utf-8"
+
+        assert expected_in_response in res.text
