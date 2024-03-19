@@ -49,19 +49,7 @@ def handler(req):
     if not (format in formats):
         return apache.HTTP_NOT_FOUND
 
-    if function == "ff" and len(args) <= 1:
-        if len(args) == 0:
-            (result, result_code) = fullform.function(format, "")
-        else:
-            (result, result_code) = fullform.function(format, args[0])
-
-    elif function == "fl" and len(args) <= 1:
-        if len(args) == 0:
-            (result, result_code) = fullform_lex.function(format, "")
-        else:
-            (result, result_code) = fullform_lex.function(format, args[0])
-
-    elif function == "flem" and len(args) == 1:
+    if function == "flem" and len(args) == 1:
         (result, result_code) = lem.function(format, args[0])
 
     elif function == "sib" and len(args) == 1 and is_lexeme(args[0]):
