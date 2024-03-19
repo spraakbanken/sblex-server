@@ -6,8 +6,6 @@ import cjson
 import fullform
 import fullform_lex
 import compound
-import lemma
-import lexeme
 import paradigms
 import version
 import plist
@@ -63,14 +61,8 @@ def handler(req):
         else:
             (result, result_code) = fullform_lex.function(format, args[0])
 
-    elif function == "lid" and len(args) == 1 and is_lemma(args[0]):
-        (result, result_code) = lemma.function(format, args[0])
-
     elif function == "flem" and len(args) == 1:
         (result, result_code) = lem.function(format, args[0])
-
-    elif function == "lid" and len(args) == 1 and is_lexeme(args[0]):
-        (result, result_code) = lexeme.function(format, args[0])
 
     elif function == "sib" and len(args) == 1 and is_lexeme(args[0]):
         (result, result_code) = sib.function(format, args[0])

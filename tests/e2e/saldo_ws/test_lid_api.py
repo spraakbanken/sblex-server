@@ -28,6 +28,12 @@ EXPECTED_XML_RESPONSES = {
 """,
 }
 
+EXPECTED_PROTOJS_RESPONSES = {
+    "bo..1": """var flare = {
+ 'dväljas..1': 'http://testserver/lid/graph/dväljas..1', 
+}"""
+}
+
 
 class TestLidRoutes:
     @pytest.mark.parametrize(
@@ -63,7 +69,6 @@ class TestLidRoutes:
                     "ppath": [],
                 },
             ),
-            # ("d..nn.1", {}),
         ],
     )
     @pytest.mark.asyncio
@@ -78,6 +83,20 @@ class TestLidRoutes:
         assert res.headers["content-type"] == "application/json"
 
         assert res.json() == expected_response
+
+    @pytest.mark.asyncio
+    async def test_json_rnd_returns_200(
+        self,
+        client: AsyncClient,
+    ) -> None:
+        res = await client.get("/lid/json/rnd")
+        assert res.status_code == status.HTTP_200_OK
+        assert res.headers["content-type"] == "application/json"
+
+        actual_data = res.json()
+        print(f"{actual_data=}")
+        for expected_key in ["lex", "fm", "fp", "mf", "pf", "l", "fs"]:
+            assert expected_key in actual_data
 
     @pytest.mark.parametrize(
         "lid, expected_response_name",
@@ -181,3 +200,80 @@ class TestLidRoutes:
         res = await client.get(f"/lid/{in_format}/{lid}")
         assert res.status_code == status.HTTP_200_OK
         assert res.headers["content-type"] == expected_content_type
+
+    @pytest.mark.parametrize(
+        "lid",
+        [
+            "dväljas..vb.1",
+            "bad-input",
+        ],
+    )
+    @pytest.mark.asyncio
+    async def test_protojs_non_lexeme_input_returns_422(
+        self,
+        client: AsyncClient,
+        lid: str,
+    ) -> None:
+        print(f"{lid=}")
+        res = await client.get(f"/lid/protojs/{lid}")
+        assert res.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
+
+    @pytest.mark.parametrize(
+        "lid, expected_response_name",
+        [
+            ("bo..1", None),
+        ],
+    )
+    @pytest.mark.asyncio
+    async def test_protojs_valid_input_returns_200(
+        self,
+        client: AsyncClient,
+        expected_response_name: str | None,
+        lid: str,
+    ) -> None:
+        print(f"{lid=}")
+        res = await client.get(f"/lid/protojs/{lid}")
+        assert res.status_code == status.HTTP_200_OK
+        assert res.headers["content-type"] == "text/javascript; charset=utf-8"
+
+        expected_response = EXPECTED_PROTOJS_RESPONSES[expected_response_name or lid]
+
+        assert res.text == expected_response
+
+    @pytest.mark.parametrize(
+        "lid",
+        [
+            "dväljas..vb.1",
+            "bad-input",
+        ],
+    )
+    @pytest.mark.asyncio
+    async def test_graph_non_lexeme_input_returns_422(
+        self,
+        client: AsyncClient,
+        lid: str,
+    ) -> None:
+        res = await client.get(f"/lid/graph/{lid}")
+        assert res.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
+
+    @pytest.mark.parametrize(
+        "lid, expected_in_response",
+        [
+            (
+                "bo..1",
+                '<script type="text/javascript" src="http://testserver/lid/protojs/bo..1"></script>',
+            ),
+        ],
+    )
+    @pytest.mark.asyncio
+    async def test_graph_valid_input_returns_200(
+        self,
+        client: AsyncClient,
+        expected_in_response: str,
+        lid: str,
+    ) -> None:
+        res = await client.get(f"/lid/graph/{lid}")
+        assert res.status_code == status.HTTP_200_OK
+        assert res.headers["content-type"] == "text/html; charset=utf-8"
+
+        assert expected_in_response in res.text
