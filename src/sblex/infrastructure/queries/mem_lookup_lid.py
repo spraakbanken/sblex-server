@@ -1,7 +1,7 @@
 import csv
+import itertools
 import logging
 import random
-from itertools import islice
 from pathlib import Path
 from typing import Any
 
@@ -113,8 +113,8 @@ class MemLookupLid(LookupLid):
 
     async def get_lexeme(self, lexeme: str) -> dict[str, Any]:
         if lexeme == "rnd":
-            rnd_key_index = random.randint(0, len(self._lex_map) - 1)  # noqa: S311
-            rnd_key = next(islice(self._lex_map.keys(), rnd_key_index), "")
+            rnd_key_index = random.randrange(0, len(self._lex_map))  # noqa: S311
+            rnd_key = next(itertools.islice(self._lex_map.keys(), rnd_key_index, None))
             return self._lex_map[rnd_key]
         try:
             return self._lex_map[lexeme]
