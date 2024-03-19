@@ -6,7 +6,6 @@ import cjson
 import fullform
 import fullform_lex
 import compound
-import lemma
 import lexeme
 import paradigms
 import version
@@ -62,9 +61,6 @@ def handler(req):
             (result, result_code) = fullform_lex.function(format, "")
         else:
             (result, result_code) = fullform_lex.function(format, args[0])
-
-    elif function == "lid" and len(args) == 1 and is_lemma(args[0]):
-        (result, result_code) = lemma.function(format, args[0])
 
     elif function == "flem" and len(args) == 1:
         (result, result_code) = lem.function(format, args[0])
