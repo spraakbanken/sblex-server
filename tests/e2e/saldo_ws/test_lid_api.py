@@ -69,7 +69,6 @@ class TestLidRoutes:
                     "ppath": [],
                 },
             ),
-            # ("d..nn.1", {}),
         ],
     )
     @pytest.mark.asyncio
@@ -84,6 +83,20 @@ class TestLidRoutes:
         assert res.headers["content-type"] == "application/json"
 
         assert res.json() == expected_response
+
+    @pytest.mark.asyncio
+    async def test_json_rnd_returns_200(
+        self,
+        client: AsyncClient,
+    ) -> None:
+        res = await client.get("/lid/json/rnd")
+        assert res.status_code == status.HTTP_200_OK
+        assert res.headers["content-type"] == "application/json"
+
+        actual_data = res.json()
+        print(f"{actual_data=}")
+        for expected_key in ["lex", "fm", "fp", "mf", "pf", "l", "fs"]:
+            assert expected_key in actual_data
 
     @pytest.mark.parametrize(
         "lid, expected_response_name",

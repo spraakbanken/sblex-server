@@ -28,7 +28,7 @@ class LookupService:
         return self._inflection_table.query(paradigm, word)
 
     async def wordforms(self, sense_id: str) -> list:
-        ls = await self.lookup_lid(sense_id)["l"]
+        ls = (await self.lookup_lid(sense_id))["l"]
         ws = []
         for lemma in ls:
             ws.extend(await self.generate_wordforms(lemma))

@@ -10,6 +10,7 @@ from sblex import formatting
 from sblex.application.predicates import is_lemma, is_lexeme
 from sblex.application.queries import LookupLid
 from sblex.application.queries.lookup_lid import LemmaNotFound, LexemeNotFound
+from sblex.application.services.lookup import LookupService
 from sblex.saldo_ws import deps, templating
 from sblex.saldo_ws.responses import JavascriptResponse, XMLResponse
 from typing_extensions import Annotated
@@ -27,7 +28,7 @@ async def lookup_lid_json(
             title="Lid",
         ),
     ],
-    lookup_lid: LookupLid = Depends(deps.get_lookup_lid),  # noqa: B008
+    lookup_service: LookupService = Depends(deps.get_lookup_service),  # noqa: B008
     # response_model=None,
 ) -> Response | None | dict[str, Any]:
     with trace.get_tracer(__name__).start_as_current_span(
@@ -39,7 +40,9 @@ async def lookup_lid_json(
                 content={"error": f"{lid} is neither a lemma or a lexeme"},
             )
         with PerfMsTracker(scope=request.scope, key="pf_srv"):
-            lemma_or_lexeme = await lookup_lid.get_by_lid(lid)
+            lemma_or_lexeme = await lookup_service.lookup_lid(lid)
+            if lid == "rnd":
+                lemma_or_lexeme["fs"] = await lookup_service.wordforms(lemma_or_lexeme["lex"])
         return lemma_or_lexeme
 
 
