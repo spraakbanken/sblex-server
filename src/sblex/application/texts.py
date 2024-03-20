@@ -1,5 +1,5 @@
-def inits(s):
-    xs = []
-    for i in range(1, len(s) + 1):
-        xs.append((s[:i], s[i:]))
-    return xs
+from typing import Tuple
+
+
+def inits(s: str) -> list[Tuple[str, str]]:
+    return [(s[:i], s[i:]) for i in range(1, len(s) + 1)]
