@@ -168,13 +168,6 @@ def md1(sense_id):
     return list(set(md1))
 
 
-def inits(s):
-    xs = []
-    for i in range(1, len(s) + 1):
-        xs.append((s[:i], s[i:]))
-    return xs
-
-
 def lemma_pref(lem):
     try:
         s = lem[:-2]

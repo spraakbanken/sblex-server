@@ -1,6 +1,9 @@
+import sys
 from typing import Any
 
 from json_arrays import jsonlib
+from opentelemetry import trace
+from sblex.application import texts
 from sblex.application.queries import LookupLid
 from sblex.application.queries.inflection import InflectionTableQuery, InflectionTableRow
 from sblex.fm import Morphology
@@ -41,3 +44,35 @@ class LookupService:
             for w in self.lookup_table(r["p"], r["gf"])
             if w["msd"] not in ["c", "ci", "cm", "sms"]
         ]
+
+    async def compound(self, s, n=1):
+        with trace.get_tracer(__name__).start_as_current_span(
+            sys._getframe().f_code.co_name
+        ) as _process_api_span:
+            if len(s) < 1:
+                return [[]]
+            if n > 2:
+                return []
+            result = []
+            for pre1, suf1 in texts.inits(s):
+                if len(pre1) > 1:
+                    for pre, suf in sandhi(pre1, suf1):
+                        for a in await self.lookup_ff(pre):
+                            if suf != [] or a["msd"] in ["ci", "cm", "c"]:
+                                for c in await self.compound(suf, n + 1):
+                                    result.append([add_prefix(a, pre1), *c])
+            return result
+
+
+def add_prefix(a, pre):
+    a["segment"] = pre
+    return a
+
+
+def sandhi(pre, suf):
+    if len(suf) < 1:
+        return [(pre, suf)]
+    if pre[-1] == suf[0]:
+        return [(pre, suf), (pre + pre[-1], suf)]
+    else:
+        return [(pre, suf)]
