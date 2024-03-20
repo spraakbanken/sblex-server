@@ -15,3 +15,11 @@ async def test_sms_json(segment: str, client: AsyncClient, snapshot_json) -> Non
     response = await client.get(f"/sms/json/{segment}")
     assert response.status_code == status.HTTP_200_OK
     assert response.json() == snapshot_json
+
+
+@pytest.mark.parametrize("segment", ["dväljas", "bo"])
+@pytest.mark.asyncio
+async def test_sms_html(segment: str, client: AsyncClient, snapshot) -> None:
+    response = await client.get(f"/sms/html/{segment}")
+    assert response.status_code == status.HTTP_200_OK
+    assert response.text == snapshot
