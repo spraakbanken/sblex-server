@@ -1,0 +1,29 @@
+{% extends "saldo_document.html" %}
+{% block content %}
+{% if j|length %}
+<center>
+    <table>
+        {% for ws in j %}
+        <tr>
+            <td>
+                {% for w in ws %}
+                <b>{{ w["segment"] }}</b>:(
+                {%- if w["id"]|length -%}
+                <a href="{{ url_for('lids:lid-html', lid=w['id'])}}">{{ w["id"] }}</a>
+                {%- else -%}
+                *
+                {%- endif -%},{{ w["msd"] }})
+                {% if not loop.last %}
+            </td>
+            <td>
+                {% endif %}
+                {% endfor %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</center>
+{% else %}
+<center><b>"{{ segment }}"</b> saknar analys.</center>
+{% endif %}
+{% endblock %}

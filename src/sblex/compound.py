@@ -11,8 +11,6 @@ def function(format, segment):
     result = print_compound(sorted(compound(segment), comp))
     if format == "xml":
         result = xmlize(result)
-    elif format == "html":
-        result = htmlize(segment, result)
     return (result, apache.OK)
 
 
