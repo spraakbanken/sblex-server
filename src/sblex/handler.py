@@ -82,9 +82,6 @@ def handler(req):
     elif function == "sms" and len(args) <= 1:
         (result, result_code) = compound.function(format, args[0])
 
-    elif function == "version" and len(args) == 0 and format == "json":
-        result = version.version
-        result_code = apache.OK
     else:
         return apache.HTTP_NOT_FOUND
 

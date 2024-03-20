@@ -5,7 +5,7 @@
 groups = ["default", "dev"]
 strategy = ["cross_platform", "inherit_metadata"]
 lock_version = "4.4.1"
-content_hash = "sha256:e2797fd27b9d73b17f8b298922783376ce9330f108144a433207cdf970e59068"
+content_hash = "sha256:c8c06e26a897753aa1b92c273a0716af7ac11b480595f45eb670a327b5106ed7"
 
 [[package]]
 name = "annotated-types"
@@ -1446,6 +1446,20 @@ dependencies = [
 files = [
     {file = "starlette-0.36.3-py3-none-any.whl", hash = "sha256:13d429aa93a61dc40bf503e8c801db1f1bca3dc706b10ef2434a36123568f044"},
     {file = "starlette-0.36.3.tar.gz", hash = "sha256:90a671733cfb35771d8cc605e0b679d23b992f8dcfad48cc60b38cb29aeb7080"},
+]
+
+[[package]]
+name = "syrupy"
+version = "4.6.1"
+requires_python = ">=3.8.1,<4"
+summary = "Pytest Snapshot Test Utility"
+groups = ["dev"]
+dependencies = [
+    "pytest<9.0.0,>=7.0.0",
+]
+files = [
+    {file = "syrupy-4.6.1-py3-none-any.whl", hash = "sha256:203e52f9cb9fa749cf683f29bd68f02c16c3bc7e7e5fe8f2fc59bdfe488ce133"},
+    {file = "syrupy-4.6.1.tar.gz", hash = "sha256:37a835c9ce7857eeef86d62145885e10b3cb9615bc6abeb4ce404b3f18e1bb36"},
 ]
 
 [[package]]

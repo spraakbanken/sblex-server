@@ -22,3 +22,7 @@ class InflectionRow(BaseModel):
     inhs: list[str]
     msd: str
     p: str
+
+
+class Version(BaseModel):
+    version: Annotated[str, StringConstraints(pattern=r"\d+\.\d+\.\d+")]

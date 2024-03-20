@@ -1,5 +1,12 @@
 from fastapi import APIRouter
-from sblex.saldo_ws.routes import compounds, fullform, fullform_lex, inflection, lids
+from sblex.saldo_ws.routes import (
+    compounds,
+    fullform,
+    fullform_lex,
+    inflection,
+    lids,
+    system_info,
+)
 
 router = APIRouter()
 
@@ -11,3 +18,4 @@ router.include_router(
     compounds.router, prefix="/sms", tags=["sms", "sammansättning", "compound"]
 )
 router.include_router(inflection.router, prefix="/gen", tags=["inflection"])
+router.include_router(system_info.router, tags=["system-info"])
