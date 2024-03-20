@@ -170,3 +170,7 @@ lint-dependencies: lint-deptry lint-deptrac
 
 watch-lint-deptrac:
 	${INVENV} watchfiles "deptracpy" deptracpy.yaml src
+
+.PHONY: snapshot-update
+snapshot-update:
+	${INVENV} pytest --snapshot-update
