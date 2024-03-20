@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<result>
+    <cs> {% for ws in j %} <c> {% for w in ws %} <w>
+                <segment>{{ w["segment"] }}</segment>
+                <gf>{{ w["gf"] }}</gf>
+                <id>{{ w["id"] }}</id>
+                <pos>{{ w["pos"] }}</pos>
+                <inhs>{{ " ".join(w["inhs"]) }}</inhs>
+                <msd>{{ w["msd"] }}</msd>
+                <p>{{ w["p"] }}</p>
+            </w> {% endfor %} </c> {% endfor %} </cs>
+</result>

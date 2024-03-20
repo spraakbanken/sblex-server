@@ -32,8 +32,27 @@ async def get_compound_json(
 async def get_compound_xml(
     request: Request,
     segment: str,
+    lookup_service: LookupService = Depends(deps.get_lookup_service),  # noqa: B008
 ):
-    raise NotImplementedError("compounds:sms-xml")
+    with trace.get_tracer(__name__).start_as_current_span(
+        sys._getframe().f_code.co_name
+    ) as _process_api_span:
+        with PerfMsTracker(scope=request.scope, key="pf_srv"):
+            segment_compounds = await lookup_service.compound(segment)
+            templates = request.app.state.templates
+            return templates.TemplateResponse(
+                request=request,
+                name="saldo_compound.xml",
+                context=templating.build_context(
+                    request,
+                    title=f"Sammansättningsanalys för '{segment}'",
+                    service="",
+                    show_bar=False,
+                    segment=segment,
+                    j=segment_compounds,
+                ),
+                media_type="application/xml",
+            )
 
 
 @router.get("/html/{segment}", response_class=HTMLResponse, name="compounds:sms-html")
