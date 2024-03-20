@@ -4,6 +4,7 @@ from asgi_matomo import MatomoMiddleware
 from brotli_asgi import BrotliMiddleware
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import ORJSONResponse
 from fastapi.staticfiles import StaticFiles
 from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
 from opentelemetry.instrumentation.httpx import HTTPXClientInstrumentor
@@ -31,6 +32,7 @@ def create_saldo_ws_server(*, settings: config.Settings) -> FastAPI:
         redoc_url="/",
         root_path=settings.app.root_path,
         lifespan=tasks.lifespan,
+        default_response_class=ORJSONResponse,
     )  # , lifespan=lifespan)
 
     # webapp.state.app_context = app_context
