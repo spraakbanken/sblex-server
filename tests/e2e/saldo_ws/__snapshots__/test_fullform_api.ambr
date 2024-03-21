@@ -1,0 +1,349 @@
+# serializer version: 1
+# name: TestFullformRoutes.test_html_valid_input_returns_200[dv\xe4]
+  '''
+  <!DOCTYPE html>
+  <html>
+  
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
+    <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
+    <title>dvä</title>
+    
+    <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
+  </head>
+  
+  
+    <body>
+      
+      <center>
+        <p>
+          <a href="https://spraakbanken.gu.se/saldo"><img
+              src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
+              alt="SALDO" /></a>
+        </p>
+  
+        <script>
+          function input_handler(e) {
+            var word = document.getElementById('input').value;
+            if (word.length > 0) {
+              location.href = 'https://spraakbanken.gu.se/ws/saldo-ws//html/' + encodeURIComponent(word);
+            }
+          }
+  
+        </script>
+        <p><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></p>
+        
+      </center>
+  
+      <div id="output_table">
+        
+  <center>
+      <form action="http://testserver/ff/html" method="get" class="inputclass">
+          <input type="search" id="search" class="inputclass" value="dvä" name="fragment" size="30"
+              placeholder="Skriv in en ordform" results="10" />
+          <input type="submit" value="Sök" />
+      </form>
+      
+      <p>segment: dvä</p>
+      <p>continuations: l </p>
+      <table border="1">
+          <tr>
+              <th>gf</th>
+              <th>id</th>
+              <th>pos</th>
+              <th>is</th>
+              <th>msd</th>
+              <th>p</th>
+          </tr>
+          
+          
+  </center>
+  
+      </div>
+    </body>
+  
+  </html>
+  '''
+# ---
+# name: TestFullformRoutes.test_html_valid_input_returns_200[dv\xe4l]
+  '''
+  <!DOCTYPE html>
+  <html>
+  
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
+    <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
+    <title>dväl</title>
+    
+    <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
+  </head>
+  
+  
+    <body>
+      
+      <center>
+        <p>
+          <a href="https://spraakbanken.gu.se/saldo"><img
+              src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
+              alt="SALDO" /></a>
+        </p>
+  
+        <script>
+          function input_handler(e) {
+            var word = document.getElementById('input').value;
+            if (word.length > 0) {
+              location.href = 'https://spraakbanken.gu.se/ws/saldo-ws//html/' + encodeURIComponent(word);
+            }
+          }
+  
+        </script>
+        <p><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></p>
+        
+      </center>
+  
+      <div id="output_table">
+        
+  <center>
+      <form action="http://testserver/ff/html" method="get" class="inputclass">
+          <input type="search" id="search" class="inputclass" value="dväl" name="fragment" size="30"
+              placeholder="Skriv in en ordform" results="10" />
+          <input type="submit" value="Sök" />
+      </form>
+      
+      <p>segment: dväl</p>
+      <p>continuations: jt </p>
+      <table border="1">
+          <tr>
+              <th>gf</th>
+              <th>id</th>
+              <th>pos</th>
+              <th>is</th>
+              <th>msd</th>
+              <th>p</th>
+          </tr>
+          
+          
+  </center>
+  
+      </div>
+    </body>
+  
+  </html>
+  '''
+# ---
+# name: TestFullformRoutes.test_html_valid_input_returns_200[dv\xe4ljs]
+  '''
+  <!DOCTYPE html>
+  <html>
+  
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
+    <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
+    <title>dväljs</title>
+    
+    <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
+  </head>
+  
+  
+    <body>
+      
+      <center>
+        <p>
+          <a href="https://spraakbanken.gu.se/saldo"><img
+              src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
+              alt="SALDO" /></a>
+        </p>
+  
+        <script>
+          function input_handler(e) {
+            var word = document.getElementById('input').value;
+            if (word.length > 0) {
+              location.href = 'https://spraakbanken.gu.se/ws/saldo-ws//html/' + encodeURIComponent(word);
+            }
+          }
+  
+        </script>
+        <p><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></p>
+        
+      </center>
+  
+      <div id="output_table">
+        
+  <center>
+      <form action="http://testserver/ff/html" method="get" class="inputclass">
+          <input type="search" id="search" class="inputclass" value="dväljs" name="fragment" size="30"
+              placeholder="Skriv in en ordform" results="10" />
+          <input type="submit" value="Sök" />
+      </form>
+      
+      <p>segment: dväljs</p>
+      <p>continuations:  </p>
+      <table border="1">
+          <tr>
+              <th>gf</th>
+              <th>id</th>
+              <th>pos</th>
+              <th>is</th>
+              <th>msd</th>
+              <th>p</th>
+          </tr>
+          
+          <tr>
+              <td>dväljas</td>
+              <td><a href="http://testserver/lid/html/dväljas..vb.1">dväljas..vb.1</a></td>
+              <td>vb</td>
+              <td></td>
+              <td>pres ind s-form</td>
+              <td>vb_vs_dväljas</td>
+          </tr>
+          
+          <tr>
+              <td>dväljas</td>
+              <td><a href="http://testserver/lid/html/dväljas..vb.1">dväljas..vb.1</a></td>
+              <td>vb</td>
+              <td></td>
+              <td>imper</td>
+              <td>vb_vs_dväljas</td>
+          </tr>
+          
+          
+  </center>
+  
+      </div>
+    </body>
+  
+  </html>
+  '''
+# ---
+# name: TestFullformRoutes.test_html_valid_input_returns_200[dv]
+  '''
+  <!DOCTYPE html>
+  <html>
+  
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
+    <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
+    <title>dv</title>
+    
+    <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
+  </head>
+  
+  
+    <body>
+      
+      <center>
+        <p>
+          <a href="https://spraakbanken.gu.se/saldo"><img
+              src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
+              alt="SALDO" /></a>
+        </p>
+  
+        <script>
+          function input_handler(e) {
+            var word = document.getElementById('input').value;
+            if (word.length > 0) {
+              location.href = 'https://spraakbanken.gu.se/ws/saldo-ws//html/' + encodeURIComponent(word);
+            }
+          }
+  
+        </script>
+        <p><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></p>
+        
+      </center>
+  
+      <div id="output_table">
+        
+  <center>
+      <form action="http://testserver/ff/html" method="get" class="inputclass">
+          <input type="search" id="search" class="inputclass" value="dv" name="fragment" size="30"
+              placeholder="Skriv in en ordform" results="10" />
+          <input type="submit" value="Sök" />
+      </form>
+      
+      <p>segment: dv</p>
+      <p>continuations: äa </p>
+      <table border="1">
+          <tr>
+              <th>gf</th>
+              <th>id</th>
+              <th>pos</th>
+              <th>is</th>
+              <th>msd</th>
+              <th>p</th>
+          </tr>
+          
+          
+  </center>
+  
+      </div>
+    </body>
+  
+  </html>
+  '''
+# ---
+# name: TestFullformRoutes.test_xml_valid_input_returns_200[dv\xe4]
+  '''
+  <?xml version="1.0" encoding="UTF-8"?>
+  <result>
+      <c>l</c>
+      <as>
+  
+      </as>
+  </result>
+  '''
+# ---
+# name: TestFullformRoutes.test_xml_valid_input_returns_200[dv\xe4l]
+  '''
+  <?xml version="1.0" encoding="UTF-8"?>
+  <result>
+      <c>jt</c>
+      <as>
+  
+      </as>
+  </result>
+  '''
+# ---
+# name: TestFullformRoutes.test_xml_valid_input_returns_200[dv\xe4ljs]
+  '''
+  <?xml version="1.0" encoding="UTF-8"?>
+  <result>
+      <c></c>
+      <as>
+  
+          <a>
+          <gf>dväljas</gf>
+          <id>dväljas..vb.1</id>
+          <pos>vb</pos>
+          <is></is>
+          <msd>pres ind s-form</msd>
+          <p>vb_vs_dväljas</p>
+          </a>
+  
+          <a>
+          <gf>dväljas</gf>
+          <id>dväljas..vb.1</id>
+          <pos>vb</pos>
+          <is></is>
+          <msd>imper</msd>
+          <p>vb_vs_dväljas</p>
+          </a>
+  
+      </as>
+  </result>
+  '''
+# ---
+# name: TestFullformRoutes.test_xml_valid_input_returns_200[dv]
+  '''
+  <?xml version="1.0" encoding="UTF-8"?>
+  <result>
+      <c>äa</c>
+      <as>
+  
+      </as>
+  </result>
+  '''
+# ---

@@ -1,12 +1,6 @@
 import pytest
 from fastapi import status
 from httpx import AsyncClient
-from syrupy.extensions.json import JSONSnapshotExtension
-
-
-@pytest.fixture
-def snapshot_json(snapshot):
-    return snapshot.with_defaults(extension_class=JSONSnapshotExtension)
 
 
 @pytest.mark.parametrize("segment", ["dväljas", "bo"])

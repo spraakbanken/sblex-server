@@ -13,8 +13,14 @@ from sblex.saldo_ws.config import Settings as SaldoWsSettings
 from sblex.saldo_ws.deps import get_fm_client, get_fm_runner
 from sblex.saldo_ws.server import create_saldo_ws_server
 from sblex.telemetry.settings import OTelSettings
+from syrupy.extensions.json import JSONSnapshotExtension
 
 from tests.adapters.mem_fm_runner import MemFmRunner
+
+
+@pytest.fixture
+def snapshot_json(snapshot):
+    return snapshot.with_defaults(extension_class=JSONSnapshotExtension)
 
 
 @pytest.fixture(name="webapp")
