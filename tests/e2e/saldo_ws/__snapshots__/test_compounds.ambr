@@ -39,7 +39,7 @@
       <div id="output_table">
         
   
-  <center><b>"bo"</b> saknar analys.</center>
+  <center><b>bo</b> saknar analys.</center>
   
   
       </div>
@@ -108,5 +108,29 @@
     </body>
   
   </html>
+  '''
+# ---
+# name: test_sms_xml[bo]
+  '''
+  <?xml version="1.0" encoding="UTF-8"?>
+  <result>
+      <cs>  </cs>
+  </result>
+  '''
+# ---
+# name: test_sms_xml[dv\xe4ljas]
+  '''
+  <?xml version="1.0" encoding="UTF-8"?>
+  <result>
+      <cs>  <c>  <w>
+                  <segment>dväljas</segment>
+                  <gf>dväljas</gf>
+                  <id>dväljas..vb.1</id>
+                  <pos>vb</pos>
+                  <inhs></inhs>
+                  <msd>inf s-form</msd>
+                  <p>vb_vs_dväljas</p>
+              </w>  </c>  </cs>
+  </result>
   '''
 # ---

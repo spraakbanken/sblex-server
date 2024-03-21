@@ -1,4 +1,5 @@
 import sys
+from functools import cmp_to_key
 from typing import Any
 
 from json_arrays import jsonlib
@@ -61,7 +62,7 @@ class LookupService:
                             if suf != [] or a["msd"] in ["ci", "cm", "c"]:
                                 for c in await self.compound(suf, n + 1):
                                     result.append([add_prefix(a, pre1), *c])
-            return result
+            return sorted(result, key=cmp_to_key(comp))
 
 
 def add_prefix(a, pre):
@@ -76,3 +77,27 @@ def sandhi(pre, suf):
         return [(pre, suf), (pre + pre[-1], suf)]
     else:
         return [(pre, suf)]
+
+
+def comp(x, y):
+    x_len, y_len = len(x), len(y)
+    if x_len > y_len:
+        return 1
+    elif x_len == y_len:
+        return len_comp_parts(x, y)
+    else:
+        return -1
+
+
+def len_comp_parts(x, y):
+    n1, n2 = 0, 0
+    for n in x:
+        n1 += len(n["gf"])
+    for n in y:
+        n2 += len(n["gf"])
+    if n1 > n2:
+        return 1
+    elif n1 == n2:
+        return 0
+    else:
+        return -1

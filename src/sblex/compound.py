@@ -9,27 +9,8 @@ from mod_python import util
 
 def function(format, segment):
     result = print_compound(sorted(compound(segment), comp))
-    if format == "xml":
-        result = xmlize(result)
+
     return (result, apache.OK)
-
-
-def xmlize(s):
-    j = cjson.decode(utf8.d(s))
-    xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
-    xml += "<result>\n"
-    xml += " <cs>\n"
-    for ws in j:
-        xml += "<c>\n"
-        for w in ws:
-            xml += "   <w><segment>" + w["segment"] + "</segment><gf>" + w["gf"] + "</gf>"
-            xml += "<id>" + w["id"] + "</id>" + "<pos>" + w["pos"] + "</pos>"
-            xml += "<is>" + " ".join(w["is"]) + "</is>" + "<msd>" + w["msd"] + "</msd>"
-            xml += "<p>" + w["p"] + "</p>" + "</w>\n"
-        xml += "</c>\n"
-    xml += " </cs>\n"
-    xml += "</result>\n"
-    return utf8.e(xml)
 
 
 def htmlize(segment, s):
@@ -138,39 +119,6 @@ def pr(j):
         j["msd"],
         j["p"],
     )
-
-
-def sandhi(pre, suf):
-    if len(suf) < 1:
-        return [(pre, suf)]
-    if pre[-1] == suf[0]:
-        return [(pre, suf), (pre + pre[-1], suf)]
-    else:
-        return [(pre, suf)]
-
-
-def comp(x, y):
-    x_len, y_len = len(x), len(y)
-    if x_len > y_len:
-        return 1
-    elif x_len == y_len:
-        return len_comp_parts(x, y)
-    else:
-        return -1
-
-
-def len_comp_parts(x, y):
-    n1, n2 = 0, 0
-    for n in x:
-        n1 += len(n["gf"])
-    for n in y:
-        n2 += len(n["gf"])
-    if n1 > n2:
-        return 1
-    elif n1 == n2:
-        return 0
-    else:
-        return -1
 
 
 def cit(xs):
