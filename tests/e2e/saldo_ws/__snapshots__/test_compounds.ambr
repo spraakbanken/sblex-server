@@ -8,7 +8,7 @@
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
     <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
     <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
-    <title>Sammansättningsanalys för &#39;bo&#39;</title>
+    <title>Sammansättningsanalys för &#39;bo&#39; [Avstängd]</title>
     
     <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
   </head>
@@ -38,8 +38,14 @@
   
       <div id="output_table">
         
+  <h1>Denna tjänst är tillfälligt avstängd</h1>
+  <p><b>Orsak</b>Tjänsten är stängd på grund av prestandaproblem.</p>
+  <p>Läs mer <a href="https://github.com/spraakbanken/sblex-server/issues/110">här</a>.</p>
   
-  <center><b>bo</b> saknar analys.</center>
+  <h1>This service is temporarily disabled</h1>
+  <p><b>Reason</b>Disabled due to performance issues.</p>
+  <p>Read more in this <a href="https://github.com/spraakbanken/sblex-server/issues/110">tracking issue</a>.
+  </p>
   
   
       </div>
@@ -57,7 +63,7 @@
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
     <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
     <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
-    <title>Sammansättningsanalys för &#39;dväljas&#39;</title>
+    <title>Sammansättningsanalys för &#39;dväljas&#39; [Avstängd]</title>
     
     <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
   </head>
@@ -87,21 +93,14 @@
   
       <div id="output_table">
         
+  <h1>Denna tjänst är tillfälligt avstängd</h1>
+  <p><b>Orsak</b>Tjänsten är stängd på grund av prestandaproblem.</p>
+  <p>Läs mer <a href="https://github.com/spraakbanken/sblex-server/issues/110">här</a>.</p>
   
-  <center>
-      <table>
-          
-          <tr>
-              <td>
-                  
-                  <b>dväljas</b>:(<a href="http://testserver/lid/html/dväljas..vb.1">dväljas..vb.1</a>,inf s-form)
-                  
-                  
-              </td>
-          </tr>
-          
-      </table>
-  </center>
+  <h1>This service is temporarily disabled</h1>
+  <p><b>Reason</b>Disabled due to performance issues.</p>
+  <p>Read more in this <a href="https://github.com/spraakbanken/sblex-server/issues/110">tracking issue</a>.
+  </p>
   
   
       </div>
@@ -113,24 +112,16 @@
 # name: test_sms_xml[bo]
   '''
   <?xml version="1.0" encoding="UTF-8"?>
-  <result>
-      <cs>  </cs>
-  </result>
+  <message>This service is temporarily disabled <reason>Disabled due to performance issues.</reason>
+  <issue>https://github.com/spraakbanken/sblex-server/issues/110</issue>
+  </message>
   '''
 # ---
 # name: test_sms_xml[dv\xe4ljas]
   '''
   <?xml version="1.0" encoding="UTF-8"?>
-  <result>
-      <cs>  <c>  <w>
-                  <segment>dväljas</segment>
-                  <gf>dväljas</gf>
-                  <id>dväljas..vb.1</id>
-                  <pos>vb</pos>
-                  <inhs></inhs>
-                  <msd>inf s-form</msd>
-                  <p>vb_vs_dväljas</p>
-              </w>  </c>  </cs>
-  </result>
+  <message>This service is temporarily disabled <reason>Disabled due to performance issues.</reason>
+  <issue>https://github.com/spraakbanken/sblex-server/issues/110</issue>
+  </message>
   '''
 # ---
