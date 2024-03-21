@@ -1,4 +1,5 @@
 import sys
+from functools import cmp_to_key
 from typing import Any
 
 from json_arrays import jsonlib
@@ -61,7 +62,7 @@ class LookupService:
                             if suf != [] or a["msd"] in ["ci", "cm", "c"]:
                                 for c in await self.compound(suf, n + 1):
                                     result.append([add_prefix(a, pre1), *c])
-            return sorted(result, key=comp)
+            return sorted(result, key=cmp_to_key(comp))
 
 
 def add_prefix(a, pre):
