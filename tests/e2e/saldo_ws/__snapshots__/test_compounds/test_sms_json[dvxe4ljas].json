@@ -1,13 +1,3 @@
-[
-  [
-    {
-      "gf": "dväljas",
-      "id": "dväljas..vb.1",
-      "is": [],
-      "msd": "inf s-form",
-      "p": "vb_vs_dväljas",
-      "pos": "vb",
-      "segment": "dväljas"
-    }
-  ]
-]
+{
+  "message": "This route is disabled due to performance reasons. \n                     Contact us if interessed in it working.\n                     Tracking issue: https://github.com/spraakbanken/sblex-server/issues/110"
+}
