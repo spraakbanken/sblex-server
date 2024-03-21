@@ -26,3 +26,22 @@ class InflectionRow(BaseModel):
 
 class Version(BaseModel):
     version: Annotated[str, StringConstraints(pattern=r"\d+\.\d+\.\d+")]
+
+
+class LidLexeme(BaseModel):
+    fm: Lexeme
+    fp: Lexeme
+    l: list[Lemma]  # noqa: E741
+    lex: Lexeme
+    mf: list[str]
+    path: list[Lexeme]
+    pf: list[str]
+    ppath: list[str]
+    fs: list[str] | None = None
+
+
+class LidLemma(BaseModel):
+    gf: str
+    l: list[Lexeme]  # noqa: E741
+    lex: Lexeme
+    p: str

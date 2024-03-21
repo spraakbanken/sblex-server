@@ -4,14 +4,14 @@ from typing import Any, Union
 
 from asgi_matomo.trackers import PerfMsTracker
 from fastapi import APIRouter, Depends, Path, Request, Response, status
-from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi.responses import HTMLResponse, JSONResponse, ORJSONResponse
 from opentelemetry import trace
 from sblex import formatting
 from sblex.application.predicates import is_lemma, is_lexeme
 from sblex.application.queries import LookupLid
 from sblex.application.queries.lookup_lid import LemmaNotFound, LexemeNotFound
 from sblex.application.services.lookup import LookupService
-from sblex.saldo_ws import deps, templating
+from sblex.saldo_ws import deps, schemas, templating
 from sblex.saldo_ws.responses import JavascriptResponse, XMLResponse
 from typing_extensions import Annotated
 
@@ -19,7 +19,11 @@ logger = logging.getLogger(__name__)
 router = APIRouter()
 
 
-@router.get("/json/{lid}", response_model=None)
+@router.get(
+    "/json/{lid}",
+    name="lids:lid-json",
+    response_model=Union[schemas.LidLemma, schemas.LidLexeme],
+)
 async def lookup_lid_json(
     request: Request,
     lid: Annotated[
@@ -43,13 +47,10 @@ async def lookup_lid_json(
             lemma_or_lexeme = await lookup_service.lookup_lid(lid)
             if lid == "rnd":
                 lemma_or_lexeme["fs"] = await lookup_service.wordforms(lemma_or_lexeme["lex"])
-        return lemma_or_lexeme
+        return ORJSONResponse(lemma_or_lexeme)
 
 
-@router.get(
-    "/xml/{lid}",
-    response_class=XMLResponse,
-)
+@router.get("/xml/{lid}", name="lids:lid-xml", response_class=XMLResponse)
 async def lookup_lid_xml(
     request: Request,
     lid: str,
@@ -89,7 +90,7 @@ async def lookup_lid_xml(
         )
 
 
-@router.get("/html/{lid}", response_class=HTMLResponse, name="lids:lid-html")
+@router.get("/html/{lid}", name="lids:lid-html", response_class=HTMLResponse)
 async def lookup_lid_html(
     request: Request,
     lid: str,  # Union[Lexeme, Lemma],
@@ -104,7 +105,6 @@ async def lookup_lid_html(
                 content={"error": f"{lid} is neither a lemma or a lexeme"},
             )
         templates = request.app.state.templates
-        print(f"{lid=}")
         try:
             lemma_or_lexeme = await lookup_lid.get_by_lid(lid)
         except LemmaNotFound:
@@ -156,7 +156,7 @@ async def lookup_lid_html(
         )
 
 
-@router.get("/protojs/{lid}", response_class=JavascriptResponse, name="lids:lid-protojs")
+@router.get("/protojs/{lid}", name="lids:lid-protojs", response_class=JavascriptResponse)
 async def lookup_lid_protojs(
     request: Request,
     lid: str,
@@ -181,7 +181,7 @@ async def lookup_lid_protojs(
         )
 
 
-@router.get("/graph/{lid}", response_class=HTMLResponse, name="lids:lid-graph")
+@router.get("/graph/{lid}", name="lids:lid-graph", response_class=HTMLResponse)
 async def lookup_lid_graph(
     request: Request,
     lid: str,

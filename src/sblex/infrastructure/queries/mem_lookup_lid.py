@@ -99,7 +99,7 @@ class MemLookupLid(LookupLid):
                         "fp": f,
                         "mf": sorted(mchildren),
                         "pf": sorted(pchildren),
-                        "l": lemmas,
+                        "l": sorted(lemmas),
                         "path": path_map[lex],
                         "ppath": father_path(f, path_map),
                     }
