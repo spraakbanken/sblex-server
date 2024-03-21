@@ -1,8 +1,6 @@
-from unittest import mock
-
 import httpx
 from fastapi import Depends, Request
-from sblex.application.queries import FullformLexQuery, FullformQuery, LookupLid
+from sblex.application.queries import FullformLexQuery, LookupLid
 from sblex.application.queries.inflection import InflectionTableQuery
 from sblex.application.services import LookupService
 from sblex.fm import Morphology
@@ -44,12 +42,6 @@ def get_lookup_service(
     return LookupService(
         morphology=morphology, lookup_lid=lookup_lid, inflection_table=inflection_table_query
     )
-
-
-def get_fullform_query() -> FullformQuery:
-    query = mock.Mock(spec=FullformQuery)
-    query.query = mock.Mock(return_value=b'{"c":"a"}')
-    return query
 
 
 def get_fullform_lex_query(

@@ -23,28 +23,43 @@ class LookupService:
         self._inflection_table = inflection_table
 
     async def lookup_ff(self, segment: str) -> list[dict[str, Any]]:
-        return jsonlib.loads(await self._morphology.lookup(segment))["a"]
+        with trace.get_tracer(__name__).start_as_current_span(
+            sys._getframe().f_code.co_name
+        ) as _process_api_span:
+            return jsonlib.loads(await self._morphology.lookup(segment))["a"]
 
     async def lookup_lid(self, lid: str) -> dict[str, Any]:
-        return await self._lookup_lid.get_by_lid(lid)
+        with trace.get_tracer(__name__).start_as_current_span(
+            sys._getframe().f_code.co_name
+        ) as _process_api_span:
+            return await self._lookup_lid.get_by_lid(lid)
 
     def lookup_table(self, paradigm: str, word: str) -> list[InflectionTableRow]:
-        return self._inflection_table.query(paradigm, word)
+        with trace.get_tracer(__name__).start_as_current_span(
+            sys._getframe().f_code.co_name
+        ) as _process_api_span:
+            return self._inflection_table.query(paradigm, word)
 
     async def wordforms(self, sense_id: str) -> list:
-        ls = (await self.lookup_lid(sense_id))["l"]
-        ws = []
-        for lemma in ls:
-            ws.extend(await self.generate_wordforms(lemma))
-        return list(set(ws))
+        with trace.get_tracer(__name__).start_as_current_span(
+            sys._getframe().f_code.co_name
+        ) as _process_api_span:
+            ls = (await self.lookup_lid(sense_id))["l"]
+            ws = []
+            for lemma in ls:
+                ws.extend(await self.generate_wordforms(lemma))
+            return list(set(ws))
 
     async def generate_wordforms(self, lemma_id: str):
-        r = await self.lookup_lid(lemma_id)
-        return [
-            w["form"]
-            for w in self.lookup_table(r["p"], r["gf"])
-            if w["msd"] not in ["c", "ci", "cm", "sms"]
-        ]
+        with trace.get_tracer(__name__).start_as_current_span(
+            sys._getframe().f_code.co_name
+        ) as _process_api_span:
+            r = await self.lookup_lid(lemma_id)
+            return [
+                w["form"]
+                for w in self.lookup_table(r["p"], r["gf"])
+                if w["msd"] not in ["c", "ci", "cm", "sms"]
+            ]
 
     async def compound(self, s, n=1):
         with trace.get_tracer(__name__).start_as_current_span(

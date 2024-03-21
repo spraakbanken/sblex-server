@@ -1,6 +1,5 @@
 import logging
 from contextlib import asynccontextmanager
-from typing import Callable
 
 import httpx
 from fastapi import FastAPI
@@ -9,14 +8,6 @@ from sblex.fm.fm_runner import FmRunner
 from sblex.infrastructure.queries import MemLookupLid
 
 logger = logging.getLogger(__name__)
-
-
-def create_start_app_handler(app: FastAPI) -> Callable:
-    def start_app() -> None:
-        load_lookup_lid(app)
-        load_morphology(app)
-
-    return start_app
 
 
 def load_lookup_lid(app: FastAPI) -> None:

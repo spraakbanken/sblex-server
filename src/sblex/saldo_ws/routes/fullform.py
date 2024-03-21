@@ -37,19 +37,22 @@ async def fullform_xml(
     fragment: str,
     morphology: Morphology = Depends(deps.get_morphology),  # noqa: B008
 ):
-    templates = request.app.state.templates
+    with trace.get_tracer(__name__).start_as_current_span(
+        sys._getframe().f_code.co_name
+    ) as _process_api_span:
+        templates = request.app.state.templates
 
-    with PerfMsTracker(scope=request.scope, key="pf_srv"):
-        json_data = jsonlib.loads(await morphology.lookup(fragment))
+        with PerfMsTracker(scope=request.scope, key="pf_srv"):
+            json_data = jsonlib.loads(await morphology.lookup(fragment))
 
-    return templates.TemplateResponse(
-        request=request,
-        name="saldo_fullform.xml",
-        context={
-            "j": json_data,
-        },
-        media_type="application/xml",
-    )
+        return templates.TemplateResponse(
+            request=request,
+            name="saldo_fullform.xml",
+            context={
+                "j": json_data,
+            },
+            media_type="application/xml",
+        )
 
 
 @router.get("/html", response_class=HTMLResponse, name="fullform:ff-html")
@@ -58,28 +61,27 @@ async def fullform_html(
     q: str | None = None,
     morphology: Morphology = Depends(deps.get_morphology),  # noqa: B008
 ):
-    current_span = trace.get_current_span()
-    current_span.set_attribute("scope", str(request.scope))
-
-    templates = request.app.state.templates
-    fragment = q.strip() if q else ""
-    json_data = {}
-    if fragment:
-        json_data = jsonlib.loads(await morphology.lookup(fragment))
-    return templates.TemplateResponse(
-        request=request,
-        name="saldo_fullform.html",
-        context=templating.build_context(
+    with trace.get_tracer(__name__).start_as_current_span(
+        sys._getframe().f_code.co_name
+    ) as _process_api_span:
+        templates = request.app.state.templates
+        fragment = q.strip() if q else ""
+        json_data = {}
+        if fragment:
+            json_data = jsonlib.loads(await morphology.lookup(fragment))
+        return templates.TemplateResponse(
             request=request,
-            title=fragment,
-            service="ff",
-            input=fragment,
-            show_bar=True,
-            segment=fragment,
-            j=json_data,
-            # "content": htmlize(fragment, morphology.lookup(f"0 {fragment}".encode("utf-8")))
-        ),
-    )
+            name="saldo_fullform.html",
+            context=templating.build_context(
+                request=request,
+                title=fragment,
+                service="ff",
+                input=fragment,
+                show_bar=True,
+                segment=fragment,
+                j=json_data,
+            ),
+        )
 
 
 @router.get(
