@@ -13,31 +13,17 @@
     <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
   </head>
   
-  
-    <body>
+  <body>
+    <center>
+      <p>
+        <a href="https://spraakbanken.gu.se/saldo"><img
+            src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
+            alt="SALDO" /></a>
+      </p>
+      <p><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></p>
+    </center>
+    <div id="output_table">
       
-      <center>
-        <p>
-          <a href="https://spraakbanken.gu.se/saldo"><img
-              src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
-              alt="SALDO" /></a>
-        </p>
-  
-        <script>
-          function input_handler(e) {
-            var word = document.getElementById('input').value;
-            if (word.length > 0) {
-              location.href = 'https://spraakbanken.gu.se/ws/saldo-ws//html/' + encodeURIComponent(word);
-            }
-          }
-  
-        </script>
-        <p><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></p>
-        
-      </center>
-  
-      <div id="output_table">
-        
   <center>
       <form action="http://testserver/fl/html" method="get" class="inputclass">
           <input type="search" id="search" class="inputclass" value="" name="segment" size="30"
@@ -47,8 +33,8 @@
       
   </center>
   
-      </div>
-    </body>
+    </div>
+  </body>
   
   </html>
   '''
@@ -67,31 +53,17 @@
     <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
   </head>
   
-  
-    <body>
+  <body>
+    <center>
+      <p>
+        <a href="https://spraakbanken.gu.se/saldo"><img
+            src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
+            alt="SALDO" /></a>
+      </p>
+      <p><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></p>
+    </center>
+    <div id="output_table">
       
-      <center>
-        <p>
-          <a href="https://spraakbanken.gu.se/saldo"><img
-              src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
-              alt="SALDO" /></a>
-        </p>
-  
-        <script>
-          function input_handler(e) {
-            var word = document.getElementById('input').value;
-            if (word.length > 0) {
-              location.href = 'https://spraakbanken.gu.se/ws/saldo-ws//html/' + encodeURIComponent(word);
-            }
-          }
-  
-        </script>
-        <p><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></p>
-        
-      </center>
-  
-      <div id="output_table">
-        
   <center>
       <form action="http://testserver/fl/html" method="get" class="inputclass">
           <input type="search" id="search" class="inputclass" value="" name="segment" size="30"
@@ -101,8 +73,8 @@
       
   </center>
   
-      </div>
-    </body>
+    </div>
+  </body>
   
   </html>
   '''
@@ -121,31 +93,17 @@
     <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
   </head>
   
-  
-    <body>
+  <body>
+    <center>
+      <p>
+        <a href="https://spraakbanken.gu.se/saldo"><img
+            src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
+            alt="SALDO" /></a>
+      </p>
+      <p><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></p>
+    </center>
+    <div id="output_table">
       
-      <center>
-        <p>
-          <a href="https://spraakbanken.gu.se/saldo"><img
-              src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
-              alt="SALDO" /></a>
-        </p>
-  
-        <script>
-          function input_handler(e) {
-            var word = document.getElementById('input').value;
-            if (word.length > 0) {
-              location.href = 'https://spraakbanken.gu.se/ws/saldo-ws//html/' + encodeURIComponent(word);
-            }
-          }
-  
-        </script>
-        <p><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></p>
-        
-      </center>
-  
-      <div id="output_table">
-        
   <center>
       <form action="http://testserver/fl/html" method="get" class="inputclass">
           <input type="search" id="search" class="inputclass" value="dväljas" name="segment" size="30"
@@ -181,8 +139,8 @@
       
   </center>
   
-      </div>
-    </body>
+    </div>
+  </body>
   
   </html>
   '''
@@ -201,31 +159,17 @@
     <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
   </head>
   
-  
-    <body>
+  <body>
+    <center>
+      <p>
+        <a href="https://spraakbanken.gu.se/saldo"><img
+            src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
+            alt="SALDO" /></a>
+      </p>
+      <p><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></p>
+    </center>
+    <div id="output_table">
       
-      <center>
-        <p>
-          <a href="https://spraakbanken.gu.se/saldo"><img
-              src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
-              alt="SALDO" /></a>
-        </p>
-  
-        <script>
-          function input_handler(e) {
-            var word = document.getElementById('input').value;
-            if (word.length > 0) {
-              location.href = 'https://spraakbanken.gu.se/ws/saldo-ws//html/' + encodeURIComponent(word);
-            }
-          }
-  
-        </script>
-        <p><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></p>
-        
-      </center>
-  
-      <div id="output_table">
-        
   <center>
       <form action="http://testserver/fl/html" method="get" class="inputclass">
           <input type="search" id="search" class="inputclass" value="dväljsxdf" name="segment" size="30"
@@ -245,8 +189,8 @@
       
   </center>
   
-      </div>
-    </body>
+    </div>
+  </body>
   
   </html>
   '''

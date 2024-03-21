@@ -7,12 +7,9 @@ from fastapi.templating import Jinja2Templates
 from sblex.saldo_ws import config
 
 
-def build_context(
-    request: Request, *, title: str, service: str, show_bar: bool = False, **kwargs
-) -> dict[str, Any]:
+def build_context(request: Request, *, title: str, **kwargs) -> dict[str, Any]:
     settings: config.Settings = request.app.state.settings
     return {
-        "bar": show_bar,
         "title": title,
         "tracking_base_url": settings.frontend.tracking.matomo_url,
         "tracking_site_id": settings.frontend.tracking.matomo_idsite,

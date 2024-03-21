@@ -73,8 +73,6 @@ async def inflection_table_html(
             context=templating.build_context(
                 request=request,
                 title=title,
-                service="gen",
-                show_bar=False,
                 paradigm=paradigm,
                 word=word,
                 data=data,

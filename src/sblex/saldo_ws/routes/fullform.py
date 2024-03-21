@@ -75,9 +75,7 @@ async def fullform_html(
             context=templating.build_context(
                 request=request,
                 title=fragment,
-                service="ff",
                 input=fragment,
-                show_bar=True,
                 segment=fragment,
                 j=json_data,
             ),
