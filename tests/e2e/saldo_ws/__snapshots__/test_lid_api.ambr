@@ -1,0 +1,307 @@
+# serializer version: 1
+# name: TestLidRoutes.test_graph_valid_input_returns_200[bo..1]
+  '''
+  <!DOCTYPE html>
+  <html>
+  
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
+    <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
+    <title>bo..1</title>
+    
+    <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
+  </head>
+  
+  
+    <body>
+      
+      <center>
+        <p>
+          <a href="https://spraakbanken.gu.se/saldo"><img
+              src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
+              alt="SALDO" /></a>
+        </p>
+  
+        <script>
+          function input_handler(e) {
+            var word = document.getElementById('input').value;
+            if (word.length > 0) {
+              location.href = 'https://spraakbanken.gu.se/ws/saldo-ws//html/' + encodeURIComponent(word);
+            }
+          }
+  
+        </script>
+        <p><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></p>
+        
+      </center>
+  
+      <div id="output_table">
+        
+  <div style="width: 500px; height: 500px;">
+      <script type="text/javascript" src="https://svn.spraakdata.gu.se/repos/sblex/pub/js/protovis-r3.2.js"></script>
+      <script type="text/javascript" src="http://testserver/lid/protojs/bo..1"></script>
+      <script type="text/javascript+protovis">
+  var vis = new pv.Panel()
+      .width(500)
+      .height(500);
+  
+  var tree = vis.add(pv.Layout.Tree)
+      .nodes(pv.dom(flare).root("bo..1").nodes())
+      .depth(150)
+      .breadth(100)
+      .orient("radial");
+  
+  tree.link.add(pv.Line);
+  tree.node.add(pv.Dot)
+      .fillStyle(function(n) n.firstChild ? "#ffffff" : "#ffffff")
+      .size(10)
+      .event("mouseover", function() this.fillStyle("blue"))
+      .event("mouseout", function() this.fillStyle(undefined))
+      .event("click", function(n) {
+      if(n.nodeValue != undefined){
+      document.location.href = n.nodeValue;
+      }
+      else{
+      
+      document.location.href = 'http://testserver/lid/graph/leva..1';
+      
+      }
+      });
+  tree.label.add(pv.Label)
+      .text(function(n) n.nodeName.replace('..1','').replace('..','_'))
+      .font("12px 'Arvo', sans-serif")
+      .events("all")
+      .cursor("hand")
+      .event("click", function(n) {
+      if(n.nodeValue != undefined){
+      document.location.href = n.nodeValue;
+         }
+       else{
+          
+          document.location.href = 'http://testserver/lid/graph/leva..1';
+          
+       }
+       });
+   
+   
+   vis.render();
+      </script>
+  </div>
+  
+      </div>
+    </body>
+  
+  </html>
+  '''
+# ---
+# name: TestLidRoutes.test_html_valid_lemma_returns_200[dv\xe4ljas..vb.1xxxxx..xx.1]
+  '''
+  <!DOCTYPE html>
+  <html>
+  
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
+    <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
+    <title>dväljas..vb.1xxxxx..xx.1</title>
+    
+    <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
+  </head>
+  
+  
+    <body>
+      
+      <center>
+        <p>
+          <a href="https://spraakbanken.gu.se/saldo"><img
+              src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
+              alt="SALDO" /></a>
+        </p>
+  
+        <script>
+          function input_handler(e) {
+            var word = document.getElementById('input').value;
+            if (word.length > 0) {
+              location.href = 'https://spraakbanken.gu.se/ws/saldo-ws//html/' + encodeURIComponent(word);
+            }
+          }
+  
+        </script>
+        <p><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></p>
+        
+      </center>
+  
+      <div id="output_table">
+        
+  <center><p><b>dväljas..vb.1xxxxx..xx.1 finns ej.</b></p></center>
+  
+      </div>
+    </body>
+  
+  </html>
+  '''
+# ---
+# name: TestLidRoutes.test_html_valid_lexeme_returns_200[dv\xe4ljas..1]
+  '''
+  <!DOCTYPE html>
+  <html>
+  
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
+    <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
+    <title>dväljas..1</title>
+    
+    <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
+  </head>
+  
+  
+    <body>
+      
+      <center>
+        <p>
+          <a href="https://spraakbanken.gu.se/saldo"><img
+              src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
+              alt="SALDO" /></a>
+        </p>
+  
+        <script>
+          function input_handler(e) {
+            var word = document.getElementById('input').value;
+            if (word.length > 0) {
+              location.href = 'https://spraakbanken.gu.se/ws/saldo-ws//html/' + encodeURIComponent(word);
+            }
+          }
+  
+        </script>
+        <p><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></p>
+        
+      </center>
+  
+      <div id="output_table">
+        <h1>dväljas</h1>
+  <center>
+      <table border="1">
+          <tr>
+              <td style="text-align:center;">⇧[2]</td>
+              <td><a href="http://testserver/lid/html/bo..1">bo</a></td>
+              <td style="text-align:center;">↑</td>
+              <td><a href="http://testserver/lid/html/PRIM..1">PRIM</a></td>
+          </tr>
+      </table>
+      <p><a href="http://testserver/lid/html/dväljas..vb.1">dväljas (vb)</a><br /> <a href="http://testserver/lid/graph/dväljas..1"><img
+          src="https://svn.spraakdata.gu.se/repos/sblex/pub/images/prim_graph.png" /></a> <br /> <a href="http://spraakbanken.gu.se/korp/#search=lemgram|dväljas..vb.1">[korpus]</a></p>
+      <table border="1">
+          <tr>
+              <td style="vertical-align:top;text-align:center;">⇩</td>
+              <td style="vertical-align:top;">*</td>
+              <td style="vertical-align:top;text-align:center;">↓</td>
+              <td style="vertical-align:top;">*</td>
+          </tr>
+      </table>
+  </center>
+      </div>
+    </body>
+  
+  </html>
+  '''
+# ---
+# name: TestLidRoutes.test_html_valid_lexeme_returns_200[xxxxx..1]
+  '''
+  <!DOCTYPE html>
+  <html>
+  
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
+    <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
+    <title>xxxxx..1</title>
+    
+    <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
+  </head>
+  
+  
+    <body>
+      
+      <center>
+        <p>
+          <a href="https://spraakbanken.gu.se/saldo"><img
+              src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
+              alt="SALDO" /></a>
+        </p>
+  
+        <script>
+          function input_handler(e) {
+            var word = document.getElementById('input').value;
+            if (word.length > 0) {
+              location.href = 'https://spraakbanken.gu.se/ws/saldo-ws//html/' + encodeURIComponent(word);
+            }
+          }
+  
+        </script>
+        <p><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></p>
+        
+      </center>
+  
+      <div id="output_table">
+        
+  <center>xxxxx..1 finns ej.</center>
+  
+      </div>
+    </body>
+  
+  </html>
+  '''
+# ---
+# name: TestLidRoutes.test_protojs_valid_input_returns_200[bo..1]
+  '''
+  var flare = {
+   'dväljas..1': 'http://testserver/lid/graph/dväljas..1', 
+  }
+  '''
+# ---
+# name: TestLidRoutes.test_xml_valid_input_returns_200[dv\xe4ljas..1]
+  '''
+  <?xml version="1.0" encoding="UTF-8"?>
+  <result>
+  <lex>dväljas..1</lex>
+      <fm>bo..1</fm>
+      <fp>PRIM..1</fp>
+      <mfs></mfs>
+      <pfs></pfs>
+      <ls>
+      <l>dväljas..vb.1</l>
+      </ls>
+  </result>
+  '''
+# ---
+# name: TestLidRoutes.test_xml_valid_input_returns_200[dv\xe4ljas..vb.1]
+  '''
+  <?xml version="1.0" encoding="UTF-8"?>
+  <result>
+  <gf>dväljas</gf>
+      <p>vb_vs_dväljas</p>
+      <ls>
+      <l>dväljas..1</l>
+      </ls>
+  
+  </result>
+  '''
+# ---
+# name: TestLidRoutes.test_xml_valid_input_returns_200[xxxxx..1]
+  '''
+  <?xml version="1.0" encoding="UTF-8"?>
+  <result>
+  
+  </result>
+  '''
+# ---
+# name: TestLidRoutes.test_xml_valid_input_returns_200[xxxxx..xx.1]
+  '''
+  <?xml version="1.0" encoding="UTF-8"?>
+  <result>
+  
+  </result>
+  '''
+# ---

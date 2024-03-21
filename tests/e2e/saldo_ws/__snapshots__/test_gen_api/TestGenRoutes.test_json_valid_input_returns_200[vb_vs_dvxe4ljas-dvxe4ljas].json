@@ -1,0 +1,74 @@
+[
+  {
+    "form": "dväljes",
+    "gf": "dväljas",
+    "inhs": [],
+    "msd": "pres ind s-form",
+    "p": "vb_vs_dväljas",
+    "pos": "vb"
+  },
+  {
+    "form": "dväljs",
+    "gf": "dväljas",
+    "inhs": [],
+    "msd": "pres ind s-form",
+    "p": "vb_vs_dväljas",
+    "pos": "vb"
+  },
+  {
+    "form": "dvaldes",
+    "gf": "dväljas",
+    "inhs": [],
+    "msd": "pret ind s-form",
+    "p": "vb_vs_dväljas",
+    "pos": "vb"
+  },
+  {
+    "form": "dväljdes",
+    "gf": "dväljas",
+    "inhs": [],
+    "msd": "pret ind s-form",
+    "p": "vb_vs_dväljas",
+    "pos": "vb"
+  },
+  {
+    "form": "dväljes",
+    "gf": "dväljas",
+    "inhs": [],
+    "msd": "imper",
+    "p": "vb_vs_dväljas",
+    "pos": "vb"
+  },
+  {
+    "form": "dväljs",
+    "gf": "dväljas",
+    "inhs": [],
+    "msd": "imper",
+    "p": "vb_vs_dväljas",
+    "pos": "vb"
+  },
+  {
+    "form": "dväljas",
+    "gf": "dväljas",
+    "inhs": [],
+    "msd": "inf s-form",
+    "p": "vb_vs_dväljas",
+    "pos": "vb"
+  },
+  {
+    "form": "dvalts",
+    "gf": "dväljas",
+    "inhs": [],
+    "msd": "sup s-form",
+    "p": "vb_vs_dväljas",
+    "pos": "vb"
+  },
+  {
+    "form": "dvälts",
+    "gf": "dväljas",
+    "inhs": [],
+    "msd": "sup s-form",
+    "p": "vb_vs_dväljas",
+    "pos": "vb"
+  }
+]

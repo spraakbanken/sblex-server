@@ -1,0 +1,222 @@
+# serializer version: 1
+# name: TestGenRoutes.test_html_valid_lemma_returns_200[vb_vs_dv\xe4ljas-dv\xe4ljas]
+  '''
+  <!DOCTYPE html>
+  <html>
+  
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
+    <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
+    <title>vb_vs_dväljas &#34;dväljas&#34;</title>
+    
+    <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
+  </head>
+  
+  
+    <body>
+      
+      <center>
+        <p>
+          <a href="https://spraakbanken.gu.se/saldo"><img
+              src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
+              alt="SALDO" /></a>
+        </p>
+  
+        <script>
+          function input_handler(e) {
+            var word = document.getElementById('input').value;
+            if (word.length > 0) {
+              location.href = 'https://spraakbanken.gu.se/ws/saldo-ws//html/' + encodeURIComponent(word);
+            }
+          }
+  
+        </script>
+        <p><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></p>
+        
+      </center>
+  
+      <div id="output_table">
+        
+  <center>
+      
+      <table border="1">
+          <tr>
+              <td><b>grundform</b></td>
+              <td>dväljas</td>
+          </tr>
+          <tr>
+              <td><b>mönster</b></td>
+              <td>vb_vs_dväljas</td>
+          </tr>
+          <tr>
+              <td><b>ordklass</b></td>
+              <td>vb</td>
+          </tr>
+          
+          <tr>
+              <td colspan="2" style="text-align:center;"><b>böjningstabell</b></td>
+  
+          </tr>
+          
+          <tr>
+              <td><i>pres ind s-form</i></td>
+              <td>dväljs/dväljes</td>
+          </tr>
+          
+          <tr>
+              <td><i>pret ind s-form</i></td>
+              <td>dväljdes/dvaldes</td>
+          </tr>
+          
+          <tr>
+              <td><i>imper</i></td>
+              <td>dväljs/dväljes</td>
+          </tr>
+          
+          <tr>
+              <td><i>inf s-form</i></td>
+              <td>dväljas</td>
+          </tr>
+          
+          <tr>
+              <td><i>sup s-form</i></td>
+              <td>dvälts/dvalts</td>
+          </tr>
+          
+      </table>
+      
+  </center>
+  
+      </div>
+    </body>
+  
+  </html>
+  '''
+# ---
+# name: TestGenRoutes.test_html_valid_lemma_returns_200[xx_xx_xxx-xxx]
+  '''
+  <!DOCTYPE html>
+  <html>
+  
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
+    <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
+    <title>xx_xx_xxx &#34;xxx&#34;</title>
+    
+    <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
+  </head>
+  
+  
+    <body>
+      
+      <center>
+        <p>
+          <a href="https://spraakbanken.gu.se/saldo"><img
+              src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
+              alt="SALDO" /></a>
+        </p>
+  
+        <script>
+          function input_handler(e) {
+            var word = document.getElementById('input').value;
+            if (word.length > 0) {
+              location.href = 'https://spraakbanken.gu.se/ws/saldo-ws//html/' + encodeURIComponent(word);
+            }
+          }
+  
+        </script>
+        <p><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></p>
+        
+      </center>
+  
+      <div id="output_table">
+        
+  <center>
+      
+      <p>paradigm 'xx_xx_xxx' finns ej.</p>
+      
+  </center>
+  
+      </div>
+    </body>
+  
+  </html>
+  '''
+# ---
+# name: TestGenRoutes.test_xml_valid_input_returns_200[vb_vs_dv\xe4ljas-dv\xe4ljas]
+  '''
+  <?xml version="1.0" encoding="UTF-8"?>
+  <result><table><w>
+              <form>dväljes</form>
+              <gf>dväljas</gf>
+              <pos>vb</pos>
+              <inhs></inhs>
+              <msd>pres ind s-form</msd>
+              <p>vb_vs_dväljas</p>
+          </w><w>
+              <form>dväljs</form>
+              <gf>dväljas</gf>
+              <pos>vb</pos>
+              <inhs></inhs>
+              <msd>pres ind s-form</msd>
+              <p>vb_vs_dväljas</p>
+          </w><w>
+              <form>dvaldes</form>
+              <gf>dväljas</gf>
+              <pos>vb</pos>
+              <inhs></inhs>
+              <msd>pret ind s-form</msd>
+              <p>vb_vs_dväljas</p>
+          </w><w>
+              <form>dväljdes</form>
+              <gf>dväljas</gf>
+              <pos>vb</pos>
+              <inhs></inhs>
+              <msd>pret ind s-form</msd>
+              <p>vb_vs_dväljas</p>
+          </w><w>
+              <form>dväljes</form>
+              <gf>dväljas</gf>
+              <pos>vb</pos>
+              <inhs></inhs>
+              <msd>imper</msd>
+              <p>vb_vs_dväljas</p>
+          </w><w>
+              <form>dväljs</form>
+              <gf>dväljas</gf>
+              <pos>vb</pos>
+              <inhs></inhs>
+              <msd>imper</msd>
+              <p>vb_vs_dväljas</p>
+          </w><w>
+              <form>dväljas</form>
+              <gf>dväljas</gf>
+              <pos>vb</pos>
+              <inhs></inhs>
+              <msd>inf s-form</msd>
+              <p>vb_vs_dväljas</p>
+          </w><w>
+              <form>dvalts</form>
+              <gf>dväljas</gf>
+              <pos>vb</pos>
+              <inhs></inhs>
+              <msd>sup s-form</msd>
+              <p>vb_vs_dväljas</p>
+          </w><w>
+              <form>dvälts</form>
+              <gf>dväljas</gf>
+              <pos>vb</pos>
+              <inhs></inhs>
+              <msd>sup s-form</msd>
+              <p>vb_vs_dväljas</p>
+          </w></table></result>
+  '''
+# ---
+# name: TestGenRoutes.test_xml_valid_input_returns_200[xx_xx_xxx-xxx]
+  '''
+  <?xml version="1.0" encoding="UTF-8"?>
+  <result></result>
+  '''
+# ---

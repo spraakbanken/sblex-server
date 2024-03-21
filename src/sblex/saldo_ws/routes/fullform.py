@@ -58,14 +58,14 @@ async def fullform_xml(
 @router.get("/html", response_class=HTMLResponse, name="fullform:ff-html")
 async def fullform_html(
     request: Request,
-    q: str | None = None,
+    fragment: str | None = None,
     morphology: Morphology = Depends(deps.get_morphology),  # noqa: B008
 ):
     with trace.get_tracer(__name__).start_as_current_span(
         sys._getframe().f_code.co_name
     ) as _process_api_span:
         templates = request.app.state.templates
-        fragment = q.strip() if q else ""
+        fragment = fragment.strip() if fragment else ""
         json_data = {}
         if fragment:
             json_data = jsonlib.loads(await morphology.lookup(fragment))
@@ -92,5 +92,5 @@ async def fullform_html_orig(
     request: Request,
     fragment: str,
 ):
-    redirect_url = request.url_for("fullform:ff-html").include_query_params(q=fragment)
+    redirect_url = request.url_for("fullform:ff-html").include_query_params(fragment=fragment)
     return RedirectResponse(redirect_url)

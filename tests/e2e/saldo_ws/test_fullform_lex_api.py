@@ -4,93 +4,36 @@ from httpx import AsyncClient
 
 
 class TestFullformLexRoutes:
-    @pytest.mark.parametrize(
-        "segment, expected_response",
-        [
-            ("t", []),
-            (
-                "dväljs",
-                [
-                    {
-                        "id": "dväljas..1",
-                        "fm": "bo..1",
-                        "fp": "PRIM..1",
-                        "l": "dväljas..vb.1",
-                        "gf": "dväljas",
-                        "p": "vb_vs_dväljas",
-                    }
-                ],
-            ),
-        ],
-    )
+    @pytest.mark.parametrize("segment", ["t", "dväljs"])
     @pytest.mark.asyncio
     async def test_json_valid_input_returns_200(
-        self,
-        client: AsyncClient,
-        segment: str,
-        expected_response: list,
+        self, client: AsyncClient, segment: str, snapshot_json
     ) -> None:
         res = await client.get(f"/fl/json/{segment}")
         assert res.status_code == status.HTTP_200_OK
-        assert res.headers["content-type"] == "application/json"
+        assert res.json() == snapshot_json
 
-        assert res.json() == expected_response
-
-    @pytest.mark.parametrize(
-        "segment, expected_response",
-        [
-            ("t", '<?xml version="1.0" encoding="UTF-8"?>\n<result>\n\n</result>'),
-            (
-                "dväljs",
-                '<?xml version="1.0" encoding="UTF-8"?>\n<result>\n<a><id>dväljas..1</id><fm>bo..1</fm><fp>PRIM..1</fp><l>dväljas..vb.1</l><gf>dväljas</gf><p>vb_vs_dväljas</p></a>\n</result>',  # noqa: E501
-            ),
-        ],
-    )
+    @pytest.mark.parametrize("segment", ["t", "dväljs"])
     @pytest.mark.asyncio
     async def test_xml_valid_input_returns_200(
-        self,
-        client: AsyncClient,
-        segment: str,
-        expected_response: str,
+        self, client: AsyncClient, segment: str, snapshot
     ) -> None:
         res = await client.get(f"/fl/xml/{segment}")
         assert res.status_code == status.HTTP_200_OK
         assert res.headers["content-type"] == "application/xml"
+        assert res.text == snapshot
 
-        assert res.text == expected_response
-
-    @pytest.mark.parametrize(
-        "segment, expected_in_responses",
-        [
-            ("", ["Skriv in en ordform"]),
-            (" ", ["Skriv in en ordform"]),
-            ("dväljas", ["dväljas..vb.1", "bo..1"]),
-            ("dväljsxdf", ["ordet saknas i lexikonet"]),
-        ],
-    )
+    @pytest.mark.parametrize("segment", ["", " ", "dväljas", "dväljsxdf"])
     @pytest.mark.asyncio
     async def test_html_valid_input_returns_200(
-        self,
-        client: AsyncClient,
-        segment: str,
-        expected_in_responses: str,
+        self, client: AsyncClient, segment: str, snapshot
     ) -> None:
         res = await client.get(f"/fl/html?segment={segment}")
         assert res.status_code == status.HTTP_200_OK
         assert res.headers["content-type"] == "text/html; charset=utf-8"
+        assert res.text == snapshot
 
-        for expected_in_response in expected_in_responses:
-            assert expected_in_response in res.text
-
-    @pytest.mark.parametrize(
-        "segment",
-        [
-            "",
-            " ",
-            "dväljs",
-            "dväljsxdf",
-        ],
-    )
+    @pytest.mark.parametrize("segment", ["", " ", "dväljas", "dväljsxdf"])
     @pytest.mark.asyncio
     async def test_html_orig_valid_input_returns_307(
         self,
