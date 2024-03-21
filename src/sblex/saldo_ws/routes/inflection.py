@@ -15,7 +15,6 @@ router = APIRouter()
 @router.get(
     "/json/{paradigm}/{word}",
     response_model=list[schemas.InflectionRow],
-    response_class=ORJSONResponse,
     name="inflections:gen-json",
 )
 async def inflection_table_json(
@@ -29,10 +28,7 @@ async def inflection_table_json(
         return ORJSONResponse(inflection_table_query.query(paradigm, word))
 
 
-@router.get(
-    "/xml/{paradigm}/{word}",
-    name="inflections:gen-json",
-)
+@router.get("/xml/{paradigm}/{word}", name="inflections:gen-xml", response_class=XMLResponse)
 async def inflection_table_xml(
     request: Request,
     paradigm: str,
@@ -52,12 +48,7 @@ async def inflection_table_xml(
         )
 
 
-@router.get(
-    "/html/{paradigm}/{word}",
-    response_model=list[schemas.InflectionRow],
-    response_class=ORJSONResponse,
-    name="inflections:gen-html",
-)
+@router.get("/html/{paradigm}/{word}", name="inflections:gen-html", response_class=HTMLResponse)
 async def inflection_table_html(
     request: Request,
     paradigm: str,
