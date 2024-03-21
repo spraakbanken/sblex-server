@@ -75,8 +75,6 @@ async def fullform_lex_html(
             context=templating.build_context(
                 request=request,
                 title=segment,
-                show_bar=False,
-                service="fl",
                 input=segment,
                 segment=segment,
                 j=json_data,

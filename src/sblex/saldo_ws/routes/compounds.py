@@ -82,8 +82,6 @@ async def get_compound_html(
             context=templating.build_context(
                 request,
                 title=f"Sammansättningsanalys för '{segment}' [Avstängd]",
-                service="",
-                show_bar=False,
                 segment=segment,
                 # j=segment_compounds,
                 reason_swe="Tjänsten är stängd på grund av prestandaproblem.",
