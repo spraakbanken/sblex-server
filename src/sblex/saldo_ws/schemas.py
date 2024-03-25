@@ -45,3 +45,7 @@ class LidLemma(BaseModel):
     l: list[Lexeme]  # noqa: E741
     lex: Lexeme
     p: str
+
+
+class Message(BaseModel):
+    message: str

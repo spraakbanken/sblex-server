@@ -1,6 +1,6 @@
 import logging
 
-from sblex.application.queries import FullformLexQuery
+from sblex.application.queries import FullformLex, FullformLexQuery
 from sblex.application.services import LookupService
 
 logger = logging.getLogger(__name__)
@@ -10,7 +10,7 @@ class LookupFullformLexQuery(FullformLexQuery):
     def __init__(self, lookup_service: LookupService) -> None:
         self.lookup_service = lookup_service
 
-    async def query(self, segment: str) -> list[dict]:
+    async def query(self, segment: str) -> list[FullformLex]:
         result = []
         lemmas = {
             (x["id"], x["gf"], x["p"])

@@ -12,7 +12,9 @@ router = APIRouter()
 
 
 @router.get(
-    "/json/{segment}", response_class=ORJSONResponse, response_model=list[schemas.FullformLex]
+    "/json/{segment}",
+    response_model=list[schemas.FullformLex],
+    responses={404: {"model": schemas.Message}},
 )
 async def fullform_lex_json(
     request: Request,
@@ -26,6 +28,11 @@ async def fullform_lex_json(
     ) as _process_api_span:
         with PerfMsTracker(scope=request.scope, key="pf_srv"):
             segment_fullform = await fullform_lex_query.query(segment=segment)
+        if len(segment_fullform) == 0:
+            return ORJSONResponse(
+                status_code=status.HTTP_404_NOT_FOUND,
+                content={"message": f"'{segment}' saknas i lexikonet"},
+            )
         return ORJSONResponse(segment_fullform)
 
 
