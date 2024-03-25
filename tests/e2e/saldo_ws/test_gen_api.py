@@ -14,6 +14,16 @@ class TestGenRoutes:
         assert res.status_code == status.HTTP_200_OK
         assert res.json() == snapshot_json
 
+    @pytest.mark.parametrize("paradigm, word", [("xx_vs_dväljas", "dväljas")])
+    @pytest.mark.asyncio
+    async def test_json_missing_returns_404(
+        self, client: AsyncClient, paradigm: str, word: str, snapshot_json
+    ) -> None:
+        res = await client.get(f"/gen/json/{paradigm}/{word}")
+
+        assert res.status_code == status.HTTP_404_NOT_FOUND
+        assert res.json() == snapshot_json
+
     @pytest.mark.parametrize(
         "paradigm, word", [("xx_xx_xxx", "xxx"), ("vb_vs_dväljas", "dväljas")]
     )

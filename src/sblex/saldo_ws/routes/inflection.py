@@ -1,6 +1,6 @@
 import sys
 
-from fastapi import APIRouter, Depends, Request
+from fastapi import APIRouter, Depends, Request, status
 from fastapi.responses import HTMLResponse, ORJSONResponse
 from opentelemetry import trace
 from pydantic.dataclasses import dataclass
@@ -14,8 +14,9 @@ router = APIRouter()
 
 @router.get(
     "/json/{paradigm}/{word}",
-    response_model=list[schemas.InflectionRow],
     name="inflections:gen-json",
+    response_model=list[schemas.InflectionRow],
+    responses={404: {"model": schemas.Message}},
 )
 async def inflection_table_json(
     paradigm: str,
@@ -25,7 +26,13 @@ async def inflection_table_json(
     with trace.get_tracer(__name__).start_as_current_span(
         sys._getframe().f_code.co_name
     ) as _process_api_span:
-        return ORJSONResponse(inflection_table_query.query(paradigm, word))
+        inflections = inflection_table_query.query(paradigm, word)
+        if len(inflections) == 0:
+            return ORJSONResponse(
+                status_code=status.HTTP_404_NOT_FOUND,
+                content={"message": f"paradigm '{paradigm}' finns ej"},
+            )
+        return ORJSONResponse(inflections)
 
 
 @router.get("/xml/{paradigm}/{word}", name="inflections:gen-xml", response_class=XMLResponse)
