@@ -20,3 +20,9 @@ async def test_version(client: AsyncClient, snapshot_json) -> None:
 async def test_version_json(client: AsyncClient, snapshot) -> None:
     response = await client.get("/version/json")
     assert response == snapshot
+
+
+@pytest.mark.asyncio
+async def test_static_saldo_css(client: AsyncClient) -> None:
+    response = await client.get("/static/saldo.css")
+    assert response.status_code == status.HTTP_200_OK
