@@ -11,7 +11,7 @@ class LookupFullformLexQuery(FullformLexQuery):
         self.lookup_service = lookup_service
 
     async def query(self, segment: str) -> list[FullformLex]:
-        result = []
+        result: list[FullformLex] = []
         lemmas = {
             (x["id"], x["gf"], x["p"])
             for x in await self.lookup_service.lookup_ff(segment)
