@@ -23,6 +23,7 @@ router = APIRouter()
     "/json/{lid}",
     name="lids:lid-json",
     response_model=Union[schemas.LidLemma, schemas.LidLexeme],
+    responses={404: {"model": schemas.Message}, 422: {"model": schemas.Message}},
 )
 async def lookup_lid_json(
     request: Request,
@@ -39,12 +40,18 @@ async def lookup_lid_json(
         sys._getframe().f_code.co_name
     ) as _process_api_span:
         if not is_lemma(lid) and not is_lexeme(lid):
-            return JSONResponse(
+            return ORJSONResponse(
                 status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-                content={"error": f"{lid} is neither a lemma or a lexeme"},
+                content={"message": f"{lid} is neither a lemma or a lexeme"},
             )
         with PerfMsTracker(scope=request.scope, key="pf_srv"):
-            lemma_or_lexeme = await lookup_service.lookup_lid(lid)
+            try:
+                lemma_or_lexeme = await lookup_service.lookup_lid(lid)
+            except (LexemeNotFound, LemmaNotFound):
+                return ORJSONResponse(
+                    status_code=status.HTTP_404_NOT_FOUND,
+                    content={"message": f"'{lid}' finns ej"},
+                )
             if lid == "rnd":
                 lemma_or_lexeme["fs"] = await lookup_service.wordforms(lemma_or_lexeme["lex"])
         return ORJSONResponse(lemma_or_lexeme)
@@ -69,9 +76,7 @@ async def lookup_lid_xml(
         try:
             with PerfMsTracker(scope=request.scope, key="pf_srv"):
                 lemma_or_lexeme = await lookup_lid.get_by_lid(lid)
-        except LemmaNotFound:
-            lemma_or_lexeme = {}
-        except LexemeNotFound:
+        except (LemmaNotFound, LexemeNotFound):
             lemma_or_lexeme = {}
 
         # if isinstance(lid, Lemma):

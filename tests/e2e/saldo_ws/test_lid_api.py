@@ -19,6 +19,15 @@ class TestLidRoutes:
         assert res.status_code == status.HTTP_200_OK
         assert res.json() == snapshot_json
 
+    @pytest.mark.parametrize("lid", ["qt..vb.1", "qt..1"])
+    @pytest.mark.asyncio
+    async def test_json_missing_returns_404(
+        self, client: AsyncClient, lid: str, snapshot_json
+    ) -> None:
+        res = await client.get(f"/lid/json/{lid}")
+        assert res.status_code == status.HTTP_404_NOT_FOUND
+        assert res.json() == snapshot_json
+
     @pytest.mark.asyncio
     async def test_json_rnd_returns_200(
         self,
