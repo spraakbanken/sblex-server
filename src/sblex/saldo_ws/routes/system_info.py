@@ -8,8 +8,8 @@ from sblex.saldo_ws import schemas
 router = APIRouter()
 
 
-__version__ = "0.3.0-dev210"
-__date__ = "2023-05-10"
+__version__ = "0.3.0-dev211"
+__date__ = "2024-03-27"
 
 
 @router.get("/version", response_model=schemas.Version, name="system_info:version")

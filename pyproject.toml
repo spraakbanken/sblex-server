@@ -1,6 +1,6 @@
 [project]
 name = "sblex-server"
-version = "0.3.0-dev210"
+version = "0.3.0-dev211"
 description = "Saldo-WS-server && Dalin-WS-server"
 authors = [
     { name = "Kristoffer Andersson", email = "kristoffer.andersson@gu.se" },
