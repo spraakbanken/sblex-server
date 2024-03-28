@@ -148,6 +148,10 @@ prepare-release: tests/requirements-testing.lock
 tests/requirements-testing.lock: pyproject.toml
 	pdm export --dev --format requirements --output $@
 
+.PHONY: CHANGELOG.md
+CHANGELOG.md:
+	git cliff --unreleased --prepend $@
+
 serve-dev:
 	${INVENV} watchfiles "uvicorn --port 8000 sblex.saldo_ws.main:app" src
 
