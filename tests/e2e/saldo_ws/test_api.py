@@ -1,19 +1,16 @@
 import pytest
 from fastapi import status
 from httpx import AsyncClient
-from syrupy.extensions.json import JSONSnapshotExtension
-
-
-@pytest.fixture
-def snapshot_json(snapshot):
-    return snapshot.with_defaults(extension_class=JSONSnapshotExtension)
+from syrupy.matchers import path_type
 
 
 @pytest.mark.asyncio
 async def test_version(client: AsyncClient, snapshot_json) -> None:
     response = await client.get("/version")
     assert response.status_code == status.HTTP_200_OK
-    assert response.json() == snapshot_json
+    assert response.json() == snapshot_json(
+        matcher=path_type({"version": (str,), "date": (str,)})
+    )
 
 
 @pytest.mark.asyncio

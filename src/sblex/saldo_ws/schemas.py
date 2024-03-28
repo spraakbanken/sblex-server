@@ -25,7 +25,8 @@ class InflectionRow(BaseModel):
 
 
 class Version(BaseModel):
-    version: Annotated[str, StringConstraints(pattern=r"\d+\.\d+\.\d+")]
+    version: Annotated[str, StringConstraints(pattern=r"\d+\.\d+\.\d+(-\w+\d+)?")]
+    date: Annotated[str, StringConstraints(pattern=r"\d{4}-\d{2}-\d{2}")]
 
 
 class LidLexeme(BaseModel):
