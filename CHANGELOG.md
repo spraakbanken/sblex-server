@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [unreleased]
+
+### 🐛 Bug Fixes
+
+- Add date to version api
+
+### ⚙️ Miscellaneous Tasks
+
+- Add git-cliff config
+
 ## [0.3.0-dev209] - 2024-03-27
 
 ### 🚀 Features
