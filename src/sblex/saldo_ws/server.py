@@ -27,7 +27,7 @@ def create_saldo_ws_server(*, settings: config.Settings) -> FastAPI:
     webapp = FastAPI(
         title="Saldo WS",
         version=main.get_version(),
-        openapi_url=f"{settings.app.root_path}/openapi.json",
+        # openapi_url=f"{settings.app.root_path}/openapi.json",
         docs_url=None,
         redoc_url="/",
         root_path=settings.app.root_path,
