@@ -4,12 +4,9 @@ from fastapi import APIRouter, Request, status
 from fastapi.responses import RedirectResponse
 from opentelemetry import trace
 from sblex.saldo_ws import schemas
+from sblex.saldo_ws.shared import version_info
 
 router = APIRouter()
-
-
-__version__ = "0.3.1-dev1"
-__date__ = "2024-03-28"
 
 
 @router.get("/version", response_model=schemas.Version, name="system_info:version")
@@ -17,7 +14,7 @@ async def get_version():
     with trace.get_tracer(__name__).start_as_current_span(
         sys._getframe().f_code.co_name
     ) as _process_api_span:
-        return {"version": __version__, "date": __date__}
+        return {"version": version_info.get_version(), "date": version_info.get_build_date()}
 
 
 @router.get("/version/json")
