@@ -1,23 +1,33 @@
+import typing
 from pathlib import Path
-from typing import Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from sblex.telemetry.settings import OTelSettings
+from typing_extensions import Self
 
 
 class AppSettings(BaseModel):
-    base_url: Optional[str] = None
+    base_url: typing.Optional[str] = None
     root_path: str = ""
     template_directory: str = "templates"
     # model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
 
 class MatomoSettings(BaseModel):
-    matomo_url: Optional[str] = None
-    matomo_idsite: Optional[int] = None
-    matomo_token: Optional[str] = None
+    matomo_url: typing.Optional[str] = None
+    matomo_idsite: typing.Optional[int] = None
+    matomo_token: typing.Optional[str] = None
     # model_config = SettingsConfigDict(env_file=".env", extra="ignore", env_prefix="TRACKING_")
+
+    @model_validator(mode="after")
+    def check_idsite_is_set_if_url_is_set(self) -> Self:
+        url = self.matomo_url
+        idsite = self.matomo_idsite
+
+        if url is not None and (idsite is None or not isinstance(idsite, int)):
+            raise ValueError(f"MATOMO_IDSITE must be an INT, got: '{idsite}' ({type(idsite)})")
+        return self
 
 
 class FrontendSettings(BaseModel):

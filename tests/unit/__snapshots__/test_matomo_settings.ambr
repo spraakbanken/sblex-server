@@ -1,0 +1,8 @@
+# serializer version: 1
+# name: TestMatomoSettings.test_url_without_idsite_raises_value_error
+  '''
+  <ExceptionInfo 1 validation error for MatomoSettings
+    Value error, MATOMO_IDSITE must be an INT, got: 'None' (<class 'NoneType'>) [t...'http://example.com'}, input_type=dict]
+      For further information visit https://errors.pydantic.dev/2.6/v/value_error tblen=2>
+  '''
+# ---
