@@ -8,8 +8,9 @@ from fastapi.responses import ORJSONResponse
 from fastapi.staticfiles import StaticFiles
 from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
 from opentelemetry.instrumentation.httpx import HTTPXClientInstrumentor
-from sblex import main, telemetry
+from sblex import telemetry
 from sblex.saldo_ws import config, routes, tasks, templating
+from sblex.saldo_ws.shared import version_info
 
 logger = logging.getLogger(__name__)
 
@@ -26,8 +27,8 @@ def create_saldo_ws_server(*, settings: config.Settings) -> FastAPI:
     logger.debug("creating app")
     webapp = FastAPI(
         title="Saldo WS",
-        version=main.get_version(),
-        openapi_url=f"{settings.app.root_path}/openapi.json",
+        version=version_info.get_version(),
+        # openapi_url=f"{settings.app.root_path}/openapi.json",
         docs_url=None,
         redoc_url="/",
         root_path=settings.app.root_path,

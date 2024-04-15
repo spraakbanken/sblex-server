@@ -33,13 +33,13 @@ search = 'version = "{current_version}"'
 replace = 'version = "{new_version}"'
 
 [[tool.bumpversion.files]]
-filename = "src/sblex/saldo_ws/routes/system_info.py"
+filename = "src/sblex/saldo_ws/shared/version_info.py"
 search = "__date__ = \"\\d{{4}}-\\d{{2}}-\\d{{2}}\""
 replace = "__date__ = \"{now:%Y-%m-%d}\""
 regex = true
 
 [[tool.bumpversion.files]]
-filename = "src/sblex/saldo_ws/routes/system_info.py"
+filename = "src/sblex/saldo_ws/shared/version_info.py"
 search = '__version__ = "{current_version}"'
 replace = '__version__ = "{new_version}"'
 
