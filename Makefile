@@ -15,7 +15,7 @@ help:
 	@echo "usage:"
 	@echo "dev | install-dev"
 	@echo "   setup development environment"
-	@echo "install"
+	@echo "install | sync"
 	@echo "   setup production environment"
 	@echo ""
 	@echo "info"
@@ -83,7 +83,10 @@ dev: install-dev
 
 # setup development environment
 install-dev:
-	pdm install --dev
+	pdm sync --dev
+
+# setup production environment
+sync: install
 
 # setup production environment
 install:
