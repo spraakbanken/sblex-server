@@ -1,0 +1,4 @@
+# serializer version: 1
+# name: TestMatomoSettings.test_url_without_idsite_raises_value_error
+  "Value error, MATOMO_IDSITE must be an INT, got: 'None' (<class 'NoneType'>)"
+# ---
