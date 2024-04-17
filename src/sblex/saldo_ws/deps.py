@@ -2,11 +2,13 @@ import httpx
 from fastapi import Depends, Request
 from sblex.application.queries import FullformLexQuery, LookupLid
 from sblex.application.queries.inflection import InflectionTableQuery
+from sblex.application.queries.paradigms import Paradigms
 from sblex.application.services import LookupService
 from sblex.fm import Morphology
 from sblex.fm.fm_runner import FmRunner
 from sblex.infrastructure.queries import LookupFullformLexQuery
 from sblex.infrastructure.queries.fm_runner_inflection import FmRunnerInflectionTable
+from sblex.infrastructure.queries.fm_runner_paradigms import FmRunnerParadigms
 from sblex.infrastructure.queries.http_morpology import HttpMorphology
 
 
@@ -48,3 +50,7 @@ def get_fullform_lex_query(
     lookup_service: LookupService = Depends(get_lookup_service),  # noqa: B008
 ) -> FullformLexQuery:
     return LookupFullformLexQuery(lookup_service=lookup_service)
+
+
+def get_paradigms(fm_runner: FmRunner = Depends(get_fm_runner)) -> Paradigms:  # noqa: B008
+    return FmRunnerParadigms(fm_runner=fm_runner)
