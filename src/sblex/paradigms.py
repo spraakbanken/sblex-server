@@ -1,9 +1,5 @@
 import utf8
-import os
-import codecs
 from mod_python import apache
-from mod_python import util
-import popen2
 import cjson
 import saldo_util
 
@@ -28,26 +24,15 @@ def function(format, s):
             ),
             apache.OK,
         )
-    n = xs[0].find(":")
-    w1 = xs[0][0:n].strip()
-    w = w1.decode("UTF-8")
-    w2 = xs[0][n + 1 :].strip()
-    xs[0] = "%s:%s" % (w1, w2)
-    words = ",".join(xs)
-    saldo = 'export LC_ALL="sv_SE.UTF-8";/home/markus/fm/sblex/bin/saldo -f'
-    fin, fout = popen2.popen2(saldo)
-    fout.write(words)
-    fout.close()
+
     result = ""
-    for line in fin.readlines():
-        result += line
+
     if result.strip() == "":
         result = "[]"
     j = cjson.decode(utf8.d(result))
     if format == "html":
         result = htmlize(j, w, s)
-    if format == "json":
-        result = result
+
     elif format == "xml":
         result = xmlize(j).encode("UTF-8")
     result_code = apache.OK
