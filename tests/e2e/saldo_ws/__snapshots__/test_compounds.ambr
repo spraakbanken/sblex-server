@@ -25,11 +25,11 @@
     <div id="output_table">
       
   <h1>Denna tjänst är tillfälligt avstängd</h1>
-  <p><b>Orsak</b>Tjänsten är stängd på grund av prestandaproblem.</p>
+  <p><b>Orsak:</b> Tjänsten är stängd på grund av prestandaproblem.</p>
   <p>Läs mer <a href="https://github.com/spraakbanken/sblex-server/issues/110">här</a>.</p>
   
   <h1>This service is temporarily disabled</h1>
-  <p><b>Reason</b>Disabled due to performance issues.</p>
+  <p><b>Reason: </b>Disabled due to performance issues.</p>
   <p>Read more in this <a href="https://github.com/spraakbanken/sblex-server/issues/110">tracking issue</a>.
   </p>
   
@@ -66,11 +66,11 @@
     <div id="output_table">
       
   <h1>Denna tjänst är tillfälligt avstängd</h1>
-  <p><b>Orsak</b>Tjänsten är stängd på grund av prestandaproblem.</p>
+  <p><b>Orsak:</b> Tjänsten är stängd på grund av prestandaproblem.</p>
   <p>Läs mer <a href="https://github.com/spraakbanken/sblex-server/issues/110">här</a>.</p>
   
   <h1>This service is temporarily disabled</h1>
-  <p><b>Reason</b>Disabled due to performance issues.</p>
+  <p><b>Reason: </b>Disabled due to performance issues.</p>
   <p>Read more in this <a href="https://github.com/spraakbanken/sblex-server/issues/110">tracking issue</a>.
   </p>
   

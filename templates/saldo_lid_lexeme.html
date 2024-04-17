@@ -60,23 +60,27 @@ TODO: fill
 {%- if xss == "*" -%}
 *
 {%- else -%}
-<table>
-    {%- for p, xs in xss -%}
-    <tr>
-        <td style="vertical-align:middle;">{{ saldo_util.prlex(p) }}</td>
-        <td style="vertical-align:middle;">
-            {%- for x in xs -%}
-            {%- if not loop.first %} {% endif -%}{{ lexeme_ref_str(x)}}
-            {%- endfor -%}
-        </td>
-    </tr>
-    {%- endfor -%}
-</table>
+<center>
+    <table>
+        {%- for p, xs in xss -%}
+        <tr>
+            <td style="vertical-align:middle;">{{ saldo_util.prlex(p) }}</td>
+            <td style="vertical-align:middle;">
+                {%- for x in xs -%}
+                {%- if not loop.first %} {% endif -%}{{ lexeme_ref_str(x)}}
+                {%- endfor -%}
+            </td>
+        </tr>
+        {%- endfor -%}
+    </table>
+</center>
 {%- endif -%}
 {%- endmacro -%}
 
 {% block content -%}
-<h1>{{ data["h1"] }}</h1>
+<center>
+    <h1>{{ data["h1"] }}</h1>
+</center>
 <center>
     <table border="1">
         <tr>
