@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [unreleased]
+
+### 🐛 Bug Fixes
+
+- Adjust openapi_url
+- Add config validation
+
+### 🚜 Refactor
+
+- Move version info to shared/version_info
+
 ## [0.3.1-dev0] - 2024-03-28
 
 ### 🐛 Bug Fixes
