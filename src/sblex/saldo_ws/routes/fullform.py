@@ -69,12 +69,13 @@ async def fullform_html(
         json_data = {}
         if fragment:
             json_data = jsonlib.loads(await morphology.lookup(fragment))
+        title = f"Fullform | {fragment}" if fragment else "Fullform"
         return templates.TemplateResponse(
             request=request,
             name="saldo_fullform.html",
             context=templating.build_context(
                 request=request,
-                title=fragment,
+                title=title,
                 input=fragment,
                 segment=fragment,
                 j=json_data,

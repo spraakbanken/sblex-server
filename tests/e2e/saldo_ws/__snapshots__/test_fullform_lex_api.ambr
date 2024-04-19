@@ -8,7 +8,7 @@
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
     <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
     <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
-    <title></title>
+    <title>Fullform med semantisk koppling</title>
     
     <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
   </head>
@@ -54,7 +54,7 @@
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
     <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
     <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
-    <title></title>
+    <title>Fullform med semantisk koppling</title>
     
     <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
   </head>
@@ -100,7 +100,7 @@
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
     <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
     <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
-    <title>dväljas</title>
+    <title>Fullform med semantisk koppling | dväljas</title>
     
     <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
   </head>
@@ -172,7 +172,7 @@
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
     <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
     <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
-    <title>dväljsxdf</title>
+    <title>Fullform med semantisk koppling | dväljsxdf</title>
     
     <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
   </head>

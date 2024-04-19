@@ -8,7 +8,7 @@
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
     <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
     <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
-    <title>bo..1</title>
+    <title>Lemma-id | graf | bo..1</title>
     
     <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
   </head>
@@ -96,7 +96,7 @@
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
     <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
     <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
-    <title>dväljas..vb.1xxxxx..xx.1</title>
+    <title>Lemma-id saknas</title>
     
     <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
   </head>
@@ -135,7 +135,7 @@
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
     <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
     <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
-    <title>dväljas..1</title>
+    <title>Saldo-id | dväljas..1</title>
     
     <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
   </head>
@@ -194,7 +194,7 @@
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
     <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
     <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
-    <title>xxxxx..1</title>
+    <title>Saldo-id saknas</title>
     
     <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
   </head>

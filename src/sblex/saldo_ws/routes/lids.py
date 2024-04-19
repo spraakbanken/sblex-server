@@ -116,13 +116,13 @@ async def lookup_lid_html(
             return templates.TemplateResponse(
                 request=request,
                 name="saldo_lid_lemma_saknas.html",
-                context=templating.build_context(request, title=lid, lid=lid),
+                context=templating.build_context(request, title="Lemma-id saknas", lid=lid),
             )
         except LexemeNotFound:
             return templates.TemplateResponse(
                 request=request,
                 name="saldo_lid_lexeme_saknas.html",
-                context=templating.build_context(request, title=lid, lid=lid),
+                context=templating.build_context(request, title="Saldo-id saknas", lid=lid),
             )
 
         if is_lemma(lid):
@@ -133,7 +133,7 @@ async def lookup_lid_html(
                 name="saldo_table.html",
                 context=templating.build_context(
                     request,
-                    title=lid,
+                    title=f"Lemma-id | {lid}",
                     lid=lid,
                     j=lemma_or_lexeme,
                 ),
@@ -149,7 +149,9 @@ async def lookup_lid_html(
         return templates.TemplateResponse(
             request=request,
             name="saldo_lid_lexeme.html",
-            context=templating.build_context(request, title=lid, data=prepared_json),
+            context=templating.build_context(
+                request, title=f"Saldo-id | {lid}", data=prepared_json
+            ),
         )
 
 
@@ -198,7 +200,9 @@ async def lookup_lid_graph(
         return templates.TemplateResponse(
             request=request,
             name="saldo_lid_graph.html",
-            context=templating.build_context(request, title=lid, j=json_data, l=lid),
+            context=templating.build_context(
+                request, title=f"Lemma-id | graf | {lid}", j=json_data, l=lid
+            ),
         )
 
 

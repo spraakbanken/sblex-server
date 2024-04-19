@@ -8,7 +8,7 @@
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
     <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
     <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
-    <title>dvä</title>
+    <title>Fullform | dvä</title>
     
     <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
   </head>
@@ -67,7 +67,7 @@
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
     <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
     <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
-    <title>dväl</title>
+    <title>Fullform | dväl</title>
     
     <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
   </head>
@@ -126,7 +126,7 @@
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
     <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
     <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
-    <title>dväljs</title>
+    <title>Fullform | dväljs</title>
     
     <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
   </head>
@@ -203,7 +203,7 @@
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
     <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
     <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
-    <title>dv</title>
+    <title>Fullform | dv</title>
     
     <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
   </head>
