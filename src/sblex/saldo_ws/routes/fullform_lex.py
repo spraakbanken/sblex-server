@@ -76,12 +76,17 @@ async def fullform_lex_html(
         templates = request.app.state.templates
         segment = segment.strip() if segment else ""
         json_data = await fullform_lex_query.query(segment=segment) if segment else []
+        title = (
+            f"Fullform med semantisk koppling | {segment}"
+            if segment
+            else "Fullform med semantisk koppling"
+        )
         return templates.TemplateResponse(
             request=request,
             name="saldo_fullform_lex.html",
             context=templating.build_context(
                 request=request,
-                title=segment,
+                title=title,
                 input=segment,
                 segment=segment,
                 j=json_data,
