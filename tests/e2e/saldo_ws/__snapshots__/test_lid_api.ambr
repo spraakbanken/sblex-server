@@ -16,11 +16,10 @@
   <body>
     <center>
       <p>
-        <a href="https://spraakbanken.gu.se/saldo"><img
+        <a href="http://testserver/fl/html"><img
             src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
-            alt="SALDO" /></a>
+            alt="SALDO: gå tillbaka till startsidan" /></a>
       </p>
-      <p><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></p>
     </center>
     <div id="output_table">
       
@@ -76,6 +75,13 @@
   </div>
   
     </div>
+    <footer>
+      <hr>
+      <ul>
+        <li><a href="https://spraakbanken.gu.se/saldo">SALDOs projektsida</a></li>
+        <li><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></li>
+      </ul>
+    </footer>
   </body>
   
   </html>
@@ -98,17 +104,23 @@
   <body>
     <center>
       <p>
-        <a href="https://spraakbanken.gu.se/saldo"><img
+        <a href="http://testserver/fl/html"><img
             src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
-            alt="SALDO" /></a>
+            alt="SALDO: gå tillbaka till startsidan" /></a>
       </p>
-      <p><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></p>
     </center>
     <div id="output_table">
       
   <center><p><b>dväljas..vb.1xxxxx..xx.1 finns ej.</b></p></center>
   
     </div>
+    <footer>
+      <hr>
+      <ul>
+        <li><a href="https://spraakbanken.gu.se/saldo">SALDOs projektsida</a></li>
+        <li><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></li>
+      </ul>
+    </footer>
   </body>
   
   </html>
@@ -131,11 +143,10 @@
   <body>
     <center>
       <p>
-        <a href="https://spraakbanken.gu.se/saldo"><img
+        <a href="http://testserver/fl/html"><img
             src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
-            alt="SALDO" /></a>
+            alt="SALDO: gå tillbaka till startsidan" /></a>
       </p>
-      <p><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></p>
     </center>
     <div id="output_table">
       <center>
@@ -162,6 +173,13 @@
       </table>
   </center>
     </div>
+    <footer>
+      <hr>
+      <ul>
+        <li><a href="https://spraakbanken.gu.se/saldo">SALDOs projektsida</a></li>
+        <li><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></li>
+      </ul>
+    </footer>
   </body>
   
   </html>
@@ -184,17 +202,23 @@
   <body>
     <center>
       <p>
-        <a href="https://spraakbanken.gu.se/saldo"><img
+        <a href="http://testserver/fl/html"><img
             src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
-            alt="SALDO" /></a>
+            alt="SALDO: gå tillbaka till startsidan" /></a>
       </p>
-      <p><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></p>
     </center>
     <div id="output_table">
       
   <center>xxxxx..1 finns ej.</center>
   
     </div>
+    <footer>
+      <hr>
+      <ul>
+        <li><a href="https://spraakbanken.gu.se/saldo">SALDOs projektsida</a></li>
+        <li><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></li>
+      </ul>
+    </footer>
   </body>
   
   </html>
