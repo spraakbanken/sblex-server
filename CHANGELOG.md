@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [unreleased]
+
+### 🚀 Features
+
+- Port para json api
+- Make the image link to fl/html
+
+### 🐛 Bug Fixes
+
+- Add center for lexemes
+- Add relevant title for lid html
+- Use relevant title for fl route
+- Use relevant titles for ff route
+- Use relevant titles for gen route
+
 ## [0.3.1-dev2] - 2024-04-17
 
 ### 🐛 Bug Fixes
