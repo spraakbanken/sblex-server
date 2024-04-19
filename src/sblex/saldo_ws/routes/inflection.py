@@ -69,10 +69,10 @@ async def inflection_table_html(
 
         templates = request.app.state.templates
         if len(json_data) > 0:
-            title = f'{json_data[0]["p"]} "{json_data[0]["gf"]}"'
+            title = f'Böjningstabell | {json_data[0]["p"]} "{json_data[0]["gf"]}"'
             data = prepare_for_html(json_data)
         else:
-            title = f'{paradigm} "{word}"'
+            title = f"Böjningstabell | {paradigm} saknas"
             data = None
         return templates.TemplateResponse(
             request=request,
