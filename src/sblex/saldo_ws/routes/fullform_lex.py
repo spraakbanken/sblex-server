@@ -81,9 +81,14 @@ async def fullform_lex_html(
             if segment
             else "Fullform med semantisk koppling"
         )
+        if segment == "" or len(json_data) > 0:
+            status_code = status.HTTP_200_OK
+        else:
+            status_code = status.HTTP_404_NOT_FOUND
         return templates.TemplateResponse(
             request=request,
             name="saldo_fullform_lex.html",
+            status_code=status_code,
             context=templating.build_context(
                 request=request,
                 title=title,

@@ -1,0 +1,4 @@
+# serializer version: 1
+# name: TestHttpMorphology.test_lookup_from_bytes
+  b'{"a":[{"gf":"dv\xc3\xa4ljas","id":"dv\xc3\xa4ljas..vb.1","pos":"vb","is":[],"msd":"pres ind s-form","p":"vb_vs_dv\xc3\xa4ljas"},{"gf":"dv\xc3\xa4ljas","id":"dv\xc3\xa4ljas..vb.1","pos":"vb","is":[],"msd":"imper","p":"vb_vs_dv\xc3\xa4ljas"}],"c":""}'
+# ---
