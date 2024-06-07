@@ -1,6 +1,7 @@
 """FM morphology."""
 
 import abc
+import contextlib
 import logging
 import sys
 
@@ -14,10 +15,10 @@ logger = logging.getLogger(__name__)
 
 class Morphology(abc.ABC):
     @abc.abstractmethod
-    async def lookup(self, word: str, n: int = 0) -> bytes: ...
+    async def lookup(self, word: str, n: int = 0) -> bytes | None: ...
 
     @abc.abstractmethod
-    async def lookup_from_bytes(self, s: bytes) -> bytes: ...
+    async def lookup_from_bytes(self, s: bytes) -> bytes | None: ...
 
 
 class MemMorphology(Morphology):
@@ -36,16 +37,14 @@ class MemMorphology(Morphology):
                 )
             )
 
-    async def lookup(self, word: str, n: int = 0) -> bytes:
-        return r if (r := self._trie.lookup(word, n)) else b'{"id":"0","a":[],"c":""}'
+    async def lookup(self, word: str, n: int = 0) -> bytes | None:
+        return self._trie.lookup(word, n)
 
-    async def lookup_from_bytes(self, s: bytes) -> bytes:
-        try:
+    async def lookup_from_bytes(self, s: bytes) -> bytes | None:
+        with contextlib.suppress(Exception):
             res = s.decode("UTF-8").split(" ", 1)
             n = int(res[0])
             word = res[1]
             if r := self._trie.lookup(word, n):
                 return r
-        except:  # noqa: E722, S110
-            pass
-        return b'{"id":"0","a":[],"c":""}'
+        return None

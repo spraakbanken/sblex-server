@@ -26,7 +26,9 @@ class LookupService:
         with trace.get_tracer(__name__).start_as_current_span(
             sys._getframe().f_code.co_name
         ) as _process_api_span:
-            return jsonlib.loads(await self._morphology.lookup(segment))["a"]
+            if json_data := await self._morphology.lookup(segment):
+                return jsonlib.loads(json_data)["a"]
+            return []
 
     async def lookup_lid(self, lid: str) -> dict[str, Any]:
         with trace.get_tracer(__name__).start_as_current_span(

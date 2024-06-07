@@ -36,13 +36,13 @@ class Trie:
         logger.info("building morphology took %d s", elapsed)
         return trie
 
-    def lookup(self, word: str, start_state=0) -> bytes:
+    def lookup(self, word: str, start_state=0) -> bytes | None:
         st = start_state  # traversal state
         for c in word:
             try:
                 st = self._trie[st][0][c]
-            except:  # noqa: E722
-                return b""
+            except KeyError:
+                return None
         return self._trie[st][1]
 
 
