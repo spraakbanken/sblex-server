@@ -1,4 +1,5 @@
-from fastapi import APIRouter, Depends, Response
+from fastapi import APIRouter, Depends, Response, status
+from fastapi.responses import JSONResponse
 from sblex.fm.morphology import Morphology
 from sblex.fm_server import deps
 
@@ -11,5 +12,10 @@ async def get_morph(
     n: int = 0,
     morphology: Morphology = Depends(deps.get_morphology),  # noqa: B008
 ):
-    json_data = await morphology.lookup(fragment, n)
-    return Response(json_data, media_type="application/json")
+    if json_data := await morphology.lookup(fragment, n):
+        return Response(json_data, media_type="application/json")
+    return JSONResponse(
+        {"msg": f"fragment '{fragment}' not found"},
+        status_code=status.HTTP_404_NOT_FOUND,
+        media_type="application/json",
+    )

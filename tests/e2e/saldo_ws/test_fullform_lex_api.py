@@ -32,13 +32,23 @@ class TestFullformLexRoutes:
         assert res.headers["content-type"] == "application/xml"
         assert res.text == snapshot
 
-    @pytest.mark.parametrize("segment", ["", " ", "dväljas", "dväljsxdf"])
+    @pytest.mark.parametrize("segment", ["", " ", "dväljas"])
     @pytest.mark.asyncio
     async def test_html_valid_input_returns_200(
         self, client: AsyncClient, segment: str, snapshot
     ) -> None:
         res = await client.get(f"/fl/html?segment={segment}")
         assert res.status_code == status.HTTP_200_OK
+        assert res.headers["content-type"] == "text/html; charset=utf-8"
+        assert res.text == snapshot
+
+    @pytest.mark.parametrize("segment", ["löparsko"])
+    @pytest.mark.asyncio
+    async def test_html_missing_input_returns_404(
+        self, client: AsyncClient, segment: str, snapshot
+    ) -> None:
+        res = await client.get(f"/fl/html?segment={segment}")
+        assert res.status_code == status.HTTP_404_NOT_FOUND
         assert res.headers["content-type"] == "text/html; charset=utf-8"
         assert res.text == snapshot
 

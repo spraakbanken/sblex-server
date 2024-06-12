@@ -1,4 +1,60 @@
 # serializer version: 1
+# name: TestFullformLexRoutes.test_html_missing_input_returns_404[l\xf6parsko]
+  '''
+  <!DOCTYPE html>
+  <html>
+  
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
+    <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
+    <title>Fullform med semantisk koppling | löparsko</title>
+    
+    <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
+  </head>
+  
+  <body>
+    <center>
+      <p>
+        <a href="http://testserver/fl/html"><img
+            src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
+            alt="SALDO: gå tillbaka till startsidan" /></a>
+      </p>
+    </center>
+    <div id="output_table">
+      
+  <center>
+      <form action="http://testserver/fl/html" method="get" class="inputclass">
+          <input type="search" id="search" class="inputclass" value="löparsko" name="segment" size="30"
+              placeholder="Skriv in en ordform" results="10" />
+          <input type="submit" value="Sök" />
+      </form>
+      
+      <h1>segment: löparsko</h1>
+      <p><a href="http://testserver/sms/html/löparsko">sammansättningsanalys (FUNGERAR INTE)</a></p>
+      <table border="1">
+          
+          <tr>
+              <td>ordet saknas i lexikonet</td>
+          </tr>
+          
+      </table>
+      
+  </center>
+  
+    </div>
+    <footer>
+      <hr>
+      <ul>
+        <li><a href="https://spraakbanken.gu.se/saldo">SALDOs projektsida</a></li>
+        <li><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></li>
+      </ul>
+    </footer>
+  </body>
+  
+  </html>
+  '''
+# ---
 # name: TestFullformLexRoutes.test_html_valid_input_returns_200[ ]
   '''
   <!DOCTYPE html>
@@ -145,62 +201,6 @@
               <td><a href="https://spraakbanken.gu.se/korp/#?search=lemgram|dväljas..vb.1">korpus</a></td>
           </tr>
           
-          
-      </table>
-      
-  </center>
-  
-    </div>
-    <footer>
-      <hr>
-      <ul>
-        <li><a href="https://spraakbanken.gu.se/saldo">SALDOs projektsida</a></li>
-        <li><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></li>
-      </ul>
-    </footer>
-  </body>
-  
-  </html>
-  '''
-# ---
-# name: TestFullformLexRoutes.test_html_valid_input_returns_200[dv\xe4ljsxdf]
-  '''
-  <!DOCTYPE html>
-  <html>
-  
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-    <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
-    <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
-    <title>Fullform med semantisk koppling | dväljsxdf</title>
-    
-    <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
-  </head>
-  
-  <body>
-    <center>
-      <p>
-        <a href="http://testserver/fl/html"><img
-            src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
-            alt="SALDO: gå tillbaka till startsidan" /></a>
-      </p>
-    </center>
-    <div id="output_table">
-      
-  <center>
-      <form action="http://testserver/fl/html" method="get" class="inputclass">
-          <input type="search" id="search" class="inputclass" value="dväljsxdf" name="segment" size="30"
-              placeholder="Skriv in en ordform" results="10" />
-          <input type="submit" value="Sök" />
-      </form>
-      
-      <h1>segment: dväljsxdf</h1>
-      <p><a href="http://testserver/sms/html/dväljsxdf">sammansättningsanalys (FUNGERAR INTE)</a></p>
-      <table border="1">
-          
-          <tr>
-              <td>ordet saknas i lexikonet</td>
-          </tr>
           
       </table>
       
