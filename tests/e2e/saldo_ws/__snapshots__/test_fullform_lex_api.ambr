@@ -30,8 +30,6 @@
           <input type="submit" value="Sök" />
       </form>
       
-      <h1>segment: löparsko</h1>
-      <p><a href="http://testserver/sms/html/löparsko">sammansättningsanalys (FUNGERAR INTE)</a></p>
       <table border="1">
           
           <tr>
@@ -178,8 +176,6 @@
           <input type="submit" value="Sök" />
       </form>
       
-      <h1>segment: dväljas</h1>
-      <p><a href="http://testserver/sms/html/dväljas">sammansättningsanalys (FUNGERAR INTE)</a></p>
       <table border="1">
           
           
