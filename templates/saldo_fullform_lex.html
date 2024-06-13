@@ -7,8 +7,6 @@
         <input type="submit" value="Sök" />
     </form>
     {% if segment|length %}
-    <h1>segment: {{ segment }}</h1>
-    <p><a href="{{ url_for('compounds:sms-html', segment=segment) }}">sammansättningsanalys (FUNGERAR INTE)</a></p>
     <table border="1">
         {% if j|length %}
         {% for json in j %}
