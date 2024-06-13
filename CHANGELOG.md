@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [unreleased]
+## [0.4.0-rc0] - 2024-06-13
 
 ### 🐛 Bug Fixes
 

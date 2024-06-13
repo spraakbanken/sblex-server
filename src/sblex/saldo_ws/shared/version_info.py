@@ -1,5 +1,5 @@
-__version__ = "0.4.0-dev0"
-__date__ = "2024-04-19"
+__version__ = "0.4.0-rc0"
+__date__ = "2024-06-13"
 
 
 def get_version() -> str:
