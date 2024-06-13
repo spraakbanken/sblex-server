@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [unreleased]
+
+### 🐛 Bug Fixes
+
+- Handle response errors
+- Remove redundant info
+
+### 🚜 Refactor
+
+- Return None on non-existing
+
+### ⚙️ Miscellaneous Tasks
+
+- Generate test lock file w/o hashes
+
 ## [0.4.0-dev0] - 2024-04-19
 
 ### 🚀 Features
