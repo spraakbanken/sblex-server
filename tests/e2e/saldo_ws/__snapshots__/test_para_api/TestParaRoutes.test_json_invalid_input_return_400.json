@@ -1,3 +1,6 @@
 {
-  "msg": "First word has no Part-of-Speech tag. Use the form 'word:pos'"
+  "msg": {
+    "eng": "First word has no Part-of-Speech tag. Use the form 'word:pos'",
+    "swe": "Grundformen måste förses med ordklass (grundform:ordklass)."
+  }
 }

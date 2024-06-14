@@ -7,14 +7,7 @@ import saldo_util
 def function(format, s):
     result = ""
     # try:
-    if s == "" and format == "html":
-        return (
-            saldo_util.html_pdocument(
-                "SALDO",
-                '<center><p>Mata in kommaseparerade ordformer, där första ordet är en grundform försedd med ordklass.</p><p>Exempel: <a href="http://spraakbanken.gu.se/ws/saldo-ws/para/html/man%3Ann%2C%20m%C3%A4n">man:nn, män</a></p></center>',
-            ),
-            apache.OK,
-        )
+
     xs = [x.strip() for x in s.split(",") if len(x) > 0]
     if xs[0].find(":") == -1 and format == "html":
         return (
@@ -30,10 +23,8 @@ def function(format, s):
     if result.strip() == "":
         result = "[]"
     j = cjson.decode(utf8.d(result))
-    if format == "html":
-        result = htmlize(j, w, s)
 
-    elif format == "xml":
+    if format == "xml":
         result = xmlize(j).encode("UTF-8")
     result_code = apache.OK
     #        except:
@@ -47,16 +38,3 @@ def xmlize(j):
     xml += "".join(["<p>" + x + "</p>" for x in j])
     xml += "</paradigms>\n"
     return xml
-
-
-def htmlize(j, w, s):
-    if j == []:
-        content = "<center><p><b>Hittade inga paradigm.</b></p></center>"
-        return saldo_util.html_pdocument("SALDO", content, s)
-    content = '<center><table border="1">'
-    for p in j:
-        content += "<tr><td><i>%s</i></td></tr>" % (
-            saldo_util.gen_ref(utf8.e(p), utf8.e(w), utf8.e(p))
-        )
-    content += "</table></center>"
-    return saldo_util.html_pdocument("SALDO", content, s)

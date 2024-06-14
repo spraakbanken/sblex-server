@@ -1,0 +1,107 @@
+# serializer version: 1
+# name: TestParaRoutes.test_html_invalid_input_return_400
+  '''
+  <!DOCTYPE html>
+  <html>
+  
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
+    <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
+    <title>Paradigm | dväljes</title>
+    
+    <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
+  </head>
+  
+  <body>
+    <center>
+      <p>
+        <a href="http://testserver/fl/html"><img
+            src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
+            alt="SALDO: gå tillbaka till startsidan" /></a>
+      </p>
+    </center>
+    <div id="output_table">
+      
+  <center>
+      <form action="http://testserver/para/html" method="get" class="inputclass">
+          <input type="search" id="search" class="inputclass" value="dväljes" name="segment" size="30"
+              placeholder="Mata in kommaseparerade ordformer, där första ordet är en grundform försedd med ordklass."
+              results="10" />
+          <input type="submit" value="Sök" />
+      </form>
+      <p></p>
+      
+      <p>Grundformen måste förses med ordklass (grundform:ordklass).</p>
+      
+  </center>
+  
+    </div>
+    <footer>
+      <hr>
+      <ul>
+        <li><a href="https://spraakbanken.gu.se/saldo">SALDOs projektsida</a></li>
+        <li><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></li>
+      </ul>
+    </footer>
+  </body>
+  
+  </html>
+  '''
+# ---
+# name: TestParaRoutes.test_html_no_input_return_200
+  '''
+  <!DOCTYPE html>
+  <html>
+  
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
+    <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
+    <title>Paradigm</title>
+    
+    <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
+  </head>
+  
+  <body>
+    <center>
+      <p>
+        <a href="http://testserver/fl/html"><img
+            src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
+            alt="SALDO: gå tillbaka till startsidan" /></a>
+      </p>
+    </center>
+    <div id="output_table">
+      
+  <center>
+      <form action="http://testserver/para/html" method="get" class="inputclass">
+          <input type="search" id="search" class="inputclass" value="None" name="segment" size="30"
+              placeholder="Mata in kommaseparerade ordformer, där första ordet är en grundform försedd med ordklass."
+              results="10" />
+          <input type="submit" value="Sök" />
+      </form>
+      <p></p>
+      
+      <p>Mata in kommaseparerade ordformer, där första ordet är en grundform försedd med ordklass.</p>
+      <p>Exempel: <a
+              href="http://testserver/para/html?words=man%253Ann%252C%2520m%25C3%25A4n">man:nn,
+              män</a></p>
+      
+  </center>
+  
+    </div>
+    <footer>
+      <hr>
+      <ul>
+        <li><a href="https://spraakbanken.gu.se/saldo">SALDOs projektsida</a></li>
+        <li><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></li>
+      </ul>
+    </footer>
+  </body>
+  
+  </html>
+  '''
+# ---
+# name: TestParaRoutes.test_html_valid_input_return_200
+  ''
+# ---
