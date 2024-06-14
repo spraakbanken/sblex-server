@@ -10,3 +10,6 @@ A3..1	pappersark..1	PRIM..1	a3..nna.1	a3	nna	nna_0n_hk
 A3..1	pappersark..1	PRIM..1	A3..nna.1	A3	nna	nna_0n_hk
 bo..1	leva..1	PRIM..1	bo..vb.1	bo	vb	vb_3a_sy
 dväljas..1	bo..1	PRIM..1	dväljas..vb.1	dväljas	vb	vb_vs_dväljas
+femma..4	femrumslägenhet..1	PRIM..1	femma..nn.1	femma	nn	nn_1u_kamera
+femrummare..1	femrumslägenhet..1	PRIM..1	femrummare..nn.1	femrummare	nn	nn_6u_kikare
+femrumslägenhet..1	lägenhet..1	fem..1 rum..1	femrumslägenhet..nn.1	femrumslägenhet	nn	nn_3u_salong

@@ -5,7 +5,7 @@ from typing import TypedDict
 class FullformLex(TypedDict):
     id: str
     fm: str
-    fp: str
+    fp: list[str]
     l: str  # noqa: E741
     gf: str
     p: str
