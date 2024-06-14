@@ -9,7 +9,7 @@ asgiref==3.8.1
 bracex==2.4
 brotli==1.1.0
 brotli-asgi==1.4.0
-bump-my-version==0.22.0
+bump-my-version==0.23.0
 certifi==2024.6.2
 charset-normalizer==3.3.2
 click==8.1.7
@@ -59,7 +59,7 @@ opentelemetry-proto==1.25.0
 opentelemetry-sdk==1.25.0
 opentelemetry-semantic-conventions==0.46b0
 opentelemetry-util-http==0.46b0
-orjson==3.10.4
+orjson==3.10.5
 packaging==24.1
 pluggy==1.5.0
 prompt-toolkit==3.0.36

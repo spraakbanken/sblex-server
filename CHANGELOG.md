@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [unreleased]
+
+### 🚀 Features
+
+- Port para/html route
+- Port para/xml route
+
+### 🐛 Bug Fixes
+
+- Add gap in UI
+- Return 404 on missing lids
+- Render `<sup>` correctly
+- Render secondary descriptors correct
+
 ## [0.4.0-rc0] - 2024-06-13
 
 ### 🐛 Bug Fixes
