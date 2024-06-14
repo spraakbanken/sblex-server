@@ -29,6 +29,39 @@ async def get_para_json(words: str, paradigms: Paradigms = Depends(deps.get_para
         return result
 
 
+@router.get("/xml/{words}", response_model=list[str])
+async def get_para_xml(
+    request: Request,
+    words: str,
+    paradigms: Paradigms = Depends(deps.get_paradigms),  # noqa: B008
+):
+    with trace.get_tracer(__name__).start_as_current_span(
+        sys._getframe().f_code.co_name
+    ) as _process_api_span:
+        templates = request.app.state.templates
+        try:
+            _baseform, result = paradigms.query(words)
+        except NoPartOfSpeechOnBaseform:
+            return templates.TemplateResponse(
+                request=request,
+                name="paradigms.xml",
+                status_code=status.HTTP_400_BAD_REQUEST,
+                context={
+                    "j": [],
+                    "no_pos": True,
+                },
+            )
+
+        return templates.TemplateResponse(
+            request=request,
+            name="paradigms.xml",
+            context={
+                "j": result,
+                "no_pos": False,
+            },
+        )
+
+
 @router.get("/html", response_class=HTMLResponse, name="paradigms:para-html")
 async def paradigm_html(
     request: Request,

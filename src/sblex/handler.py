@@ -3,10 +3,7 @@
 import locale
 import datetime
 import cjson
-import fullform
-import fullform_lex
 import compound
-import paradigms
 import version
 import plist
 import pos
@@ -72,12 +69,6 @@ def handler(req):
 
     elif function == "pos" and len(args) == 0:
         (result, result_code) = pos.function(format)
-
-    elif function == "para" and len(args) <= 1:
-        if len(args) == 0:
-            (result, result_code) = paradigms.function(format, "")
-        else:
-            (result, result_code) = paradigms.function(format, args[0])
 
     elif function == "sms" and len(args) <= 1:
         (result, result_code) = compound.function(format, args[0])
