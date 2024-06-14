@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+{% if no_pos %}
+<error>
+    <msg lang="swe">Grundformen måste förses med ordklass (grundform:ordklass).</msg>
+    <msg lang="eng">First word has no Part-of-Speech tag. Use the form 'word:pos'.</msg>
+</error>
+{% else %}
+<paradigms> {% for x in j %} <p> {{ x }} </p> {% endfor %} </paradigms>
+{% endif %}

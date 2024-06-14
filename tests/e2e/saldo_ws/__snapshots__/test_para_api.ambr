@@ -1,0 +1,126 @@
+# serializer version: 1
+# name: TestParaRoutes.test_html_invalid_input_return_400
+  '''
+  <!DOCTYPE html>
+  <html>
+  
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
+    <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
+    <title>Paradigm | dväljes</title>
+    
+    <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
+  </head>
+  
+  <body>
+    <center>
+      <p>
+        <a href="http://testserver/fl/html"><img
+            src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
+            alt="SALDO: gå tillbaka till startsidan" /></a>
+      </p>
+    </center>
+    <div id="output_table">
+      
+  <center>
+      <form action="http://testserver/para/html" method="get" class="inputclass">
+          <input type="search" id="search" class="inputclass" value="dväljes" name="segment" size="30"
+              placeholder="Mata in kommaseparerade ordformer, där första ordet är en grundform försedd med ordklass."
+              results="10" />
+          <input type="submit" value="Sök" />
+      </form>
+      <p></p>
+      
+      <p>Grundformen måste förses med ordklass (grundform:ordklass).</p>
+      
+  </center>
+  
+    </div>
+    <footer>
+      <hr>
+      <ul>
+        <li><a href="https://spraakbanken.gu.se/saldo">SALDOs projektsida</a></li>
+        <li><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></li>
+      </ul>
+    </footer>
+  </body>
+  
+  </html>
+  '''
+# ---
+# name: TestParaRoutes.test_html_no_input_return_200
+  '''
+  <!DOCTYPE html>
+  <html>
+  
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
+    <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
+    <title>Paradigm</title>
+    
+    <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
+  </head>
+  
+  <body>
+    <center>
+      <p>
+        <a href="http://testserver/fl/html"><img
+            src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
+            alt="SALDO: gå tillbaka till startsidan" /></a>
+      </p>
+    </center>
+    <div id="output_table">
+      
+  <center>
+      <form action="http://testserver/para/html" method="get" class="inputclass">
+          <input type="search" id="search" class="inputclass" value="None" name="segment" size="30"
+              placeholder="Mata in kommaseparerade ordformer, där första ordet är en grundform försedd med ordklass."
+              results="10" />
+          <input type="submit" value="Sök" />
+      </form>
+      <p></p>
+      
+      <p>Mata in kommaseparerade ordformer, där första ordet är en grundform försedd med ordklass.</p>
+      <p>Exempel: <a
+              href="http://testserver/para/html?words=man%253Ann%252C%2520m%25C3%25A4n">man:nn,
+              män</a></p>
+      
+  </center>
+  
+    </div>
+    <footer>
+      <hr>
+      <ul>
+        <li><a href="https://spraakbanken.gu.se/saldo">SALDOs projektsida</a></li>
+        <li><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></li>
+      </ul>
+    </footer>
+  </body>
+  
+  </html>
+  '''
+# ---
+# name: TestParaRoutes.test_html_valid_input_return_200
+  ''
+# ---
+# name: TestParaRoutes.test_xml_invalid_input_return_400
+  '''
+  <?xml version="1.0" encoding="UTF-8"?>
+  
+  <error>
+      <msg lang="swe">Grundformen måste förses med ordklass (grundform:ordklass).</msg>
+      <msg lang="eng">First word has no Part-of-Speech tag. Use the form 'word:pos'.</msg>
+  </error>
+  
+  '''
+# ---
+# name: TestParaRoutes.test_xml_valid_input_return_200
+  '''
+  <?xml version="1.0" encoding="UTF-8"?>
+  
+  <paradigms>  <p> vb_0d_lyss </p>  <p> vb_0d_lyster </p>  <p> vb_0d_nåde </p>  <p> vb_0d_vederböra </p>  <p> vb_0d_värdes </p>  <p> vb_1a_beundra </p>  <p> vb_1a_hitta </p>  <p> vb_1a_häda </p>  <p> vb_1a_klaga </p>  <p> vb_1a_laga </p>  <p> vb_1a_skapa </p>  <p> vb_1a_spara </p>  <p> vb_1a_ugnsbaka </p>  <p> vb_1a_unna </p>  <p> vb_1a_vissla </p>  <p> vb_1a_vänta </p>  <p> vb_1m_existera </p>  <p> vb_1m_hisna </p>  <p> vb_1m_kackla </p>  <p> vb_1m_svira </p>  <p> vb_1m_vånna </p>  <p> vb_1s_andas </p>  <p> vb_1s_gillas </p>  <p> vb_2a_ansöka </p>  <p> vb_2a_genmäla </p>  <p> vb_2a_göra </p>  <p> vb_2a_hyra </p>  <p> vb_2a_känna </p>  <p> vb_2a_leda </p>  <p> vb_2a_leva </p>  <p> vb_2a_lyfta </p>  <p> vb_2a_lägga </p>  <p> vb_2a_mista </p>  <p> vb_2a_motsäga </p>  <p> vb_2a_spörja </p>  <p> vb_2a_städja </p>  <p> vb_2a_stödja </p>  <p> vb_2a_säga </p>  <p> vb_2a_sälja </p>  <p> vb_2a_sända </p>  <p> vb_2a_sätta </p>  <p> vb_2a_tämja </p>  <p> vb_2a_viga </p>  <p> vb_2a_välja </p>  <p> vb_2d_må </p>  <p> vb_2d_rädas </p>  <p> vb_2d_torde </p>  <p> vb_2m_böra </p>  <p> vb_2m_gitta </p>  <p> vb_2m_glädja </p>  <p> vb_2m_ha </p>  <p> vb_2m_hända </p>  <p> vb_2m_höta </p>  <p> vb_2m_mysa </p>  <p> vb_2m_väga </p>  <p> vb_2s_blygas </p>  <p> vb_2s_giftas </p>  <p> vb_2s_glädjas </p>  <p> vb_2s_hövas </p>  <p> vb_2s_idas </p>  <p> vb_2s_minnas </p>  <p> vb_2s_nöjas </p>  <p> vb_2s_rymmas </p>  <p> vb_2s_skiljas </p>  <p> vb_2s_synas </p>  <p> vb_2s_trivas </p>  <p> vb_2s_töras </p>  <p> vb_2s_vämjas </p>  <p> vb_3a_sy </p>  <p> vb_3s_brås </p>  <p> vb_4a_be </p>  <p> vb_4a_bli </p>  <p> vb_4a_bottenfrysa </p>  <p> vb_4a_bära </p>  <p> vb_4a_dricka </p>  <p> vb_4a_emotstå </p>  <p> vb_4a_falla </p>  <p> vb_4a_fara </p>  <p> vb_4a_flyga </p>  <p> vb_4a_förgäta </p>  <p> vb_4a_ge </p>  <p> vb_4a_gå </p>  <p> vb_4a_hålla </p>  <p> vb_4a_komma </p>  <p> vb_4a_missförstå </p>  <p> vb_4a_rida </p>  <p> vb_4a_se </p>  <p> vb_4a_skjuta </p>  <p> vb_4a_slå </p>  <p> vb_4a_stinga </p>  <p> vb_4a_stjäla </p>  <p> vb_4a_svära </p>  <p> vb_4a_ta </p>  <p> vb_4a_tillåta </p>  <p> vb_4a_äta </p>  <p> vb_4d_vederfås </p>  <p> vb_4m_angå </p>  <p> vb_4m_bekomma </p>  <p> vb_4m_erfara </p>  <p> vb_4m_förevara </p>  <p> vb_4m_förslå </p>  <p> vb_4m_gråta </p>  <p> vb_4m_innebära </p>  <p> vb_4m_le </p>  <p> vb_4m_ligga </p>  <p> vb_4m_ljuda </p>  <p> vb_4m_ryta </p>  <p> vb_4m_sitta </p>  <p> vb_4m_skåpäta </p>  <p> vb_4m_småsvära </p>  <p> vb_4m_sova </p>  <p> vb_4m_stå </p>  <p> vb_4m_svälta_1 </p>  <p> vb_4m_vara </p>  <p> vb_4m_vina </p>  <p> vb_4s_bitas </p>  <p> vb_4s_finnas </p>  <p> vb_4s_hållas </p>  <p> vb_4s_munhuggas </p>  <p> vb_4s_slåss </p>  <p> vb_4s_tas </p>  <p> vb_4s_umgås </p>  <p> vb_4s_vederfaras </p>  <p> vb_id_månde </p>  <p> vb_ik_bevare </p>  <p> vb_oa_varda </p>  <p> vb_om_heta </p>  <p> vb_om_kunna </p>  <p> vb_om_måste </p>  <p> vb_om_skola </p>  <p> vb_om_veta </p>  <p> vb_om_vilja </p>  <p> vb_va_begrava </p>  <p> vb_va_besluta </p>  <p> vb_va_bestrida </p>  <p> vb_va_besvärja </p>  <p> vb_va_bringa </p>  <p> vb_va_framtvinga </p>  <p> vb_va_frysa </p>  <p> vb_va_förlöpa </p>  <p> vb_va_förmäla </p>  <p> vb_va_förse </p>  <p> vb_va_gälda </p>  <p> vb_va_gälla_kastrera </p>  <p> vb_va_klyva </p>  <p> vb_va_klä </p>  <p> vb_va_koka </p>  <p> vb_va_kväda </p>  <p> vb_va_lyda </p>  <p> vb_va_löpa </p>  <p> vb_va_mala </p>  <p> vb_va_nypa </p>  <p> vb_va_nästa </p>  <p> vb_va_simma </p>  <p> vb_va_skvätta </p>  <p> vb_va_smälta </p>  <p> vb_va_snusmala </p>  <p> vb_va_sprida </p>  <p> vb_va_strypa </p>  <p> vb_va_stupa </p>  <p> vb_va_svälta_2 </p>  <p> vb_va_tala </p>  <p> vb_va_träda </p>  <p> vb_va_tvinga </p>  <p> vb_va_två </p>  <p> vb_va_tälja </p>  <p> vb_va_utlöpa </p>  <p> vb_va_vika </p>  <p> vb_va_växa </p>  <p> vb_vm_avvara </p>  <p> vb_vm_drypa </p>  <p> vb_vm_drösa </p>  <p> vb_vm_duga </p>  <p> vb_vm_fnysa </p>  <p> vb_vm_gala </p>  <p> vb_vm_klinga </p>  <p> vb_vm_kvida </p>  <p> vb_vm_nysa </p>  <p> vb_vm_ryka </p>  <p> vb_vm_samvara </p>  <p> vb_vm_sluta </p>  <p> vb_vm_smälla </p>  <p> vb_vm_snika </p>  <p> vb_vm_strida </p>  <p> vb_vm_undvara </p>  <p> vb_vm_upphäva </p>  <p> vb_vs_dväljas </p>  </paradigms>
+  
+  '''
+# ---
