@@ -42,7 +42,7 @@ class TestLidRoutes:
         for expected_key in ["lex", "fm", "fp", "mf", "pf", "l", "fs", "path", "ppath"]:
             assert expected_key in actual_data
 
-    @pytest.mark.parametrize("lid", ["xxxxx..xx.1", "dväljas..vb.1", "xxxxx..1", "dväljas..1"])
+    @pytest.mark.parametrize("lid", ["dväljas..vb.1", "dväljas..1"])
     @pytest.mark.asyncio
     async def test_xml_valid_input_returns_200(
         self, client: AsyncClient, lid: str, snapshot
@@ -53,7 +53,24 @@ class TestLidRoutes:
 
         assert res.text == snapshot
 
-    @pytest.mark.parametrize("lid", ["dväljas..vb.1" "xxxxx..xx.1"])
+    @pytest.mark.parametrize(
+        "lid",
+        [
+            "xxxxx..xx.1",
+            "xxxxx..1",
+        ],
+    )
+    @pytest.mark.asyncio
+    async def test_xml_missing_returns_404(
+        self, client: AsyncClient, lid: str, snapshot
+    ) -> None:
+        res = await client.get(f"/lid/xml/{lid}")
+        assert res.status_code == status.HTTP_404_NOT_FOUND
+        assert res.headers["content-type"] == "application/xml"
+
+        assert res.text == snapshot
+
+    @pytest.mark.parametrize("lid", ["dväljas..vb.1"])
     @pytest.mark.asyncio
     async def test_html_valid_lemma_returns_200(
         self, client: AsyncClient, lid: str, snapshot
@@ -63,13 +80,33 @@ class TestLidRoutes:
         assert res.headers["content-type"] == "text/html; charset=utf-8"
         assert res.text == snapshot
 
-    @pytest.mark.parametrize("lid", ["dväljas..1", "xxxxx..1"])
+    @pytest.mark.parametrize("lid", ["xxxxx..xx.1"])
+    @pytest.mark.asyncio
+    async def test_html_missing_lemma_returns_404(
+        self, client: AsyncClient, lid: str, snapshot
+    ) -> None:
+        res = await client.get(f"/lid/html/{lid}")
+        assert res.status_code == status.HTTP_404_NOT_FOUND
+        assert res.headers["content-type"] == "text/html; charset=utf-8"
+        assert res.text == snapshot
+
+    @pytest.mark.parametrize("lid", ["dväljas..1"])
     @pytest.mark.asyncio
     async def test_html_valid_lexeme_returns_200(
         self, client: AsyncClient, lid: str, snapshot
     ) -> None:
         res = await client.get(f"/lid/html/{lid}")
         assert res.status_code == status.HTTP_200_OK
+        assert res.headers["content-type"] == "text/html; charset=utf-8"
+        assert res.text == snapshot
+
+    @pytest.mark.parametrize("lid", ["xxxxx..1"])
+    @pytest.mark.asyncio
+    async def test_html_missing_lexeme_returns_404(
+        self, client: AsyncClient, lid: str, snapshot
+    ) -> None:
+        res = await client.get(f"/lid/html/{lid}")
+        assert res.status_code == status.HTTP_404_NOT_FOUND
         assert res.headers["content-type"] == "text/html; charset=utf-8"
         assert res.text == snapshot
 

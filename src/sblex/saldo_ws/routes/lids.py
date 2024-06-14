@@ -78,18 +78,23 @@ async def lookup_lid_xml(
                 lemma_or_lexeme = await lookup_lid.get_by_lid(lid)
         except (LemmaNotFound, LexemeNotFound):
             lemma_or_lexeme = {}
+            status_code = status.HTTP_404_NOT_FOUND
+        else:
+            status_code = status.HTTP_200_OK
 
         # if isinstance(lid, Lemma):
         if is_lemma(lid):
             return templates.TemplateResponse(
                 request=request,
                 name="saldo_lid_lemma.xml",
+                status_code=status_code,
                 context={"j": lemma_or_lexeme},
                 media_type="application/xml",
             )
         return templates.TemplateResponse(
             request=request,
             name="saldo_lid_lexeme.xml",
+            status_code=status_code,
             context={"j": lemma_or_lexeme},
             media_type="application/xml",
         )
@@ -116,12 +121,14 @@ async def lookup_lid_html(
             return templates.TemplateResponse(
                 request=request,
                 name="saldo_lid_lemma_saknas.html",
+                status_code=status.HTTP_404_NOT_FOUND,
                 context=templating.build_context(request, title="Lemma-id saknas", lid=lid),
             )
         except LexemeNotFound:
             return templates.TemplateResponse(
                 request=request,
                 name="saldo_lid_lexeme_saknas.html",
+                status_code=status.HTTP_404_NOT_FOUND,
                 context=templating.build_context(request, title="Saldo-id saknas", lid=lid),
             )
 
