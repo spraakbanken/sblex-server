@@ -8,3 +8,4 @@
 {"word":"dvalts","head":"dväljas","pos":"vb","param":"sup s-form","inhs":[],"id":"dväljas..vb.1","p":"vb_vs_dväljas","attr":"0"}
 {"word":"dvälts","head":"dväljas","pos":"vb","param":"sup s-form","inhs":[],"id":"dväljas..vb.1","p":"vb_vs_dväljas","attr":"0"}
 {"word":"upphäver","head":"upphäva","pos":"vb","param":"pres ind aktiv","inhs":[],"id":"upphäva..vb.2","p":"vb_vm_upphäva","attr":"0"}
+{"word":"femrumslägenhet","head":"femrumslägenhet","pos":"nn","param":"sg indef nom","inhs":["u"],"id":"femrumslägenhet..nn.1","p":"nn_3u_salong","attr":"0"}

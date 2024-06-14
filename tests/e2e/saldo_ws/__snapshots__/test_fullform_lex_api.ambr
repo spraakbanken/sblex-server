@@ -217,19 +217,93 @@
   </html>
   '''
 # ---
+# name: TestFullformLexRoutes.test_html_valid_input_returns_200[femrumsl\xe4genhet]
+  '''
+  <!DOCTYPE html>
+  <html>
+  
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
+    <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
+    <title>Fullform med semantisk koppling | femrumslägenhet</title>
+    
+    <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
+  </head>
+  
+  <body>
+    <center>
+      <p>
+        <a href="http://testserver/fl/html"><img
+            src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
+            alt="SALDO: gå tillbaka till startsidan" /></a>
+      </p>
+    </center>
+    <div id="output_table">
+      
+  <center>
+      <form action="http://testserver/fl/html" method="get" class="inputclass">
+          <input type="search" id="search" class="inputclass" value="femrumslägenhet" name="segment" size="30"
+              placeholder="Skriv in en ordform" results="10" />
+          <input type="submit" value="Sök" />
+      </form>
+      
+      <p></p>
+      <table border="1">
+          
+          
+          <tr>
+              <td>
+                  
+                  <a href="http://testserver/lid/html/femrumslägenhet..1">femrumslägenhet..1</a>
+                  
+              </td>
+              <td>
+                  
+                  <a href="http://testserver/lid/html/lägenhet..1">lägenhet..1</a>
+                  
+                  
+                  +
+                  
+                  <a href="http://testserver/lid/html/fem..1">fem..1</a>
+                  
+                  <a href="http://testserver/lid/html/rum..1">rum..1</a>
+                  
+                  
+              </td>
+              <td><a href="http://testserver/gen/html/nn_3u_salong/femrumslägenhet">femrumslägenhet..nn.1</a>
+  
+              </td>
+              <td><a href="https://spraakbanken.gu.se/korp/#?search=lemgram|femrumslägenhet..nn.1">korpus</a></td>
+          </tr>
+          
+          
+      </table>
+      
+  </center>
+  
+    </div>
+    <footer>
+      <hr>
+      <ul>
+        <li><a href="https://spraakbanken.gu.se/saldo">SALDOs projektsida</a></li>
+        <li><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></li>
+      </ul>
+    </footer>
+  </body>
+  
+  </html>
+  '''
+# ---
 # name: TestFullformLexRoutes.test_xml_valid_input_returns_200[dv\xe4ljs]
   '''
   <?xml version="1.0" encoding="UTF-8"?>
-  <result>
-  <a><id>dväljas..1</id><fm>bo..1</fm><fp>PRIM..1</fp><l>dväljas..vb.1</l><gf>dväljas</gf><p>vb_vs_dväljas</p></a>
-  </result>
+  <result> <a><id>dväljas..1</id><fm>bo..1</fm><fp>PRIM..1</fp><l>dväljas..vb.1</l><gf>dväljas</gf><p>vb_vs_dväljas</p></a> </result>
   '''
 # ---
 # name: TestFullformLexRoutes.test_xml_valid_input_returns_200[t]
   '''
   <?xml version="1.0" encoding="UTF-8"?>
-  <result>
-  
-  </result>
+  <result>  </result>
   '''
 # ---

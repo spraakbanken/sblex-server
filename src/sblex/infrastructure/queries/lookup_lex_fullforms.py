@@ -28,7 +28,7 @@ class LookupFullformLexQuery(FullformLexQuery):
                         {
                             "id": lex,
                             "fm": lexdata["fm"],
-                            "fp": lexdata["fp"],
+                            "fp": lexdata["fp"].split(" "),
                             "l": lem,
                             "gf": gf,
                             "p": p,

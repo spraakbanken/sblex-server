@@ -29,15 +29,11 @@
                 {% else %}
                 <a href="{{ url_for('lids:lid-html', lid=json['fm'])}}">{{ json["fm"] }}</a>
                 {% endif %}
-                {% if json["fp"] != "PRIM..1" %}
+                {% if json["fp"][0] != "PRIM..1" %}
                 +
-                {% if json["fp"].__class__.__name__ == 'list' %}
                 {% for lid in json["fp"] %}
                 <a href="{{ url_for('lids:lid-html', lid=lid) }}">{{ lid }}</a>
                 {% endfor %}
-                {% else %}
-                <a href="{{ url_for('lids:lid-html', lid=json['fp'])}}">{{ json["fp"] }}</a>
-                {% endif %}
                 {% endif %}
             </td>
             <td><a href="{{ url_for('inflections:gen-html', paradigm=json['p'], word=json['gf'])}}">{{

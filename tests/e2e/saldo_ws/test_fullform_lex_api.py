@@ -32,7 +32,7 @@ class TestFullformLexRoutes:
         assert res.headers["content-type"] == "application/xml"
         assert res.text == snapshot
 
-    @pytest.mark.parametrize("segment", ["", " ", "dväljas"])
+    @pytest.mark.parametrize("segment", ["", " ", "dväljas", "femrumslägenhet"])
     @pytest.mark.asyncio
     async def test_html_valid_input_returns_200(
         self, client: AsyncClient, segment: str, snapshot

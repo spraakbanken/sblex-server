@@ -1,7 +1,9 @@
 [
   {
     "fm": "bo..1",
-    "fp": "PRIM..1",
+    "fp": [
+      "PRIM..1"
+    ],
     "gf": "dväljas",
     "id": "dväljas..1",
     "l": "dväljas..vb.1",
