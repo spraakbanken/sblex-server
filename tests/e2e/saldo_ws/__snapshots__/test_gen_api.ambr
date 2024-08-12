@@ -7,7 +7,7 @@
   <head>
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
     <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
-    <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
+    <link rel="stylesheet" type="text/css" href="http://testserver.saldo_ws/static/saldo.css" />
     <title>Böjningstabell | vb_vs_dväljas &#34;dväljas&#34;</title>
     
     <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
@@ -16,7 +16,7 @@
   <body>
     <center>
       <p>
-        <a href="http://testserver/fl/html"><img
+        <a href="http://testserver.saldo_ws/fl/html"><img
             src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
             alt="SALDO: gå tillbaka till startsidan" /></a>
       </p>
@@ -94,7 +94,7 @@
   <head>
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
     <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
-    <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
+    <link rel="stylesheet" type="text/css" href="http://testserver.saldo_ws/static/saldo.css" />
     <title>Böjningstabell | xx_xx_xxx saknas</title>
     
     <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
@@ -103,7 +103,7 @@
   <body>
     <center>
       <p>
-        <a href="http://testserver/fl/html"><img
+        <a href="http://testserver.saldo_ws/fl/html"><img
             src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
             alt="SALDO: gå tillbaka till startsidan" /></a>
       </p>

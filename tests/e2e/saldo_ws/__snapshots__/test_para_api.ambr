@@ -7,7 +7,7 @@
   <head>
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
     <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
-    <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
+    <link rel="stylesheet" type="text/css" href="http://testserver.saldo_ws/static/saldo.css" />
     <title>Paradigm | dväljes</title>
     
     <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
@@ -16,7 +16,7 @@
   <body>
     <center>
       <p>
-        <a href="http://testserver/fl/html"><img
+        <a href="http://testserver.saldo_ws/fl/html"><img
             src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
             alt="SALDO: gå tillbaka till startsidan" /></a>
       </p>
@@ -24,7 +24,7 @@
     <div id="output_table">
       
   <center>
-      <form action="http://testserver/para/html" method="get" class="inputclass">
+      <form action="http://testserver.saldo_ws/para/html" method="get" class="inputclass">
           <input type="search" id="search" class="inputclass" value="dväljes" name="segment" size="30"
               placeholder="Mata in kommaseparerade ordformer, där första ordet är en grundform försedd med ordklass."
               results="10" />
@@ -57,7 +57,7 @@
   <head>
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
     <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
-    <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
+    <link rel="stylesheet" type="text/css" href="http://testserver.saldo_ws/static/saldo.css" />
     <title>Paradigm</title>
     
     <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
@@ -66,7 +66,7 @@
   <body>
     <center>
       <p>
-        <a href="http://testserver/fl/html"><img
+        <a href="http://testserver.saldo_ws/fl/html"><img
             src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
             alt="SALDO: gå tillbaka till startsidan" /></a>
       </p>
@@ -74,7 +74,7 @@
     <div id="output_table">
       
   <center>
-      <form action="http://testserver/para/html" method="get" class="inputclass">
+      <form action="http://testserver.saldo_ws/para/html" method="get" class="inputclass">
           <input type="search" id="search" class="inputclass" value="None" name="segment" size="30"
               placeholder="Mata in kommaseparerade ordformer, där första ordet är en grundform försedd med ordklass."
               results="10" />
@@ -84,7 +84,7 @@
       
       <p>Mata in kommaseparerade ordformer, där första ordet är en grundform försedd med ordklass.</p>
       <p>Exempel: <a
-              href="http://testserver/para/html?words=man%253Ann%252C%2520m%25C3%25A4n">man:nn,
+              href="http://testserver.saldo_ws/para/html?words=man%253Ann%252C%2520m%25C3%25A4n">man:nn,
               män</a></p>
       
   </center>

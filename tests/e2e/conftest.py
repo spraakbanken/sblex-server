@@ -348,7 +348,7 @@ async def client(webapp: FastAPI) -> AsyncGenerator[AsyncClient, None]:
     async with LifespanManager(webapp):
         async with AsyncClient(
             transport=ASGITransport(webapp),  # type: ignore [arg-type]
-            base_url="http://testserver",
+            base_url="http://testserver.saldo_ws",
         ) as client:
             yield client
 
