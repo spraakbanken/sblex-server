@@ -7,8 +7,8 @@ from sblex.saldo_ws.routes import (
     inflection,
     lids,
     paradigms,
-    system_info,
 )
+from sblex.sblex_server.routes import system_info
 
 router = APIRouter()
 
