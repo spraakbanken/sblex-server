@@ -11,7 +11,7 @@ from opentelemetry.instrumentation.httpx import HTTPXClientInstrumentor
 
 from sblex import telemetry
 from sblex.saldo_ws import config, routes, tasks, templating
-from sblex.saldo_ws.shared import version_info
+from sblex.sblex_server.shared import version_info
 
 logger = logging.getLogger(__name__)
 
