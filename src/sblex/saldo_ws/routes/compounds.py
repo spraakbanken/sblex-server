@@ -51,8 +51,8 @@ async def get_compound_xml(
         templates = request.app.state.templates
         return templates.TemplateResponse(
             request=request,
-            name="saldo_temp_disable.xml",
-            #     name="saldo_compound.xml",
+            name="temp_disable.xml",
+            #     name="compound.xml",
             context={
                 "segment": segment,
                 # "j": segment_compounds,
@@ -78,8 +78,8 @@ async def get_compound_html(
         templates = request.app.state.templates
         return templates.TemplateResponse(
             request=request,
-            # name="saldo_compound.html",
-            name="saldo_temp_disable.html",
+            # name="compound.html",
+            name="temp_disable.html",
             context=templating.build_context(
                 request,
                 title=f"Sammansättningsanalys för '{segment}' [Avstängd]",

@@ -1,6 +1,6 @@
 from pydantic_settings import SettingsConfigDict
 
-from sblex.sblex_server.settings import Settings
+from sblex.sblex_server.settings import AppSettings, Settings
 from sblex.telemetry.settings import OTelSettings
 
 
@@ -12,4 +12,4 @@ class SaldoWsSettings(Settings):
 
 def read_settings_from_env() -> SaldoWsSettings:
     otel = OTelSettings(_env_prefix="SALDO_WS__")
-    return SaldoWsSettings(otel=otel)
+    return SaldoWsSettings(otel=otel, app=AppSettings(template_directory="templates/saldo_ws"))

@@ -48,7 +48,7 @@ async def fullform_xml(
 
         return templates.TemplateResponse(
             request=request,
-            name="saldo_fullform.xml",
+            name="fullform.xml",
             context={
                 "j": json_data,
             },
@@ -73,7 +73,7 @@ async def fullform_html(
         title = f"Fullform | {fragment}" if fragment else "Fullform"
         return templates.TemplateResponse(
             request=request,
-            name="saldo_fullform.html",
+            name="fullform.html",
             context=templating.build_context(
                 request=request,
                 title=title,

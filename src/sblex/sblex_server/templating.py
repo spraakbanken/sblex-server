@@ -4,6 +4,7 @@ import jinja2
 from fastapi import Request
 from fastapi.datastructures import URL
 from fastapi.templating import Jinja2Templates
+from sblex.sblex_server.settings import AppSettings, Settings
 
 from sblex.sblex_server.settings import AppSettings, Settings
 

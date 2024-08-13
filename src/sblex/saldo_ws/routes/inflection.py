@@ -50,7 +50,7 @@ async def inflection_table_xml(
         json_data = inflection_table_query.query(paradigm, word)
         return templates.TemplateResponse(
             request=request,
-            name="saldo_gen.xml",
+            name="gen.xml",
             context={"j": json_data, "paradigm": paradigm},
             media_type="application/xml",
         )
@@ -77,7 +77,7 @@ async def inflection_table_html(
             data = None
         return templates.TemplateResponse(
             request=request,
-            name="saldo_gen.html",
+            name="gen.html",
             context=templating.build_context(
                 request=request,
                 title=title,

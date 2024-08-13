@@ -88,7 +88,7 @@ async def fullform_lex_html(
             status_code = status.HTTP_404_NOT_FOUND
         return templates.TemplateResponse(
             request=request,
-            name="saldo_fullform_lex.html",
+            name="fullform_lex.html",
             status_code=status_code,
             context=templating.build_context(
                 request=request,

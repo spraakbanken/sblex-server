@@ -76,7 +76,7 @@ async def paradigm_html(
         if words is None:
             return templates.TemplateResponse(
                 request=request,
-                name="saldo_paradigms.html",
+                name="paradigms.html",
                 context=templating.build_context(
                     request=request,
                     title="Paradigm",
@@ -93,7 +93,7 @@ async def paradigm_html(
             baseform = words.split(",")[0]
             return templates.TemplateResponse(
                 request=request,
-                name="saldo_paradigms.html",
+                name="paradigms.html",
                 status_code=status.HTTP_400_BAD_REQUEST,
                 context=templating.build_context(
                     request=request,

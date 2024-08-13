@@ -90,14 +90,14 @@ async def lookup_lid_xml(
         if is_lemma(lid):
             return templates.TemplateResponse(
                 request=request,
-                name="saldo_lid_lemma.xml",
+                name="lid_lemma.xml",
                 status_code=status_code,
                 context={"j": lemma_or_lexeme},
                 media_type="application/xml",
             )
         return templates.TemplateResponse(
             request=request,
-            name="saldo_lid_lexeme.xml",
+            name="lid_lexeme.xml",
             status_code=status_code,
             context={"j": lemma_or_lexeme},
             media_type="application/xml",
@@ -124,14 +124,14 @@ async def lookup_lid_html(
         except LemmaNotFound:
             return templates.TemplateResponse(
                 request=request,
-                name="saldo_lid_lemma_saknas.html",
+                name="lid_lemma_saknas.html",
                 status_code=status.HTTP_404_NOT_FOUND,
                 context=templating.build_context(request, title="Lemma-id saknas", lid=lid),
             )
         except LexemeNotFound:
             return templates.TemplateResponse(
                 request=request,
-                name="saldo_lid_lexeme_saknas.html",
+                name="lid_lexeme_saknas.html",
                 status_code=status.HTTP_404_NOT_FOUND,
                 context=templating.build_context(request, title="Saldo-id saknas", lid=lid),
             )
@@ -141,7 +141,7 @@ async def lookup_lid_html(
 
             return templates.TemplateResponse(
                 request=request,
-                name="saldo_table.html",
+                name="table.html",
                 context=templating.build_context(
                     request,
                     title=f"Lemma-id | {lid}",
@@ -159,7 +159,7 @@ async def lookup_lid_html(
         templates.env.globals["lemma"] = formatting.lemma
         return templates.TemplateResponse(
             request=request,
-            name="saldo_lid_lexeme.html",
+            name="lid_lexeme.html",
             context=templating.build_context(
                 request, title=f"Saldo-id | {lid}", data=prepared_json
             ),
@@ -185,7 +185,7 @@ async def lookup_lid_protojs(
         json_data = await lookup_lid.get_lexeme(lid)
         return templates.TemplateResponse(
             request=request,
-            name="saldo_lid_protojs.js",
+            name="lid_protojs.js",
             context=templating.build_context(request, title="", j=json_data),
             media_type="text/javascript",
         )
@@ -210,7 +210,7 @@ async def lookup_lid_graph(
         json_data = await lookup_lid.get_lexeme(lid)
         return templates.TemplateResponse(
             request=request,
-            name="saldo_lid_graph.html",
+            name="lid_graph.html",
             context=templating.build_context(
                 request, title=f"Lemma-id | graf | {lid}", j=json_data, l=lid
             ),
