@@ -12,7 +12,7 @@ from sblex.fm_server.config import Settings as FmSettings
 from sblex.fm_server.server import create_fm_server
 from sblex.saldo_ws.server import create_saldo_ws_server
 from sblex.sblex_server.deps import get_fm_client, get_fm_runner
-from sblex.sblex_server.settings import FmBinSettings, MatomoSettings
+from sblex.sblex_server.settings import AppSettings, FmBinSettings, MatomoSettings
 from sblex.sblex_server.settings import Settings as SaldoWsSettings
 from sblex.telemetry.settings import OTelSettings
 from tests.adapters.mem_fm_runner import MemFmRunner
@@ -36,6 +36,7 @@ def fixture_webapp(fm_client: AsyncClient) -> FastAPI:
                 debug_log_otel_to_console=False,
                 debug_log_otel_to_provider=False,
             ),
+            app=AppSettings(template_directory="templates/saldo_ws"),
         )
         # config={
         #     "semantic.path": "assets/testing/saldo.txt",

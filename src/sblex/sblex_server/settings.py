@@ -10,7 +10,7 @@ from typing_extensions import Self
 class AppSettings(BaseModel):
     base_url: typing.Optional[str] = None
     root_path: str = ""
-    template_directory: str = "templates"
+    template_directory: str = "<INSERT PATH>"
 
 
 class MatomoSettings(BaseModel):

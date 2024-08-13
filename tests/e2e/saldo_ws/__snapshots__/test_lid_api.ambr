@@ -111,7 +111,9 @@
     </center>
     <div id="output_table">
       
-  <center><p><b>xxxxx..xx.1 finns ej.</b></p></center>
+  <center>
+      <p><b>xxxxx..xx.1 finns ej.</b></p>
+  </center>
   
     </div>
     <footer>
