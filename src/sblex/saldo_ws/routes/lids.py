@@ -13,8 +13,8 @@ from sblex.application.predicates import is_lemma, is_lexeme
 from sblex.application.queries import LookupLid
 from sblex.application.queries.lookup_lid import LemmaNotFound, LexemeNotFound
 from sblex.application.services.lookup import LookupService
-from sblex.saldo_ws import deps, schemas, templating
-from sblex.saldo_ws.responses import JavascriptResponse, XMLResponse
+from sblex.sblex_server import deps, schemas, templating
+from sblex.sblex_server.responses import JavascriptResponse, XMLResponse
 
 logger = logging.getLogger(__name__)
 router = APIRouter()
@@ -24,7 +24,10 @@ router = APIRouter()
     "/json/{lid}",
     name="lids:lid-json",
     response_model=Union[schemas.LidLemma, schemas.LidLexeme],
-    responses={404: {"model": schemas.Message}, 422: {"model": schemas.Message}},
+    responses={
+        404: {"model": schemas.Message},
+        422: {"model": schemas.Message},
+    },
 )
 async def lookup_lid_json(
     request: Request,

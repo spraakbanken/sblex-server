@@ -5,7 +5,7 @@ from fastapi.responses import HTMLResponse, ORJSONResponse, RedirectResponse
 from opentelemetry import trace
 
 from sblex.application.queries import NoPartOfSpeechOnBaseform, Paradigms
-from sblex.saldo_ws import deps, templating
+from sblex.sblex_server import deps, templating
 
 router = APIRouter()
 

@@ -3,7 +3,7 @@ import json
 import pytest
 from pydantic import ValidationError
 
-from sblex.saldo_ws.config import MatomoSettings
+from sblex.sblex_server.settings import MatomoSettings
 
 
 class TestMatomoSettings:

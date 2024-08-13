@@ -3,12 +3,11 @@ from fastapi import APIRouter
 from sblex.saldo_ws.routes import (
     compounds,
     fullform,
-    fullform_lex,
     inflection,
     lids,
     paradigms,
 )
-from sblex.sblex_server.routes import system_info
+from sblex.sblex_server.routes import fullform_lex, system_info
 
 router = APIRouter()
 

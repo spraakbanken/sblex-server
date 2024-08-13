@@ -10,10 +10,10 @@ from syrupy.extensions.json import JSONSnapshotExtension
 from sblex.fm.fm_runner import FmRunner
 from sblex.fm_server.config import Settings as FmSettings
 from sblex.fm_server.server import create_fm_server
-from sblex.saldo_ws.config import FmBinSettings, MatomoSettings
-from sblex.saldo_ws.config import Settings as SaldoWsSettings
-from sblex.saldo_ws.deps import get_fm_client, get_fm_runner
 from sblex.saldo_ws.server import create_saldo_ws_server
+from sblex.sblex_server.deps import get_fm_client, get_fm_runner
+from sblex.sblex_server.settings import FmBinSettings, MatomoSettings
+from sblex.sblex_server.settings import Settings as SaldoWsSettings
 from sblex.telemetry.settings import OTelSettings
 from tests.adapters.mem_fm_runner import MemFmRunner
 
@@ -372,6 +372,6 @@ async def fm_client(fm_server: FastAPI) -> AsyncGenerator[AsyncClient, None]:
     async with LifespanManager(fm_server):
         async with AsyncClient(
             transport=ASGITransport(fm_server),  # type: ignore [arg-type]
-            base_url="http://fmserver",
+            base_url="http://fmserver.saldo-ws",
         ) as fm_client:
             yield fm_client

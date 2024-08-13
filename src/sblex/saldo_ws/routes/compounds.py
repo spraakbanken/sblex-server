@@ -8,8 +8,8 @@ from fastapi.responses import HTMLResponse, ORJSONResponse
 from opentelemetry import trace
 
 from sblex.application.services.lookup import LookupService
-from sblex.saldo_ws import deps, templating
-from sblex.saldo_ws.responses import XMLResponse
+from sblex.sblex_server import deps, templating
+from sblex.sblex_server.responses import XMLResponse
 
 logger = logging.getLogger(__name__)
 router = APIRouter()

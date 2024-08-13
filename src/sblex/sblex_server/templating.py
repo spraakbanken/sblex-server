@@ -5,11 +5,11 @@ from fastapi import Request
 from fastapi.datastructures import URL
 from fastapi.templating import Jinja2Templates
 
-from sblex.saldo_ws import config
+from sblex.sblex_server.settings import AppSettings, Settings
 
 
 def build_context(request: Request, *, title: str, **kwargs) -> dict[str, Any]:
-    settings: config.Settings = request.app.state.settings
+    settings: Settings = request.app.state.settings
     return {
         "title": title,
         "tracking_base_url": settings.frontend.tracking.matomo_url,
@@ -18,8 +18,7 @@ def build_context(request: Request, *, title: str, **kwargs) -> dict[str, Any]:
     }
 
 
-def init_template_engine(settings: config.AppSettings) -> Jinja2Templates:
-    print(f"{settings.template_directory=}")
+def init_template_engine(settings: AppSettings) -> Jinja2Templates:
     templates = Jinja2Templates(directory=settings.template_directory)
     templates.env.globals["url_for"] = custom_url_for
     return templates

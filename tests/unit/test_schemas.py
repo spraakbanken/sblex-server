@@ -2,7 +2,7 @@ import pydantic
 import pytest
 
 from sblex.application.predicates import is_lemma, is_lexeme
-from sblex.saldo_ws.schemas import Lemma, Lexeme
+from sblex.sblex_server.schemas.base import Lemma, Lexeme
 
 
 class WithLemma(pydantic.BaseModel):

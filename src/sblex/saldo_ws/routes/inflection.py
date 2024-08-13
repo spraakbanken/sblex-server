@@ -7,8 +7,8 @@ from pydantic.dataclasses import dataclass
 
 from sblex.application import queries
 from sblex.application.queries.inflection import InflectionTableQuery
-from sblex.saldo_ws import deps, schemas, templating
-from sblex.saldo_ws.responses import XMLResponse
+from sblex.sblex_server import deps, schemas, templating
+from sblex.sblex_server.responses import XMLResponse
 
 router = APIRouter()
 
