@@ -1,9 +1,9 @@
-from fastapi import APIRouter, Request
+from fastapi import APIRouter
 from fastapi.responses import FileResponse
 
 router = APIRouter()
 
 
-@router.get("/saldo.css", response_class=FileResponse)
-async def saldo_css(request: Request):
-    return "static/saldo.css"
+@router.get("/static{path:path}", response_class=FileResponse, name="static")
+async def staticfiles_workaround(path: str):
+    return f"static{path}"

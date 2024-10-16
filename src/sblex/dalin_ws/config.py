@@ -1,5 +1,6 @@
 from pydantic_settings import SettingsConfigDict
-from sblex.fm_server.config import Settings
+
+from sblex.sblex_server.settings import Settings
 from sblex.telemetry.settings import OTelSettings
 
 

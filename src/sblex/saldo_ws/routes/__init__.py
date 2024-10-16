@@ -22,4 +22,4 @@ router.include_router(inflection.router, prefix="/gen", tags=["inflection"])
 router.include_router(paradigms.router, prefix="/para", tags=["paradigms"])
 router.include_router(system_info.router, tags=["system-info"])
 # Workaround for fastapi.staticfiles.StaticFiles not working
-router.include_router(statics.router, prefix="/static")
+router.include_router(statics.router)  # , prefix="/static")

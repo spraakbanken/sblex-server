@@ -38,7 +38,7 @@ class MemLookupLid(LookupLid):
                 tsv_file = csv.reader(f, delimiter="\t")
                 for line in tsv_file:
                     if len(line) != 7:
-                        logger.warn(
+                        logger.warning(
                             "Expected 7 columns, line has %d: '%s' skipping ...",
                             len(line),
                             line,
