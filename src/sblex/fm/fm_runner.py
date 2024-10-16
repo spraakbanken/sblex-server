@@ -38,7 +38,9 @@ class FmRunner:
             args = f'{paradigm} "{word}";'
             return self._call_fm_binary(program=program, args=args)
 
-    def _call_fm_binary(self, program: list[typing.Union[str, Path]], args: str):
+    def _call_fm_binary(
+        self, program: list[typing.Union[str, Path]], args: str
+    ) -> list[InflectionRow]:
         with trace.get_tracer(__name__).start_as_current_span(
             sys._getframe().f_code.co_name
         ) as call_span:

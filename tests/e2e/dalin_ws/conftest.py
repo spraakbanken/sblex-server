@@ -8,6 +8,10 @@ from httpx import ASGITransport, AsyncClient
 from syrupy.extensions.json import JSONSnapshotExtension
 
 from sblex.dalin_ws.server import create_dalin_ws_server
+from sblex.fm_server.config import Settings as FmSettings
+from sblex.fm_server.server import create_fm_server
+from sblex.sblex_server.deps import get_fm_client
+from sblex.telemetry.settings import OTelSettings
 
 
 @pytest.fixture
@@ -36,8 +40,8 @@ def fixture_webapp(fm_client: AsyncClient) -> FastAPI:
         # env=env,
     )
 
-    # def override_fm_client() -> AsyncClient:
-    #     return fm_client
+    def override_fm_client() -> AsyncClient:
+        return fm_client
 
     # def override_fm_runner() -> FmRunner:
     #     return MemFmRunner(
@@ -330,7 +334,7 @@ def fixture_webapp(fm_client: AsyncClient) -> FastAPI:
     #         },
     #     )
 
-    # webapp.dependency_overrides[get_fm_client] = override_fm_client
+    webapp.dependency_overrides[get_fm_client] = override_fm_client
     # webapp.dependency_overrides[get_fm_runner] = override_fm_runner
     return webapp
 
@@ -343,3 +347,27 @@ async def client(webapp: FastAPI) -> AsyncGenerator[AsyncClient, None]:
             base_url="http://testserver.dalin_ws",
         ) as client:
             yield client
+
+
+@pytest.fixture(name="fm_server")
+def fixture_fm_server() -> FastAPI:
+    return create_fm_server(
+        settings=FmSettings(
+            morphology_path="assets/testing/dalin.lex",
+            otel=OTelSettings(
+                otel_service_name="fm-server",
+                debug_log_otel_to_console=False,
+                debug_log_otel_to_provider=False,
+            ),
+        )
+    )
+
+
+@pytest_asyncio.fixture
+async def fm_client(fm_server: FastAPI) -> AsyncGenerator[AsyncClient, None]:
+    async with LifespanManager(fm_server):
+        async with AsyncClient(
+            transport=ASGITransport(fm_server),  # type: ignore [arg-type]
+            base_url="http://fmserver.saldo-ws",
+        ) as fm_client:
+            yield fm_client
