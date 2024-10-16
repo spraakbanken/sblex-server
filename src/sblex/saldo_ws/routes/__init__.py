@@ -7,7 +7,7 @@ from sblex.saldo_ws.routes import (
     lids,
     paradigms,
 )
-from sblex.sblex_server.routes import fullform_lex, system_info
+from sblex.sblex_server.routes import fullform_lex, statics, system_info
 
 router = APIRouter()
 
@@ -21,3 +21,5 @@ router.include_router(
 router.include_router(inflection.router, prefix="/gen", tags=["inflection"])
 router.include_router(paradigms.router, prefix="/para", tags=["paradigms"])
 router.include_router(system_info.router, tags=["system-info"])
+# Workaround for fastapi.staticfiles.StaticFiles not working
+router.include_router(statics.router, prefix="/static")
