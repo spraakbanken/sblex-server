@@ -8,6 +8,7 @@ import sys
 import json_arrays
 from json_arrays.utility import JsonFormat
 from opentelemetry import trace
+
 from sblex.trie import Trie
 
 logger = logging.getLogger(__name__)

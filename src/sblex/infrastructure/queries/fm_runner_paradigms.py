@@ -2,6 +2,7 @@ import sys
 import typing
 
 from opentelemetry import trace
+
 from sblex.application.queries import Paradigms
 from sblex.fm import FmRunner
 

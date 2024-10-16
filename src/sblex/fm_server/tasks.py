@@ -2,6 +2,7 @@ import logging
 import typing
 
 from fastapi import FastAPI
+
 from sblex.fm import MemMorphology
 
 logger = logging.getLogger(__name__)

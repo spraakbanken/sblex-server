@@ -5,6 +5,7 @@ from fastapi import APIRouter, Depends, Request, Response
 from fastapi.responses import HTMLResponse, RedirectResponse
 from json_arrays import jsonlib
 from opentelemetry import trace
+
 from sblex.fm import Morphology
 from sblex.saldo_ws import deps, templating
 from sblex.saldo_ws.responses import XMLResponse

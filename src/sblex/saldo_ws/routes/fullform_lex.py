@@ -4,6 +4,7 @@ from asgi_matomo.trackers import PerfMsTracker
 from fastapi import APIRouter, Depends, Request, status
 from fastapi.responses import HTMLResponse, ORJSONResponse, RedirectResponse
 from opentelemetry import trace
+
 from sblex.application.queries import FullformLexQuery
 from sblex.saldo_ws import deps, schemas, templating
 from sblex.saldo_ws.responses import XMLResponse

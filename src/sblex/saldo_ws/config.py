@@ -3,8 +3,9 @@ from pathlib import Path
 
 from pydantic import BaseModel, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
-from sblex.telemetry.settings import OTelSettings
 from typing_extensions import Self
+
+from sblex.telemetry.settings import OTelSettings
 
 
 class AppSettings(BaseModel):

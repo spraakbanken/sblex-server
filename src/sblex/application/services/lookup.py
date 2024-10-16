@@ -4,6 +4,7 @@ from typing import Any
 
 from json_arrays import jsonlib
 from opentelemetry import trace
+
 from sblex.application import texts
 from sblex.application.queries import LookupLid
 from sblex.application.queries.inflection import InflectionTableQuery, InflectionTableRow

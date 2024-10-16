@@ -7,10 +7,9 @@ from fastapi import FastAPI
 from httpx import ASGITransport, AsyncClient
 from syrupy.extensions.json import JSONSnapshotExtension
 
-from sblex.dalin_ws.server import create_dalin_ws_server
+# from sblex.dalin_ws.server import create_dalin_ws_server
 from sblex.fm_server.config import Settings as FmSettings
 from sblex.fm_server.server import create_fm_server
-from sblex.sblex_server.deps import get_fm_client
 from sblex.telemetry.settings import OTelSettings
 
 
@@ -20,25 +19,25 @@ def snapshot_json(snapshot):
 
 
 @pytest.fixture(name="webapp")
-def fixture_webapp(fm_client: AsyncClient) -> FastAPI:
-    webapp = create_dalin_ws_server(
-        # settings=SaldoWsSettings(
-        #     semantic_path="assets/testing/saldo.txt",
-        #     fm_server_url="not-used",
-        #     fm_bin=FmBinSettings(path="not used"),
-        #     tracking=MatomoSettings(matomo_url=None),
-        #     otel=OTelSettings(
-        #         otel_service_name="saldo-ws",
-        #         debug_log_otel_to_console=False,
-        #         debug_log_otel_to_provider=False,
-        #     ),
-        # )
-        # config={
-        #     "semantic.path": "assets/testing/saldo.txt",
-        #     "morphology.path": "assets/testing/saldo.lex",
-        # },
-        # env=env,
-    )
+def fixture_webapp(fm_client: AsyncClient) -> None:  # -> FastAPI:
+    # webapp = create_dalin_ws_server(
+    # settings=SaldoWsSettings(
+    #     semantic_path="assets/testing/saldo.txt",
+    #     fm_server_url="not-used",
+    #     fm_bin=FmBinSettings(path="not used"),
+    #     tracking=MatomoSettings(matomo_url=None),
+    #     otel=OTelSettings(
+    #         otel_service_name="saldo-ws",
+    #         debug_log_otel_to_console=False,
+    #         debug_log_otel_to_provider=False,
+    #     ),
+    # )
+    # config={
+    #     "semantic.path": "assets/testing/saldo.txt",
+    #     "morphology.path": "assets/testing/saldo.lex",
+    # },
+    # env=env,
+    # )
 
     def override_fm_client() -> AsyncClient:
         return fm_client
@@ -334,9 +333,9 @@ def fixture_webapp(fm_client: AsyncClient) -> FastAPI:
     #         },
     #     )
 
-    webapp.dependency_overrides[get_fm_client] = override_fm_client
+    # webapp.dependency_overrides[get_fm_client] = override_fm_client
     # webapp.dependency_overrides[get_fm_runner] = override_fm_runner
-    return webapp
+    # return webapp
 
 
 @pytest_asyncio.fixture

@@ -1,5 +1,6 @@
 import httpx
 from fastapi import Depends, Request
+
 from sblex.application.queries import FullformLexQuery, LookupLid
 from sblex.application.queries.inflection import InflectionTableQuery
 from sblex.application.queries.paradigms import Paradigms

@@ -1,4 +1,5 @@
 import pytest
+
 from sblex.application.predicates import is_lemma, is_lexeme
 
 

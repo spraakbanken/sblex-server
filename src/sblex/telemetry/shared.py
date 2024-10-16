@@ -2,6 +2,7 @@ from typing import Sequence
 
 from opentelemetry.sdk.resources import Resource
 from opentelemetry.semconv.resource import ResourceAttributes
+
 from sblex.telemetry.settings import OTelSettings
 
 DEFAULT_HTTP_ENDPOINT = "http://localhost:4318/"

@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Any
 
 from opentelemetry import trace
+
 from sblex.application.queries import LookupLid
 from sblex.application.queries.lookup_lid import LemmaNotFound, LexemeNotFound
 

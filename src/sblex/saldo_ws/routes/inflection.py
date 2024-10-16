@@ -4,6 +4,7 @@ from fastapi import APIRouter, Depends, Request, status
 from fastapi.responses import HTMLResponse, ORJSONResponse
 from opentelemetry import trace
 from pydantic.dataclasses import dataclass
+
 from sblex.application import queries
 from sblex.application.queries.inflection import InflectionTableQuery
 from sblex.saldo_ws import deps, schemas, templating

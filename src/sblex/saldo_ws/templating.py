@@ -4,6 +4,7 @@ import jinja2
 from fastapi import Request
 from fastapi.datastructures import URL
 from fastapi.templating import Jinja2Templates
+
 from sblex.saldo_ws import config
 
 
@@ -18,6 +19,7 @@ def build_context(request: Request, *, title: str, **kwargs) -> dict[str, Any]:
 
 
 def init_template_engine(settings: config.AppSettings) -> Jinja2Templates:
+    print(f"{settings.template_directory=}")
     templates = Jinja2Templates(directory=settings.template_directory)
     templates.env.globals["url_for"] = custom_url_for
     return templates

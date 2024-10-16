@@ -1,6 +1,7 @@
 import sys
 
 from opentelemetry import trace
+
 from sblex.application.queries import InflectionTableQuery
 from sblex.application.queries.inflection import InflectionTableRow
 from sblex.fm import FmRunner

@@ -8,6 +8,7 @@ from fastapi.responses import ORJSONResponse
 from fastapi.staticfiles import StaticFiles
 from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
 from opentelemetry.instrumentation.httpx import HTTPXClientInstrumentor
+
 from sblex import telemetry
 from sblex.saldo_ws import config, routes, tasks, templating
 from sblex.saldo_ws.shared import version_info

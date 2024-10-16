@@ -5,6 +5,8 @@ import pytest_asyncio
 from asgi_lifespan import LifespanManager
 from fastapi import FastAPI
 from httpx import ASGITransport, AsyncClient
+from syrupy.extensions.json import JSONSnapshotExtension
+
 from sblex.fm.fm_runner import FmRunner
 from sblex.fm_server.config import Settings as FmSettings
 from sblex.fm_server.server import create_fm_server
@@ -13,8 +15,6 @@ from sblex.saldo_ws.config import Settings as SaldoWsSettings
 from sblex.saldo_ws.deps import get_fm_client, get_fm_runner
 from sblex.saldo_ws.server import create_saldo_ws_server
 from sblex.telemetry.settings import OTelSettings
-from syrupy.extensions.json import JSONSnapshotExtension
-
 from tests.adapters.mem_fm_runner import MemFmRunner
 
 

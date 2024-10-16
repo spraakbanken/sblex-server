@@ -2,6 +2,7 @@ from unittest.mock import AsyncMock
 
 import pytest
 from httpx import AsyncClient, Response
+
 from sblex.infrastructure.queries.http_morpology import HttpMorphology
 
 
