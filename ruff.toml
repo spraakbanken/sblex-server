@@ -5,20 +5,20 @@ target-version = "py310"
 [lint]
 # Enable flake8-bugbear (`B`) rules.
 select = [
-  "A",
-  #   "ANN",
-  "B",
-  "BLE",
-  "C4",
-  "C90",
-  #   "D",
-  "E",
-  "F",
-  "FBT",
-  "I",
-  "RUF",
-  "S",
-  "YTT",
+    "A",
+    #   "ANN",
+    "B",
+    "BLE",
+    "C4",
+    "C90",
+    #   "D",
+    "E",
+    "F",
+    "FBT",
+    "I",
+    "RUF",
+    "S",
+    "YTT",
 ]
 
 # Never enforce `E501` (line length violations).
@@ -49,5 +49,6 @@ unfixable = ["B"]
 "src/sblex/saldo_util.py" = ["A", "B", "C", "E", "F", "FBT", "I"]
 "src/sblex/sib.py" = ["A", "E", "F", "I"]
 "src/sblex/table.py" = ["A", "E", "F", "I", "S"]
+"src/sblex/fm/fm_runner.py" = ["S603"]
 "tests/e2e/webapp/test_fullform_lex_api.py" = ["E501"]
 # "__init__.py" = ["E402"]
