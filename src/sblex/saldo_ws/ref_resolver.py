@@ -3,6 +3,7 @@ import urllib.parse
 import urllib.request
 
 from fastapi import FastAPI
+
 from sblex.formatting import prlex
 
 

@@ -1,6 +1,7 @@
 import pytest
 import pytest_asyncio
 from httpx import AsyncClient
+
 from sblex.infrastructure.queries.http_morpology import HttpMorphology
 
 

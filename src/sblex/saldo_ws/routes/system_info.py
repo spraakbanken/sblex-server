@@ -3,6 +3,7 @@ import sys
 from fastapi import APIRouter, Request, status
 from fastapi.responses import RedirectResponse
 from opentelemetry import trace
+
 from sblex.saldo_ws import schemas
 from sblex.saldo_ws.shared import version_info
 

@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, Response, status
 from fastapi.responses import JSONResponse
+
 from sblex.fm.morphology import Morphology
 from sblex.fm_server import deps
 

@@ -2,6 +2,7 @@ import logging
 
 from fastapi import FastAPI
 from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
+
 from sblex import telemetry
 from sblex.fm_server import api, config, tasks
 

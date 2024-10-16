@@ -19,6 +19,7 @@ from opentelemetry.sdk._logs.export import (
     ConsoleLogExporter,
     SimpleLogRecordProcessor,
 )
+
 from sblex.telemetry import shared
 from sblex.telemetry.settings import OTelSettings
 

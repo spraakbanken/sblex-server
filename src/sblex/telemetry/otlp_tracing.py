@@ -15,6 +15,7 @@ from opentelemetry.sdk.environment_variables import (
 from opentelemetry.sdk.resources import Resource
 from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor, ConsoleSpanExporter
+
 from sblex.telemetry import shared
 from sblex.telemetry.settings import OTelSettings
 

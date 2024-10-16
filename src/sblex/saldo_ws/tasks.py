@@ -3,6 +3,7 @@ from contextlib import asynccontextmanager
 
 import httpx
 from fastapi import FastAPI
+
 from sblex.fm import MemMorphology
 from sblex.fm.fm_runner import FmRunner
 from sblex.infrastructure.queries import MemLookupLid

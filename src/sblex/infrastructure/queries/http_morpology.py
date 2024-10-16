@@ -3,6 +3,7 @@ import sys
 
 import httpx
 from opentelemetry import trace
+
 from sblex.fm import Morphology
 
 logger = logging.getLogger(__name__)

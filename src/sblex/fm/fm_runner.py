@@ -45,7 +45,7 @@ class FmRunner:
             call_span.set_attribute("program", str(program))
             call_span.set_attribute("args", args)
             process = subprocess.run(
-                program,  # type: ignore # noqa: S603
+                program,  # type: ignore
                 input=args.encode("utf-8"),
                 check=True,
                 stdout=subprocess.PIPE,

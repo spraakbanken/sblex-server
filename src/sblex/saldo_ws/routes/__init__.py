@@ -1,4 +1,5 @@
 from fastapi import APIRouter
+
 from sblex.saldo_ws.routes import (
     compounds,
     fullform,
