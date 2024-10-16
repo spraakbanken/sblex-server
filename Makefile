@@ -57,8 +57,8 @@ help:
 	@echo ""
 
 PLATFORM := `uname -o`
-REPO := "<REPO-NAME-HERE>"
-PROJECT_SRC := "<SRC-FOLDER-HERE>"
+REPO := "sblex-server"
+PROJECT_SRC := "src/sblex"
 
 ifeq (${VIRTUAL_ENV},)
   VENV_NAME = .venv
@@ -166,3 +166,25 @@ snapshot-update:
 	${INVENV} pytest --snapshot-update
 
 ### === project targets below this line ===
+serve-dev:
+	${INVENV} watchfiles "uvicorn --port 8000 sblex.saldo_ws.main:app" src
+
+quick-dev:
+	${INVENV} watchfiles "python examples/quick_dev.py" examples/quick_dev.py templates
+
+serve-fm-server:
+	${INVENV} watchfiles "uvicorn --port 8765 sblex.fm_server.main:app" src/sblex/fm_server
+
+.PHONY: lint-deptrac
+lint-deptrac:
+	${INVENV} deptracpy
+
+.PHONY: lint-deptry
+lint-deptry:
+	${INVENV} deptry .
+
+.PHONY: lint-dependencies
+lint-dependencies: lint-deptry lint-deptrac
+
+watch-lint-deptrac:
+	${INVENV} watchfiles "deptracpy" deptracpy.yaml src
