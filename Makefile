@@ -188,3 +188,7 @@ lint-dependencies: lint-deptry lint-deptrac
 
 watch-lint-deptrac:
 	${INVENV} watchfiles "deptracpy" deptracpy.yaml src
+
+run-traefik:
+	@echo "Remember to set SALDO_WS__APP__ROOT_PATH=/ws/saldo-ws"
+	traefik --configFile=contrib/traefik/traefik.toml
