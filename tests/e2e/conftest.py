@@ -47,11 +47,6 @@ def fixture_webapp_w_root_path(fm_client: AsyncClient) -> FastAPI:
     return webapp
 
 
-@pytest.fixture
-def snapshot_json(snapshot):
-    return snapshot.with_defaults(extension_class=JSONSnapshotExtension)
-
-
 @pytest.fixture(name="webapp")
 def fixture_webapp(fm_client: AsyncClient) -> FastAPI:
     webapp = create_saldo_ws_server(
