@@ -7,6 +7,7 @@ from sblex.saldo_ws.routes import (
     inflection,
     lids,
     paradigms,
+    statics,
     system_info,
 )
 
@@ -22,3 +23,5 @@ router.include_router(
 router.include_router(inflection.router, prefix="/gen", tags=["inflection"])
 router.include_router(paradigms.router, prefix="/para", tags=["paradigms"])
 router.include_router(system_info.router, tags=["system-info"])
+# Workaround for fastapi.staticfiles.StaticFiles not working
+router.include_router(statics.router)

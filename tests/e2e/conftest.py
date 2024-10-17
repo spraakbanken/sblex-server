@@ -10,7 +10,7 @@ from syrupy.extensions.json import JSONSnapshotExtension
 from sblex.fm.fm_runner import FmRunner
 from sblex.fm_server.config import Settings as FmSettings
 from sblex.fm_server.server import create_fm_server
-from sblex.saldo_ws.config import FmBinSettings, MatomoSettings
+from sblex.saldo_ws.config import AppSettings, FmBinSettings, MatomoSettings
 from sblex.saldo_ws.config import Settings as SaldoWsSettings
 from sblex.saldo_ws.deps import get_fm_client, get_fm_runner
 from sblex.saldo_ws.server import create_saldo_ws_server
@@ -21,6 +21,30 @@ from tests.adapters.mem_fm_runner import MemFmRunner
 @pytest.fixture
 def snapshot_json(snapshot):
     return snapshot.with_defaults(extension_class=JSONSnapshotExtension)
+
+
+@pytest.fixture(name="webapp_w_root_path")
+def fixture_webapp_w_root_path(fm_client: AsyncClient) -> FastAPI:
+    webapp = create_saldo_ws_server(
+        settings=SaldoWsSettings(
+            semantic_path="assets/testing/saldo.txt",
+            fm_server_url="not-used",
+            fm_bin=FmBinSettings(path="not used"),
+            tracking=MatomoSettings(matomo_url=None),
+            otel=OTelSettings(
+                otel_service_name="saldo-ws",
+                debug_log_otel_to_console=False,
+                debug_log_otel_to_provider=False,
+            ),
+            app=AppSettings(root_path="/ws/saldo-ws"),
+        )
+        # config={
+        #     "semantic.path": "assets/testing/saldo.txt",
+        #     "morphology.path": "assets/testing/saldo.lex",
+        # },
+        # env=env,
+    )
+    return webapp
 
 
 @pytest.fixture(name="webapp")
@@ -348,6 +372,16 @@ async def client(webapp: FastAPI) -> AsyncGenerator[AsyncClient, None]:
     async with LifespanManager(webapp):
         async with AsyncClient(
             transport=ASGITransport(webapp),  # type: ignore [arg-type]
+            base_url="http://testserver",
+        ) as client:
+            yield client
+
+
+@pytest_asyncio.fixture
+async def client_w_root_path(webapp_w_root_path: FastAPI) -> AsyncGenerator[AsyncClient, None]:
+    async with LifespanManager(webapp_w_root_path):
+        async with AsyncClient(
+            transport=ASGITransport(webapp_w_root_path),  # type: ignore [arg-type]
             base_url="http://testserver",
         ) as client:
             yield client

@@ -48,4 +48,6 @@ dev-dependencies = [
     "pytest-cov>=5.0.0",
     "ruff>=0.6.9",
     "syrupy>=4.7.2",
+    "uvicorn>=0.32.0",
+    "watchfiles>=0.24.0",
 ]

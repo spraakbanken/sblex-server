@@ -5,7 +5,6 @@ from brotli_asgi import BrotliMiddleware
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import ORJSONResponse
-from fastapi.staticfiles import StaticFiles
 from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
 from opentelemetry.instrumentation.httpx import HTTPXClientInstrumentor
 
@@ -73,6 +72,8 @@ def create_saldo_ws_server(*, settings: config.Settings) -> FastAPI:
     FastAPIInstrumentor.instrument_app(webapp)
 
     webapp.include_router(routes.router)
-    webapp.mount("/static", StaticFiles(directory="static"), name="static")
+    # Workaround for fastapi.staticfiles.StaticFiles not working,
+    # added in saldo_ws.routes instead
+    # webapp.mount("/static", StaticFiles(directory="static"), name="static")
 
     return webapp
