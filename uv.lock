@@ -1185,7 +1185,7 @@ wheels = [
 
 [[package]]
 name = "sblex-server"
-version = "0.4.0"
+version = "0.4.1.dev0"
 source = { editable = "." }
 dependencies = [
     { name = "asgi-matomo" },
@@ -1201,6 +1201,7 @@ dependencies = [
     { name = "opentelemetry-sdk" },
     { name = "orjson" },
     { name = "pydantic-settings" },
+    { name = "uvicorn" },
 ]
 
 [package.dev-dependencies]
@@ -1232,12 +1233,13 @@ requires-dist = [
     { name = "opentelemetry-sdk", specifier = ">=1.27.0" },
     { name = "orjson", specifier = ">=3.10.7" },
     { name = "pydantic-settings", specifier = ">=2.5.2" },
+    { name = "uvicorn" },
 ]
 
 [package.metadata.requires-dev]
 dev = [
     { name = "asgi-lifespan", specifier = ">=2.1.0" },
-    { name = "bump-my-version" },
+    { name = "bump-my-version", specifier = ">=0.28.0" },
     { name = "mypy", specifier = ">=1.12.0" },
     { name = "pytest", specifier = ">=8.3.3" },
     { name = "pytest-asyncio", specifier = ">=0.24.0" },
