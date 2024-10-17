@@ -50,4 +50,5 @@ dev-dependencies = [
     "syrupy>=4.7.2",
     "uvicorn>=0.32.0",
     "watchfiles>=0.24.0",
+    "bump-my-version>=0.28.0",
 ]
