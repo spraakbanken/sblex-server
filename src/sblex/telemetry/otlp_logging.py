@@ -26,16 +26,6 @@ from sblex.telemetry.settings import OTelSettings
 logger = logging.getLogger(__name__)
 
 
-# The default Otel SDK completely ignores formatters when outputting the message being logged.
-# We overcome this by creating our own LoggingHandler class which respects formatters.
-class FormattedLoggingHandler(LoggingHandler):
-    def emit(self, record: logging.LogRecord) -> None:
-        msg = self.format(record)
-        record.msg = msg
-        record.args = None
-        self._logger.emit(self._translate(record))
-
-
 def init_otel_logging(settings: OTelSettings) -> None:
     msg = "Using log level:"
     match settings.otel_python_log_level or "INFO":
@@ -84,12 +74,14 @@ def init_otel_logging(settings: OTelSettings) -> None:
                 otel_log_exporter = OTLPLogExporterGRPC(endpoint=endpoint, headers=headers)
         logger_provider.add_log_record_processor(BatchLogRecordProcessor(otel_log_exporter))
 
-    otel_log_handler = FormattedLoggingHandler(logger_provider=logger_provider, level=log_level)
+    otel_log_handler = LoggingHandler(logger_provider=logger_provider, level=log_level)
 
     # This has to be called first before logger.getLogger().addHandler()
     # so that it can call logging.basicConfig first to set the logging format
     # based on the environment variable OTEL_PYTHON_LOG_FORMAT
-    LoggingInstrumentor(log_level=log_level).instrument()
+    LoggingInstrumentor(
+        log_level=log_level,
+    ).instrument()
     logFormatter = logging.Formatter(settings.otel_python_log_format)
     otel_log_handler.setFormatter(logFormatter)
     logging.getLogger().addHandler(otel_log_handler)
