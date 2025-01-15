@@ -21,6 +21,9 @@ class Morphology(abc.ABC):
     @abc.abstractmethod
     async def lookup_from_bytes(self, s: bytes) -> bytes | None: ...
 
+    @abc.abstractmethod
+    async def lookup_w_cont(self, word: str) -> bytes | None: ...
+
 
 class MemMorphology(Morphology):
     def __init__(self, trie: Trie) -> None:
