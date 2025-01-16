@@ -59,7 +59,7 @@ def create_saldo_ws_server(*, settings: config.Settings) -> FastAPI:
             logger.info("adding MatomoMiddleware")
             webapp.add_middleware(
                 MatomoMiddleware,  # type: ignore [arg-type]
-                idsite=webapp.state.settings.tracking.matomo_idsite,
+                idsite=webapp.state.settings.tracking.matomo_idsite,  # type: ignore
                 matomo_url=webapp.state.settings.tracking.matomo_url,
                 access_token=webapp.state.settings.tracking.matomo_token,
                 exclude_patterns=[".*/html.*"],

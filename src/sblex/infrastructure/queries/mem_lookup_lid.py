@@ -108,30 +108,30 @@ class MemLookupLid(LookupLid):
                     #     pr_list(path_map[l]),father_path(f))
             return cls(lex_map=final_lex_map, lem_map=final_lem_map, path_map=path_map)
 
-    async def get_lemma(self, lemma: str) -> dict[str, Any]:
+    async def get_lemma(self, lid: str) -> dict[str, Any]:
         with trace.get_tracer(__name__).start_as_current_span(
             sys._getframe().f_code.co_name
         ) as _process_api_span:
             try:
-                logger.debug("lookup lemma", extra={"lemma": lemma})
-                result = self._lem_map[lemma]
-                logger.debug("lemma", extra={"lemma": lemma, "result": result})
+                logger.debug("lookup lemma", extra={"lemma": lid})
+                result = self._lem_map[lid]
+                logger.debug("lemma", extra={"lemma": lid, "result": result})
                 return result
             except KeyError as exc:
-                raise LemmaNotFound(lemma) from exc
+                raise LemmaNotFound(lid) from exc
 
-    async def get_lexeme(self, lexeme: str) -> dict[str, Any]:
+    async def get_lexeme(self, lid: str) -> dict[str, Any]:
         with trace.get_tracer(__name__).start_as_current_span(
             sys._getframe().f_code.co_name
         ) as _process_api_span:
-            if lexeme == "rnd":
+            if lid == "rnd":
                 rnd_key_index = random.randrange(0, len(self._lex_map))  # noqa: S311
                 rnd_key = next(itertools.islice(self._lex_map.keys(), rnd_key_index, None))
                 return self._lex_map[rnd_key]
             try:
-                return self._lex_map[lexeme]
+                return self._lex_map[lid]
             except KeyError as exc:
-                raise LexemeNotFound(lexeme) from exc
+                raise LexemeNotFound(lid) from exc
 
     def process(self, command: str, key: str) -> dict[str, Any]:
         try:
