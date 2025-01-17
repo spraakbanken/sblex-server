@@ -1,28 +1,39 @@
 # serializer version: 1
 # name: test_sms_html[bo]
   '''
-  <!DOCTYPE html>
-  <html>
+  <!doctype html>
+  <html lang="sv">
+      <head>
+          <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+          <link
+              rel="shortcut icon"
+              href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png"
+          />
+          <link
+              rel="stylesheet"
+              type="text/css"
+              href="http://testserver/static/saldo.css"
+          />
+          <title>Sammansättningsanalys för &#39;bo&#39; [Avstängd]</title>
+          
+          <script
+              src="https://unpkg.com/htmx.org@1.9.8"
+              crossorigin="anonymous"
+          ></script>
+      </head>
   
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-    <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
-    <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
-    <title>Sammansättningsanalys för &#39;bo&#39; [Avstängd]</title>
-    
-    <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
-  </head>
-  
-  <body>
-    <center>
-      <p>
-        <a href="http://testserver/fl/html"><img
-            src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
-            alt="SALDO: gå tillbaka till startsidan" /></a>
-      </p>
-    </center>
-    <div id="output_table">
-      
+      <body>
+          <center>
+              <p>
+                  <a href="http://testserver/fl/html"
+                      ><img
+                          src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif"
+                          align="top"
+                          alt="SALDO: gå tillbaka till startsidan"
+                  /></a>
+              </p>
+          </center>
+          <div id="output_table">
   <h1>Denna tjänst är tillfälligt avstängd</h1>
   <p><b>Orsak:</b> Tjänsten är stängd på grund av prestandaproblem.</p>
   <p>Läs mer <a href="https://github.com/spraakbanken/sblex-server/issues/110">här</a>.</p>
@@ -32,44 +43,62 @@
   <p>Read more in this <a href="https://github.com/spraakbanken/sblex-server/issues/110">tracking issue</a>.
   </p>
   
-  
-    </div>
-    <footer>
-      <hr>
-      <ul>
-        <li><a href="https://spraakbanken.gu.se/saldo">SALDOs projektsida</a></li>
-        <li><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></li>
-      </ul>
-    </footer>
-  </body>
-  
+  </div>
+          <footer>
+              <hr />
+              <ul>
+                  <li>
+                      <a href="https://spraakbanken.gu.se/saldo"
+                          >SALDOs projektsida</a
+                      >
+                  </li>
+                  <li>
+                      <a
+                          href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf"
+                          >dokumentation (pdf)</a
+                      >
+                  </li>
+              </ul>
+          </footer>
+      </body>
   </html>
   '''
 # ---
 # name: test_sms_html[dv\xe4ljas]
   '''
-  <!DOCTYPE html>
-  <html>
+  <!doctype html>
+  <html lang="sv">
+      <head>
+          <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+          <link
+              rel="shortcut icon"
+              href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png"
+          />
+          <link
+              rel="stylesheet"
+              type="text/css"
+              href="http://testserver/static/saldo.css"
+          />
+          <title>Sammansättningsanalys för &#39;dväljas&#39; [Avstängd]</title>
+          
+          <script
+              src="https://unpkg.com/htmx.org@1.9.8"
+              crossorigin="anonymous"
+          ></script>
+      </head>
   
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-    <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
-    <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
-    <title>Sammansättningsanalys för &#39;dväljas&#39; [Avstängd]</title>
-    
-    <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
-  </head>
-  
-  <body>
-    <center>
-      <p>
-        <a href="http://testserver/fl/html"><img
-            src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
-            alt="SALDO: gå tillbaka till startsidan" /></a>
-      </p>
-    </center>
-    <div id="output_table">
-      
+      <body>
+          <center>
+              <p>
+                  <a href="http://testserver/fl/html"
+                      ><img
+                          src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif"
+                          align="top"
+                          alt="SALDO: gå tillbaka till startsidan"
+                  /></a>
+              </p>
+          </center>
+          <div id="output_table">
   <h1>Denna tjänst är tillfälligt avstängd</h1>
   <p><b>Orsak:</b> Tjänsten är stängd på grund av prestandaproblem.</p>
   <p>Läs mer <a href="https://github.com/spraakbanken/sblex-server/issues/110">här</a>.</p>
@@ -79,17 +108,24 @@
   <p>Read more in this <a href="https://github.com/spraakbanken/sblex-server/issues/110">tracking issue</a>.
   </p>
   
-  
-    </div>
-    <footer>
-      <hr>
-      <ul>
-        <li><a href="https://spraakbanken.gu.se/saldo">SALDOs projektsida</a></li>
-        <li><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></li>
-      </ul>
-    </footer>
-  </body>
-  
+  </div>
+          <footer>
+              <hr />
+              <ul>
+                  <li>
+                      <a href="https://spraakbanken.gu.se/saldo"
+                          >SALDOs projektsida</a
+                      >
+                  </li>
+                  <li>
+                      <a
+                          href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf"
+                          >dokumentation (pdf)</a
+                      >
+                  </li>
+              </ul>
+          </footer>
+      </body>
   </html>
   '''
 # ---

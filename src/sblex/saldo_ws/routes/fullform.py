@@ -25,7 +25,7 @@ async def fullform_json(
         sys._getframe().f_code.co_name
     ) as _process_api_span:
         with PerfMsTracker(scope=request.scope, key="pf_srv"):
-            json_data = await morphology.lookup(fragment)
+            json_data = await morphology.lookup_w_cont(fragment)
         return Response(json_data, media_type="application/json")
 
 
