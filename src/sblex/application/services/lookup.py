@@ -28,7 +28,7 @@ class LookupService:
             sys._getframe().f_code.co_name
         ) as _process_api_span:
             if json_data := await self._morphology.lookup(segment):
-                return jsonlib.loads(json_data)["a"]
+                return jsonlib.loads(json_data)
             return []
 
     async def lookup_lid(self, lid: str) -> dict[str, Any]:

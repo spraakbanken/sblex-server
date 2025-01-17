@@ -29,7 +29,7 @@ def fixture_webapp_w_root_path(fm_client: AsyncClient) -> FastAPI:
         settings=SaldoWsSettings(
             semantic_path="assets/testing/saldo.txt",
             fm_server_url="not-used",
-            fm_bin=FmBinSettings(path="not used"),
+            fm_bin=FmBinSettings(path="not used"),  # type: ignore
             tracking=MatomoSettings(matomo_url=None),
             otel=OTelSettings(
                 otel_service_name="saldo-ws",
@@ -53,7 +53,7 @@ def fixture_webapp(fm_client: AsyncClient) -> FastAPI:
         settings=SaldoWsSettings(
             semantic_path="assets/testing/saldo.txt",
             fm_server_url="not-used",
-            fm_bin=FmBinSettings(path="not used"),
+            fm_bin=FmBinSettings(path="not used"),  # type: ignore
             tracking=MatomoSettings(matomo_url=None),
             otel=OTelSettings(
                 otel_service_name="saldo-ws",

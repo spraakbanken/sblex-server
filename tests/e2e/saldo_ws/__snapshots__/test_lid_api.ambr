@@ -1,28 +1,39 @@
 # serializer version: 1
 # name: TestLidRoutes.test_graph_valid_input_returns_200[bo..1]
   '''
-  <!DOCTYPE html>
-  <html>
+  <!doctype html>
+  <html lang="sv">
+      <head>
+          <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+          <link
+              rel="shortcut icon"
+              href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png"
+          />
+          <link
+              rel="stylesheet"
+              type="text/css"
+              href="http://testserver/static/saldo.css"
+          />
+          <title>Lemma-id | graf | bo..1</title>
+          
+          <script
+              src="https://unpkg.com/htmx.org@1.9.8"
+              crossorigin="anonymous"
+          ></script>
+      </head>
   
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-    <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
-    <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
-    <title>Lemma-id | graf | bo..1</title>
-    
-    <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
-  </head>
-  
-  <body>
-    <center>
-      <p>
-        <a href="http://testserver/fl/html"><img
-            src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
-            alt="SALDO: gå tillbaka till startsidan" /></a>
-      </p>
-    </center>
-    <div id="output_table">
-      
+      <body>
+          <center>
+              <p>
+                  <a href="http://testserver/fl/html"
+                      ><img
+                          src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif"
+                          align="top"
+                          alt="SALDO: gå tillbaka till startsidan"
+                  /></a>
+              </p>
+          </center>
+          <div id="output_table">
   <div style="width: 500px; height: 500px;">
       <script type="text/javascript" src="https://svn.spraakdata.gu.se/repos/sblex/pub/js/protovis-r3.2.js"></script>
       <script type="text/javascript" src="http://testserver/lid/protojs/bo..1"></script>
@@ -73,160 +84,232 @@
    vis.render();
       </script>
   </div>
-  
-    </div>
-    <footer>
-      <hr>
-      <ul>
-        <li><a href="https://spraakbanken.gu.se/saldo">SALDOs projektsida</a></li>
-        <li><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></li>
-      </ul>
-    </footer>
-  </body>
-  
+  </div>
+          <footer>
+              <hr />
+              <ul>
+                  <li>
+                      <a href="https://spraakbanken.gu.se/saldo"
+                          >SALDOs projektsida</a
+                      >
+                  </li>
+                  <li>
+                      <a
+                          href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf"
+                          >dokumentation (pdf)</a
+                      >
+                  </li>
+              </ul>
+          </footer>
+      </body>
   </html>
   '''
 # ---
 # name: TestLidRoutes.test_html_missing_lemma_returns_404[xxxxx..xx.1]
   '''
-  <!DOCTYPE html>
-  <html>
+  <!doctype html>
+  <html lang="sv">
+      <head>
+          <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+          <link
+              rel="shortcut icon"
+              href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png"
+          />
+          <link
+              rel="stylesheet"
+              type="text/css"
+              href="http://testserver/static/saldo.css"
+          />
+          <title>Lemma-id saknas</title>
+          
+          <script
+              src="https://unpkg.com/htmx.org@1.9.8"
+              crossorigin="anonymous"
+          ></script>
+      </head>
   
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-    <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
-    <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
-    <title>Lemma-id saknas</title>
-    
-    <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
-  </head>
-  
-  <body>
-    <center>
-      <p>
-        <a href="http://testserver/fl/html"><img
-            src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
-            alt="SALDO: gå tillbaka till startsidan" /></a>
-      </p>
-    </center>
-    <div id="output_table">
-      
+      <body>
+          <center>
+              <p>
+                  <a href="http://testserver/fl/html"
+                      ><img
+                          src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif"
+                          align="top"
+                          alt="SALDO: gå tillbaka till startsidan"
+                  /></a>
+              </p>
+          </center>
+          <div id="output_table">
   <center><p><b>xxxxx..xx.1 finns ej.</b></p></center>
-  
-    </div>
-    <footer>
-      <hr>
-      <ul>
-        <li><a href="https://spraakbanken.gu.se/saldo">SALDOs projektsida</a></li>
-        <li><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></li>
-      </ul>
-    </footer>
-  </body>
-  
+  </div>
+          <footer>
+              <hr />
+              <ul>
+                  <li>
+                      <a href="https://spraakbanken.gu.se/saldo"
+                          >SALDOs projektsida</a
+                      >
+                  </li>
+                  <li>
+                      <a
+                          href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf"
+                          >dokumentation (pdf)</a
+                      >
+                  </li>
+              </ul>
+          </footer>
+      </body>
   </html>
   '''
 # ---
 # name: TestLidRoutes.test_html_missing_lexeme_returns_404[xxxxx..1]
   '''
-  <!DOCTYPE html>
-  <html>
+  <!doctype html>
+  <html lang="sv">
+      <head>
+          <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+          <link
+              rel="shortcut icon"
+              href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png"
+          />
+          <link
+              rel="stylesheet"
+              type="text/css"
+              href="http://testserver/static/saldo.css"
+          />
+          <title>Saldo-id saknas</title>
+          
+          <script
+              src="https://unpkg.com/htmx.org@1.9.8"
+              crossorigin="anonymous"
+          ></script>
+      </head>
   
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-    <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
-    <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
-    <title>Saldo-id saknas</title>
-    
-    <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
-  </head>
-  
-  <body>
-    <center>
-      <p>
-        <a href="http://testserver/fl/html"><img
-            src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
-            alt="SALDO: gå tillbaka till startsidan" /></a>
-      </p>
-    </center>
-    <div id="output_table">
-      
+      <body>
+          <center>
+              <p>
+                  <a href="http://testserver/fl/html"
+                      ><img
+                          src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif"
+                          align="top"
+                          alt="SALDO: gå tillbaka till startsidan"
+                  /></a>
+              </p>
+          </center>
+          <div id="output_table">
   <center>xxxxx..1 finns ej.</center>
-  
-    </div>
-    <footer>
-      <hr>
-      <ul>
-        <li><a href="https://spraakbanken.gu.se/saldo">SALDOs projektsida</a></li>
-        <li><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></li>
-      </ul>
-    </footer>
-  </body>
-  
+  </div>
+          <footer>
+              <hr />
+              <ul>
+                  <li>
+                      <a href="https://spraakbanken.gu.se/saldo"
+                          >SALDOs projektsida</a
+                      >
+                  </li>
+                  <li>
+                      <a
+                          href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf"
+                          >dokumentation (pdf)</a
+                      >
+                  </li>
+              </ul>
+          </footer>
+      </body>
   </html>
   '''
 # ---
 # name: TestLidRoutes.test_html_valid_lemma_returns_200[dv\xe4ljas..vb.1]
   '''
-  <!DOCTYPE html>
-  <html>
+  <!doctype html>
+  <html lang="sv">
+      <head>
+          <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+          <link
+              rel="shortcut icon"
+              href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png"
+          />
+          <link
+              rel="stylesheet"
+              type="text/css"
+              href="http://testserver/static/saldo.css"
+          />
+          <title>Lemma-id | dväljas..vb.1</title>
+          
+          <script
+              src="https://unpkg.com/htmx.org@1.9.8"
+              crossorigin="anonymous"
+          ></script>
+      </head>
   
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-    <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
-    <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
-    <title>Lemma-id | dväljas..vb.1</title>
-    
-    <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
-  </head>
-  
-  <body>
-    <center>
-      <p>
-        <a href="http://testserver/fl/html"><img
-            src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
-            alt="SALDO: gå tillbaka till startsidan" /></a>
-      </p>
-    </center>
-    <div id="output_table">
-      
-  
-    </div>
-    <footer>
-      <hr>
-      <ul>
-        <li><a href="https://spraakbanken.gu.se/saldo">SALDOs projektsida</a></li>
-        <li><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></li>
-      </ul>
-    </footer>
-  </body>
-  
+      <body>
+          <center>
+              <p>
+                  <a href="http://testserver/fl/html"
+                      ><img
+                          src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif"
+                          align="top"
+                          alt="SALDO: gå tillbaka till startsidan"
+                  /></a>
+              </p>
+          </center>
+          <div id="output_table">
+  </div>
+          <footer>
+              <hr />
+              <ul>
+                  <li>
+                      <a href="https://spraakbanken.gu.se/saldo"
+                          >SALDOs projektsida</a
+                      >
+                  </li>
+                  <li>
+                      <a
+                          href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf"
+                          >dokumentation (pdf)</a
+                      >
+                  </li>
+              </ul>
+          </footer>
+      </body>
   </html>
   '''
 # ---
 # name: TestLidRoutes.test_html_valid_lexeme_returns_200[dv\xe4ljas..1]
   '''
-  <!DOCTYPE html>
-  <html>
+  <!doctype html>
+  <html lang="sv">
+      <head>
+          <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+          <link
+              rel="shortcut icon"
+              href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png"
+          />
+          <link
+              rel="stylesheet"
+              type="text/css"
+              href="http://testserver/static/saldo.css"
+          />
+          <title>Saldo-id | dväljas..1</title>
+          
+          <script
+              src="https://unpkg.com/htmx.org@1.9.8"
+              crossorigin="anonymous"
+          ></script>
+      </head>
   
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-    <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
-    <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
-    <title>Saldo-id | dväljas..1</title>
-    
-    <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
-  </head>
-  
-  <body>
-    <center>
-      <p>
-        <a href="http://testserver/fl/html"><img
-            src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
-            alt="SALDO: gå tillbaka till startsidan" /></a>
-      </p>
-    </center>
-    <div id="output_table">
-      <center>
+      <body>
+          <center>
+              <p>
+                  <a href="http://testserver/fl/html"
+                      ><img
+                          src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif"
+                          align="top"
+                          alt="SALDO: gå tillbaka till startsidan"
+                  /></a>
+              </p>
+          </center>
+          <div id="output_table"><center>
       <h1>dväljas</h1>
   </center>
   <center>
@@ -248,17 +331,24 @@
               <td style="vertical-align:top;">*</td>
           </tr>
       </table>
-  </center>
-    </div>
-    <footer>
-      <hr>
-      <ul>
-        <li><a href="https://spraakbanken.gu.se/saldo">SALDOs projektsida</a></li>
-        <li><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></li>
-      </ul>
-    </footer>
-  </body>
-  
+  </center></div>
+          <footer>
+              <hr />
+              <ul>
+                  <li>
+                      <a href="https://spraakbanken.gu.se/saldo"
+                          >SALDOs projektsida</a
+                      >
+                  </li>
+                  <li>
+                      <a
+                          href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf"
+                          >dokumentation (pdf)</a
+                      >
+                  </li>
+              </ul>
+          </footer>
+      </body>
   </html>
   '''
 # ---

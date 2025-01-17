@@ -1,37 +1,49 @@
 # serializer version: 1
 # name: TestFullformRoutes.test_html_valid_input_returns_200[dv\xe4]
   '''
-  <!DOCTYPE html>
-  <html>
+  <!doctype html>
+  <html lang="sv">
+      <head>
+          <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+          <link
+              rel="shortcut icon"
+              href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png"
+          />
+          <link
+              rel="stylesheet"
+              type="text/css"
+              href="http://testserver/static/saldo.css"
+          />
+          <title>Fullform | dvä</title>
+          
+          <script
+              src="https://unpkg.com/htmx.org@1.9.8"
+              crossorigin="anonymous"
+          ></script>
+      </head>
   
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-    <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
-    <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
-    <title>Fullform | dvä</title>
-    
-    <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
-  </head>
-  
-  <body>
-    <center>
-      <p>
-        <a href="http://testserver/fl/html"><img
-            src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
-            alt="SALDO: gå tillbaka till startsidan" /></a>
-      </p>
-    </center>
-    <div id="output_table">
-      
+      <body>
+          <center>
+              <p>
+                  <a href="http://testserver/fl/html"
+                      ><img
+                          src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif"
+                          align="top"
+                          alt="SALDO: gå tillbaka till startsidan"
+                  /></a>
+              </p>
+          </center>
+          <div id="output_table">
   <center>
       <form action="http://testserver/ff/html" method="get" class="inputclass">
+          <label for="search">Skriv in en ordform</label>
           <input type="search" id="search" class="inputclass" value="dvä" name="fragment" size="30"
               placeholder="Skriv in en ordform" results="10" />
           <input type="submit" value="Sök" />
       </form>
       
       <p>segment: dvä</p>
-      <p>continuations: l </p>
+      <p>continuations:  </p>
       <table border="1">
           <tr>
               <th>gf</th>
@@ -44,53 +56,72 @@
           
           
   </center>
-  
-    </div>
-    <footer>
-      <hr>
-      <ul>
-        <li><a href="https://spraakbanken.gu.se/saldo">SALDOs projektsida</a></li>
-        <li><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></li>
-      </ul>
-    </footer>
-  </body>
-  
+  </div>
+          <footer>
+              <hr />
+              <ul>
+                  <li>
+                      <a href="https://spraakbanken.gu.se/saldo"
+                          >SALDOs projektsida</a
+                      >
+                  </li>
+                  <li>
+                      <a
+                          href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf"
+                          >dokumentation (pdf)</a
+                      >
+                  </li>
+              </ul>
+          </footer>
+      </body>
   </html>
   '''
 # ---
 # name: TestFullformRoutes.test_html_valid_input_returns_200[dv\xe4l]
   '''
-  <!DOCTYPE html>
-  <html>
+  <!doctype html>
+  <html lang="sv">
+      <head>
+          <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+          <link
+              rel="shortcut icon"
+              href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png"
+          />
+          <link
+              rel="stylesheet"
+              type="text/css"
+              href="http://testserver/static/saldo.css"
+          />
+          <title>Fullform | dväl</title>
+          
+          <script
+              src="https://unpkg.com/htmx.org@1.9.8"
+              crossorigin="anonymous"
+          ></script>
+      </head>
   
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-    <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
-    <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
-    <title>Fullform | dväl</title>
-    
-    <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
-  </head>
-  
-  <body>
-    <center>
-      <p>
-        <a href="http://testserver/fl/html"><img
-            src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
-            alt="SALDO: gå tillbaka till startsidan" /></a>
-      </p>
-    </center>
-    <div id="output_table">
-      
+      <body>
+          <center>
+              <p>
+                  <a href="http://testserver/fl/html"
+                      ><img
+                          src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif"
+                          align="top"
+                          alt="SALDO: gå tillbaka till startsidan"
+                  /></a>
+              </p>
+          </center>
+          <div id="output_table">
   <center>
       <form action="http://testserver/ff/html" method="get" class="inputclass">
+          <label for="search">Skriv in en ordform</label>
           <input type="search" id="search" class="inputclass" value="dväl" name="fragment" size="30"
               placeholder="Skriv in en ordform" results="10" />
           <input type="submit" value="Sök" />
       </form>
       
       <p>segment: dväl</p>
-      <p>continuations: jt </p>
+      <p>continuations:  </p>
       <table border="1">
           <tr>
               <th>gf</th>
@@ -103,46 +134,65 @@
           
           
   </center>
-  
-    </div>
-    <footer>
-      <hr>
-      <ul>
-        <li><a href="https://spraakbanken.gu.se/saldo">SALDOs projektsida</a></li>
-        <li><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></li>
-      </ul>
-    </footer>
-  </body>
-  
+  </div>
+          <footer>
+              <hr />
+              <ul>
+                  <li>
+                      <a href="https://spraakbanken.gu.se/saldo"
+                          >SALDOs projektsida</a
+                      >
+                  </li>
+                  <li>
+                      <a
+                          href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf"
+                          >dokumentation (pdf)</a
+                      >
+                  </li>
+              </ul>
+          </footer>
+      </body>
   </html>
   '''
 # ---
 # name: TestFullformRoutes.test_html_valid_input_returns_200[dv\xe4ljs]
   '''
-  <!DOCTYPE html>
-  <html>
+  <!doctype html>
+  <html lang="sv">
+      <head>
+          <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+          <link
+              rel="shortcut icon"
+              href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png"
+          />
+          <link
+              rel="stylesheet"
+              type="text/css"
+              href="http://testserver/static/saldo.css"
+          />
+          <title>Fullform | dväljs</title>
+          
+          <script
+              src="https://unpkg.com/htmx.org@1.9.8"
+              crossorigin="anonymous"
+          ></script>
+      </head>
   
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-    <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
-    <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
-    <title>Fullform | dväljs</title>
-    
-    <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
-  </head>
-  
-  <body>
-    <center>
-      <p>
-        <a href="http://testserver/fl/html"><img
-            src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
-            alt="SALDO: gå tillbaka till startsidan" /></a>
-      </p>
-    </center>
-    <div id="output_table">
-      
+      <body>
+          <center>
+              <p>
+                  <a href="http://testserver/fl/html"
+                      ><img
+                          src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif"
+                          align="top"
+                          alt="SALDO: gå tillbaka till startsidan"
+                  /></a>
+              </p>
+          </center>
+          <div id="output_table">
   <center>
       <form action="http://testserver/ff/html" method="get" class="inputclass">
+          <label for="search">Skriv in en ordform</label>
           <input type="search" id="search" class="inputclass" value="dväljs" name="fragment" size="30"
               placeholder="Skriv in en ordform" results="10" />
           <input type="submit" value="Sök" />
@@ -160,73 +210,74 @@
               <th>p</th>
           </tr>
           
-          <tr>
-              <td>dväljas</td>
-              <td><a href="http://testserver/lid/html/dväljas..vb.1">dväljas..vb.1</a></td>
-              <td>vb</td>
-              <td></td>
-              <td>pres ind s-form</td>
-              <td>vb_vs_dväljas</td>
-          </tr>
-          
-          <tr>
-              <td>dväljas</td>
-              <td><a href="http://testserver/lid/html/dväljas..vb.1">dväljas..vb.1</a></td>
-              <td>vb</td>
-              <td></td>
-              <td>imper</td>
-              <td>vb_vs_dväljas</td>
-          </tr>
-          
           
   </center>
-  
-    </div>
-    <footer>
-      <hr>
-      <ul>
-        <li><a href="https://spraakbanken.gu.se/saldo">SALDOs projektsida</a></li>
-        <li><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></li>
-      </ul>
-    </footer>
-  </body>
-  
+  </div>
+          <footer>
+              <hr />
+              <ul>
+                  <li>
+                      <a href="https://spraakbanken.gu.se/saldo"
+                          >SALDOs projektsida</a
+                      >
+                  </li>
+                  <li>
+                      <a
+                          href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf"
+                          >dokumentation (pdf)</a
+                      >
+                  </li>
+              </ul>
+          </footer>
+      </body>
   </html>
   '''
 # ---
 # name: TestFullformRoutes.test_html_valid_input_returns_200[dv]
   '''
-  <!DOCTYPE html>
-  <html>
+  <!doctype html>
+  <html lang="sv">
+      <head>
+          <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+          <link
+              rel="shortcut icon"
+              href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png"
+          />
+          <link
+              rel="stylesheet"
+              type="text/css"
+              href="http://testserver/static/saldo.css"
+          />
+          <title>Fullform | dv</title>
+          
+          <script
+              src="https://unpkg.com/htmx.org@1.9.8"
+              crossorigin="anonymous"
+          ></script>
+      </head>
   
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-    <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
-    <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
-    <title>Fullform | dv</title>
-    
-    <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
-  </head>
-  
-  <body>
-    <center>
-      <p>
-        <a href="http://testserver/fl/html"><img
-            src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
-            alt="SALDO: gå tillbaka till startsidan" /></a>
-      </p>
-    </center>
-    <div id="output_table">
-      
+      <body>
+          <center>
+              <p>
+                  <a href="http://testserver/fl/html"
+                      ><img
+                          src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif"
+                          align="top"
+                          alt="SALDO: gå tillbaka till startsidan"
+                  /></a>
+              </p>
+          </center>
+          <div id="output_table">
   <center>
       <form action="http://testserver/ff/html" method="get" class="inputclass">
+          <label for="search">Skriv in en ordform</label>
           <input type="search" id="search" class="inputclass" value="dv" name="fragment" size="30"
               placeholder="Skriv in en ordform" results="10" />
           <input type="submit" value="Sök" />
       </form>
       
       <p>segment: dv</p>
-      <p>continuations: äa </p>
+      <p>continuations:  </p>
       <table border="1">
           <tr>
               <th>gf</th>
@@ -239,17 +290,24 @@
           
           
   </center>
-  
-    </div>
-    <footer>
-      <hr>
-      <ul>
-        <li><a href="https://spraakbanken.gu.se/saldo">SALDOs projektsida</a></li>
-        <li><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></li>
-      </ul>
-    </footer>
-  </body>
-  
+  </div>
+          <footer>
+              <hr />
+              <ul>
+                  <li>
+                      <a href="https://spraakbanken.gu.se/saldo"
+                          >SALDOs projektsida</a
+                      >
+                  </li>
+                  <li>
+                      <a
+                          href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf"
+                          >dokumentation (pdf)</a
+                      >
+                  </li>
+              </ul>
+          </footer>
+      </body>
   </html>
   '''
 # ---
@@ -257,7 +315,7 @@
   '''
   <?xml version="1.0" encoding="UTF-8"?>
   <result>
-      <c>l</c>
+      <c></c>
       <as>
   
       </as>
@@ -268,7 +326,7 @@
   '''
   <?xml version="1.0" encoding="UTF-8"?>
   <result>
-      <c>jt</c>
+      <c></c>
       <as>
   
       </as>
@@ -282,24 +340,6 @@
       <c></c>
       <as>
   
-          <a>
-          <gf>dväljas</gf>
-          <id>dväljas..vb.1</id>
-          <pos>vb</pos>
-          <is></is>
-          <msd>pres ind s-form</msd>
-          <p>vb_vs_dväljas</p>
-          </a>
-  
-          <a>
-          <gf>dväljas</gf>
-          <id>dväljas..vb.1</id>
-          <pos>vb</pos>
-          <is></is>
-          <msd>imper</msd>
-          <p>vb_vs_dväljas</p>
-          </a>
-  
       </as>
   </result>
   '''
@@ -308,7 +348,7 @@
   '''
   <?xml version="1.0" encoding="UTF-8"?>
   <result>
-      <c>äa</c>
+      <c></c>
       <as>
   
       </as>

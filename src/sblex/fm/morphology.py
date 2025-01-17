@@ -21,6 +21,9 @@ class Morphology(abc.ABC):
     @abc.abstractmethod
     async def lookup_from_bytes(self, s: bytes) -> bytes | None: ...
 
+    @abc.abstractmethod
+    async def lookup_w_cont(self, word: str) -> bytes | None: ...
+
 
 class MemMorphology(Morphology):
     def __init__(self, trie: Trie) -> None:
@@ -39,7 +42,11 @@ class MemMorphology(Morphology):
             )
 
     async def lookup(self, word: str, n: int = 0) -> bytes | None:
-        return self._trie.lookup(word, n)
+        if data := self._trie.lookup(word, n):
+            struct = json_arrays.jsonlib.loads(data)
+            return json_arrays.jsonlib.dumps(struct["a"])
+
+        return None
 
     async def lookup_from_bytes(self, s: bytes) -> bytes | None:
         with contextlib.suppress(Exception):
@@ -49,3 +56,6 @@ class MemMorphology(Morphology):
             if r := self._trie.lookup(word, n):
                 return r
         return None
+
+    async def lookup_w_cont(self, word: str) -> bytes | None:
+        return self._trie.lookup(word)

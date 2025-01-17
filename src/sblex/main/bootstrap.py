@@ -30,6 +30,13 @@ class AppContext:
     settings: Settings
 
 
+def load_env() -> environs.Env:
+    config_path = os.environ.get("CONFIG_PATH", ".env")
+    env = environs.Env()
+    env.read_env(config_path)
+    return env
+
+
 def bootstrap_app(
     *,
     env: environs.Env | None = None,
@@ -37,6 +44,8 @@ def bootstrap_app(
 ) -> Tuple[AppContext, environs.Env]:
     if env is None:
         env = load_env()
+    if env is None:
+        raise RuntimeError("Failed to load env")
     if config is None:
         config = {}
 
@@ -64,10 +73,3 @@ def bootstrap_app(
     # logger.warning("loaded settings", extra={"settings": settings})
 
     return AppContext(settings=settings), env
-
-
-def load_env() -> environs.Env:
-    config_path = os.environ.get("CONFIG_PATH", ".env")
-    env = environs.Env()
-    env.read_env(config_path)
-    return env

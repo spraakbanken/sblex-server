@@ -1,49 +1,35 @@
-{% extends "saldo_document.html" %}
-{% block content %}
+{% extends "saldo_document.html" %} {% block content %}
 <center>
     <form action="{{ url_for('fullform_lex:fl-html')}}" method="get" class="inputclass">
-        <input type="search" id="search" class="inputclass" value="{{ input }}" name="segment" size="30"
-            placeholder="Skriv in en ordform" results="10" />
+        <label for="search">Skriv in en ordform</label>
+        <input type="search" id="search" class="inputclass" value="{{ input }}" name="segment" size="30" placeholder="Skriv in en ordform" results="10" />
         <input type="submit" value="Sök" />
     </form>
     {% if segment|length %}
     <p></p>
     <table border="1">
-        {% if j|length %}
-        {% for json in j %}
+        {% if j|length %} {% for json in j %}
         <tr>
             <td>
-                {% if json["id"].__class__.__name__ == 'list' %}
-                {% for lid in json["id"] %}
+                {% if json["id"].__class__.__name__ == 'list' %} {% for lid in json["id"] %}
                 <a href="{{ url_for('lids:lid-html', lid=lid) }}">{{ lid }}</a>
-                {% endfor %}
-                {% else %}
+                {% endfor %} {% else %}
                 <a href="{{ url_for('lids:lid-html', lid=json['id'])}}">{{ json["id"] }}</a>
                 {% endif %}
             </td>
             <td>
-                {% if json["fm"].__class__.__name__ == 'list' %}
-                {% for lid in json["fm"] %}
+                {% if json["fm"].__class__.__name__ == 'list' %} {% for lid in json["fm"] %}
                 <a href="{{ url_for('lids:lid-html', lid=lid) }}">{{ lid }}</a>
-                {% endfor %}
-                {% else %}
+                {% endfor %} {% else %}
                 <a href="{{ url_for('lids:lid-html', lid=json['fm'])}}">{{ json["fm"] }}</a>
-                {% endif %}
-                {% if json["fp"][0] != "PRIM..1" %}
-                +
-                {% for lid in json["fp"] %}
+                {% endif %} {% if json["fp"][0] != "PRIM..1" %} + {% for lid in json["fp"] %}
                 <a href="{{ url_for('lids:lid-html', lid=lid) }}">{{ lid }}</a>
-                {% endfor %}
-                {% endif %}
+                {% endfor %} {% endif %}
             </td>
-            <td><a href="{{ url_for('inflections:gen-html', paradigm=json['p'], word=json['gf'])}}">{{
-                    json["l"] }}</a>
-
-            </td>
+            <td><a href="{{ url_for('inflections:gen-html', paradigm=json['p'], word=json['gf'])}}">{{ json["l"] }}</a></td>
             <td><a href="{{ url_for('korpus_ref', lids=[json['l']])}}">korpus</a></td>
         </tr>
-        {% endfor %}
-        {% else %}
+        {% endfor %} {% else %}
         <tr>
             <td>ordet saknas i lexikonet</td>
         </tr>

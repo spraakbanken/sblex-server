@@ -1,32 +1,43 @@
 # serializer version: 1
 # name: TestFullformLexRoutes.test_html_missing_input_returns_404[l\xf6parsko]
   '''
-  <!DOCTYPE html>
-  <html>
+  <!doctype html>
+  <html lang="sv">
+      <head>
+          <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+          <link
+              rel="shortcut icon"
+              href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png"
+          />
+          <link
+              rel="stylesheet"
+              type="text/css"
+              href="http://testserver/static/saldo.css"
+          />
+          <title>Fullform med semantisk koppling | löparsko</title>
+          
+          <script
+              src="https://unpkg.com/htmx.org@1.9.8"
+              crossorigin="anonymous"
+          ></script>
+      </head>
   
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-    <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
-    <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
-    <title>Fullform med semantisk koppling | löparsko</title>
-    
-    <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
-  </head>
-  
-  <body>
-    <center>
-      <p>
-        <a href="http://testserver/fl/html"><img
-            src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
-            alt="SALDO: gå tillbaka till startsidan" /></a>
-      </p>
-    </center>
-    <div id="output_table">
-      
+      <body>
+          <center>
+              <p>
+                  <a href="http://testserver/fl/html"
+                      ><img
+                          src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif"
+                          align="top"
+                          alt="SALDO: gå tillbaka till startsidan"
+                  /></a>
+              </p>
+          </center>
+          <div id="output_table">
   <center>
       <form action="http://testserver/fl/html" method="get" class="inputclass">
-          <input type="search" id="search" class="inputclass" value="löparsko" name="segment" size="30"
-              placeholder="Skriv in en ordform" results="10" />
+          <label for="search">Skriv in en ordform</label>
+          <input type="search" id="search" class="inputclass" value="löparsko" name="segment" size="30" placeholder="Skriv in en ordform" results="10" />
           <input type="submit" value="Sök" />
       </form>
       
@@ -40,147 +51,200 @@
       </table>
       
   </center>
-  
-    </div>
-    <footer>
-      <hr>
-      <ul>
-        <li><a href="https://spraakbanken.gu.se/saldo">SALDOs projektsida</a></li>
-        <li><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></li>
-      </ul>
-    </footer>
-  </body>
-  
+  </div>
+          <footer>
+              <hr />
+              <ul>
+                  <li>
+                      <a href="https://spraakbanken.gu.se/saldo"
+                          >SALDOs projektsida</a
+                      >
+                  </li>
+                  <li>
+                      <a
+                          href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf"
+                          >dokumentation (pdf)</a
+                      >
+                  </li>
+              </ul>
+          </footer>
+      </body>
   </html>
   '''
 # ---
 # name: TestFullformLexRoutes.test_html_valid_input_returns_200[ ]
   '''
-  <!DOCTYPE html>
-  <html>
+  <!doctype html>
+  <html lang="sv">
+      <head>
+          <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+          <link
+              rel="shortcut icon"
+              href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png"
+          />
+          <link
+              rel="stylesheet"
+              type="text/css"
+              href="http://testserver/static/saldo.css"
+          />
+          <title>Fullform med semantisk koppling</title>
+          
+          <script
+              src="https://unpkg.com/htmx.org@1.9.8"
+              crossorigin="anonymous"
+          ></script>
+      </head>
   
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-    <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
-    <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
-    <title>Fullform med semantisk koppling</title>
-    
-    <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
-  </head>
-  
-  <body>
-    <center>
-      <p>
-        <a href="http://testserver/fl/html"><img
-            src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
-            alt="SALDO: gå tillbaka till startsidan" /></a>
-      </p>
-    </center>
-    <div id="output_table">
-      
+      <body>
+          <center>
+              <p>
+                  <a href="http://testserver/fl/html"
+                      ><img
+                          src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif"
+                          align="top"
+                          alt="SALDO: gå tillbaka till startsidan"
+                  /></a>
+              </p>
+          </center>
+          <div id="output_table">
   <center>
       <form action="http://testserver/fl/html" method="get" class="inputclass">
-          <input type="search" id="search" class="inputclass" value="" name="segment" size="30"
-              placeholder="Skriv in en ordform" results="10" />
+          <label for="search">Skriv in en ordform</label>
+          <input type="search" id="search" class="inputclass" value="" name="segment" size="30" placeholder="Skriv in en ordform" results="10" />
           <input type="submit" value="Sök" />
       </form>
       
   </center>
-  
-    </div>
-    <footer>
-      <hr>
-      <ul>
-        <li><a href="https://spraakbanken.gu.se/saldo">SALDOs projektsida</a></li>
-        <li><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></li>
-      </ul>
-    </footer>
-  </body>
-  
+  </div>
+          <footer>
+              <hr />
+              <ul>
+                  <li>
+                      <a href="https://spraakbanken.gu.se/saldo"
+                          >SALDOs projektsida</a
+                      >
+                  </li>
+                  <li>
+                      <a
+                          href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf"
+                          >dokumentation (pdf)</a
+                      >
+                  </li>
+              </ul>
+          </footer>
+      </body>
   </html>
   '''
 # ---
 # name: TestFullformLexRoutes.test_html_valid_input_returns_200[]
   '''
-  <!DOCTYPE html>
-  <html>
+  <!doctype html>
+  <html lang="sv">
+      <head>
+          <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+          <link
+              rel="shortcut icon"
+              href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png"
+          />
+          <link
+              rel="stylesheet"
+              type="text/css"
+              href="http://testserver/static/saldo.css"
+          />
+          <title>Fullform med semantisk koppling</title>
+          
+          <script
+              src="https://unpkg.com/htmx.org@1.9.8"
+              crossorigin="anonymous"
+          ></script>
+      </head>
   
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-    <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
-    <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
-    <title>Fullform med semantisk koppling</title>
-    
-    <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
-  </head>
-  
-  <body>
-    <center>
-      <p>
-        <a href="http://testserver/fl/html"><img
-            src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
-            alt="SALDO: gå tillbaka till startsidan" /></a>
-      </p>
-    </center>
-    <div id="output_table">
-      
+      <body>
+          <center>
+              <p>
+                  <a href="http://testserver/fl/html"
+                      ><img
+                          src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif"
+                          align="top"
+                          alt="SALDO: gå tillbaka till startsidan"
+                  /></a>
+              </p>
+          </center>
+          <div id="output_table">
   <center>
       <form action="http://testserver/fl/html" method="get" class="inputclass">
-          <input type="search" id="search" class="inputclass" value="" name="segment" size="30"
-              placeholder="Skriv in en ordform" results="10" />
+          <label for="search">Skriv in en ordform</label>
+          <input type="search" id="search" class="inputclass" value="" name="segment" size="30" placeholder="Skriv in en ordform" results="10" />
           <input type="submit" value="Sök" />
       </form>
       
   </center>
-  
-    </div>
-    <footer>
-      <hr>
-      <ul>
-        <li><a href="https://spraakbanken.gu.se/saldo">SALDOs projektsida</a></li>
-        <li><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></li>
-      </ul>
-    </footer>
-  </body>
-  
+  </div>
+          <footer>
+              <hr />
+              <ul>
+                  <li>
+                      <a href="https://spraakbanken.gu.se/saldo"
+                          >SALDOs projektsida</a
+                      >
+                  </li>
+                  <li>
+                      <a
+                          href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf"
+                          >dokumentation (pdf)</a
+                      >
+                  </li>
+              </ul>
+          </footer>
+      </body>
   </html>
   '''
 # ---
 # name: TestFullformLexRoutes.test_html_valid_input_returns_200[dv\xe4ljas]
   '''
-  <!DOCTYPE html>
-  <html>
+  <!doctype html>
+  <html lang="sv">
+      <head>
+          <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+          <link
+              rel="shortcut icon"
+              href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png"
+          />
+          <link
+              rel="stylesheet"
+              type="text/css"
+              href="http://testserver/static/saldo.css"
+          />
+          <title>Fullform med semantisk koppling | dväljas</title>
+          
+          <script
+              src="https://unpkg.com/htmx.org@1.9.8"
+              crossorigin="anonymous"
+          ></script>
+      </head>
   
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-    <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
-    <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
-    <title>Fullform med semantisk koppling | dväljas</title>
-    
-    <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
-  </head>
-  
-  <body>
-    <center>
-      <p>
-        <a href="http://testserver/fl/html"><img
-            src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
-            alt="SALDO: gå tillbaka till startsidan" /></a>
-      </p>
-    </center>
-    <div id="output_table">
-      
+      <body>
+          <center>
+              <p>
+                  <a href="http://testserver/fl/html"
+                      ><img
+                          src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif"
+                          align="top"
+                          alt="SALDO: gå tillbaka till startsidan"
+                  /></a>
+              </p>
+          </center>
+          <div id="output_table">
   <center>
       <form action="http://testserver/fl/html" method="get" class="inputclass">
-          <input type="search" id="search" class="inputclass" value="dväljas" name="segment" size="30"
-              placeholder="Skriv in en ordform" results="10" />
+          <label for="search">Skriv in en ordform</label>
+          <input type="search" id="search" class="inputclass" value="dväljas" name="segment" size="30" placeholder="Skriv in en ordform" results="10" />
           <input type="submit" value="Sök" />
       </form>
       
       <p></p>
       <table border="1">
-          
-          
+           
           <tr>
               <td>
                   
@@ -190,68 +254,81 @@
               <td>
                   
                   <a href="http://testserver/lid/html/bo..1">bo..1</a>
-                  
-                  
+                   
               </td>
-              <td><a href="http://testserver/gen/html/vb_vs_dväljas/dväljas">dväljas..vb.1</a>
-  
-              </td>
+              <td><a href="http://testserver/gen/html/vb_vs_dväljas/dväljas">dväljas..vb.1</a></td>
               <td><a href="https://spraakbanken.gu.se/korp/#?search=lemgram|dväljas..vb.1">korpus</a></td>
           </tr>
-          
-          
+           
       </table>
       
   </center>
-  
-    </div>
-    <footer>
-      <hr>
-      <ul>
-        <li><a href="https://spraakbanken.gu.se/saldo">SALDOs projektsida</a></li>
-        <li><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></li>
-      </ul>
-    </footer>
-  </body>
-  
+  </div>
+          <footer>
+              <hr />
+              <ul>
+                  <li>
+                      <a href="https://spraakbanken.gu.se/saldo"
+                          >SALDOs projektsida</a
+                      >
+                  </li>
+                  <li>
+                      <a
+                          href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf"
+                          >dokumentation (pdf)</a
+                      >
+                  </li>
+              </ul>
+          </footer>
+      </body>
   </html>
   '''
 # ---
 # name: TestFullformLexRoutes.test_html_valid_input_returns_200[femrumsl\xe4genhet]
   '''
-  <!DOCTYPE html>
-  <html>
+  <!doctype html>
+  <html lang="sv">
+      <head>
+          <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+          <link
+              rel="shortcut icon"
+              href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png"
+          />
+          <link
+              rel="stylesheet"
+              type="text/css"
+              href="http://testserver/static/saldo.css"
+          />
+          <title>Fullform med semantisk koppling | femrumslägenhet</title>
+          
+          <script
+              src="https://unpkg.com/htmx.org@1.9.8"
+              crossorigin="anonymous"
+          ></script>
+      </head>
   
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-    <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png">
-    <link rel="stylesheet" type="text/css" href="http://testserver/static/saldo.css" />
-    <title>Fullform med semantisk koppling | femrumslägenhet</title>
-    
-    <script src="https://unpkg.com/htmx.org@1.9.8" crossorigin="anonymous"></script>
-  </head>
-  
-  <body>
-    <center>
-      <p>
-        <a href="http://testserver/fl/html"><img
-            src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif" align="top"
-            alt="SALDO: gå tillbaka till startsidan" /></a>
-      </p>
-    </center>
-    <div id="output_table">
-      
+      <body>
+          <center>
+              <p>
+                  <a href="http://testserver/fl/html"
+                      ><img
+                          src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif"
+                          align="top"
+                          alt="SALDO: gå tillbaka till startsidan"
+                  /></a>
+              </p>
+          </center>
+          <div id="output_table">
   <center>
       <form action="http://testserver/fl/html" method="get" class="inputclass">
-          <input type="search" id="search" class="inputclass" value="femrumslägenhet" name="segment" size="30"
-              placeholder="Skriv in en ordform" results="10" />
+          <label for="search">Skriv in en ordform</label>
+          <input type="search" id="search" class="inputclass" value="femrumslägenhet" name="segment" size="30" placeholder="Skriv in en ordform" results="10" />
           <input type="submit" value="Sök" />
       </form>
       
       <p></p>
       <table border="1">
-          
-          
+           
           <tr>
               <td>
                   
@@ -261,37 +338,37 @@
               <td>
                   
                   <a href="http://testserver/lid/html/lägenhet..1">lägenhet..1</a>
-                  
-                  
-                  +
-                  
+                    + 
                   <a href="http://testserver/lid/html/fem..1">fem..1</a>
                   
                   <a href="http://testserver/lid/html/rum..1">rum..1</a>
-                  
-                  
+                   
               </td>
-              <td><a href="http://testserver/gen/html/nn_3u_salong/femrumslägenhet">femrumslägenhet..nn.1</a>
-  
-              </td>
+              <td><a href="http://testserver/gen/html/nn_3u_salong/femrumslägenhet">femrumslägenhet..nn.1</a></td>
               <td><a href="https://spraakbanken.gu.se/korp/#?search=lemgram|femrumslägenhet..nn.1">korpus</a></td>
           </tr>
-          
-          
+           
       </table>
       
   </center>
-  
-    </div>
-    <footer>
-      <hr>
-      <ul>
-        <li><a href="https://spraakbanken.gu.se/saldo">SALDOs projektsida</a></li>
-        <li><a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a></li>
-      </ul>
-    </footer>
-  </body>
-  
+  </div>
+          <footer>
+              <hr />
+              <ul>
+                  <li>
+                      <a href="https://spraakbanken.gu.se/saldo"
+                          >SALDOs projektsida</a
+                      >
+                  </li>
+                  <li>
+                      <a
+                          href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf"
+                          >dokumentation (pdf)</a
+                      >
+                  </li>
+              </ul>
+          </footer>
+      </body>
   </html>
   '''
 # ---

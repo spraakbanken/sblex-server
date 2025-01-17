@@ -12,6 +12,6 @@ class Settings(BaseSettings):
 
 
 def read_settings_from_env() -> Settings:
-    otel = OTelSettings(_env_prefix="FM_SERVER__")
-    settings = Settings(otel=otel)
+    otel = OTelSettings(_env_prefix="FM_SERVER__")  # type:ignore
+    settings = Settings(otel=otel)  # type:ignore
     return settings
