@@ -16,7 +16,7 @@ from opentelemetry.instrumentation.logging import LoggingInstrumentor
 from opentelemetry.sdk._logs import LoggerProvider, LoggingHandler
 from opentelemetry.sdk._logs.export import (
     BatchLogRecordProcessor,
-    ConsoleLogExporter,
+    ConsoleLogRecordExporter,
     SimpleLogRecordProcessor,
 )
 
@@ -52,7 +52,7 @@ def init_otel_logging(settings: OTelSettings) -> None:
     set_logger_provider(logger_provider)
 
     if settings.debug_log_otel_to_console:
-        console_log_exporter = ConsoleLogExporter()
+        console_log_exporter = ConsoleLogRecordExporter()
         logger_provider.add_log_record_processor(SimpleLogRecordProcessor(console_log_exporter))
     if settings.debug_log_otel_to_provider:
         (maybe_protocol, maybe_endpoint) = read_logs_protocol_and_endpoint_from_settings(

@@ -12,14 +12,14 @@ import sys
 def lookup_ff(s):
     from fullform import function
 
-    (result, result_code) = function("json", s)
+    (result, _result_code) = function("json", s)
     return cjson.decode(utf8.d(result))["a"]
 
 
 def lookup_fl(s):
     from fullform_lex import function
 
-    (result, result_code) = function("json", s)
+    (result, _result_code) = function("json", s)
     return cjson.decode(utf8.d(result))
 
 
@@ -34,7 +34,7 @@ def lookup_lid(lid):
         function = None
         ret = []
     if function is not None:
-        (result, result_code) = function("json", lid)
+        (result, _result_code) = function("json", lid)
         ret = cjson.decode(utf8.d(result))
     return ret
 
@@ -171,7 +171,7 @@ def md1(sense_id):
 def lemma_pref(lem):
     try:
         s = lem[:-2]
-        (w, pos) = lemma(s)
+        (_w, pos) = lemma(s)
         if lem[-1] == "1":
             return pos
         elif lem[-2] == ".":

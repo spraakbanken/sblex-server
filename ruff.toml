@@ -23,7 +23,7 @@ select = [
 
 # Never enforce `E501` (line length violations).
 # ignore = ["E501"]
-ignore = ["ANN101", "ANN102", "D203", "D213"]
+ignore = [ "D203", "D213"]
 
 
 # Avoid trying to fix flake8-bugbear (`B`) violations.

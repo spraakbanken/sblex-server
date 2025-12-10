@@ -38,13 +38,13 @@ class MemLookupLid(LookupLid):
                 tsv_file = csv.reader(f, delimiter="\t")
                 for line in tsv_file:
                     if len(line) != 7:
-                        logger.warn(
+                        logger.warning(
                             "Expected 7 columns, line has %d: '%s' skipping ...",
                             len(line),
                             line,
                         )
                         continue
-                    (lexeme, mother, father, lemma, gf, pos, p) = line
+                    (lexeme, mother, father, lemma, gf, _pos, p) = line
                     # create lemma-lexeme mappings
                     if lemma in lem_map:
                         (s, p, gf) = lem_map[lemma]
@@ -155,7 +155,7 @@ class MemLookupLid(LookupLid):
             return {}
 
 
-def father_path(fathers, path_map: dict[str, Any]) -> list:
+def father_path(fathers, path_map: dict[str, list[str]]) -> list[list[str]]:
     result = []
     for s in fathers.split(" "):
         if s != "PRIM..1" and s != "":

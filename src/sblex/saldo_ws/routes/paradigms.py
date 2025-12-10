@@ -88,7 +88,7 @@ async def paradigm_html(
             )
         title = f"Paradigm | {words}" if words else "Paradigm"
         try:
-            baseform, result = paradigms.query(words)
+            baseform, _result = paradigms.query(words)
         except NoPartOfSpeechOnBaseform:
             baseform = words.split(",")[0]
             return templates.TemplateResponse(

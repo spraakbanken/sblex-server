@@ -7,10 +7,10 @@ from sblex.application.queries.paradigms import NoPartOfSpeechOnBaseform, Paradi
 __all__ = [
     "FullformLex",
     "FullformLexQuery",
-    "LookupLid",
     "FullformQuery",
     "InflectionTableQuery",
     "InflectionTableRow",
-    "Paradigms",
+    "LookupLid",
     "NoPartOfSpeechOnBaseform",
+    "Paradigms",
 ]

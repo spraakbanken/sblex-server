@@ -204,7 +204,13 @@ async def lookup_lid_graph(
             )
         templates = request.app.state.templates
 
-        json_data = await lookup_lid.get_lexeme(lid)
+        try:
+            json_data = await lookup_lid.get_lexeme(lid)
+        except LexemeNotFound:
+            return ORJSONResponse(
+                status_code=status.HTTP_404_NOT_FOUND,
+                content={"message": f"'{lid}' finns ej"},
+            )
         return templates.TemplateResponse(
             request=request,
             name="saldo_lid_graph.html",
