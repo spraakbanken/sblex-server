@@ -22,6 +22,10 @@ allow_dirty = false
 commit = true
 message = "chore(release): Bump version: {current_version} → {new_version}"
 commit_args = "--no-verify"
+pre_commit_hooks = [
+    "uv lock",
+    "git add --update",
+]
 
 [tool.bumpversion.parts.pre_l]
 values = ["dev", "rc", "final"]
