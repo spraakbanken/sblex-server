@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file.
 
+## [unreleased]
+
+### Changed
+
+- Fix some lint errors
+- Fix some pyright reports by @kod-kristoff
+- Split morph and morph-w-cont calls by @kod-kristoff
+
+### Fixed
+
+- Adjust some changes to fm-server api by @kod-kristoff
+- *(html)* Add label to input by @kod-kristoff
+- Add lang=sv to html by @kod-kristoff
+- Use LoggingHandler from opentelemetry directly by @kod-kristoff
+
+### Miscellaneous Tasks
+
+- Use uv_build
+- Update pre-commit and bump-my-version config
+- Updte pre-commit config by @kod-kristoff
+- Update CHANGELOG by @kod-kristoff
+
+### Testing
+
+- Make tests clearer
+
 ## [0.4.1-dev0] - 2024-10-17
 
 ### Fixed
