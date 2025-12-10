@@ -1,6 +1,6 @@
 [project]
 name = "sblex-server"
-version = "0.4.1-dev0"
+version = "0.4.1-dev1"
 description = "Saldo-WS-server && Dalin-WS-server"
 readme = "README.md"
 authors = [
