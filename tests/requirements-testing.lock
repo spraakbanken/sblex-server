@@ -10,7 +10,7 @@ anyio==4.12.1
     #   starlette
     #   watchfiles
 asgi-lifespan==2.1.0
-asgi-matomo==0.6.1
+asgi-matomo==0.6.2
     # via sblex-server
 asgiref==3.11.1
     # via

@@ -52,16 +52,16 @@ wheels = [
 
 [[package]]
 name = "asgi-matomo"
-version = "0.6.1"
+version = "0.6.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "asgiref" },
     { name = "httpx" },
     { name = "matomo-core" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/4e/45/42236cce9afe7ae66507f6d4c01e2cdbad0ccc03e46f801af4e157399fbb/asgi_matomo-0.6.1.tar.gz", hash = "sha256:70ec5fd70483570e293c120b5f5a10a4b47918c03b97a3dae7dd6130e0b6f298", size = 64320, upload-time = "2025-12-10T13:02:11.287Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/5f/4e/7c4e01589e520bbf08e5aa3395758e38f630b6c121c1139987ff68768c00/asgi_matomo-0.6.2.tar.gz", hash = "sha256:a3aa46ba3dfae92d195826179428d794422c137504d847199012a1f297aaebaf", size = 7450, upload-time = "2026-03-03T13:01:33.724Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/6d/26/943aa20c8f2797c8b6001ac2d026e60de83f346875accf09dc3f3b147b83/asgi_matomo-0.6.1-py3-none-any.whl", hash = "sha256:ed9bdc6bde341b1418426751c7ce5ad9305b5bbf462ce054c7fa818ac5b87e88", size = 9141, upload-time = "2025-12-10T13:02:10.057Z" },
+    { url = "https://files.pythonhosted.org/packages/c8/df/fb0ae3dd9d76f856707ab8f2a53ffb95731a0f93e0e97b41a5e0607587ea/asgi_matomo-0.6.2-py3-none-any.whl", hash = "sha256:84ff688a416a9ce4bc5e832fe628634f5b2d269b9e77e72f971147f297a2d24c", size = 8470, upload-time = "2026-03-03T13:01:32.422Z" },
 ]
 
 [[package]]
@@ -1435,7 +1435,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "asgi-matomo", specifier = ">=0.6.0" },
+    { name = "asgi-matomo", specifier = ">=0.6.2" },
     { name = "brotli-asgi", specifier = ">=1.4.0" },
     { name = "environs", specifier = ">=14.6.0" },
     { name = "fastapi", specifier = ">=0.115.2" },
