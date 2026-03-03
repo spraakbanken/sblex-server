@@ -1398,6 +1398,20 @@ wheels = [
 ]
 
 [[package]]
+name = "sblex-fjall-morphology"
+version = "0.1.2"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/bd/6b/451af04bea973ecc5c3db471d5658a996f0090c2eb9fa21c959d9c35de4e/sblex_fjall_morphology-0.1.2.tar.gz", hash = "sha256:1fed0c3c3ff24b8bf7e0ba35246b184cd9b45cead53e6b249cc7ec1c7a12b229", size = 10746, upload-time = "2026-02-06T12:53:21.704Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/e9/74/82df2923668a0398023f3610a3766ad4335d4df34688fadef5427b32ba57/sblex_fjall_morphology-0.1.2-cp310-abi3-macosx_10_12_x86_64.whl", hash = "sha256:3aca948c233a5bcfdb0fa467bffa190a749ebdecfd2575ce01be810ef900612a", size = 924160, upload-time = "2026-02-06T12:53:12.188Z" },
+    { url = "https://files.pythonhosted.org/packages/0d/b8/d5d2e2ed082be00e681f8a111dcfc8ab29bd251d8cafc122a4f9fbcb58b1/sblex_fjall_morphology-0.1.2-cp310-abi3-macosx_11_0_arm64.whl", hash = "sha256:7d2b42f508de3b01ead99a98796235b297a65a08d3d686a126c547826afa45f0", size = 884191, upload-time = "2026-02-06T12:53:14.04Z" },
+    { url = "https://files.pythonhosted.org/packages/31/ed/ece688e95351e1b4787d09c078eb37426c7e17867bc16d82cf2dc46c0038/sblex_fjall_morphology-0.1.2-cp310-abi3-manylinux_2_34_aarch64.whl", hash = "sha256:e137ba8a12db33cc44306c56e3824e970a90e4133308ca9b03d5836d1d174da3", size = 983544, upload-time = "2026-02-06T12:53:15.315Z" },
+    { url = "https://files.pythonhosted.org/packages/4b/93/3962c2a40ed4c7736b4c7506e3a7c0b969eecaafdc7204d98a763670d970/sblex_fjall_morphology-0.1.2-cp310-abi3-manylinux_2_34_x86_64.whl", hash = "sha256:2e6a52ab86667029e89b6e3fbea9e2c726533ec26ba076f828602f6508a67055", size = 998751, upload-time = "2026-02-06T12:53:16.586Z" },
+    { url = "https://files.pythonhosted.org/packages/df/61/b6ee5ecde4d08b3064ac2267f5661c7bb579a8bb124315d2c8889f686e2f/sblex_fjall_morphology-0.1.2-cp310-abi3-win_amd64.whl", hash = "sha256:709ae712e60d3dfb29a042669678587b27b1d856efc1992e959808b7f72cde2b", size = 758264, upload-time = "2026-02-06T12:53:18.348Z" },
+    { url = "https://files.pythonhosted.org/packages/29/f2/49e19f3d03c048ab08dc835738b01648199d0ba79264dd64c06ff5014ead/sblex_fjall_morphology-0.1.2-cp310-abi3-win_arm64.whl", hash = "sha256:ccb7b519b81981ed7fb617aaf44713301de9557be33bd16da340e44cfda25eab", size = 736014, upload-time = "2026-02-06T12:53:19.968Z" },
+]
+
+[[package]]
 name = "sblex-server"
 version = "0.4.1.dev1"
 source = { editable = "." }
@@ -1417,6 +1431,7 @@ dependencies = [
     { name = "opentelemetry-semantic-conventions" },
     { name = "orjson" },
     { name = "pydantic-settings" },
+    { name = "sblex-fjall-morphology" },
     { name = "uvicorn" },
 ]
 
@@ -1450,6 +1465,7 @@ requires-dist = [
     { name = "opentelemetry-semantic-conventions", specifier = ">=0.60b0" },
     { name = "orjson", specifier = ">=3.10.7" },
     { name = "pydantic-settings", specifier = ">=2.5.2" },
+    { name = "sblex-fjall-morphology", specifier = ">=0.1.2" },
     { name = "uvicorn", specifier = ">=0.32.0" },
 ]
 

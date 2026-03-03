@@ -24,6 +24,7 @@ dependencies = [
   "opentelemetry-semantic-conventions>=0.60b0",
   "orjson>=3.10.7",
   "pydantic-settings>=2.5.2",
+  "sblex-fjall-morphology>=0.1.2",
   "uvicorn>=0.32.0",
 ]
 
