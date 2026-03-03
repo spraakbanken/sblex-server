@@ -4,7 +4,7 @@ annotated-doc==0.0.4
     # via fastapi
 annotated-types==0.7.0
     # via pydantic
-anyio==4.12.0
+anyio==4.12.1
     # via
     #   httpx
     #   starlette
@@ -12,17 +12,19 @@ anyio==4.12.0
 asgi-lifespan==2.1.0
 asgi-matomo==0.6.1
     # via sblex-server
-asgiref==3.11.0
+asgiref==3.11.1
     # via
     #   asgi-matomo
     #   opentelemetry-instrumentation-asgi
 backports-asyncio-runner==1.2.0 ; python_full_version < '3.11'
     # via pytest-asyncio
+backports-datetime-fromisoformat==2.0.3 ; python_full_version < '3.11'
+    # via marshmallow
 brotli==1.2.0
     # via brotli-asgi
-brotli-asgi==1.5.0
+brotli-asgi==1.6.0
     # via sblex-server
-certifi==2025.11.12
+certifi==2026.2.25
     # via
     #   httpcore
     #   httpx
@@ -35,19 +37,21 @@ colorama==0.4.6 ; sys_platform == 'win32'
     # via
     #   click
     #   pytest
-coverage==7.13.0
+coverage==7.13.4
     # via pytest-cov
+environs==14.6.0
+    # via sblex-server
 exceptiongroup==1.3.1 ; python_full_version < '3.11'
     # via
     #   anyio
     #   pytest
-fastapi==0.124.2
+fastapi==0.135.1
     # via sblex-server
 googleapis-common-protos==1.72.0
     # via
     #   opentelemetry-exporter-otlp-proto-grpc
     #   opentelemetry-exporter-otlp-proto-http
-grpcio==1.76.0
+grpcio==1.78.0
     # via opentelemetry-exporter-otlp-proto-grpc
 h11==0.16.0
     # via
@@ -64,9 +68,9 @@ idna==3.11
     #   anyio
     #   httpx
     #   requests
-ijson==3.4.0.post0
+ijson==3.5.0
     # via json-arrays
-importlib-metadata==8.7.0
+importlib-metadata==8.7.1
     # via opentelemetry-api
 iniconfig==2.3.0
     # via pytest
@@ -76,9 +80,11 @@ json-arrays==0.15.0
     # via sblex-server
 markupsafe==3.0.3
     # via jinja2
-matomo-core==0.3.1
+marshmallow==4.2.2
+    # via environs
+matomo-core==0.3.3
     # via asgi-matomo
-opentelemetry-api==1.39.0
+opentelemetry-api==1.39.1
     # via
     #   opentelemetry-exporter-otlp-proto-grpc
     #   opentelemetry-exporter-otlp-proto-http
@@ -89,55 +95,56 @@ opentelemetry-api==1.39.0
     #   opentelemetry-instrumentation-logging
     #   opentelemetry-sdk
     #   opentelemetry-semantic-conventions
-opentelemetry-exporter-otlp==1.39.0
+opentelemetry-exporter-otlp==1.39.1
     # via sblex-server
-opentelemetry-exporter-otlp-proto-common==1.39.0
+opentelemetry-exporter-otlp-proto-common==1.39.1
     # via
     #   opentelemetry-exporter-otlp-proto-grpc
     #   opentelemetry-exporter-otlp-proto-http
-opentelemetry-exporter-otlp-proto-grpc==1.39.0
+opentelemetry-exporter-otlp-proto-grpc==1.39.1
     # via opentelemetry-exporter-otlp
-opentelemetry-exporter-otlp-proto-http==1.39.0
+opentelemetry-exporter-otlp-proto-http==1.39.1
     # via opentelemetry-exporter-otlp
-opentelemetry-instrumentation==0.60b0
+opentelemetry-instrumentation==0.60b1
     # via
     #   opentelemetry-instrumentation-asgi
     #   opentelemetry-instrumentation-fastapi
     #   opentelemetry-instrumentation-httpx
     #   opentelemetry-instrumentation-logging
-opentelemetry-instrumentation-asgi==0.60b0
+opentelemetry-instrumentation-asgi==0.60b1
     # via opentelemetry-instrumentation-fastapi
-opentelemetry-instrumentation-fastapi==0.60b0
+opentelemetry-instrumentation-fastapi==0.60b1
     # via sblex-server
-opentelemetry-instrumentation-httpx==0.60b0
+opentelemetry-instrumentation-httpx==0.60b1
     # via sblex-server
-opentelemetry-instrumentation-logging==0.60b0
+opentelemetry-instrumentation-logging==0.60b1
     # via sblex-server
-opentelemetry-proto==1.39.0
+opentelemetry-proto==1.39.1
     # via
     #   opentelemetry-exporter-otlp-proto-common
     #   opentelemetry-exporter-otlp-proto-grpc
     #   opentelemetry-exporter-otlp-proto-http
-opentelemetry-sdk==1.39.0
+opentelemetry-sdk==1.39.1
     # via
     #   opentelemetry-exporter-otlp-proto-grpc
     #   opentelemetry-exporter-otlp-proto-http
     #   sblex-server
-opentelemetry-semantic-conventions==0.60b0
+opentelemetry-semantic-conventions==0.60b1
     # via
     #   opentelemetry-instrumentation
     #   opentelemetry-instrumentation-asgi
     #   opentelemetry-instrumentation-fastapi
     #   opentelemetry-instrumentation-httpx
     #   opentelemetry-sdk
-opentelemetry-util-http==0.60b0
+    #   sblex-server
+opentelemetry-util-http==0.60b1
     # via
     #   opentelemetry-instrumentation-asgi
     #   opentelemetry-instrumentation-fastapi
     #   opentelemetry-instrumentation-httpx
-orjson==3.11.5
+orjson==3.11.7
     # via sblex-server
-packaging==25.0
+packaging==26.0
     # via
     #   opentelemetry-instrumentation
     #   pytest
@@ -145,7 +152,7 @@ pluggy==1.6.0
     # via
     #   pytest
     #   pytest-cov
-protobuf==6.33.2
+protobuf==6.33.5
     # via
     #   googleapis-common-protos
     #   opentelemetry-proto
@@ -155,7 +162,7 @@ pydantic==2.12.5
     #   pydantic-settings
 pydantic-core==2.41.5
     # via pydantic
-pydantic-settings==2.12.0
+pydantic-settings==2.13.1
     # via sblex-server
 pygments==2.19.2
     # via pytest
@@ -166,19 +173,21 @@ pytest==9.0.2
     #   syrupy
 pytest-asyncio==1.3.0
 pytest-cov==7.0.0
-python-dotenv==1.2.1
-    # via pydantic-settings
+python-dotenv==1.2.2
+    # via
+    #   environs
+    #   pydantic-settings
 requests==2.32.5
     # via opentelemetry-exporter-otlp-proto-http
-ruff==0.14.8
+ruff==0.15.4
 sniffio==1.3.1
     # via asgi-lifespan
-starlette==0.50.0
+starlette==0.52.1
     # via
     #   brotli-asgi
     #   fastapi
-syrupy==5.0.0
-tomli==2.3.0 ; python_full_version <= '3.11'
+syrupy==5.1.0
+tomli==2.4.0 ; python_full_version <= '3.11'
     # via
     #   coverage
     #   pytest
@@ -187,9 +196,12 @@ typing-extensions==4.15.0
     # via
     #   anyio
     #   asgiref
+    #   environs
     #   exceptiongroup
     #   fastapi
     #   grpcio
+    #   marshmallow
+    #   matomo-core
     #   opentelemetry-api
     #   opentelemetry-exporter-otlp-proto-grpc
     #   opentelemetry-exporter-otlp-proto-http
@@ -203,11 +215,12 @@ typing-extensions==4.15.0
     #   uvicorn
 typing-inspection==0.4.2
     # via
+    #   fastapi
     #   pydantic
     #   pydantic-settings
-urllib3==2.6.1
+urllib3==2.6.3
     # via requests
-uvicorn==0.38.0
+uvicorn==0.41.0
     # via sblex-server
 watchfiles==1.1.1
 wrapt==1.17.3
