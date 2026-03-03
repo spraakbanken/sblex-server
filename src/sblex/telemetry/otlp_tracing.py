@@ -63,7 +63,7 @@ def init_tracer(resource: Resource, settings: OTelSettings) -> TracerProvider:
                     BatchSpanProcessor(OTLPSpanExporterGRPC(endpoint=endpoint, headers=headers))
                 )
             case _:
-                logger.warn("unknown OTLP_PROTOCOL='%s', using grpc", protocol)
+                logger.warning("unknown OTLP_PROTOCOL='%s', using grpc", protocol)
                 tracer.add_span_processor(
                     BatchSpanProcessor(OTLPSpanExporterGRPC(endpoint=endpoint, headers=headers))
                 )

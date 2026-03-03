@@ -43,10 +43,10 @@ def create_saldo_ws_server(*, settings: config.Settings) -> FastAPI:
     webapp.state.templates = templating.init_template_engine(settings.app)
 
     # Add middlewares (in reverse order)
-    webapp.add_middleware(BrotliMiddleware, gzip_fallback=True)
+    webapp.add_middleware(BrotliMiddleware, gzip_fallback=True)  # ty:ignore [invalid-argument-type]
 
     webapp.add_middleware(
-        CORSMiddleware,
+        CORSMiddleware,  # ty:ignore [invalid-argument-type]
         allow_origins=["*"],
         allow_credentials=True,
         allow_methods=["*"],
@@ -58,8 +58,8 @@ def create_saldo_ws_server(*, settings: config.Settings) -> FastAPI:
         else:
             logger.info("adding MatomoMiddleware")
             webapp.add_middleware(
-                MatomoMiddleware,  # type: ignore [arg-type]
-                idsite=webapp.state.settings.tracking.matomo_idsite,  # type: ignore
+                MatomoMiddleware,  # ty:ignore [invalid-argument-type]
+                idsite=webapp.state.settings.tracking.matomo_idsite,
                 matomo_url=webapp.state.settings.tracking.matomo_url,
                 access_token=webapp.state.settings.tracking.matomo_token,
                 exclude_patterns=[".*/html.*"],

@@ -342,7 +342,7 @@ def fixture_webapp(fm_client: AsyncClient) -> None:  # -> FastAPI:
 async def client(webapp: FastAPI) -> AsyncGenerator[AsyncClient, None]:
     async with LifespanManager(webapp):
         async with AsyncClient(
-            transport=ASGITransport(webapp),  # type: ignore [arg-type]
+            transport=ASGITransport(webapp),
             base_url="http://testserver.dalin_ws",
         ) as client:
             yield client
@@ -366,7 +366,7 @@ def fixture_fm_server() -> FastAPI:
 async def fm_client(fm_server: FastAPI) -> AsyncGenerator[AsyncClient, None]:
     async with LifespanManager(fm_server):
         async with AsyncClient(
-            transport=ASGITransport(fm_server),  # type: ignore [arg-type]
+            transport=ASGITransport(fm_server),
             base_url="http://fmserver.saldo-ws",
         ) as fm_client:
             yield fm_client

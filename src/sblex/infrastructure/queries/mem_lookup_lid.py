@@ -62,7 +62,7 @@ class MemLookupLid(LookupLid):
 
                     # add m-children
                     if mother in lex_map:
-                        (m, f, mf, pf, _) = lex_map[mother]  # type: ignore [assignment]
+                        (m, f, mf, pf, _) = lex_map[mother]
                         mf.add(lexeme)
                     else:
                         # we don't know the mother and the father yet.
@@ -71,7 +71,7 @@ class MemLookupLid(LookupLid):
                     # add p-children
                     for father_ in father.split():
                         if father_ in lex_map:
-                            (m, f, mf, pf, _) = lex_map[father_]  # type: ignore [assignment]
+                            (m, f, mf, pf, _) = lex_map[father_]
                             pf.add(lexeme)
                         else:
                             lex_map[father_] = ("", "", set(), {lexeme}, set())
@@ -93,7 +93,7 @@ class MemLookupLid(LookupLid):
                     final_lem_map[lem] = {"l": sorted(s), "p": p, "gf": gf}
                 final_lex_map = {}
                 for lex, lex_values in lex_map.items():
-                    (m, f, mchildren, pchildren, lemmas) = lex_values  # type: ignore [assignment]
+                    (m, f, mchildren, pchildren, lemmas) = lex_values
                     final_lex_map[lex] = {
                         "lex": lex,
                         "fm": m,

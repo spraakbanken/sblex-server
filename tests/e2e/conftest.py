@@ -1,3 +1,4 @@
+from pathlib import Path
 from typing import AsyncGenerator
 
 import pytest
@@ -29,7 +30,7 @@ def fixture_webapp_w_root_path(fm_client: AsyncClient) -> FastAPI:
         settings=SaldoWsSettings(
             semantic_path="assets/testing/saldo.txt",
             fm_server_url="not-used",
-            fm_bin=FmBinSettings(path="not used"),  # type: ignore
+            fm_bin=FmBinSettings(path=Path("not used")),
             tracking=MatomoSettings(matomo_url=None),
             otel=OTelSettings(
                 otel_service_name="saldo-ws",
@@ -53,7 +54,7 @@ def fixture_webapp(fm_client: AsyncClient) -> FastAPI:
         settings=SaldoWsSettings(
             semantic_path="assets/testing/saldo.txt",
             fm_server_url="not-used",
-            fm_bin=FmBinSettings(path="not used"),  # type: ignore
+            fm_bin=FmBinSettings(path=Path("not used")),
             tracking=MatomoSettings(matomo_url=None),
             otel=OTelSettings(
                 otel_service_name="saldo-ws",
@@ -371,7 +372,7 @@ def fixture_webapp(fm_client: AsyncClient) -> FastAPI:
 async def client(webapp: FastAPI) -> AsyncGenerator[AsyncClient, None]:
     async with LifespanManager(webapp):
         async with AsyncClient(
-            transport=ASGITransport(webapp),  # type: ignore [arg-type]
+            transport=ASGITransport(webapp),
             base_url="http://testserver",
         ) as client:
             yield client
@@ -381,7 +382,7 @@ async def client(webapp: FastAPI) -> AsyncGenerator[AsyncClient, None]:
 async def client_w_root_path(webapp_w_root_path: FastAPI) -> AsyncGenerator[AsyncClient, None]:
     async with LifespanManager(webapp_w_root_path):
         async with AsyncClient(
-            transport=ASGITransport(webapp_w_root_path),  # type: ignore [arg-type]
+            transport=ASGITransport(webapp_w_root_path),
             base_url="http://testserver",
         ) as client:
             yield client
@@ -405,7 +406,7 @@ def fixture_fm_server() -> FastAPI:
 async def fm_client(fm_server: FastAPI) -> AsyncGenerator[AsyncClient, None]:
     async with LifespanManager(fm_server):
         async with AsyncClient(
-            transport=ASGITransport(fm_server),  # type: ignore [arg-type]
+            transport=ASGITransport(fm_server),
             base_url="http://fmserver",
         ) as fm_client:
             yield fm_client
