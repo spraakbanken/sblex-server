@@ -1,0 +1,18 @@
+[src]
+exclude = [
+  "src/sblex/app.py",
+  "src/sblex/compound.py",
+  "src/sblex/dist.py",
+  "src/sblex/fullform.py",
+  "src/sblex/glsib.py",
+  "src/sblex/glsib_old.py",
+  "src/sblex/handler.py",
+  "src/sblex/lem.py",
+  "src/sblex/lsib.py",
+  "src/sblex/md1.py",
+  "src/sblex/plist.py",
+  "src/sblex/pos.py",
+  "src/sblex/saldo_util.py",
+  "src/sblex/sib.py",
+  "src/sblex/utf8.py",
+]

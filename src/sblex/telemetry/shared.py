@@ -1,7 +1,12 @@
 from typing import Sequence
 
 from opentelemetry.sdk.resources import Resource
-from opentelemetry.semconv.resource import ResourceAttributes
+from opentelemetry.semconv._incubating.attributes.service_attributes import (
+    SERVICE_INSTANCE_ID,
+    SERVICE_NAME,
+    SERVICE_NAMESPACE,
+    SERVICE_VERSION,
+)
 
 from sblex.telemetry.settings import OTelSettings
 
@@ -13,7 +18,7 @@ DEFAULT_TRACES_EXPORT_PATH = "v1/traces"
 
 def detect_resource(settings: OTelSettings, *, fallback_name: str | None = None) -> Resource:
     service_name = settings.otel_service_name or fallback_name or "unknown"
-    attributes: dict[
+    attributes_: dict[
         str,
         str
         | bool
@@ -24,16 +29,16 @@ def detect_resource(settings: OTelSettings, *, fallback_name: str | None = None)
         | Sequence[int]
         | Sequence[float],
     ] = {
-        ResourceAttributes.SERVICE_NAME: service_name,
+        SERVICE_NAME: service_name,
         "compose_service": service_name,
     }
     if service_version := settings.otel_service_version:
-        attributes[ResourceAttributes.SERVICE_VERSION] = service_version
+        attributes_[SERVICE_VERSION] = service_version
     if service_namespace := settings.otel_service_namespace:
-        attributes[ResourceAttributes.SERVICE_NAMESPACE] = service_namespace
+        attributes_[SERVICE_NAMESPACE] = service_namespace
     if service_instance_id := settings.otel_service_instance_id:
-        attributes[ResourceAttributes.SERVICE_INSTANCE_ID] = service_instance_id
-    return Resource.create(attributes=attributes)
+        attributes_[SERVICE_INSTANCE_ID] = service_instance_id
+    return Resource.create(attributes=attributes_)
 
 
 def read_otel_headers_from_settings(settings: OTelSettings) -> dict[str, str]:
