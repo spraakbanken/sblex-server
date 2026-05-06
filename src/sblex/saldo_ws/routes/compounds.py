@@ -4,12 +4,12 @@ from typing import Any
 
 from asgi_matomo.trackers import PerfMsTracker  # noqa: F401
 from fastapi import APIRouter, Depends, Request, Response, status
-from fastapi.responses import HTMLResponse, ORJSONResponse
+from fastapi.responses import HTMLResponse
 from opentelemetry import trace
 
 from sblex.application.services.lookup import LookupService
 from sblex.saldo_ws import deps, templating
-from sblex.saldo_ws.responses import XMLResponse
+from sblex.saldo_ws.responses import JSONResponse, XMLResponse
 
 logger = logging.getLogger(__name__)
 router = APIRouter()
@@ -27,9 +27,9 @@ async def get_compound_json(
         #  with PerfMsTracker(scope=request.scope, key="pf_srv"):
         #      segment_compounds = await lookup_service.compound(segment)
         # return segment_compounds
-        return ORJSONResponse(
+        return JSONResponse(
             content={
-                "message": """This route is disabled due to performance reasons. 
+                "message": """This route is disabled due to performance reasons.
                      Contact us if interessed in it working.
                      Tracking issue: https://github.com/spraakbanken/sblex-server/issues/110""",
             },

@@ -1,14 +1,14 @@
 import sys
 
 from fastapi import APIRouter, Depends, Request, status
-from fastapi.responses import HTMLResponse, ORJSONResponse
+from fastapi.responses import HTMLResponse
 from opentelemetry import trace
 from pydantic.dataclasses import dataclass
 
 from sblex.application import queries
 from sblex.application.queries.inflection import InflectionTableQuery
 from sblex.saldo_ws import deps, schemas, templating
-from sblex.saldo_ws.responses import XMLResponse
+from sblex.saldo_ws.responses import JSONResponse, XMLResponse
 
 router = APIRouter()
 
@@ -29,11 +29,11 @@ async def inflection_table_json(
     ) as _process_api_span:
         inflections = inflection_table_query.query(paradigm, word)
         if len(inflections) == 0:
-            return ORJSONResponse(
+            return JSONResponse(
                 status_code=status.HTTP_404_NOT_FOUND,
                 content={"message": f"paradigm '{paradigm}' finns ej"},
             )
-        return ORJSONResponse(inflections)
+        return JSONResponse(inflections)
 
 
 @router.get("/xml/{paradigm}/{word}", name="inflections:gen-xml", response_class=XMLResponse)

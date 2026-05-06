@@ -4,7 +4,7 @@ from typing import Any, Union
 
 from asgi_matomo.trackers import PerfMsTracker
 from fastapi import APIRouter, Depends, Path, Request, Response, status
-from fastapi.responses import HTMLResponse, JSONResponse, ORJSONResponse
+from fastapi.responses import HTMLResponse
 from opentelemetry import trace
 from typing_extensions import Annotated
 
@@ -14,7 +14,7 @@ from sblex.application.queries import LookupLid
 from sblex.application.queries.lookup_lid import LemmaNotFound, LexemeNotFound
 from sblex.application.services.lookup import LookupService
 from sblex.saldo_ws import deps, schemas, templating
-from sblex.saldo_ws.responses import JavascriptResponse, XMLResponse
+from sblex.saldo_ws.responses import JavascriptResponse, JSONResponse, XMLResponse
 
 logger = logging.getLogger(__name__)
 router = APIRouter()
@@ -41,21 +41,21 @@ async def lookup_lid_json(
         sys._getframe().f_code.co_name
     ) as _process_api_span:
         if not is_lemma(lid) and not is_lexeme(lid):
-            return ORJSONResponse(
-                status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            return JSONResponse(
+                status_code=status.HTTP_422_UNPROCESSABLE_CONTENT,
                 content={"message": f"{lid} is neither a lemma or a lexeme"},
             )
         with PerfMsTracker(scope=request.scope, key="pf_srv"):
             try:
                 lemma_or_lexeme = await lookup_service.lookup_lid(lid)
             except (LexemeNotFound, LemmaNotFound):
-                return ORJSONResponse(
+                return JSONResponse(
                     status_code=status.HTTP_404_NOT_FOUND,
                     content={"message": f"'{lid}' finns ej"},
                 )
             if lid == "rnd":
                 lemma_or_lexeme["fs"] = await lookup_service.wordforms(lemma_or_lexeme["lex"])
-        return ORJSONResponse(lemma_or_lexeme)
+        return JSONResponse(lemma_or_lexeme)
 
 
 @router.get("/xml/{lid}", name="lids:lid-xml", response_class=XMLResponse)
@@ -68,9 +68,9 @@ async def lookup_lid_xml(
         sys._getframe().f_code.co_name
     ) as _process_api_span:
         if not is_lemma(lid) and not is_lexeme(lid):
-            return JSONResponse(
-                status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-                content={"error": f"{lid} is neither a lemma or a lexeme"},
+            return XMLResponse(
+                status_code=status.HTTP_422_UNPROCESSABLE_CONTENT,
+                content=f"<error>{lid} is neither a lemma or a lexeme</error>".encode("utf-8"),
             )
         templates = request.app.state.templates
 
@@ -112,7 +112,7 @@ async def lookup_lid_html(
     ) as _process_api_span:
         if not is_lemma(lid) and not is_lexeme(lid):
             return JSONResponse(
-                status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+                status_code=status.HTTP_422_UNPROCESSABLE_CONTENT,
                 content={"error": f"{lid} is neither a lemma or a lexeme"},
             )
         templates = request.app.state.templates
@@ -174,7 +174,7 @@ async def lookup_lid_protojs(
     ) as _process_api_span:
         if not is_lexeme(lid):
             return JSONResponse(
-                status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+                status_code=status.HTTP_422_UNPROCESSABLE_CONTENT,
                 content={"error": f"{lid} is not a lexeme"},
             )
         templates = request.app.state.templates
@@ -199,7 +199,7 @@ async def lookup_lid_graph(
     ) as _process_api_span:
         if not is_lexeme(lid):
             return JSONResponse(
-                status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+                status_code=status.HTTP_422_UNPROCESSABLE_CONTENT,
                 content={"error": f"{lid} is not a lexeme"},
             )
         templates = request.app.state.templates
@@ -207,7 +207,7 @@ async def lookup_lid_graph(
         try:
             json_data = await lookup_lid.get_lexeme(lid)
         except LexemeNotFound:
-            return ORJSONResponse(
+            return JSONResponse(
                 status_code=status.HTTP_404_NOT_FOUND,
                 content={"message": f"'{lid}' finns ej"},
             )
