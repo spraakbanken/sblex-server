@@ -49,6 +49,7 @@ class Settings(BaseSettings):
     app: AppSettings = AppSettings()
     frontend: FrontendSettings = FrontendSettings()
     tracking: MatomoSettings
+    morphology_path: str
     model_config = SettingsConfigDict(
         env_file=".env", extra="ignore", env_nested_delimiter="__", env_prefix="SALDO_WS__"
     )

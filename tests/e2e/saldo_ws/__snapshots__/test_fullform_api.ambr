@@ -43,7 +43,7 @@
       </form>
       
       <p>segment: dvä</p>
-      <p>continuations:  </p>
+      <p>continuations: l </p>
       <table border="1">
           <tr>
               <th>gf</th>
@@ -121,7 +121,7 @@
       </form>
       
       <p>segment: dväl</p>
-      <p>continuations:  </p>
+      <p>continuations: jt </p>
       <table border="1">
           <tr>
               <th>gf</th>
@@ -210,6 +210,24 @@
               <th>p</th>
           </tr>
           
+          <tr>
+              <td>dväljas</td>
+              <td><a href="http://testserver/lid/html/dväljas..vb.1">dväljas..vb.1</a></td>
+              <td>vb</td>
+              <td></td>
+              <td>pres ind s-form</td>
+              <td>vb_vs_dväljas</td>
+          </tr>
+          
+          <tr>
+              <td>dväljas</td>
+              <td><a href="http://testserver/lid/html/dväljas..vb.1">dväljas..vb.1</a></td>
+              <td>vb</td>
+              <td></td>
+              <td>imper</td>
+              <td>vb_vs_dväljas</td>
+          </tr>
+          
           
   </center>
   </div>
@@ -277,7 +295,7 @@
       </form>
       
       <p>segment: dv</p>
-      <p>continuations:  </p>
+      <p>continuations: aä </p>
       <table border="1">
           <tr>
               <th>gf</th>
@@ -315,7 +333,7 @@
   '''
   <?xml version="1.0" encoding="UTF-8"?>
   <result>
-      <c></c>
+      <c>l</c>
       <as>
   
       </as>
@@ -326,7 +344,7 @@
   '''
   <?xml version="1.0" encoding="UTF-8"?>
   <result>
-      <c></c>
+      <c>jt</c>
       <as>
   
       </as>
@@ -340,6 +358,24 @@
       <c></c>
       <as>
   
+          <a>
+          <gf>dväljas</gf>
+          <id>dväljas..vb.1</id>
+          <pos>vb</pos>
+          <is></is>
+          <msd>pres ind s-form</msd>
+          <p>vb_vs_dväljas</p>
+          </a>
+  
+          <a>
+          <gf>dväljas</gf>
+          <id>dväljas..vb.1</id>
+          <pos>vb</pos>
+          <is></is>
+          <msd>imper</msd>
+          <p>vb_vs_dväljas</p>
+          </a>
+  
       </as>
   </result>
   '''
@@ -348,7 +384,7 @@
   '''
   <?xml version="1.0" encoding="UTF-8"?>
   <result>
-      <c></c>
+      <c>aä</c>
       <as>
   
       </as>

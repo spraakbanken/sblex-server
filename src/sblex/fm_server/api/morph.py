@@ -26,7 +26,7 @@ async def get_morph_w_cont(
     fragment: str,
     morphology: Morphology = Depends(deps.get_morphology),  # noqa: B008
 ):
-    if json_data := await morphology.lookup_w_cont(fragment):
+    if json_data := await morphology.lookup_with_cont(fragment):
         return Response(json_data, media_type="application/json")
     return JSONResponse(
         {"msg": f"fragment '{fragment}' not found"},

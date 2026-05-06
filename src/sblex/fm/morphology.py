@@ -22,7 +22,7 @@ class Morphology(abc.ABC):
     async def lookup_from_bytes(self, s: bytes) -> bytes | None: ...
 
     @abc.abstractmethod
-    async def lookup_w_cont(self, word: str) -> bytes | None: ...
+    async def lookup_with_cont(self, word: str) -> bytes | None: ...
 
 
 class MemMorphology(Morphology):
@@ -57,5 +57,5 @@ class MemMorphology(Morphology):
                 return r
         return None
 
-    async def lookup_w_cont(self, word: str) -> bytes | None:
+    async def lookup_with_cont(self, word: str) -> bytes | None:
         return self._trie.lookup(word)

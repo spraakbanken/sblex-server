@@ -32,7 +32,7 @@ class HttpMorphology(Morphology):
     async def lookup_from_bytes(self, s: bytes) -> bytes | None:
         return await self.lookup(s.decode("utf-8"))
 
-    async def lookup_w_cont(self, word: str) -> bytes | None:
+    async def lookup_with_cont(self, word: str) -> bytes | None:
         with trace.get_tracer(__name__).start_as_current_span(
             sys._getframe().f_code.co_name
         ) as _process_api_span:
