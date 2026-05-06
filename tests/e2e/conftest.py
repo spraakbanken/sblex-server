@@ -1,6 +1,7 @@
 import logging
 import shutil
 import uuid
+from collections.abc import Generator
 from pathlib import Path
 from typing import AsyncGenerator
 
@@ -31,7 +32,7 @@ def snapshot_json(snapshot):
 
 
 @pytest.fixture(name="morph_db")
-def fixture_morph_db() -> str:
+def fixture_morph_db() -> Generator[str, None, None]:
     db_path = Path(f"assets/testing/gen/saldo_morph_{uuid.uuid4()}.db")
     logger.warning("Loading morphology from '%s'", str(db_path))
     morph = FjallMorphology(str(db_path))
