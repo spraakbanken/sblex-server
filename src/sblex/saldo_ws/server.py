@@ -4,12 +4,12 @@ from asgi_matomo import MatomoMiddleware
 from brotli_asgi import BrotliMiddleware
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import ORJSONResponse
 from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
 from opentelemetry.instrumentation.httpx import HTTPXClientInstrumentor
 
 from sblex import telemetry
 from sblex.saldo_ws import config, routes, tasks, templating
+from sblex.saldo_ws.responses import JSONResponse
 from sblex.saldo_ws.shared import version_info
 
 logger = logging.getLogger(__name__)
@@ -33,7 +33,8 @@ def create_saldo_ws_server(*, settings: config.Settings) -> FastAPI:
         redoc_url="/",
         root_path=settings.app.root_path,
         lifespan=tasks.lifespan,
-        default_response_class=ORJSONResponse,
+        default_response_class=JSONResponse,
+        config=settings,
     )  # , lifespan=lifespan)
 
     # webapp.state.app_context = app_context
@@ -43,10 +44,10 @@ def create_saldo_ws_server(*, settings: config.Settings) -> FastAPI:
     webapp.state.templates = templating.init_template_engine(settings.app)
 
     # Add middlewares (in reverse order)
-    webapp.add_middleware(BrotliMiddleware, gzip_fallback=True)  # ty:ignore [invalid-argument-type]
+    webapp.add_middleware(BrotliMiddleware, gzip_fallback=True)
 
     webapp.add_middleware(
-        CORSMiddleware,  # ty:ignore [invalid-argument-type]
+        CORSMiddleware,
         allow_origins=["*"],
         allow_credentials=True,
         allow_methods=["*"],
@@ -58,7 +59,7 @@ def create_saldo_ws_server(*, settings: config.Settings) -> FastAPI:
         else:
             logger.info("adding MatomoMiddleware")
             webapp.add_middleware(
-                MatomoMiddleware,  # ty:ignore [invalid-argument-type]
+                MatomoMiddleware,
                 idsite=webapp.state.settings.tracking.matomo_idsite,
                 matomo_url=webapp.state.settings.tracking.matomo_url,
                 access_token=webapp.state.settings.tracking.matomo_token,

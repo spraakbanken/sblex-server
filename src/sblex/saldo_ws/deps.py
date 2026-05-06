@@ -10,7 +10,6 @@ from sblex.fm.fm_runner import FmRunner
 from sblex.infrastructure.queries import LookupFullformLexQuery
 from sblex.infrastructure.queries.fm_runner_inflection import FmRunnerInflectionTable
 from sblex.infrastructure.queries.fm_runner_paradigms import FmRunnerParadigms
-from sblex.infrastructure.queries.http_morpology import HttpMorphology
 
 
 def get_fm_client(request: Request) -> httpx.AsyncClient:
@@ -18,9 +17,9 @@ def get_fm_client(request: Request) -> httpx.AsyncClient:
 
 
 def get_morphology(
-    fm_client: httpx.AsyncClient = Depends(get_fm_client),  # noqa: B008
+    request: Request,
 ) -> Morphology:
-    return HttpMorphology(http_client=fm_client)
+    return request.app.state._morph
 
 
 def get_lookup_lid(request: Request) -> LookupLid:

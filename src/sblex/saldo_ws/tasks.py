@@ -1,12 +1,10 @@
 import logging
 from contextlib import asynccontextmanager
 
-import httpx
 from fastapi import FastAPI
 
-from sblex.fm import MemMorphology
 from sblex.fm.fm_runner import FmRunner
-from sblex.infrastructure.queries import MemLookupLid
+from sblex.infrastructure.queries import FjallMorphology, MemLookupLid
 
 logger = logging.getLogger(__name__)
 
@@ -18,8 +16,8 @@ def load_lookup_lid(app: FastAPI) -> None:
 
 
 def load_morphology(app: FastAPI) -> None:
-    logger.info("loading morphology")
-    morphology = MemMorphology.from_path(app.state.config["morphology.path"])
+    logger.warning("loading morphology")
+    morphology = FjallMorphology(app.state.settings.morphology_path)
     app.state._morph = morphology
 
 
@@ -32,9 +30,10 @@ def setup_fmrunner(app: FastAPI) -> None:
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info("startup")
-    app.state._fm_client = httpx.AsyncClient(base_url=app.state.settings.fm_server_url)
+    # app.state._fm_client = httpx.AsyncClient(base_url=app.state.settings.fm_server_url)
     load_lookup_lid(app)
     setup_fmrunner(app)
+    load_morphology(app)
     yield
-    await app.state._fm_client.aclose()
+    # await app.state._fm_client.aclose()
     logger.info("shutdown")

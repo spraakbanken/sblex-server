@@ -1,11 +1,12 @@
 import sys
 
 from fastapi import APIRouter, Depends, Request, status
-from fastapi.responses import HTMLResponse, ORJSONResponse, RedirectResponse
+from fastapi.responses import HTMLResponse, RedirectResponse
 from opentelemetry import trace
 
 from sblex.application.queries import NoPartOfSpeechOnBaseform, Paradigms
 from sblex.saldo_ws import deps, templating
+from sblex.saldo_ws.responses import JSONResponse
 
 router = APIRouter()
 
@@ -18,7 +19,7 @@ async def get_para_json(words: str, paradigms: Paradigms = Depends(deps.get_para
         try:
             _baseform, result = paradigms.query(words)
         except NoPartOfSpeechOnBaseform:
-            return ORJSONResponse(
+            return JSONResponse(
                 {
                     "msg": {
                         "eng": "First word has no Part-of-Speech tag. Use the form 'word:pos'",

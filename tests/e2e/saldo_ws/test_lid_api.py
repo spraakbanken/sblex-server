@@ -8,7 +8,7 @@ class TestLidRoutes:
     @pytest.mark.asyncio
     async def test_invalid_input_returns_422(self, client: AsyncClient, in_format: str) -> None:
         res = await client.get(f"/lid/{in_format}/bad-input")
-        assert res.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
+        assert res.status_code == status.HTTP_422_UNPROCESSABLE_CONTENT
 
     @pytest.mark.parametrize("lid", ["dväljas..vb.1", "dväljas..1"])
     @pytest.mark.asyncio
@@ -116,7 +116,7 @@ class TestLidRoutes:
         self, client: AsyncClient, lid: str
     ) -> None:
         res = await client.get(f"/lid/protojs/{lid}")
-        assert res.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
+        assert res.status_code == status.HTTP_422_UNPROCESSABLE_CONTENT
 
     @pytest.mark.parametrize("lid", ["bo..1"])
     @pytest.mark.asyncio
@@ -134,7 +134,7 @@ class TestLidRoutes:
         self, client: AsyncClient, lid: str
     ) -> None:
         res = await client.get(f"/lid/graph/{lid}")
-        assert res.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
+        assert res.status_code == status.HTTP_422_UNPROCESSABLE_CONTENT
 
     @pytest.mark.parametrize("lid", ["bo..1"])
     @pytest.mark.asyncio

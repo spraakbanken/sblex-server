@@ -142,3 +142,5 @@ deptracpy.dot
 log.txt
 /saldo-ws/
 /saldo-wsgi/
+
+/assets/testing/gen/

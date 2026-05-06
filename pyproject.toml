@@ -4,7 +4,7 @@ version = "0.4.1-dev1"
 description = "Saldo-WS-server && Dalin-WS-server"
 readme = "README.md"
 requires-python = ">=3.10"
-license = { text = "MIT" }
+license = "MIT"
 authors = [
   { name = "Språkbanken Text", email = "sb-info@svenska.gu.se" },
 ]
@@ -24,6 +24,7 @@ dependencies = [
   "opentelemetry-semantic-conventions>=0.60b0",
   "orjson>=3.10.7",
   "pydantic-settings>=2.5.2",
+  "sblex-fjall-morphology>=0.1.2",
   "uvicorn>=0.32.0",
 ]
 
@@ -35,13 +36,13 @@ dev = [
   "pytest-cov>=5.0.0",
   "ruff>=0.6.9",
   "syrupy>=4.7.2",
-  "ty>=0.0.20",
+  "ty>=0.0.32",
   "uvicorn>=0.32.0",
   "watchfiles>=0.24.0",
 ]
 
 [build-system]
-requires = ["uv_build>=0.9.6,<0.10.0"]
+requires = ["uv_build>=0.9.6,<0.12.0"]
 build-backend = "uv_build"
 
 [tool.uv.build-backend]

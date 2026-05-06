@@ -1,3 +1,7 @@
+import logging
+import shutil
+import uuid
+from collections.abc import Generator
 from pathlib import Path
 from typing import AsyncGenerator
 
@@ -6,6 +10,7 @@ import pytest_asyncio
 from asgi_lifespan import LifespanManager
 from fastapi import FastAPI
 from httpx import ASGITransport, AsyncClient
+from sblex_fjall_morphology import FjallMorphology
 from syrupy.extensions.json import JSONSnapshotExtension
 
 from sblex.fm.fm_runner import FmRunner
@@ -13,10 +18,12 @@ from sblex.fm_server.config import Settings as FmSettings
 from sblex.fm_server.server import create_fm_server
 from sblex.saldo_ws.config import AppSettings, FmBinSettings, MatomoSettings
 from sblex.saldo_ws.config import Settings as SaldoWsSettings
-from sblex.saldo_ws.deps import get_fm_client, get_fm_runner
+from sblex.saldo_ws.deps import get_fm_runner
 from sblex.saldo_ws.server import create_saldo_ws_server
 from sblex.telemetry.settings import OTelSettings
 from tests.adapters.mem_fm_runner import MemFmRunner
+
+logger = logging.getLogger(__name__)
 
 
 @pytest.fixture
@@ -24,11 +31,23 @@ def snapshot_json(snapshot):
     return snapshot.with_defaults(extension_class=JSONSnapshotExtension)
 
 
+@pytest.fixture(name="morph_db")
+def fixture_morph_db() -> Generator[str, None, None]:
+    db_path = Path(f"assets/testing/gen/saldo_morph_{uuid.uuid4()}.db")
+    logger.warning("Loading morphology from '%s'", str(db_path))
+    morph = FjallMorphology(str(db_path))
+    morph.build_from_path("assets/testing/saldo.lex")
+    del morph
+    yield str(db_path)
+    shutil.rmtree(db_path)
+
+
 @pytest.fixture(name="webapp_w_root_path")
-def fixture_webapp_w_root_path(fm_client: AsyncClient) -> FastAPI:
+def fixture_webapp_w_root_path(morph_db: str) -> FastAPI:
     webapp = create_saldo_ws_server(
         settings=SaldoWsSettings(
             semantic_path="assets/testing/saldo.txt",
+            morphology_path=morph_db,
             fm_server_url="not-used",
             fm_bin=FmBinSettings(path=Path("not used")),
             tracking=MatomoSettings(matomo_url=None),
@@ -49,10 +68,11 @@ def fixture_webapp_w_root_path(fm_client: AsyncClient) -> FastAPI:
 
 
 @pytest.fixture(name="webapp")
-def fixture_webapp(fm_client: AsyncClient) -> FastAPI:
+def fixture_webapp(morph_db: str) -> FastAPI:
     webapp = create_saldo_ws_server(
         settings=SaldoWsSettings(
             semantic_path="assets/testing/saldo.txt",
+            morphology_path=morph_db,
             fm_server_url="not-used",
             fm_bin=FmBinSettings(path=Path("not used")),
             tracking=MatomoSettings(matomo_url=None),
@@ -68,9 +88,6 @@ def fixture_webapp(fm_client: AsyncClient) -> FastAPI:
         # },
         # env=env,
     )
-
-    def override_fm_client() -> AsyncClient:
-        return fm_client
 
     def override_fm_runner() -> FmRunner:
         return MemFmRunner(
@@ -363,7 +380,6 @@ def fixture_webapp(fm_client: AsyncClient) -> FastAPI:
             },
         )
 
-    webapp.dependency_overrides[get_fm_client] = override_fm_client
     webapp.dependency_overrides[get_fm_runner] = override_fm_runner
     return webapp
 

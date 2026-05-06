@@ -21,7 +21,7 @@ def build_context(request: Request, *, title: str, **kwargs) -> dict[str, Any]:
 def init_template_engine(settings: config.AppSettings) -> Jinja2Templates:
     print(f"{settings.template_directory=}")
     templates = Jinja2Templates(directory=settings.template_directory)
-    templates.env.globals["url_for"] = custom_url_for
+    templates.env.globals["url_for"] = custom_url_for  # ty: ignore[invalid-assignment]
     return templates
 
 
