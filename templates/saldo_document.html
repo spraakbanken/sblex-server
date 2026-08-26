@@ -2,15 +2,8 @@
 <html lang="sv">
     <head>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-        <link
-            rel="shortcut icon"
-            href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png"
-        />
-        <link
-            rel="stylesheet"
-            type="text/css"
-            href="{{ url_for('static', path='/saldo.css' ) }}"
-        />
+        <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png" />
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', path='/saldo.css' ) }}" />
         <title>{{ title }}</title>
         {% if tracking_base_url %}
         <!-- Matomo -->
@@ -33,10 +26,7 @@
         </script>
         <!-- End Matomo Code -->
         {% endif %}
-        <script
-            src="https://unpkg.com/htmx.org@1.9.8"
-            crossorigin="anonymous"
-        ></script>
+        <script src="https://cdn.jsdelivr.net/npm/htmx.org@next/dist/htmx.min.js" crossorigin="anonymous"></script>
     </head>
 
     <body>
@@ -55,15 +45,10 @@
             <hr />
             <ul>
                 <li>
-                    <a href="https://spraakbanken.gu.se/saldo"
-                        >SALDOs projektsida</a
-                    >
+                    <a href="https://spraakbanken.gu.se/saldo">SALDOs projektsida</a>
                 </li>
                 <li>
-                    <a
-                        href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf"
-                        >dokumentation (pdf)</a
-                    >
+                    <a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a>
                 </li>
             </ul>
         </footer>

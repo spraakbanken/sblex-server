@@ -5,27 +5,17 @@
   <html lang="sv">
       <head>
           <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-          <link
-              rel="shortcut icon"
-              href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png"
-          />
-          <link
-              rel="stylesheet"
-              type="text/css"
-              href="http://testserver/static/saldo.css"
-          />
+          <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png" />
+          <link rel="stylesheet" type="text/css" href="/static/saldo.css" />
           <title>Lemma-id | graf | bo..1</title>
           
-          <script
-              src="https://unpkg.com/htmx.org@1.9.8"
-              crossorigin="anonymous"
-          ></script>
+          <script src="https://cdn.jsdelivr.net/npm/htmx.org@next/dist/htmx.min.js" crossorigin="anonymous"></script>
       </head>
   
       <body>
           <center>
               <p>
-                  <a href="http://testserver/fl/html"
+                  <a href="/fl/html"
                       ><img
                           src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif"
                           align="top"
@@ -36,7 +26,7 @@
           <div id="output_table">
   <div style="width: 500px; height: 500px;">
       <script type="text/javascript" src="https://svn.spraakdata.gu.se/repos/sblex/pub/js/protovis-r3.2.js"></script>
-      <script type="text/javascript" src="http://testserver/lid/protojs/bo..1"></script>
+      <script type="text/javascript" src="/lid/protojs/bo..1"></script>
       <script type="text/javascript+protovis">
   var vis = new pv.Panel()
       .width(500)
@@ -60,7 +50,7 @@
       }
       else{
       
-      document.location.href = 'http://testserver/lid/graph/leva..1';
+      document.location.href = '/lid/graph/leva..1';
       
       }
       });
@@ -75,7 +65,7 @@
          }
        else{
           
-          document.location.href = 'http://testserver/lid/graph/leva..1';
+          document.location.href = '/lid/graph/leva..1';
           
        }
        });
@@ -89,15 +79,10 @@
               <hr />
               <ul>
                   <li>
-                      <a href="https://spraakbanken.gu.se/saldo"
-                          >SALDOs projektsida</a
-                      >
+                      <a href="https://spraakbanken.gu.se/saldo">SALDOs projektsida</a>
                   </li>
                   <li>
-                      <a
-                          href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf"
-                          >dokumentation (pdf)</a
-                      >
+                      <a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a>
                   </li>
               </ul>
           </footer>
@@ -111,27 +96,17 @@
   <html lang="sv">
       <head>
           <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-          <link
-              rel="shortcut icon"
-              href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png"
-          />
-          <link
-              rel="stylesheet"
-              type="text/css"
-              href="http://testserver/static/saldo.css"
-          />
+          <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png" />
+          <link rel="stylesheet" type="text/css" href="/static/saldo.css" />
           <title>Lemma-id saknas</title>
           
-          <script
-              src="https://unpkg.com/htmx.org@1.9.8"
-              crossorigin="anonymous"
-          ></script>
+          <script src="https://cdn.jsdelivr.net/npm/htmx.org@next/dist/htmx.min.js" crossorigin="anonymous"></script>
       </head>
   
       <body>
           <center>
               <p>
-                  <a href="http://testserver/fl/html"
+                  <a href="/fl/html"
                       ><img
                           src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif"
                           align="top"
@@ -146,15 +121,10 @@
               <hr />
               <ul>
                   <li>
-                      <a href="https://spraakbanken.gu.se/saldo"
-                          >SALDOs projektsida</a
-                      >
+                      <a href="https://spraakbanken.gu.se/saldo">SALDOs projektsida</a>
                   </li>
                   <li>
-                      <a
-                          href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf"
-                          >dokumentation (pdf)</a
-                      >
+                      <a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a>
                   </li>
               </ul>
           </footer>
@@ -168,27 +138,17 @@
   <html lang="sv">
       <head>
           <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-          <link
-              rel="shortcut icon"
-              href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png"
-          />
-          <link
-              rel="stylesheet"
-              type="text/css"
-              href="http://testserver/static/saldo.css"
-          />
+          <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png" />
+          <link rel="stylesheet" type="text/css" href="/static/saldo.css" />
           <title>Saldo-id saknas</title>
           
-          <script
-              src="https://unpkg.com/htmx.org@1.9.8"
-              crossorigin="anonymous"
-          ></script>
+          <script src="https://cdn.jsdelivr.net/npm/htmx.org@next/dist/htmx.min.js" crossorigin="anonymous"></script>
       </head>
   
       <body>
           <center>
               <p>
-                  <a href="http://testserver/fl/html"
+                  <a href="/fl/html"
                       ><img
                           src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif"
                           align="top"
@@ -203,15 +163,10 @@
               <hr />
               <ul>
                   <li>
-                      <a href="https://spraakbanken.gu.se/saldo"
-                          >SALDOs projektsida</a
-                      >
+                      <a href="https://spraakbanken.gu.se/saldo">SALDOs projektsida</a>
                   </li>
                   <li>
-                      <a
-                          href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf"
-                          >dokumentation (pdf)</a
-                      >
+                      <a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a>
                   </li>
               </ul>
           </footer>
@@ -225,27 +180,17 @@
   <html lang="sv">
       <head>
           <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-          <link
-              rel="shortcut icon"
-              href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png"
-          />
-          <link
-              rel="stylesheet"
-              type="text/css"
-              href="http://testserver/static/saldo.css"
-          />
+          <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png" />
+          <link rel="stylesheet" type="text/css" href="/static/saldo.css" />
           <title>Lemma-id | dväljas..vb.1</title>
           
-          <script
-              src="https://unpkg.com/htmx.org@1.9.8"
-              crossorigin="anonymous"
-          ></script>
+          <script src="https://cdn.jsdelivr.net/npm/htmx.org@next/dist/htmx.min.js" crossorigin="anonymous"></script>
       </head>
   
       <body>
           <center>
               <p>
-                  <a href="http://testserver/fl/html"
+                  <a href="/fl/html"
                       ><img
                           src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif"
                           align="top"
@@ -259,15 +204,10 @@
               <hr />
               <ul>
                   <li>
-                      <a href="https://spraakbanken.gu.se/saldo"
-                          >SALDOs projektsida</a
-                      >
+                      <a href="https://spraakbanken.gu.se/saldo">SALDOs projektsida</a>
                   </li>
                   <li>
-                      <a
-                          href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf"
-                          >dokumentation (pdf)</a
-                      >
+                      <a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a>
                   </li>
               </ul>
           </footer>
@@ -281,27 +221,17 @@
   <html lang="sv">
       <head>
           <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-          <link
-              rel="shortcut icon"
-              href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png"
-          />
-          <link
-              rel="stylesheet"
-              type="text/css"
-              href="http://testserver/static/saldo.css"
-          />
+          <link rel="shortcut icon" href="https://svn.spraakdata.gu.se/sb-arkiv/pub/images/saldo_icon.png" />
+          <link rel="stylesheet" type="text/css" href="/static/saldo.css" />
           <title>Saldo-id | dväljas..1</title>
           
-          <script
-              src="https://unpkg.com/htmx.org@1.9.8"
-              crossorigin="anonymous"
-          ></script>
+          <script src="https://cdn.jsdelivr.net/npm/htmx.org@next/dist/htmx.min.js" crossorigin="anonymous"></script>
       </head>
   
       <body>
           <center>
               <p>
-                  <a href="http://testserver/fl/html"
+                  <a href="/fl/html"
                       ><img
                           src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif"
                           align="top"
@@ -316,12 +246,12 @@
       <table border="1">
           <tr>
               <td style="text-align:center;">⇧[2]</td>
-              <td><a href="http://testserver/lid/html/bo..1">bo</a></td>
+              <td><a href="/lid/html/bo..1">bo</a></td>
               <td style="text-align:center;">↑</td>
-              <td><a href="http://testserver/lid/html/PRIM..1">PRIM</a></td>
+              <td><a href="/lid/html/PRIM..1">PRIM</a></td>
           </tr>
       </table>
-      <p><a href="http://testserver/lid/html/dväljas..vb.1">dväljas (vb)</a><br /> <a href="http://testserver/lid/graph/dväljas..1"><img
+      <p><a href="/lid/html/dväljas..vb.1">dväljas (vb)</a><br /> <a href="/lid/graph/dväljas..1"><img
           src="https://svn.spraakdata.gu.se/repos/sblex/pub/images/prim_graph.png" /></a> <br /> <a href="http://spraakbanken.gu.se/korp/#search=lemgram|dväljas..vb.1">[korpus]</a></p>
       <table border="1">
           <tr>
@@ -336,15 +266,10 @@
               <hr />
               <ul>
                   <li>
-                      <a href="https://spraakbanken.gu.se/saldo"
-                          >SALDOs projektsida</a
-                      >
+                      <a href="https://spraakbanken.gu.se/saldo">SALDOs projektsida</a>
                   </li>
                   <li>
-                      <a
-                          href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf"
-                          >dokumentation (pdf)</a
-                      >
+                      <a href="https://svn.spraakdata.gu.se/repos/sblex/pub/saldo_instruktion.pdf">dokumentation (pdf)</a>
                   </li>
               </ul>
           </footer>
@@ -355,7 +280,7 @@
 # name: TestLidRoutes.test_protojs_valid_input_returns_200[bo..1]
   '''
   var flare = {
-   'dväljas..1': 'http://testserver/lid/graph/dväljas..1', 
+   'dväljas..1': '/lid/graph/dväljas..1', 
   }
   '''
 # ---

@@ -31,7 +31,7 @@ def create_saldo_ws_server(*, settings: config.Settings) -> FastAPI:
         # openapi_url=f"{settings.app.root_path}/openapi.json",
         docs_url=None,
         redoc_url="/",
-        root_path=settings.app.root_path,
+        # root_path=settings.app.root_path,
         lifespan=tasks.lifespan,
         default_response_class=JSONResponse,
         config=settings,
@@ -72,7 +72,9 @@ def create_saldo_ws_server(*, settings: config.Settings) -> FastAPI:
 
     FastAPIInstrumentor.instrument_app(webapp)
 
-    webapp.include_router(routes.router)
+    router = routes.create_router(settings.app.root_path)
+    webapp.include_router(router)
+    print(f"{webapp.routes=}")
     # Workaround for fastapi.staticfiles.StaticFiles not working,
     # added in saldo_ws.routes instead
     # webapp.mount("/static", StaticFiles(directory="static"), name="static")

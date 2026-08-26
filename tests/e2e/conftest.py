@@ -81,6 +81,7 @@ def fixture_webapp(morph_db: str) -> FastAPI:
                 debug_log_otel_to_console=False,
                 debug_log_otel_to_provider=False,
             ),
+            app=AppSettings(root_path=""),
         )
         # config={
         #     "semantic.path": "assets/testing/saldo.txt",

@@ -9,7 +9,6 @@ from sblex.telemetry.settings import OTelSettings
 
 
 class AppSettings(BaseModel):
-    base_url: typing.Optional[str] = None
     root_path: str = ""
     template_directory: str = "templates"
     # model_config = SettingsConfigDict(env_file=".env", extra="ignore")

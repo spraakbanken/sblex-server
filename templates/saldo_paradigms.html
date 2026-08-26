@@ -19,7 +19,7 @@
     <p>Grundformen måste förses med ordklass (grundform:ordklass).</p>
     {% elif w|length == 0 %}
     <p>Mata in kommaseparerade ordformer, där första ordet är en grundform försedd med ordklass.</p>
-    <p>Exempel: <a href="{{ url_for('paradigms:para-html').include_query_params(words='man%3Ann%2C%20m%C3%A4n') }}">man:nn, män</a></p>
+    <p>Exempel: <a href="{{ url_for('paradigms:para-html') }}?words=man%3Ann%2C%20m%C3%A4n">man:nn, män</a></p>
     {% else %} {% if j|length %}
     <table>
         {% for p in j %}
