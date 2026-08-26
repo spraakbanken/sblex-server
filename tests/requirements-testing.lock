@@ -193,7 +193,7 @@ tomli==2.4.0 ; python_full_version <= '3.11'
     # via
     #   coverage
     #   pytest
-ty==0.0.20
+ty==0.0.33
 typing-extensions==4.15.0
     # via
     #   anyio
