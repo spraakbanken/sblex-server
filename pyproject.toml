@@ -50,6 +50,9 @@ dev = [
 requires = ["uv_build>=0.9.6,<0.13.0"]
 build-backend = "uv_build"
 
+[tool.uv]
+exclude-newer = "P7D"
+
 [tool.uv.build-backend]
 module-name = "sblex"
 namespace = true
