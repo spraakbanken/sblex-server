@@ -55,5 +55,5 @@ class Settings(BaseSettings):
 
 
 def read_settings_from_env() -> Settings:
-    otel = OTelSettings(_env_prefix="SALDO_WS__")  # ty: ignore[missing-argument,unknown-argument]
-    return Settings(otel=otel)  # ty: ignore[missing-argument]
+    otel = OTelSettings(_env_prefix="SALDO_WS__")
+    return Settings(otel=otel)

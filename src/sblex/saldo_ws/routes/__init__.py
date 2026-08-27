@@ -13,7 +13,7 @@ from sblex.saldo_ws.routes import (
 
 
 def create_router(root_path: str | None) -> APIRouter:
-    router = APIRouter(prefix=root_path)
+    router = APIRouter(prefix=root_path or "")
 
     router.include_router(fullform.router, prefix="/ff", tags=["fullform"])
     router.include_router(fullform_lex.router, prefix="/fl", tags=["fullform_lex"])
