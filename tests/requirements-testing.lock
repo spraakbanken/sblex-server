@@ -66,7 +66,7 @@ httpx==0.28.1
     # via
     #   asgi-matomo
     #   sblex-server
-idna==3.11
+idna==3.15
     # via
     #   anyio
     #   httpx

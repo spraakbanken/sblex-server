@@ -145,3 +145,32 @@ class TestLidRoutes:
         assert res.status_code == status.HTTP_200_OK
         assert res.headers["content-type"] == "text/html; charset=utf-8"
         assert res.text == snapshot
+
+
+class TestLidRoutesWithRootPath:
+    @pytest.mark.parametrize("in_format", ["json", "xml", "html"])
+    @pytest.mark.asyncio
+    async def test_invalid_input_returns_422(
+        self, client_w_root_path: AsyncClient, in_format: str
+    ) -> None:
+        res = await client_w_root_path.get(f"/ws/saldo-ws/lid/{in_format}/bad-input")
+        assert res.status_code == status.HTTP_422_UNPROCESSABLE_CONTENT
+
+    @pytest.mark.parametrize("lid", ["dväljas..vb.1", "dväljas..1"])
+    @pytest.mark.asyncio
+    async def test_json_valid_input_returns_200(
+        self, client_w_root_path: AsyncClient, lid: str, snapshot_json
+    ) -> None:
+        res = await client_w_root_path.get(f"/ws/saldo-ws/lid/json/{lid}")
+        assert res.status_code == status.HTTP_200_OK
+        assert res.json() == snapshot_json
+
+    @pytest.mark.parametrize("lid", ["dväljas..1"])
+    @pytest.mark.asyncio
+    async def test_html_valid_lexeme_returns_200(
+        self, client_w_root_path: AsyncClient, lid: str, snapshot
+    ) -> None:
+        res = await client_w_root_path.get(f"/ws/saldo-ws/lid/html/{lid}")
+        assert res.status_code == status.HTTP_200_OK
+        assert res.headers["content-type"] == "text/html; charset=utf-8"
+        assert res.text == snapshot
