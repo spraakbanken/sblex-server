@@ -25,6 +25,7 @@ dependencies = [
   "orjson>=3.10.7",
   "pydantic-settings>=2.5.2",
   "sblex-fjall-morphology>=0.1.2",
+  "starlette>=1.6.0",
   "typer>=0.25.0",
   "uvicorn>=0.32.0",
 ]
