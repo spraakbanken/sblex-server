@@ -1,6 +1,6 @@
 [project]
 name = "sblex-server"
-version = "0.4.1-dev1"
+version = "0.4.1-rc0"
 description = "Saldo-WS-server && Dalin-WS-server"
 readme = "README.md"
 requires-python = ">=3.10"
