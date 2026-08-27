@@ -25,8 +25,12 @@ dependencies = [
   "orjson>=3.10.7",
   "pydantic-settings>=2.5.2",
   "sblex-fjall-morphology>=0.1.2",
+  "typer>=0.25.0",
   "uvicorn>=0.32.0",
 ]
+
+[project.scripts]
+saldo-ws = "sblex.saldo_ws.cli:app"
 
 [dependency-groups]
 dev = [
@@ -36,13 +40,13 @@ dev = [
   "pytest-cov>=5.0.0",
   "ruff>=0.6.9",
   "syrupy>=4.7.2",
-  "ty>=0.0.32",
+  "ty>=0.0.72",
   "uvicorn>=0.32.0",
   "watchfiles>=0.24.0",
 ]
 
 [build-system]
-requires = ["uv_build>=0.9.6,<0.12.0"]
+requires = ["uv_build>=0.9.6,<0.13.0"]
 build-backend = "uv_build"
 
 [tool.uv.build-backend]

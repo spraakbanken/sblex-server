@@ -9,7 +9,6 @@ from sblex.telemetry.settings import OTelSettings
 
 
 class AppSettings(BaseModel):
-    base_url: typing.Optional[str] = None
     root_path: str = ""
     template_directory: str = "templates"
     # model_config = SettingsConfigDict(env_file=".env", extra="ignore")
@@ -56,5 +55,5 @@ class Settings(BaseSettings):
 
 
 def read_settings_from_env() -> Settings:
-    otel = OTelSettings(_env_prefix="SALDO_WS__")  # ty: ignore[missing-argument,unknown-argument]
-    return Settings(otel=otel)  # ty: ignore[missing-argument]
+    otel = OTelSettings(_env_prefix="SALDO_WS__")
+    return Settings(otel=otel)

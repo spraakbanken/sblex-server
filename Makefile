@@ -115,16 +115,19 @@ doc-tests:
 .PHONY: type-check
 # check types
 type-check:
+	@${INVENV} ty --version
 	${INVENV} ty check ${PROJECT_SRC} ${tests}
 
 .PHONY: lint
 # lint the code
 lint:
+	@${INVENV} ruff --version
 	${INVENV} ruff check ${PROJECT_SRC} ${tests}
 
 .PHONY: lint-fix
 # lint the code (and fix if possible)
 lint-fix:
+	@${INVENV} ruff --version
 	${INVENV} ruff check --fix ${PROJECT_SRC} ${tests}
 
 part := "patch"
@@ -136,11 +139,13 @@ bumpversion-show:
 
 # run formatter(s)
 fmt:
+	@${INVENV} ruff --version
 	${INVENV} ruff format ${PROJECT_SRC} ${tests}
 
 .PHONY: check-fmt
 # check formatting
 check-fmt:
+	@${INVENV} ruff --version
 	${INVENV} ruff format --check ${PROJECT_SRC} ${tests}
 
 build:

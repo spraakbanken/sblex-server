@@ -12,6 +12,6 @@ class Settings(BaseSettings):
 
 
 def read_settings_from_env() -> Settings:
-    otel = OTelSettings(_env_prefix="FM_SERVER__")  # ty: ignore[missing-argument,unknown-argument]
-    settings = Settings(otel=otel)  # ty: ignore[missing-argument]
+    otel = OTelSettings(_env_prefix="FM_SERVER__")
+    settings = Settings(otel=otel)
     return settings

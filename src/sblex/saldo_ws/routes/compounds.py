@@ -20,7 +20,7 @@ async def get_compound_json(
     request: Request,
     segment: str,
     lookup_service: LookupService = Depends(deps.get_lookup_service),  # noqa: B008
-) -> Response | None | dict[str, Any]:
+) -> Response | dict[str, Any] | None:
     with trace.get_tracer(__name__).start_as_current_span(
         sys._getframe().f_code.co_name
     ) as _process_api_span:

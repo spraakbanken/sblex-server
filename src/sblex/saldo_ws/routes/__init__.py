@@ -11,17 +11,20 @@ from sblex.saldo_ws.routes import (
     system_info,
 )
 
-router = APIRouter()
 
+def create_router(root_path: str | None) -> APIRouter:
+    router = APIRouter(prefix=root_path or "")
 
-router.include_router(fullform.router, prefix="/ff", tags=["fullform"])
-router.include_router(fullform_lex.router, prefix="/fl", tags=["fullform_lex"])
-router.include_router(lids.router, prefix="/lid", tags=["lid", "lemma-id"])
-router.include_router(
-    compounds.router, prefix="/sms", tags=["sms", "sammansättning", "compound"]
-)
-router.include_router(inflection.router, prefix="/gen", tags=["inflection"])
-router.include_router(paradigms.router, prefix="/para", tags=["paradigms"])
-router.include_router(system_info.router, tags=["system-info"])
-# Workaround for fastapi.staticfiles.StaticFiles not working
-router.include_router(statics.router)
+    router.include_router(fullform.router, prefix="/ff", tags=["fullform"])
+    router.include_router(fullform_lex.router, prefix="/fl", tags=["fullform_lex"])
+    router.include_router(lids.router, prefix="/lid", tags=["lid", "lemma-id"])
+    router.include_router(
+        compounds.router, prefix="/sms", tags=["sms", "sammansättning", "compound"]
+    )
+    router.include_router(inflection.router, prefix="/gen", tags=["inflection"])
+    router.include_router(paradigms.router, prefix="/para", tags=["paradigms"])
+    router.include_router(system_info.router, tags=["system-info"])
+    # Workaround for fastapi.staticfiles.StaticFiles not working
+    router.include_router(statics.router)
+
+    return router

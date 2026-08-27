@@ -13,5 +13,5 @@ class TestStaticRoutes:
     async def test_root_path_and_static_saldo_css_returns_200(
         self, client_w_root_path: AsyncClient
     ) -> None:
-        res = await client_w_root_path.get("/static/saldo.css")
+        res = await client_w_root_path.get("/ws/saldo-ws/static/saldo.css")
         assert res.status_code == status.HTTP_200_OK
