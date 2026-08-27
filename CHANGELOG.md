@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file.
 
+## [unreleased]
+
+### Added
+
+- Add saldo-ws cli by @kod-kristoff
+- Update Morphology interface and use sblex-fjall-morphology by @kod-kristoff
+
+### Changed
+
+- Move None to the end of type unions by @kod-kristoff
+- Use custom JsonResponse instead of OrjsonResponse by @kod-kristoff
+- Fix ty typing lints by @kod-kristoff
+
+### Fixed
+
+- Fix routing by @kod-kristoff
+- Use correct type by @kod-kristoff
+
+### Testing
+
+- Add some tests with root_path by @kod-kristoff
+
 ## [0.4.1-dev1] - 2025-12-10
 
 ### Changed
@@ -13,7 +35,7 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 
 - Adjust some changes to fm-server api by @kod-kristoff
-- *(html)* Add label to input by @kod-kristoff
+- _(html)_ Add label to input by @kod-kristoff
 - Add lang=sv to html by @kod-kristoff
 - Use LoggingHandler from opentelemetry directly by @kod-kristoff
 
@@ -37,10 +59,10 @@ All notable changes to this project will be documented in this file.
 
 ### Miscellaneous Tasks
 
-- *(dev-deps)* Add bump-my-version by @kod-kristoff
-- *(scheduled)* Remove nighlty job by @kod-kristoff
+- _(dev-deps)_ Add bump-my-version by @kod-kristoff
+- _(scheduled)_ Remove nighlty job by @kod-kristoff
 - Bump ruff in precommit-config by @kod-kristoff
-- *(dev-deps)* Add uvicorn and watchfiles by @kod-kristoff
+- _(dev-deps)_ Add uvicorn and watchfiles by @kod-kristoff
 - Add traefik settings by @kod-kristoff
 - Remove old file by @kod-kristoff
 - Disable doctests by @kod-kristoff
@@ -52,7 +74,7 @@ All notable changes to this project will be documented in this file.
 - Set python 3.9 as minimum version by @kod-kristoff
 - Do not use hashes from workflow file by @kod-kristoff
 - Bump uv to 0.4.18 by @kod-kristoff
-- *(test)* Fix python-version by @kod-kristoff
+- _(test)_ Fix python-version by @kod-kristoff
 - Remove unused actions by @kod-kristoff
 - Use env namespace by @kod-kristoff
 - Add uv based workflows by @kod-kristoff
@@ -93,12 +115,12 @@ All notable changes to this project will be documented in this file.
 ### Miscellaneous Tasks
 
 - Use hashes from pdm.lock also by @kod-kristoff
-- *(check)* Fix typo by @kod-kristoff
+- _(check)_ Fix typo by @kod-kristoff
 - Generate test lock file w/o hashes by @kod-kristoff
-- *(make)* Add project line by @kod-kristoff
+- _(make)_ Add project line by @kod-kristoff
 - Mark CHANGELOG.md as phony by @kod-kristoff
-- *(make)* Add lock target by @kod-kristoff
-- *(make)* Dont use backticks by @kod-kristoff
+- _(make)_ Add lock target by @kod-kristoff
+- _(make)_ Dont use backticks by @kod-kristoff
 - Add snapshot-update target by @kod-kristoff
 - Add changelog update by @kod-kristoff
 - Update ruff config by @kod-kristoff
@@ -123,7 +145,7 @@ All notable changes to this project will be documented in this file.
 
 ### Miscellaneous Tasks
 
-- *(release)* Prepare release by @kod-kristoff
+- _(release)_ Prepare release by @kod-kristoff
 
 ## [0.3.1-dev2] - 2024-04-17
 
@@ -244,7 +266,7 @@ All notable changes to this project will be documented in this file.
 - Fix some lints by @kod-kristoff
 - Add note that compound analysis doesn't work by @kod-kristoff
 - Sort dict based on key by @kod-kristoff
-- Nested prefixes with '__' by @kod-kristoff
+- Nested prefixes with '\_\_' by @kod-kristoff
 - Add missing call by @kod-kristoff
 - Update TemplateResposne by @kod-kristoff
 - Use saldo_ws.config.Settings by @kod-kristoff
@@ -261,7 +283,7 @@ All notable changes to this project will be documented in this file.
 - Make fullform and fullform_lex more stable by @kod-kristoff
 - Layout by @kod-kristoff
 - Adjust base tempalte by @kod-kristoff
-- *(html)* Add new form by @kod-kristoff
+- _(html)_ Add new form by @kod-kristoff
 - Handle not list by @kod-kristoff
 - Silence lints by @kod-kristoff
 - Lid stuff by @kod-kristoff
@@ -275,8 +297,8 @@ All notable changes to this project will be documented in this file.
 ### Miscellaneous Tasks
 
 - Swithc to bump-my-version by @kod-kristoff
-- *(scheduled)* Remove nightly action by @kod-kristoff
-- *(check)* Fix typo by @kod-kristoff
+- _(scheduled)_ Remove nightly action by @kod-kristoff
+- _(check)_ Fix typo by @kod-kristoff
 - Remove unused action by @kod-kristoff
 - Add pre-commit config by @kod-kristoff
 - Fix bump-my-version command by @kod-kristoff
@@ -293,11 +315,11 @@ All notable changes to this project will be documented in this file.
 - Also run test on tags v by @kod-kristoff
 - Use right lockfile by @kod-kristoff
 - Remove check-for-updates by @kod-kristoff
-- *(scheduled)* Bump update-deps-action by @kod-kristoff
-- *(test)* Add cov_report=xml by @kod-kristoff
-- *(test)* Move codecov upload by @kod-kristoff
+- _(scheduled)_ Bump update-deps-action by @kod-kristoff
+- _(test)_ Add cov_report=xml by @kod-kristoff
+- _(test)_ Move codecov upload by @kod-kristoff
 - Add check-for-updates by @kod-kristoff
-- *(scheduled)* Install pdm separate by @kod-kristoff
+- _(scheduled)_ Install pdm separate by @kod-kristoff
 - Add concurreny to test by @kod-kristoff
 - Fix typo by @kod-kristoff
 - Fix so that nightly uses 3.13-dev by @kod-kristoff
@@ -321,7 +343,7 @@ All notable changes to this project will be documented in this file.
 - Use snapshots for fullform-lex by @kod-kristoff
 - Rewrte test to use segment instead of q by @kod-kristoff
 - Silent mypy on tests by @kod-kristoff
-- Move  adapters to tests by @kod-kristoff
+- Move adapters to tests by @kod-kristoff
 - Make tests a package by @kod-kristoff
 - Add schema tests by @kod-kristoff
 - Adjust saldo_ws_Server fixture by @kod-kristoff
@@ -331,7 +353,9 @@ All notable changes to this project will be documented in this file.
 - Disable test_fm_runner in Github Actions by @kod-kristoff
 
 ### New Contributors
-* @dependabot[bot] made their first contribution
+
+- @dependabot[bot] made their first contribution
+
 ## [0.2.3] - 2023-05-10
 
 ### Fixed
