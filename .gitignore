@@ -144,3 +144,4 @@ log.txt
 /saldo-wsgi/
 
 /assets/testing/gen/
+coverage.lcov
