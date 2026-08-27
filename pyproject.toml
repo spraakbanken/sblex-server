@@ -12,7 +12,7 @@ dependencies = [
   "asgi-matomo>=0.6.2",
   "brotli-asgi>=1.4.0",
   "environs>=14.6.0",
-  "fastapi>=0.115.2",
+  "fastapi>=0.141.1",
   "httpx>=0.27.2",
   "jinja2>=3.1.4",
   "json-arrays>=0.15.0",
@@ -25,6 +25,7 @@ dependencies = [
   "orjson>=3.10.7",
   "pydantic-settings>=2.5.2",
   "sblex-fjall-morphology>=0.1.2",
+  "starlette>=1.6.0",
   "typer>=0.25.0",
   "uvicorn>=0.32.0",
 ]
