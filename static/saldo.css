@@ -1,3 +1,24 @@
+:root {
+    --sb-orange: #f0581a;
+    --sb-orange-light: #f2dbd1;
+    --sb-blue-light: #d7ebeb;
+    --sb-blue-medium: #1e989f;
+    --sb-blue-dark: #1b3c3e;
+    --sb-grey-lighter: #f0f0f0;
+    --sb-grey-light: #d0d0d0;
+    --sb-grey-medium: #909090;
+    --sb-grey-dark: #333333;
+    --sb-grey-darker: #111111;
+    --sb-error-background: #d37b7d;
+    --sb-error-text: #000000;
+    --sb-message-background: #f6eabb;
+    --sb-link: #166f74;
+    --sb-link-inverted: #5bb3b9;
+}
+:root {
+    --table-row-even-bg: #f9f9f9;
+    --table-row-odd-bg: #e9e9e9;
+}
 textarea {
     border-color: black;
     background-color: white;
@@ -8,7 +29,7 @@ textarea {
     color: black;
 }
 
-.inputclass{
+.inputclass {
     border-color: black;
     border-style: rounded;
     border-width: thin;
@@ -18,8 +39,8 @@ textarea {
 }
 
 div.output {
-    width:280px;
-    height:150px;
+    width: 280px;
+    height: 150px;
     background-color: white;
     border-color: black;
     border-style: rounded;
@@ -27,30 +48,29 @@ div.output {
     font-size: 10pt;
     padding: 3px;
     color: black;
-    border:3px solid;
-    overflow:auto;
+    border: 3px solid;
+    overflow: auto;
 }
 
 body {
-    font-family: Verdana,sans-serif,Arial,Helvetica;
-    margin-left:2cm;
-    margin-right:2cm;
-    font-size:12px;
+    font-family: Verdana, sans-serif, Arial, Helvetica;
+    margin-left: 2cm;
+    margin-right: 2cm;
+    font-size: 12px;
     background-color: white;
-    text-align:left;
+    text-align: left;
 }
 
 pre {
-    background-color:#EEEEEE;
-    border:1px solid #DDDDDD;
-    font-size:12px;
-    padding:0.75em 1.5em;
+    background-color: #eeeeee;
+    border: 1px solid #dddddd;
+    font-size: 12px;
+    padding: 0.75em 1.5em;
 }
 
 h1 {
-    text-align: center ;
+    text-align: center;
 }
-
 
 table {
     horizontal-align: center;
@@ -65,26 +85,35 @@ th {
     font-size: 10pt;
 }
 
-
-h2, h3, h4, h5, h6 {
-    text-align: left ;
+tr:nth-child(2n) {
+    background-color: var(--table-row-even-bg);
+}
+tr:nth-child(odd) {
+    background-color: var(--table-row-odd-bg);
+}
+h2,
+h3,
+h4,
+h5,
+h6 {
+    text-align: left;
 }
 
 div.output {
-    width:320px;
-    height:200px;
-    border:1px solid #ccc;
-    background:#f2f2f2;
-    padding:6px;
-    overflow:auto;
+    width: 320px;
+    height: 200px;
+    border: 1px solid #ccc;
+    background: #f2f2f2;
+    padding: 6px;
+    overflow: auto;
 }
 
 a {
-    text-decoration:none;
+    text-decoration: none;
 }
 a:hover {
-    text-decoration:underline;
+    text-decoration: underline;
 }
 a img {
-    border:0pt none;
+    border: 0pt none;
 }
