@@ -55,6 +55,7 @@ omit = ["src/sblex/*.py"]
 
 [tool.uv]
 exclude-newer = "P7D"
+exclude-newer-package = { asgi-matomo = "2026-09-12T00:00:00Z" }
 
 [tool.uv.build-backend]
 module-name = "sblex"
