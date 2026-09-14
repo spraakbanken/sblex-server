@@ -1,15 +1,21 @@
 {% extends "saldo_document.html" %}
 {% block content %}
-<center>
-    <form action="{{ url_for('fullform:ff-html')}}" method="get" class="inputclass">
-        <label for="search">Skriv in en ordform</label>
-        <input type="search" id="search" class="inputclass" value="{{ input }}" name="fragment" size="30"
+<div class="search">
+    <center>
+        <form action="{{ url_for('fullform:ff-html')}}" method="get" class="inputclass">
+            <label for="search">Skriv in en ordform</label>
+            <input type="search" id="search" class="inputclass" value="{{ input }}" name="fragment" size="30"
             placeholder="Skriv in en ordform" results="10" />
-        <input type="submit" value="Sök" />
-    </form>
+            <input type="submit" value="Sök" />
+        </form>
+    </center>
+</div>
+<div class="result">
+    <center>
     {% if segment|length %}
     <p>segment: {{ segment }}</p>
     <p>continuations: {{ j["c"] }} </p>
+    <p></p>
     <table border="1">
         <tr>
             <th>gf</th>
@@ -31,4 +37,5 @@
         {% endfor %}
         {% endif %}
 </center>
+</div>
 {% endblock %}
