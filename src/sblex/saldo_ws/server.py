@@ -5,7 +5,7 @@ from brotli_asgi import BrotliMiddleware
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
-from opentelemetry.instrumentation.httpx import HTTPXClientInstrumentor
+from opentelemetry.instrumentation.httpx import HTTPX2ClientInstrumentor
 
 from sblex import telemetry
 from sblex.saldo_ws import config, routes, tasks, templating
@@ -22,7 +22,7 @@ def create_saldo_ws_server(*, settings: config.Settings) -> FastAPI:
     logger.warning("loaded settings", extra={"settings": str(settings)})
     logger.debug("loading telemetry")
     telemetry.init_otel_tracing(settings.otel, fallback_name="saldo-ws")
-    HTTPXClientInstrumentor().instrument()
+    HTTPX2ClientInstrumentor().instrument()
 
     logger.debug("creating app")
     webapp = FastAPI(

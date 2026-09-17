@@ -1,7 +1,7 @@
 import logging
 import sys
 
-import httpx
+import httpx2 as httpx
 from opentelemetry import trace
 
 from sblex.fm import Morphology

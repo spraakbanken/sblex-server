@@ -1,4 +1,4 @@
-import httpx
+import httpx2 as httpx
 from fastapi import Depends, Request
 
 from sblex.application.queries import FullformLexQuery, LookupLid
