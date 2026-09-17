@@ -9,7 +9,7 @@ authors = [
   { name = "Språkbanken Text", email = "sb-info@svenska.gu.se" },
 ]
 dependencies = [
-  "asgi-matomo>=0.6.2",
+  "asgi-matomo[background]>=0.8.0",
   "brotli-asgi>=1.4.0",
   "environs>=14.6.0",
   "fastapi>=0.141.1",
@@ -55,7 +55,7 @@ omit = ["src/sblex/*.py"]
 
 [tool.uv]
 exclude-newer = "P7D"
-exclude-newer-package = { asgi-matomo = "2026-09-12T00:00:00Z" }
+exclude-newer-package = { asgi-matomo = "2026-09-17T12:15:00Z" }
 
 [tool.uv.build-backend]
 module-name = "sblex"
