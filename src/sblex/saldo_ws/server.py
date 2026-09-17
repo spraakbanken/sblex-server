@@ -65,6 +65,11 @@ def create_saldo_ws_server(*, settings: config.Settings) -> FastAPI:
                 access_token=webapp.state.settings.tracking.matomo_token,
                 exclude_patterns=[".*/html.*"],
             )
+
+            from asgi_matomo.background import BackgroundTaskMiddleware
+
+            logger.info("adding BackgroundTaskMiddleware")
+            webapp.add_middleware(BackgroundTaskMiddleware)
     else:
         logger.warning(
             "NOT tracking to Matomo, please set TRACKING_MATOMO_URL and TRACKING_MATOMO_IDSITE."
