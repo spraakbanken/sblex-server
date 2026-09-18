@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## [unreleased]
+
+### Added
+
+- Add BackgroundTaskMiddleware by @kod-kristoff
+
+### Changed
+
+- Bump opentelemetry and use httpx2 instead of httpx by @kod-kristoff
+
+### Fixed
+
+- Log uvicorn.access with otlp logger
+
+### Miscellaneous Tasks
+
+- Update asgi-matomo to v0.8.0 with extra `background` by @kod-kristoff
+
 ## [0.4.1-rc0] - 2026-08-27
 
 ### Added
