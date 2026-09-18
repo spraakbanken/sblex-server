@@ -85,6 +85,7 @@ def init_otel_logging(settings: OTelSettings) -> None:
     logFormatter = logging.Formatter(settings.otel_python_log_format)
     otel_log_handler.setFormatter(logFormatter)
     logging.getLogger().addHandler(otel_log_handler)
+    logging.getLogger("uvicorn.access").addHandler(otel_log_handler)
 
 
 def configure_logging(settings: dict[str, str]) -> None:
