@@ -48,7 +48,7 @@ jobs:
 
       - name: Set up uv
         if: hashFiles('uv.lock') != ''
-        uses: astral-sh/setup-uv@eac588ad8def6316056a12d4907a9d4d84ff7a3b # 7.3.0
+        uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # 10.0.1
         with:
           version: ${{ env.UV_VERSION }}
           enable-cache: true
