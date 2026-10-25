@@ -30,17 +30,21 @@
     </head>
 
     <body>
-        <center>
-            <p>
-                <a href="{{ url_for('fullform_lex:fl-html') }}"
-                    ><img
-                        src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif"
-                        align="top"
-                        alt="SALDO: gå tillbaka till startsidan"
-                /></a>
-            </p>
-        </center>
-        <div id="output_table">{% block content %}{% endblock %}</div>
+        <header>
+            <center>
+                <p>
+                    <a href="{{ url_for('fullform_lex:fl-html') }}"
+                        ><img
+                            src="https://spraakbanken.gu.se/sites/spraakbanken.gu.se/files/img/saldo/saldo.gif"
+                            align="top"
+                            alt="SALDO: gå tillbaka till startsidan"
+                    /></a>
+                </p>
+            </center>
+        </header>
+        <div class="main">
+            <main class="container">{% block content %}{% endblock %}</main>
+        </div>
         <footer>
             <hr />
             <ul>
